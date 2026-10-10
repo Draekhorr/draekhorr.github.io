@@ -1,15 +1,9 @@
-# Draekhorr V4.9.1 - Warcraft Logs HPS diagnostics
+Draekhorr V4.9.2 frontend hotfix
 
-Replace **only** `scripts/sync_all.py` in your GitHub repository. Keep `data.json`, `script.js`, `style.css`, GitHub workflow, and secrets unchanged.
+Upload index.html and script.js to repository root. Do not replace style.css, data.json, scripts/sync_all.py, or GitHub Actions workflow.
 
-## Changes
-- Fixes GraphQL schema inspection missing `variables` argument.
-- Reads `bestAmount` rather than nonexistent `amount` for Warcraft Logs HPS rankings, only when an HPS query succeeds and the returned metric is compatible.
-- Prints `DIAG WCL sample boss=... bestAmount=... rankPercent=...` for up to eight bosses to compare with Warcraft Logs UI.
-- Prints schema fields for Encounter and Zone for investigation of official boss icons. **Icons are not guaranteed yet**; no fake URLs or generated artwork are used.
-- Keeps Raider.IO dynamic season and Blizzard historical raid code from V4.9.
+Changes: versioned JS and JSON fetch to avoid stale caches; bestPercent shown with one decimal and %; highestHps displayed as rounded integer, with zero/null as dash.
 
-## Run
-Commit the file and run Actions > Sync WoW APIs > Run workflow. Share lines beginning `DIAG WCL`, `WARN WCL`, and `OK warcraftLogs` (do not share secrets).
+IMPORTANT: index.html is based on the previously provided V4.8 markup. If you have customized index.html since then, upload ONLY script.js and change the existing script tag to src="script.js?v=4.9.2" manually.
 
-This version is not tested with your private API credentials. If HPS numbers differ from the WCL UI, we will adjust the metric and query before treating them as final.
+No API sync is required; wait for Pages deployment and hard refresh. Boss images still require iconUrl from backend.
