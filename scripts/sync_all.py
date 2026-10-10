@@ -305,7 +305,13 @@ def sync_warcraftlogs(data):
             hps = old['highestHps']
         if not isinstance(percentile, (int, float)) and hps is None:
             continue
+        # Only use a real URL if supplied by the encounter metadata.
+        encounter = as_dict(row.get('encounter'))
+        icon = next((encounter[k] for k in ('iconUrl', 'icon', 'imageUrl') if isinstance(encounter.get(k), str) and encounter[k].startswith('https://')), None)
+        if icon is None and isinstance(old.get('iconUrl'), str) and old['iconUrl'].startswith('https://'):
+            icon = old['iconUrl']
         parses.append({'name': name,
+                       'iconUrl': icon,
                        'bestPercent': percentile if isinstance(percentile, (int, float)) else None,
                        'highestHps': hps,
                        'url': WCL_URL})

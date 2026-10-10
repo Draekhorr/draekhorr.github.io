@@ -27,9 +27,9 @@ function makeRaidCard(raid){
  return card;
 }
 function renderRaids(data){
- const current=el('raid-list'),history=el('raid-history');
+ const current=el('raid-list'),history=el('raid-history'),selector=el('raid-expansion-select');
  if(!current||!history)return;
- current.replaceChildren();history.replaceChildren();
+ current.replaceChildren();history.replaceChildren();if(selector)selector.replaceChildren(new Option('Select expansion...',''));
  const grouped=new Map(), seen=new Set();
  const currentNames=new Set();
  const add=(expansion,season,raid)=>{
@@ -80,8 +80,8 @@ function renderRaids(data){
   const ia=priority.indexOf(a),ib=priority.indexOf(b);
   return (ia<0?999:ia)-(ib<0?999:ib)||a.localeCompare(b);
  })){
-  const details=document.createElement('details');details.className='expansion-dropdown';
-  const summary=document.createElement('summary');summary.textContent=expansion;details.append(summary);
+  const details=document.createElement('div');details.className='expansion-dropdown';details.dataset.expansion=expansion;details.hidden=true;
+  if(selector)selector.add(new Option(expansion,expansion));
   for(const [season,entries] of grouped.get(expansion)){
    const h=document.createElement('h5');h.textContent=season;details.append(h);
    const list=document.createElement('div');list.className='raid-items';
@@ -90,6 +90,7 @@ function renderRaids(data){
   }
   history.append(details);
  }
+ if(selector){selector.onchange=()=>{for(const section of history.querySelectorAll('[data-expansion]'))section.hidden=section.dataset.expansion!==selector.value;};}
  if(!grouped.size){const p=document.createElement('p');p.className='empty-state';p.textContent='Historical raids will appear after the Blizzard sync returns confirmed Mythic/Heroic progression.';history.append(p)}
 }
 
@@ -102,7 +103,9 @@ function renderWclBosses(items){
   const name=document.createElement('td');
   const link=(typeof boss.url==='string'&&/^https:\/\//i.test(boss.url))?document.createElement('a'):document.createElement('span');
   if(link.tagName==='A'){link.href=boss.url;link.target='_blank';link.rel='noopener noreferrer';}
-  link.textContent=boss.name||'Unknown boss';name.append(link);
+  const icon=typeof boss.iconUrl==='string'&&/^https:\/\//i.test(boss.iconUrl)?boss.iconUrl:null;
+  if(icon){const img=document.createElement('img');img.src=icon;img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';img.className='boss-icon';img.onerror=()=>img.remove();name.append(img);}
+  name.classList.add('boss-name-cell');link.textContent=boss.name||'Unknown boss';name.append(link);
   const pct=document.createElement('td');pct.className='wcl-value';
   let score=Number.isFinite(Number(boss.bestPercent))&&boss.bestPercent!==null&&boss.bestPercent!==undefined?Number(boss.bestPercent):null;
   if(score===null){const match=String(boss.note||'').match(/Rank percentile:\s*([\d.]+)/i);if(match)score=Number(match[1]);}
