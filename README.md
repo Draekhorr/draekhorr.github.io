@@ -1,4 +1,4 @@
-# Draekhorr WoW Legacy — V1
+# Draekhorr WoW Legacy — V1.1
 
 Personal, unofficial World of Warcraft showcase for **Draekhorr**, Restoration Shaman on **Draenor (EU)**.
 
@@ -117,3 +117,12 @@ Earlier incremental development was tracked as **V4.x–V5.8**. This README inte
 
 *Powered by Windfury, caffeine, and questionable life choices since 2005.*  
 *World of Warcraft © Blizzard Entertainment · Unofficial fan project.*
+
+
+## V1.1 — Universal Responsive Layout
+
+The website now uses a fluid container and adaptive typography, with responsive layouts for the character profile, raid/history panels, Warcraft Logs table, Raider.IO dungeon cards, navigation and footer. The Warcraft Logs table scrolls *inside its panel* on narrow screens rather than forcing page-wide horizontal scrolling. Layout breakpoints cover compact phones, phones, tablets, laptops and wide monitors. Reduced-motion preferences are respected.
+
+**Files changed:** `index.html` (cache-busting version), `style.css` (responsive overrides), `README.md`. `script.js` is included for compatibility with the dynamic raid engine but is unchanged; backend, API credentials and workflow schedules are untouched.
+
+**Deployment:** Replace the included root files, commit, wait for GitHub Pages, and refresh. No API sync required. Recommended visual checks at 320, 375, 430, 768, 1024, 1440 and 1920 CSS pixels. Real-browser visual validation remains necessary.
