@@ -1,266 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;600;800&display=swap');*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#090d14;color:#f6eddb;font-family:Inter,Arial,sans-serif;background-image:radial-gradient(ellipse at 75% 10%,#66471d55,transparent 35%)}header,main,footer{max-width:1180px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;padding:28px 25px;border-bottom:1px solid #534b3c;font-family:Cinzel;color:#e7bb6b;font-weight:900;letter-spacing:3px}nav{display:flex;gap:28px}nav a{font:11px Inter;color:#c3ae8b;text-decoration:none}main{padding:0 25px}.hero{min-height:620px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.hero p:first-child,section>p{color:#e1b76a;letter-spacing:3px;font-size:11px;font-weight:800}h1,h2{font-family:Cinzel,serif}h1{font-size:clamp(46px,7vw,92px);line-height:1.12;margin:22px 0}em{color:#e3b665;font-style:normal}.hero p:nth-of-type(2){max-width:500px;color:#aab0bc;line-height:1.9}.btn{display:inline-block;margin-top:25px;padding:20px 26px;background:linear-gradient(120deg,#eac47e,#b68743);color:#16120d;font-size:11px;font-weight:800;letter-spacing:1px;text-decoration:none}section:not(.hero){padding:85px 0;border-top:1px solid #383b42}h2{font-size:clamp(30px,4vw,50px)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid article{background:linear-gradient(145deg,#17202b,#10151e);border:1px solid #4b453c;padding:32px;min-height:160px;color:#c5bdac}.grid strong{font:65px Cinzel;color:#e8bb6b}.grid article p{font-size:11px;letter-spacing:2px}small{display:block;color:#9298a1;margin-top:22px}.outro{text-align:center;padding:110px 0!important}footer{padding:30px 25px;color:#85878e;font-size:10px;letter-spacing:1px}@media(max-width:700px){.grid{grid-template-columns:1fr}header{font-size:13px}nav{gap:10px}nav a{font-size:9px}.hero{min-height:550px}}
-.brand{color:#e7bb6b;text-decoration:none}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:center}.hero-copy{min-width:0}.avatar{width:100%;max-height:530px;object-fit:contain;filter:drop-shadow(0 0 35px #13bde94a);border-radius:24px}.section-note{color:#aebdca;line-height:1.8;max-width:800px}.links{display:flex;gap:14px;flex-wrap:wrap}.secondary{background:transparent;color:#d5b77a;border:1px solid #ae854a}.grid article a{color:#6ad8f5;font-size:12px;text-decoration:none}#progression h3{font-family:Cinzel;color:#e8c17e;margin-top:40px}#progression .grid h3{margin:0 0 14px}#progression .grid article p{line-height:1.6}@media(max-width:850px){.hero{grid-template-columns:1fr}.avatar{max-width:430px;margin:auto;order:-1}.hero{padding:45px 0}nav{flex-wrap:wrap;justify-content:flex-end}}
-/* V3: raid-first homepage and balanced collection columns */
-.collection-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch}.collection-panel{min-width:0;background:linear-gradient(150deg,#172331,#0d141f);border:1px solid #9d783e;padding:30px;box-shadow:inset 0 1px 0 #2a4250}.collection-panel h3{font-family:Cinzel,serif;font-size:clamp(22px,2.5vw,32px);color:#e8c17e;margin:10px 0 25px}.eyebrow{font-size:10px;letter-spacing:2px;color:#5fd1ec;font-weight:800}.collection-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}.collection-metrics>div{background:#0b121d;border:1px solid #344655;padding:18px 12px}.collection-metrics strong{display:block;font:clamp(29px,3vw,44px) Cinzel,serif;color:#eac47e;overflow-wrap:anywhere}.collection-metrics span{display:block;margin-top:9px;font-size:10px;line-height:1.5;letter-spacing:1px;color:#b7c4ce}.collection-list{display:grid;gap:12px}.collection-list>p{color:#aebdca;line-height:1.8}.data-card{padding:22px;background:#111b27;border:1px solid #384957;min-width:0}.data-card h4{font-family:Cinzel,serif;color:#eac47e;margin:0 0 12px;font-size:17px}.data-card p{color:#b4c0ca;line-height:1.6;font-size:13px}.data-card a{color:#68d4f2;text-decoration:none;font-size:12px}.extra-cards{margin-top:22px}.extra-cards article{min-height:105px}.stats{margin-bottom:20px}nav{align-items:center;flex-wrap:wrap}nav a:hover,.brand:hover{color:#68d4f2}@media(max-width:760px){.collection-columns{grid-template-columns:1fr}.collection-panel{padding:22px}nav{gap:10px}header{gap:12px;flex-wrap:wrap}.grid{grid-template-columns:1fr}}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;600;800&display=swap');
 
-/* V4: side-by-side Mythic progression and Warcraft Logs */
-.raid-logs-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:stretch;margin-top:28px}.raid-logs-panel{min-width:0;background:linear-gradient(155deg,#182a39,#0b131e);border:1px solid #987344;padding:30px;box-shadow:0 15px 45px #0004,inset 0 1px 0 #3d596055}.raid-logs-panel h3{font-family:Cinzel,serif;color:#eac47e;font-size:clamp(20px,2.2vw,29px);margin:10px 0 22px}.raid-items{display:grid;gap:12px;margin-bottom:22px}.raid-items .data-card{background:#0c1824}.empty-state{color:#afbfcb;line-height:1.8;font-size:13px}.logs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:20px}.logs-metrics>div{background:#09131e;border:1px solid #30475a;padding:18px 12px}.logs-metrics strong{display:block;color:#eac47e;font:clamp(27px,3vw,42px) Cinzel,serif;overflow-wrap:anywhere}.logs-metrics span{display:block;color:#b8c7d1;letter-spacing:1px;font-size:10px;line-height:1.6;margin-top:9px}.inline-link{color:#70d7ef;text-decoration:none;font-size:11px;letter-spacing:1px;font-weight:800}.inline-link:hover{text-decoration:underline}@media(max-width:820px){.raid-logs-columns{grid-template-columns:1fr}.raid-logs-panel{padding:22px}}
-
-/* V4.2: raid history dropdowns */
-.raid-subheading{color:#eac47e;font:700 14px Cinzel,serif;letter-spacing:1px;margin:24px 0 14px}.raid-subheading span{color:#6bd6ef;font:700 11px Inter,Arial,sans-serif;letter-spacing:1px}.raid-history{display:grid;gap:12px;margin-bottom:24px}.expansion-dropdown{border:1px solid #3b5869;background:#0b1723;padding:0 16px}.expansion-dropdown summary{cursor:pointer;color:#eac47e;font-family:Cinzel,serif;font-weight:700;padding:17px 0}.expansion-dropdown summary:hover{color:#6bd6ef}.expansion-dropdown h5{font-size:12px;color:#6bd6ef;letter-spacing:1px;margin:8px 0 12px}.expansion-dropdown .data-card{padding:16px}.expansion-dropdown .data-card h4{font-size:14px}
-
-/* V4.4: cleaner Mythic Progression heading and history title */
-#raids .mythic-tagline{color:#83cfe0;font-size:14px;letter-spacing:0;line-height:1.7;font-weight:400;margin:0 0 20px;max-width:700px}
-#raids>h2{margin-bottom:12px}
-.raid-history-title{font-family:Cinzel,serif;font-size:17px;line-height:1.5;color:#eac47e;letter-spacing:.6px;margin:30px 0 16px;overflow-wrap:anywhere}
-
-/* V4.5: compact Warcraft Logs healing boss table */
-.hero h1{font-size:clamp(30px,4.6vw,67px);line-height:1.17;overflow-wrap:break-word}
-.wcl-table-scroll{overflow-x:auto;margin:12px 0 25px;border:1px solid #354a59;background:#080f18}
-.wcl-table{border-collapse:collapse;width:100%;min-width:390px;font-size:13px}
-.wcl-table th{background:#162434;color:#eac47e;text-align:left;padding:13px 12px;font-size:12px}
-.wcl-table th:nth-child(n+2),.wcl-table td:nth-child(n+2){text-align:right;white-space:nowrap}
-.wcl-table td{padding:12px;border-top:1px solid #2a3e4c;color:#d8e4e9}
-.wcl-table tr:hover td{background:#172636}
-.wcl-table a{color:#92cafa;text-decoration:none;font-weight:600}
-.wcl-table a:hover{text-decoration:underline}
-.wcl-table .wcl-hps{color:#d4ed78;font-variant-numeric:tabular-nums}
-.wcl-table .parse-legendary{color:#ff8000}.wcl-table .parse-epic{color:#a335ee}.wcl-table .parse-rare{color:#0070dd}.wcl-table .parse-uncommon{color:#1eff00}.wcl-table .parse-common{color:#aaa}
-@media(max-width:700px){.hero h1{font-size:clamp(28px,7vw,48px)}}
-
-/* V4.6 compact raid history */
-.raid-expansion-select{width:100%;padding:15px 16px;margin:0 0 14px;background:#0b1723;border:1px solid #426174;color:#eac47e;font:700 14px Cinzel,serif;cursor:pointer}.raid-expansion-select:focus-visible{outline:2px solid #6bd6ef;outline-offset:2px}.raid-history [hidden]{display:none!important}.raid-history .expansion-dropdown{padding:12px 16px}.raid-history .expansion-dropdown h5{margin:8px 0 12px}.boss-name-cell .boss-icon{width:30px;height:30px;object-fit:cover;vertical-align:middle;border:1px solid #a9844d;border-radius:3px;margin-right:9px;box-shadow:0 0 0 1px #102433}.wcl-table tr:hover .boss-icon{box-shadow:0 0 9px #4bc8e888}.boss-name-cell{min-width:175px}
-
-/* V4.7: larger, accessible WCL boss rows */
-.wcl-table{font-size:15px;min-width:460px}
-.wcl-table th{font-size:13px;padding:15px 13px}
-.wcl-table td{padding:13px 12px;line-height:1.45}
-.wcl-table .boss-name-cell{font-size:15px;min-width:220px}
-.wcl-table .boss-name-cell a{font-weight:700}
-.wcl-table .wcl-value{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
-.boss-name-cell .boss-icon{width:38px;height:38px;vertical-align:middle;margin-right:12px;border-radius:5px}
-.boss-icon-placeholder{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;vertical-align:middle;margin-right:12px;border:1px solid #405361;border-radius:5px;color:#879baa;background:#122333;font-size:20px}
-@media(max-width:700px){.wcl-table{font-size:14px;min-width:430px}.wcl-table td{padding:11px 9px}}
-
-/* V5.0: compact Raider.IO scoreboard and dungeon cards */
-#raiderio .rio-score-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:26px 0 20px}
-#raiderio .rio-score-tile{background:linear-gradient(140deg,#17202b,#0c1520);border:1px solid #425368;padding:28px 32px;min-width:0}
-#raiderio .rio-score-tile strong{display:block;font:clamp(36px,5vw,62px)/1.2 Cinzel,serif;overflow-wrap:anywhere}
-#raiderio .rio-score-tile p{font-size:11px;letter-spacing:1.5px;color:#c5d3de;margin:12px 0 6px}
-#raiderio .rio-season-label{font-size:12px;color:#74cde8}
-#raiderio .rio-run-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-#raiderio .rio-run-card{min-width:0;padding:20px;background:linear-gradient(150deg,#172230,#0e1722);border:1px solid #465263;transition:border-color .2s,transform .2s}
-#raiderio .rio-run-card:hover{border-color:#d2ac65;transform:translateY(-2px)}
-#raiderio .rio-run-heading{display:flex;align-items:center;gap:13px;margin-bottom:14px}
-#raiderio .rio-run-heading h4{font:700 16px/1.45 Cinzel,serif;color:#eac47e;margin:0;overflow-wrap:anywhere}
-#raiderio .rio-run-icon,#raiderio .rio-run-icon-fallback{width:48px;height:48px;flex:0 0 48px;border:1px solid #967b54;border-radius:5px;object-fit:cover}
-#raiderio .rio-run-icon-fallback{display:grid;place-items:center;background:#122839;color:#69cfe8;font-size:23px}
-#raiderio .rio-run-meta{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;color:#d2dce6;margin-bottom:14px}
-#raiderio .rio-run-card a{font-size:11px;color:#70d8ef;text-decoration:none;font-weight:700}
-#raiderio .rio-run-card a:hover{text-decoration:underline}
-#raiderio .rio-blue{color:#45a9ff!important}#raiderio .rio-purple{color:#bd79ff!important}#raiderio .rio-gold{color:#f0c268!important}#raiderio .rio-green{color:#6cd89a!important}#raiderio .rio-unranked{color:#a9b5c1!important}
-@media(max-width:920px){#raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}#raiderio .rio-score-tile{padding:22px}}
-
-/* V5.1: compact, understated Cutting Edge legacy above raid progression */
-.raid-legacy-intro{padding-bottom:16px!important}
-.raid-legacy-summary{display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid #3b4d5c;border-bottom:1px solid #3b4d5c;padding:22px 4px}
-.raid-legacy-summary h2{font-size:clamp(26px,3vw,40px);margin:5px 0 10px}
-.raid-legacy-summary p:not(.eyebrow){color:#94bbcc;font-size:14px;margin:0}
-.ce-summary{display:flex;align-items:center;gap:15px;max-width:250px;flex-shrink:0}
-.ce-summary strong{font:clamp(38px,5vw,56px)/1 Cinzel,serif;color:#e9c078}
-.ce-summary span{font-size:10px;letter-spacing:1.1px;line-height:1.7;color:#d4dfe4}
-.raid-progress-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.ce-badge{display:inline-block!important;border:1px solid #a98851;border-radius:3px;background:#302618;color:#f1cc83!important;font:700 11px/1.4 Inter,Arial,sans-serif!important;letter-spacing:.6px;padding:2px 7px;text-decoration:none!important}
-.ce-badge:hover{background:#48361e}
-@media(max-width:640px){.raid-legacy-summary{align-items:flex-start;flex-direction:column}.ce-summary{max-width:none}}
-
-/* V5.2: restrained character identity banner, and CE summary inside Raid History */
-.character-profile-section{padding-top:28px!important;padding-bottom:14px!important}
-.character-profile-banner{display:grid;grid-template-columns:136px minmax(0,1fr) auto;align-items:center;gap:25px;min-height:176px;padding:22px 28px;background:linear-gradient(110deg,#12293b 0%,#111e2c 55%,#0a1420 100%);border:1px solid #786340;box-shadow:inset 0 1px 0 #3a596044}
-.character-portrait-frame{width:136px;height:136px;overflow:hidden;border:1px solid #69839a;background:#091725;border-radius:6px}
-.character-portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
-.character-profile-copy{min-width:0}.character-profile-copy h2{font:clamp(27px,3.2vw,44px)/1.2 Cinzel,serif;color:#f0e7d5;margin:7px 0}.character-role{color:#77d7ef;font-weight:700;margin:8px 0}.character-realm{font-size:12px;letter-spacing:1.2px;color:#b6c5d0;margin:7px 0}.character-tagline{font-size:13px;color:#9fb6c6;margin:14px 0 0}
-.character-ilvl{min-width:104px;text-align:center;border-left:1px solid #355064;padding:16px 0 16px 22px}.character-ilvl span{display:block;color:#a7bbc8;font-size:10px;letter-spacing:1.5px}.character-ilvl strong{display:block;margin-top:8px;color:#eac47e;font:clamp(26px,3vw,38px)/1.2 Cinzel,serif}
-#raid-legacy.raid-legacy-intro{padding:8px 0 22px!important;margin-top:10px}#raid-legacy .raid-legacy-summary{padding:16px 0;gap:14px}#raid-legacy .raid-legacy-summary h2{font-size:20px}#raid-legacy .raid-legacy-summary p:not(.eyebrow){font-size:12px;line-height:1.5}#raid-legacy .ce-summary{gap:9px;max-width:145px}#raid-legacy .ce-summary strong{font-size:34px}#raid-legacy .ce-summary span{font-size:9px}
-@media(max-width:680px){.character-profile-banner{grid-template-columns:90px 1fr;gap:16px;padding:18px}.character-portrait-frame{width:90px;height:90px}.character-ilvl{grid-column:1/-1;border-left:0;border-top:1px solid #355064;padding:12px 0 0;text-align:left}.character-ilvl strong{font-size:30px}#raid-legacy .raid-legacy-summary{flex-direction:column;align-items:flex-start}#raid-legacy .ce-summary{max-width:none}}
-
-/* V5.3: compact character banner, true Blizzard headshot, tighter raid transition */
-#character-profile.character-profile-section{padding:12px 0 0!important;border-top:0}
-.character-profile-banner{grid-template-columns:104px minmax(0,1fr) auto;gap:20px;min-height:132px;padding:14px 22px}
-.character-portrait-frame{width:104px;height:104px;border-radius:8px;background:#071622}
-.character-portrait-frame img{object-fit:cover;object-position:center center}
-.character-profile-copy .eyebrow{margin:0 0 5px}
-.character-profile-copy h2{font-size:clamp(25px,3vw,38px);margin:3px 0}
-.character-role{margin:5px 0}
-.character-realm{margin:4px 0}
-.character-ilvl{padding:8px 0 8px 20px}
-#raids{padding-top:28px!important;border-top:0!important}
-#raids>h2{margin-top:0}
-@media(max-width:680px){
- .character-profile-banner{grid-template-columns:76px minmax(0,1fr);gap:12px;padding:12px;min-height:0}
- .character-portrait-frame{width:76px;height:76px}
- .character-ilvl{grid-column:1/-1;padding:8px 0 0;border-left:0;border-top:1px solid #355064;text-align:left}
- #raids{padding-top:22px!important}
+/* DRAEKHORR V1 - consolidated visual system. */
+:root {
+  color-scheme:dark;
+  --bg:#090d14;--surface:#101a26;--surface-strong:#152635;
+  --border:#3c5060;--border-gold:#987344;
+  --text:#f6eddb;--muted:#b4c3ce;--gold:#eac47e;--cyan:#70d7ef;
+  --font-display:'Cinzel',Georgia,serif;--font-body:'Inter',Arial,sans-serif;
+  --gutter:clamp(16px,3vw,32px);--section-gap:clamp(40px,5vw,72px);
+  --radius:5px;
 }
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:0;color:var(--text);background:radial-gradient(ellipse at 75% 10%,#66471d40,transparent 35%),var(--bg);font-family:var(--font-body);overflow-wrap:break-word}
+header,main,footer{width:100%;max-width:1400px;margin-inline:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px var(--gutter);border-bottom:1px solid #534b3c}
+main{padding-inline:var(--gutter)}
+footer{padding:24px var(--gutter) 32px;text-align:center}
+a{color:var(--cyan)}a:hover{color:var(--gold)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+h1,h2,h3,h4,h5{font-family:var(--font-display);overflow-wrap:break-word}
+h1{font-size:clamp(30px,4.4vw,66px);line-height:1.14;letter-spacing:-.02em;margin:16px 0 20px}
+h2{font-size:clamp(29px,3.3vw,46px);line-height:1.2;margin:0 0 14px}
+h3{font-size:clamp(19px,2vw,27px);line-height:1.3;margin:8px 0 22px}
+h4{font-size:clamp(15px,1.4vw,18px)}
+em{color:var(--gold);font-style:normal}
+p{line-height:1.65}
+.section-kicker,.eyebrow{color:var(--cyan);font:800 11px/1.5 var(--font-body);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.section-kicker{color:var(--gold)}
+section:not(.hero){padding-block:var(--section-gap);border-top:1px solid #383b42}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:14px 22px;background:linear-gradient(120deg,#eac47e,#b68743);color:#16120d;font-size:11px;font-weight:800;letter-spacing:.08em;text-decoration:none;border-radius:var(--radius)}
+.btn:hover{color:#16120d;filter:brightness(1.1)}
+.inline-link{display:inline-block;color:var(--cyan);font-size:11px;letter-spacing:.08em;font-weight:800;text-decoration:none;margin-top:16px}
+.inline-link:hover{text-decoration:underline}
+.empty-state,.section-note{color:var(--muted);font-size:13px;line-height:1.75}
+.links{display:flex;gap:14px;flex-wrap:wrap}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* V5.6: compact, single-line Hearthstone footer and readable legal copy */
-.outro .hearthstone-heading{font-size:clamp(12px,2.55vw,30px);white-space:nowrap;letter-spacing:.015em;line-height:1.3;margin:0;text-align:center}
-.outro{padding:70px 0!important}
-footer{text-align:center;padding:20px 24px 32px}
-footer .footer-quip{color:#d4b67c;font-size:clamp(11px,1.2vw,13px);letter-spacing:.015em;line-height:1.6;margin:0 0 8px}
-footer .footer-legal{color:#9299a3;font-size:11px;letter-spacing:0;line-height:1.6;margin:0}
-footer .sync-status{font-size:10px;letter-spacing:0;color:#747f8b;margin-top:10px}
-@media(max-width:440px){.outro .hearthstone-heading{font-size:clamp(10px,3.1vw,13px);letter-spacing:-.02em}}
-
-/* V5.6.1: resilient character profile: identity / stats / item level */
-.character-profile-banner{
-  display:grid;
-  grid-template-columns:104px minmax(180px,1.2fr) minmax(260px,1.25fr) minmax(90px,.4fr);
-  align-items:center;column-gap:clamp(12px,2vw,24px);row-gap:16px;
-  min-height:0;padding:18px 22px;
-}
-.character-profile-copy{min-width:0}
-.character-lifetime{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px 18px;min-width:0;width:100%;align-self:center;
-}
-.character-lifetime .lifetime-stat{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0;margin:0;padding:0}
-.character-lifetime .lifetime-stat span{
-  display:block;color:#8fb9ca;font-size:10px;line-height:1.4;
-  font-weight:700;letter-spacing:.09em;overflow-wrap:anywhere;
-}
-.character-lifetime .lifetime-stat strong{
-  display:block;color:#e9bc6e;font:600 clamp(17px,1.8vw,24px)/1.15 system-ui,sans-serif;
-  font-variant-numeric:tabular-nums;letter-spacing:0;white-space:nowrap;
-}
-.character-ilvl{min-width:0;margin:0;padding:8px 0 8px 16px;text-align:center;align-self:center}
-@media(max-width:1000px){
- .character-profile-banner{grid-template-columns:104px minmax(0,1fr) minmax(105px,auto)}
- .character-lifetime{grid-column:2 / 4;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:12px;border-top:1px solid #355064}
- .character-ilvl{grid-column:3;grid-row:1}
-}
-@media(max-width:680px){
- .character-profile-banner{grid-template-columns:76px minmax(0,1fr);padding:14px;gap:12px}
- .character-portrait-frame{width:76px;height:76px}
- .character-profile-copy{grid-column:2;grid-row:1}
- .character-lifetime{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:14px 0 0}
- .character-ilvl{grid-column:1 / -1;grid-row:3;border-left:0;border-top:1px solid #355064;padding:10px 0 0;text-align:left}
- .character-ilvl strong{font-size:28px}
-}
-
-/* V1.1 — fluid, mobile-first layout; no API or content changes. */
-:root{--page-gutter:clamp(14px,3vw,32px)}
-html{min-width:0}
-body{min-width:0;overflow-wrap:break-word}
-header,main,footer{width:100%;max-width:1400px}
-header{padding:clamp(14px,2.5vw,26px) var(--page-gutter);gap:16px}
-main{padding-inline:var(--page-gutter)}
-footer{padding-inline:var(--page-gutter)}
-section:not(.hero){padding-block:clamp(34px,5.5vw,78px)}
-.hero{min-height:0;padding-block:clamp(54px,8vw,115px);grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(16px,3vw,44px)}
-.hero-copy,.hero img,.collection-panel,.raid-logs-panel,.data-card{min-width:0}
-.hero h1{font-size:clamp(30px,5.3vw,80px);overflow-wrap:normal}
-.avatar{height:auto;max-width:100%;max-height:min(540px,65vw)}
-.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
-.raid-logs-columns{gap:clamp(14px,2vw,24px)}
-.raid-logs-panel{padding:clamp(15px,2.3vw,30px)}
-.raid-logs-columns,.collection-columns{grid-template-columns:repeat(2,minmax(0,1fr))}
-.wcl-table-scroll{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
-.wcl-table{min-width:440px}
-#raiderio .rio-run-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.7vw,18px)}
-#raiderio .rio-score-tile{padding:clamp(16px,2.5vw,30px)}
-#raiderio .rio-score-tile strong{font-size:clamp(30px,4.6vw,62px)}
-#raiderio .rio-run-card{padding:clamp(14px,1.7vw,20px)}
-.character-profile-banner{grid-template-columns:clamp(74px,8vw,104px) minmax(0,1.1fr) minmax(0,1.35fr) minmax(84px,.4fr);gap:clamp(12px,1.7vw,24px)}
-.character-portrait-frame{width:100%;height:auto;aspect-ratio:1}
-.character-lifetime{grid-template-columns:repeat(2,minmax(0,1fr))}
-.character-lifetime .lifetime-stat strong{font-size:clamp(17px,1.9vw,25px);white-space:normal;overflow-wrap:anywhere}
-.character-ilvl strong{font-size:clamp(25px,3vw,42px)}
-.outro{padding-block:clamp(50px,8vw,100px)!important}
-.hearthstone-heading{font-size:clamp(15px,3.3vw,42px);line-height:1.3;overflow-wrap:normal}
-@media(max-width:1050px){
- .character-profile-banner{grid-template-columns:90px minmax(0,1fr) minmax(90px,auto)}
- .character-lifetime{grid-column:2 / 4;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:12px;border-top:1px solid #355064}
- .character-ilvl{grid-column:3;grid-row:1}
- #raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:850px){
- .hero{grid-template-columns:1fr;gap:12px;padding-block:clamp(28px,5vw,60px)}
- .hero .avatar{max-width:min(100%,420px);max-height:390px;justify-self:center;order:-1}
- .raid-logs-columns,.collection-columns{grid-template-columns:1fr}
- header{flex-wrap:wrap}nav{justify-content:flex-start;gap:10px 18px}
-}
-@media(max-width:600px){
- header{align-items:flex-start;flex-direction:column;gap:14px}
- header .brand{font-size:clamp(15px,5vw,20px);letter-spacing:1.5px}
- nav{width:100%;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px}
- nav a{font-size:11px;letter-spacing:0;padding:10px 12px;border:1px solid #344654;border-radius:3px}
- .hero h1{font-size:clamp(29px,8vw,47px);line-height:1.18}
- .hero p:nth-of-type(2){line-height:1.65}
- .btn{padding:15px 18px;max-width:100%}
- .character-profile-banner{grid-template-columns:72px minmax(0,1fr);gap:12px;padding:14px}
- .character-portrait-frame{width:72px;height:72px}
- .character-profile-copy{grid-column:2;grid-row:1}
- .character-profile-copy h2{font-size:clamp(23px,7vw,34px)}
- .character-lifetime{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;padding-top:14px}
- .character-ilvl{grid-column:1/-1;grid-row:3;text-align:left;border-left:0;border-top:1px solid #355064;padding:12px 0 0}
- #raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}
- .raid-legacy-summary{flex-direction:column;align-items:stretch}
- .wcl-table{min-width:430px}
- .outro .hearthstone-heading{font-size:clamp(14px,4vw,23px);letter-spacing:0}
-}
-@media(max-width:360px){
- .character-lifetime{gap:12px 8px}
- .character-lifetime .lifetime-stat span{font-size:9px;letter-spacing:0}
- .wcl-table{min-width:400px}
- .raid-logs-panel{padding:12px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#raiderio .rio-run-card{transition:none}}
-
-/* V1.1.1 - Ultrawide hero refinement; mobile/tablet rules remain unchanged. */
-@media (min-width: 1600px) {
-  .hero {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
-    gap: clamp(24px, 3vw, 52px);
-    padding-block: 48px 58px;
-    min-height: 0;
-  }
-  .hero-copy { min-width: 0; }
-  .hero h1 {
-    font-size: clamp(46px, 3vw, 56px);
-    line-height: 1.09;
-    letter-spacing: -.025em;
-    margin-block: 16px 22px;
-  }
-  .hero .avatar {
-    width: 100%;
-    max-width: 450px;
-    max-height: 450px;
-    height: auto;
-    justify-self: center;
-    object-fit: contain;
-  }
-  .hero .btn { margin-top: 16px; }
-}
-
-/* V1.1.2: flexible character and guild brand */
-.brand-group{display:flex;align-items:center;flex-wrap:wrap;gap:0.55rem;min-width:0;max-width:100%;font-family:Cinzel,serif;font-size:clamp(13px,1.15vw,18px);letter-spacing:0.06em}
-.brand-group .brand{white-space:nowrap}
-.guild-header:not([hidden]){display:inline-flex;align-items:center;gap:0.55rem;min-width:0}
+/* Header and guild */
+.brand-stack{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.brand-group{display:flex;align-items:baseline;flex-wrap:wrap;gap:.6rem;min-width:0;font:700 clamp(13px,1.2vw,18px)/1.4 var(--font-display);letter-spacing:.06em}
+.brand{color:var(--gold);text-decoration:none;white-space:nowrap}
+.guild-header:not([hidden]){display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:.55rem;min-width:0}
 .guild-header[hidden]{display:none!important}
 .guild-separator{color:#947e60}
-.guild-header a{color:#5fd1ec;text-decoration:none;overflow-wrap:anywhere;font-weight:700}
-.guild-header a:hover,.guild-header a:focus-visible{color:#eac47e;text-decoration:underline}
-@media(max-width:700px){.brand-group{font-size:14px;gap:0.35rem}.guild-header:not([hidden]){gap:0.35rem}}
+.guild-header a{color:var(--cyan);text-decoration:none;overflow-wrap:anywhere}
+.guild-header a:hover{text-decoration:underline}
+.header-realm{margin:0;color:#b8a887;font:700 10px/1.4 var(--font-body);letter-spacing:.16em}
+nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,2vw,28px);flex-wrap:wrap}
+nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;white-space:nowrap}
 
-/* V1.1.4 - identity and realm on two lines; compact hero transition */
-header .brand-stack{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:5px}
-header .brand-stack .brand-group{width:100%;align-items:baseline;gap:0.6rem}
-header .header-realm{margin:0;color:#b8a887;font:700 10px/1.4 Inter,Arial,sans-serif;letter-spacing:0.16em}
-header{align-items:center}
-.hero{padding-top:clamp(28px,4vw,55px)}
-@media(max-width:700px){header .brand-stack{width:100%}header .brand-stack .brand-group{gap:0.35rem}header .header-realm{font-size:10px}.hero{padding-top:clamp(24px,5vw,40px)}}
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(18px,3vw,44px);align-items:center;padding-block:clamp(32px,5vw,72px);min-height:0}
+.hero-copy{min-width:0}
+.hero-copy>p{max-width:56ch;color:var(--muted);font-size:clamp(14px,1.1vw,17px);line-height:1.7;margin:0}
+.hero .btn{margin-top:24px}
+.avatar{display:block;width:100%;max-width:450px;max-height:460px;height:auto;object-fit:contain;justify-self:center;filter:drop-shadow(0 0 35px #13bde94a)}
 
-/* V1.1.5: Mythic+ introduction */
-.mythic-plus-subtitle { color: #b8c9d4; font-size: clamp(0.95rem, 1.2vw, 1.15rem); line-height: 1.6; margin: 0.35rem 0 1.6rem; max-width: 65ch; }
+/* Character identity and lifetime stats */
+#character-profile.character-profile-section{padding:12px 0 0;border-top:0}
+.character-profile-banner{display:grid;grid-template-columns:104px minmax(180px,1.2fr) minmax(250px,1.3fr) minmax(90px,.4fr);align-items:center;gap:clamp(12px,1.8vw,24px);padding:18px 22px;background:linear-gradient(110deg,#12293b,#111e2c 55%,#0a1420);border:1px solid #786340;min-width:0}
+.character-portrait-frame{width:104px;aspect-ratio:1;overflow:hidden;border:1px solid #69839a;background:#091725;border-radius:8px}
+.character-portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.character-profile-copy{min-width:0}
+.character-profile-copy .eyebrow{margin-bottom:5px}
+.character-profile-copy h2{font-size:clamp(25px,2.7vw,38px);margin:3px 0;color:var(--text)}
+.character-role{color:var(--cyan);font-weight:700;margin:5px 0}
+.character-realm{font-size:12px;letter-spacing:.08em;color:var(--muted);margin:4px 0}
+.character-lifetime{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;min-width:0}
+.lifetime-stat{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.lifetime-stat span,.character-ilvl span{color:#9db9c9;font:700 10px/1.45 var(--font-body);letter-spacing:.08em;overflow-wrap:anywhere}
+.lifetime-stat strong{color:var(--gold);font:600 clamp(18px,1.9vw,25px)/1.15 var(--font-body);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.character-ilvl{min-width:0;padding:8px 0 8px 16px;text-align:center;border-left:1px solid #355064}
+.character-ilvl strong{display:block;color:var(--gold);font:700 clamp(26px,3vw,40px)/1.2 var(--font-display);margin-top:8px}
+
+/* Raid progression and Warcraft Logs */
+#raids{padding-top:30px;border-top:0}
+#raids>h2{margin-bottom:10px}
+.mythic-tagline,.mythic-plus-subtitle{color:#a8c5d2;font-size:clamp(14px,1.1vw,17px);line-height:1.7;letter-spacing:normal;font-weight:400;margin:0 0 22px;max-width:65ch}
+.raid-logs-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,24px);align-items:stretch;margin-top:26px}
+.raid-logs-panel{min-width:0;padding:clamp(18px,2.2vw,30px);background:linear-gradient(155deg,#182a39,#0b131e);border:1px solid var(--border-gold);box-shadow:0 15px 45px #0004,inset 0 1px 0 #3d596055}
+.raid-logs-panel h3{color:var(--gold)}
+.raid-subheading{color:var(--gold);font:700 14px/1.5 var(--font-display);letter-spacing:.04em;margin:24px 0 14px}
+.raid-subheading span{color:var(--cyan);font:700 11px/1.5 var(--font-body)}
+.raid-items,.raid-history{display:grid;gap:12px;margin-bottom:22px}
+.data-card{min-width:0;padding:18px;background:#101b27;border:1px solid #384957}
+.data-card h4{color:var(--gold);font-size:16px;line-height:1.4;margin:0 0 10px}
+.data-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 10px}
+.data-card a{font-size:11px;font-weight:700;text-decoration:none}
+.raid-history-title{font-size:17px;line-height:1.5;color:var(--gold);letter-spacing:.03em;margin:28px 0 14px}
+.raid-expansion-select{width:100%;min-height:46px;padding:12px 14px;margin:0 0 14px;background:#0b1723;border:1px solid #426174;color:var(--gold);font:700 14px var(--font-display);cursor:pointer}
+.raid-history [hidden]{display:none!important}
+.expansion-dropdown{min-width:0;border:1px solid #3b5869;background:#0b1723;padding:12px 16px}
+.expansion-dropdown h5{font:700 12px/1.5 var(--font-body);color:var(--cyan);letter-spacing:.06em;margin:8px 0 12px}
+.expansion-dropdown .data-card{padding:15px}
+.expansion-dropdown .data-card h4{font-size:14px}
+.raid-progress-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.ce-badge{display:inline-block;border:1px solid #a98851;border-radius:3px;background:#302618;color:#f1cc83!important;font:700 11px/1.4 var(--font-body);letter-spacing:.04em;padding:2px 7px;text-decoration:none}
+.ce-badge:hover{background:#48361e}
+.raid-legacy-intro{padding:10px 0 20px;margin-top:8px}
+.raid-legacy-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}
+.raid-legacy-summary>div:first-child{min-width:0}
+.raid-legacy-summary h2{font-size:clamp(20px,2vw,26px);margin:4px 0 8px}
+.raid-legacy-summary p:not(.eyebrow){color:#9bbdcd;font-size:13px;margin:0}
+.ce-summary{display:flex;align-items:center;gap:10px;flex:0 0 auto;max-width:170px}
+.ce-summary strong{color:var(--gold);font:700 34px/1 var(--font-display)}
+.ce-summary span{font-size:9px;letter-spacing:.06em;line-height:1.5;color:#d4dfe4}
+.wcl-table-scroll{overflow-x:auto;max-width:100%;margin:12px 0 24px;border:1px solid #354a59;background:#080f18;-webkit-overflow-scrolling:touch}
+.wcl-table{border-collapse:collapse;width:100%;min-width:440px;font-size:14px}
+.wcl-table th{background:#162434;color:var(--gold);text-align:left;padding:14px 12px;font-size:12px}
+.wcl-table th:nth-child(n+2),.wcl-table td:nth-child(n+2){text-align:right;white-space:nowrap}
+.wcl-table td{padding:12px;border-top:1px solid #2a3e4c;color:#d8e4e9;line-height:1.45}
+.wcl-table tr:hover td{background:#172636}
+.wcl-table a{color:#92cafa;text-decoration:none;font-weight:700}
+.wcl-table a:hover{text-decoration:underline}
+.wcl-table .wcl-value{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.wcl-table .wcl-hps{color:#d4ed78}
+.wcl-table .parse-legendary{color:#ff8000}.wcl-table .parse-epic{color:#a335ee}.wcl-table .parse-rare{color:#0070dd}.wcl-table .parse-uncommon{color:#1eff00}.wcl-table .parse-common{color:#aaa}
+.boss-name-cell{min-width:210px}
+.boss-name-cell .boss-icon,.boss-icon-placeholder{display:inline-flex;vertical-align:middle;width:38px;height:38px;margin-right:10px;border:1px solid #a9844d;border-radius:5px;object-fit:cover}
+.boss-icon-placeholder{align-items:center;justify-content:center;background:#122333;color:#879baa;font-size:20px}
+
+/* Raider.IO */
+#raiderio .rio-score-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:26px 0 20px}
+#raiderio .rio-score-tile{min-width:0;padding:clamp(18px,2.5vw,30px);background:linear-gradient(140deg,#17202b,#0c1520);border:1px solid #425368}
+#raiderio .rio-score-tile strong{display:block;font:700 clamp(32px,4.6vw,62px)/1.2 var(--font-display);overflow-wrap:anywhere}
+#raiderio .rio-score-tile p{font-size:11px;letter-spacing:.09em;color:#c5d3de;margin:12px 0 6px}
+#raiderio .rio-season-label{font-size:12px;color:var(--cyan)}
+#raiderio .rio-run-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#raiderio .rio-run-card{min-width:0;padding:18px;background:linear-gradient(150deg,#172230,#0e1722);border:1px solid #465263;transition:border-color .2s,transform .2s}
+#raiderio .rio-run-card:hover{border-color:#d2ac65;transform:translateY(-2px)}
+#raiderio .rio-run-heading{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+#raiderio .rio-run-heading h4{font:700 16px/1.45 var(--font-display);color:var(--gold);margin:0;overflow-wrap:anywhere}
+#raiderio .rio-run-icon,#raiderio .rio-run-icon-fallback{width:48px;height:48px;flex:0 0 48px;border:1px solid #967b54;border-radius:5px;object-fit:cover}
+#raiderio .rio-run-icon-fallback{display:grid;place-items:center;background:#122839;color:var(--cyan);font-size:23px}
+#raiderio .rio-run-meta{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;color:#d2dce6;margin-bottom:14px}
+#raiderio .rio-run-card a{font-size:11px;color:var(--cyan);text-decoration:none;font-weight:700}
+#raiderio .rio-run-card a:hover{text-decoration:underline}
+#raiderio .rio-blue{color:#45a9ff!important}#raiderio .rio-purple{color:#bd79ff!important}#raiderio .rio-gold{color:#f0c268!important}#raiderio .rio-green{color:#6cd89a!important}#raiderio .rio-unranked{color:#a9b5c1!important}
+
+/* Outro */
+.outro{padding-block:clamp(52px,7vw,85px)!important;text-align:center}
+.outro .hearthstone-heading{font-size:clamp(13px,2.45vw,30px);white-space:nowrap;letter-spacing:.01em;line-height:1.3;margin:0}
+.footer-quip{color:#d4b67c;font-size:clamp(11px,1.1vw,13px);letter-spacing:.01em;margin:0 0 8px}
+.footer-legal{color:#9299a3;font-size:11px;letter-spacing:0;margin:0}
+.sync-status{display:block;font-size:10px;letter-spacing:0;color:#747f8b;margin-top:10px}
+
+/* Layout breakpoints */
+@media(min-width:1600px){.hero{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);padding-block:46px 56px}.hero h1{font-size:clamp(46px,3vw,56px)}.avatar{max-height:450px}}
+@media(max-width:1050px){.character-profile-banner{grid-template-columns:90px minmax(0,1fr) minmax(90px,auto)}.character-portrait-frame{width:90px}.character-lifetime{grid-column:2/4;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:12px;border-top:1px solid #355064}.character-ilvl{grid-column:3;grid-row:1}#raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:14px;padding-block:34px 48px}.hero .avatar{max-width:min(100%,420px);max-height:390px;order:-1}.raid-logs-columns{grid-template-columns:1fr}header{flex-wrap:wrap}nav{justify-content:flex-start}}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column;gap:14px}.brand-group{font-size:14px;gap:.35rem}nav{width:100%;gap:8px}nav a{font-size:11px;padding:10px 12px;border:1px solid #344654;border-radius:3px}.hero h1{font-size:clamp(29px,8vw,47px)}.hero .btn{margin-top:18px}.character-profile-banner{grid-template-columns:72px minmax(0,1fr);gap:12px;padding:14px}.character-portrait-frame{width:72px}.character-profile-copy{grid-column:2;grid-row:1}.character-profile-copy h2{font-size:clamp(23px,7vw,34px)}.character-lifetime{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-top:14px}.character-ilvl{grid-column:1/-1;grid-row:3;text-align:left;border-left:0;border-top:1px solid #355064;padding:12px 0 0}#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}.raid-legacy-summary{flex-direction:column;align-items:flex-start}.ce-summary{max-width:none}.raid-logs-panel{padding:16px}.wcl-table{min-width:420px}.outro .hearthstone-heading{font-size:clamp(12px,3.8vw,22px)}}
+@media(max-width:360px){.character-lifetime{gap:12px 8px}.lifetime-stat span{font-size:9px}.wcl-table{min-width:400px}.raid-logs-panel{padding:12px}.outro .hearthstone-heading{font-size:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#raiderio .rio-run-card{transition:none}}
