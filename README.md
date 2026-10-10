@@ -250,3 +250,13 @@ Download the artifact from the workflow run summary and share `raid_kills_audit.
 - Existing character stats, Raid History, Cutting Edge badges, Warcraft Logs, Raider.IO and automatic API sync are preserved.
 
 **Install:** Replace root `index.html`, `script.js`, `style.css` and this complete `README.md`. Do **not** replace `data.json`, `scripts/sync_all.py`, `.github/workflows/`, avatar assets or GitHub Secrets. Commit, wait for GitHub Pages deployment, then hard refresh. No API sync required.
+
+
+## V5.6.1 — Responsive character statistics layout
+
+- Fixed character banner layout with explicit responsive grid areas for portrait, identity, lifetime statistics and item level.
+- Lifetime statistics now use a flexible 2×2 grid on desktop, four compact columns on medium screens where space allows, and 2×2 on mobile.
+- Separated labels from values; numeric values use tabular numerals and thousands separators.
+- Fixed Achievement Points binding: frontend reads `achievementPoints` from `data.json`, rather than leaving its value blank.
+- No changes to the WoW API sync, raid progression, Warcraft Logs, or Raider.IO.
+- Updated script cache version to `5.6.1`.

@@ -5,7 +5,7 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderCharacter(d.character);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -190,7 +190,7 @@ function renderRaiderIo(rio){
 }
 
 // V5.2 character banner. Never infer an active specialization from class alone.
-function renderCharacter(character){
+function renderCharacter(character,achievementPoints){
  if(!character||typeof character!=='object')return;
  if(character.name)setValue('character-name',String(character.name).toUpperCase());
  if(character.race)setValue('character-race',character.race);
@@ -200,7 +200,7 @@ function renderCharacter(character){
  const ilvl=Number(character.itemLevel);
  if(character.itemLevel!=null&&Number.isFinite(ilvl)&&ilvl>0)setValue('character-ilvl',Math.trunc(ilvl));
  const lifetime=character.lifetimeStatistics||{};
- const lifetimeValues=[['lifetime-raid-deaths',lifetime.raidDeaths],['lifetime-deaths',lifetime.totalDeaths],['lifetime-falling-deaths',lifetime.fallingDeaths],['lifetime-achievement-points',null]];
+ const lifetimeValues=[['lifetime-raid-deaths',lifetime.raidDeaths],['lifetime-deaths',lifetime.totalDeaths],['lifetime-falling-deaths',lifetime.fallingDeaths],['lifetime-achievement-points',achievementPoints]];
  for(const [id,value] of lifetimeValues){const node=el(id);if(node&&value!=null&&Number.isFinite(Number(value))&&Number(value)>=0)node.textContent=Number(value).toLocaleString('en-US',{maximumFractionDigits:0});}
  const portrait=el('character-portrait');
  if(portrait&&typeof character.portraitUrl==='string'&&/^https:\/\//i.test(character.portraitUrl)){
