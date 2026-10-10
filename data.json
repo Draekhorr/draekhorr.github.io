@@ -115,12 +115,14 @@
       "name": "The Tidebound Grotto",
       "note": "1/1 M",
       "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "source": "Raider.IO",
       "sourceSlug": "the-tidebound-grotto"
     },
     {
       "name": "The Venomous Abyss",
       "note": "5/8 M",
       "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "source": "Raider.IO",
       "sourceSlug": "the-venomous-abyss"
     }
   ],
@@ -136,42 +138,42 @@
     "bestRuns": [
       {
         "name": "Temple of Sethraliss +17",
-        "note": "Score: 442 | Timed: True",
+        "note": "Score: 442 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/14037108-17-temple-of-sethraliss"
       },
       {
         "name": "Kings' Rest +16",
-        "note": "Score: 430.7 | Timed: True",
+        "note": "Score: 430.7 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/13823927-16-kings-rest"
       },
       {
         "name": "Ruby Life Pools +15",
-        "note": "Score: 410.2 | Timed: True",
+        "note": "Score: 410.2 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8824704-15-ruby-life-pools"
       },
       {
         "name": "Altar of Fangs +14",
-        "note": "Score: 401.2 | Timed: True",
+        "note": "Score: 401.2 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8813495-14-altar-of-fangs"
       },
       {
         "name": "Den of Nalorakk +14",
-        "note": "Score: 401 | Timed: True",
+        "note": "Score: 401 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8841590-14-den-of-nalorakk"
       },
       {
         "name": "Murder Row +11",
-        "note": "Score: 346.8 | Timed: True",
+        "note": "Score: 346.8 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/4954715-11-murder-row"
       },
       {
         "name": "Voidscar Arena +11",
-        "note": "Score: 343.2 | Timed: True",
+        "note": "Score: 343.2 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/6511383-11-voidscar-arena"
       },
       {
         "name": "The Blinding Vale +10",
-        "note": "Score: 328 | Timed: True",
+        "note": "Score: 328 | Timed: N/A",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/692366-10-the-blinding-vale"
       }
     ],
@@ -181,9 +183,10 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T18:33:39+00:00",
+  "updatedAt": "2026-10-10T18:41:08+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
+    "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
     "bestPerformanceAverage": 40.57064537399497,
     "medianPerformanceAverage": 3.333312458048485,
     "bossParses": [
@@ -217,8 +220,7 @@
         "note": "Rank percentile: 1",
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       }
-    ],
-    "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+    ]
   },
   "character": {
     "name": "Draekhorr",
@@ -238,12 +240,14 @@
           "name": "The Tidebound Grotto",
           "note": "1/1 M",
           "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+          "source": "Raider.IO",
           "sourceSlug": "the-tidebound-grotto"
         },
         {
           "name": "The Venomous Abyss",
           "note": "5/8 M",
           "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+          "source": "Raider.IO",
           "sourceSlug": "the-venomous-abyss"
         }
       ]
@@ -258,13 +262,2052 @@
               "name": "Sporefall",
               "note": "1/1 M",
               "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+              "source": "Raider.IO",
               "sourceSlug": "sporefall"
             },
             {
-              "name": "Midnight Season 1 Raid (name unverified)",
+              "name": "Tier MN 1 (unresolved raid label)",
               "note": "8/9 M",
               "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+              "source": "Raider.IO",
               "sourceSlug": "tier-mn-1"
+            }
+          ]
+        }
+      ],
+      "Mists of Pandaria": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Mogu'shan Vaults",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 6,
+              "completedBosses": 6,
+              "totalBosses": 6,
+              "note": "6/6 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "The Stone Guard",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1388851382000
+                },
+                {
+                  "name": "Feng the Accursed",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1388851699000
+                },
+                {
+                  "name": "Gara'jal the Spiritbinder",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1470576765000
+                },
+                {
+                  "name": "The Spirit Kings",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1388852981000
+                },
+                {
+                  "name": "Elegon",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1388853511000
+                },
+                {
+                  "name": "Will of the Emperor",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1388854579000
+                }
+              ]
+            },
+            {
+              "name": "Heart of Fear",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 6,
+              "completedBosses": 6,
+              "totalBosses": 6,
+              "note": "6/6 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Imperial Vizier Zor'lok",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510747903000
+                },
+                {
+                  "name": "Blade Lord Ta'yak",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1510748015000
+                },
+                {
+                  "name": "Garalon",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510748156000
+                },
+                {
+                  "name": "Wind Lord Mel'jarak",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1510748538000
+                },
+                {
+                  "name": "Amber-Shaper Un'sok",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510748686000
+                },
+                {
+                  "name": "Grand Empress Shek'zeer",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510748781000
+                }
+              ]
+            },
+            {
+              "name": "Terrace of Endless Spring",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 4,
+              "completedBosses": 4,
+              "totalBosses": 4,
+              "note": "4/4 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Protectors of the Endless",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510749660000
+                },
+                {
+                  "name": "Tsulong",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510749710000
+                },
+                {
+                  "name": "Lei Shi",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510749808000
+                },
+                {
+                  "name": "Sha of Fear",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1510749928000
+                }
+              ]
+            },
+            {
+              "name": "Throne of Thunder",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 13,
+              "completedBosses": 13,
+              "totalBosses": 13,
+              "note": "13/13 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Jin'rokh the Breaker",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1567279842000
+                },
+                {
+                  "name": "Horridon",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1567280001000
+                },
+                {
+                  "name": "Council of Elders",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1567280170000
+                },
+                {
+                  "name": "Tortos",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1567280286000
+                },
+                {
+                  "name": "Megaera",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1567280891000
+                },
+                {
+                  "name": "Ji-Kun",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1567281072000
+                },
+                {
+                  "name": "Durumu the Forgotten",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1567281207000
+                },
+                {
+                  "name": "Primordius",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1567281332000
+                },
+                {
+                  "name": "Dark Animus",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1567281413000
+                },
+                {
+                  "name": "Iron Qon",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1567281540000
+                },
+                {
+                  "name": "Twin Empyreans",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1567281665000
+                },
+                {
+                  "name": "Lei Shen",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1567281809000
+                },
+                {
+                  "name": "Ra-den",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1567281917000
+                }
+              ]
+            },
+            {
+              "name": "Siege of Orgrimmar",
+              "difficulty": "MYTHIC",
+              "mythicKills": 14,
+              "heroicKills": null,
+              "completedBosses": 14,
+              "totalBosses": 14,
+              "note": "14/14 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Immerseus",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713864649000
+                },
+                {
+                  "name": "The Fallen Protectors",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713864718000
+                },
+                {
+                  "name": "Norushen",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713864924000
+                },
+                {
+                  "name": "Sha of Pride",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1713865071000
+                },
+                {
+                  "name": "Galakras",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1713865691000
+                },
+                {
+                  "name": "Iron Juggernaut",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713865776000
+                },
+                {
+                  "name": "Kor'kron Dark Shaman",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713865839000
+                },
+                {
+                  "name": "General Nazgrim",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713866068000
+                },
+                {
+                  "name": "Malkorok",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713866197000
+                },
+                {
+                  "name": "Spoils of Pandaria",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713866790000
+                },
+                {
+                  "name": "Thok the Bloodthirsty",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713866963000
+                },
+                {
+                  "name": "Siegecrafter Blackfuse",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713867149000
+                },
+                {
+                  "name": "Paragons of the Klaxxi",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713867457000
+                },
+                {
+                  "name": "Garrosh Hellscream",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1713867792000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Wrath of the Lich King": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Trial of the Crusader",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 5,
+              "completedBosses": 5,
+              "totalBosses": 5,
+              "note": "5/5 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "The Northrend Beasts",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1525386819000
+                },
+                {
+                  "name": "Lord Jaraxxus",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1525386928000
+                },
+                {
+                  "name": "Champions of the Horde",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1525387044000
+                },
+                {
+                  "name": "Twin Val'kyr",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1525387121000
+                },
+                {
+                  "name": "Anub'arak",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1525387224000
+                }
+              ]
+            },
+            {
+              "name": "Icecrown Citadel",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 12,
+              "completedBosses": 12,
+              "totalBosses": 12,
+              "note": "12/12 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Lord Marrowgar",
+                  "completedCount": 33,
+                  "lastKillTimestamp": 1772901747000
+                },
+                {
+                  "name": "Lady Deathwhisper",
+                  "completedCount": 29,
+                  "lastKillTimestamp": 1753473182000
+                },
+                {
+                  "name": "Icecrown Gunship Battle",
+                  "completedCount": 30,
+                  "lastKillTimestamp": 1753473316000
+                },
+                {
+                  "name": "Deathbringer Saurfang",
+                  "completedCount": 31,
+                  "lastKillTimestamp": 1753473470000
+                },
+                {
+                  "name": "Festergut",
+                  "completedCount": 35,
+                  "lastKillTimestamp": 1753473539000
+                },
+                {
+                  "name": "Rotface",
+                  "completedCount": 34,
+                  "lastKillTimestamp": 1753473574000
+                },
+                {
+                  "name": "Professor Putricide",
+                  "completedCount": 25,
+                  "lastKillTimestamp": 1753473627000
+                },
+                {
+                  "name": "Blood Prince Council",
+                  "completedCount": 32,
+                  "lastKillTimestamp": 1753473743000
+                },
+                {
+                  "name": "Blood-Queen Lana'thel",
+                  "completedCount": 31,
+                  "lastKillTimestamp": 1753473775000
+                },
+                {
+                  "name": "Valithria Dreamwalker",
+                  "completedCount": 31,
+                  "lastKillTimestamp": 1753473870000
+                },
+                {
+                  "name": "Sindragosa",
+                  "completedCount": 24,
+                  "lastKillTimestamp": 1753474141000
+                },
+                {
+                  "name": "The Lich King",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1753474385000
+                }
+              ]
+            },
+            {
+              "name": "The Ruby Sanctum",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 1,
+              "completedBosses": 1,
+              "totalBosses": 1,
+              "note": "1/1 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Halion",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1347812683000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Cataclysm": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "The Bastion of Twilight",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 5,
+              "completedBosses": 5,
+              "totalBosses": 5,
+              "note": "5/5 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Halfus Wyrmbreaker",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1776713738000
+                },
+                {
+                  "name": "Theralion and Valiona",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1776713872000
+                },
+                {
+                  "name": "Ascendant Council",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1776714032000
+                },
+                {
+                  "name": "Cho'gall",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1776714084000
+                },
+                {
+                  "name": "Sinestra",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1776714677000
+                }
+              ]
+            },
+            {
+              "name": "Blackwing Descent",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 5,
+              "completedBosses": 5,
+              "totalBosses": 6,
+              "note": "5/6 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Omnotron Defense System",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1308515832000
+                },
+                {
+                  "name": "Magmaw",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1308768591000
+                },
+                {
+                  "name": "Atramedes",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1305752737000
+                },
+                {
+                  "name": "Chimaeron",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1308773132000
+                },
+                {
+                  "name": "Maloriak",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1308599354000
+                }
+              ]
+            },
+            {
+              "name": "Throne of the Four Winds",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 2,
+              "completedBosses": 2,
+              "totalBosses": 2,
+              "note": "2/2 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "The Conclave of Wind",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1753478555000
+                },
+                {
+                  "name": "Al'Akir",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1753478572000
+                }
+              ]
+            },
+            {
+              "name": "Firelands",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 7,
+              "completedBosses": 7,
+              "totalBosses": 7,
+              "note": "7/7 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Beth'tilac",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729856653000
+                },
+                {
+                  "name": "Lord Rhyolith",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729856965000
+                },
+                {
+                  "name": "Alysrazor",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729856912000
+                },
+                {
+                  "name": "Shannox",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729857418000
+                },
+                {
+                  "name": "Baleroc, the Gatekeeper",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729856749000
+                },
+                {
+                  "name": "Majordomo Staghelm",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729857554000
+                },
+                {
+                  "name": "Ragnaros",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1729857761000
+                }
+              ]
+            },
+            {
+              "name": "Dragon Soul",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 8,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Morchok",
+                  "completedCount": 19,
+                  "lastKillTimestamp": 1753616255000
+                },
+                {
+                  "name": "Warlord Zon'ozz",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1753616312000
+                },
+                {
+                  "name": "Yor'sahj the Unsleeping",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1753616360000
+                },
+                {
+                  "name": "Hagara the Stormbinder",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1753616559000
+                },
+                {
+                  "name": "Ultraxion",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1753616811000
+                },
+                {
+                  "name": "Warmaster Blackhorn",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1753616985000
+                },
+                {
+                  "name": "Spine of Deathwing",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1753617344000
+                },
+                {
+                  "name": "Madness of Deathwing",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1753617443000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Warlords of Draenor": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Highmaul",
+              "difficulty": "MYTHIC",
+              "mythicKills": 7,
+              "heroicKills": null,
+              "completedBosses": 7,
+              "totalBosses": 7,
+              "note": "7/7 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Kargath Bladefist",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457641714000
+                },
+                {
+                  "name": "The Butcher",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457642497000
+                },
+                {
+                  "name": "Tectus",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457643360000
+                },
+                {
+                  "name": "Brackenspore",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457642893000
+                },
+                {
+                  "name": "Twin Ogron",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457643750000
+                },
+                {
+                  "name": "Ko'ragh",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457644082000
+                },
+                {
+                  "name": "Imperator Mar'gok",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1457644823000
+                }
+              ]
+            },
+            {
+              "name": "Blackrock Foundry",
+              "difficulty": "MYTHIC",
+              "mythicKills": 10,
+              "heroicKills": null,
+              "completedBosses": 10,
+              "totalBosses": 10,
+              "note": "10/10 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Oregorger",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1487865807000
+                },
+                {
+                  "name": "Hans'gar and Franzok",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487866912000
+                },
+                {
+                  "name": "Beastlord Darmac",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487866533000
+                },
+                {
+                  "name": "Gruul",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1487865910000
+                },
+                {
+                  "name": "Flamebender Ka'graz",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487867011000
+                },
+                {
+                  "name": "Operator Thogar",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487866693000
+                },
+                {
+                  "name": "The Blast Furnace",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487866386000
+                },
+                {
+                  "name": "Kromog",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487867080000
+                },
+                {
+                  "name": "The Iron Maidens",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1487866793000
+                },
+                {
+                  "name": "Blackhand",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1615680429000
+                }
+              ]
+            },
+            {
+              "name": "Hellfire Citadel",
+              "difficulty": "MYTHIC",
+              "mythicKills": 13,
+              "heroicKills": null,
+              "completedBosses": 13,
+              "totalBosses": 13,
+              "note": "13/13 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Hellfire Assault",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1461779601000
+                },
+                {
+                  "name": "Iron Reaver",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1461780026000
+                },
+                {
+                  "name": "Kormrok",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1461780831000
+                },
+                {
+                  "name": "Hellfire High Council",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1461781558000
+                },
+                {
+                  "name": "Kilrogg Deadeye",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1461782207000
+                },
+                {
+                  "name": "Gorefiend",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1479602548000
+                },
+                {
+                  "name": "Shadow-Lord Iskar",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1677754932000
+                },
+                {
+                  "name": "Socrethar the Eternal",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1677754689000
+                },
+                {
+                  "name": "Fel Lord Zakuun",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1677755053000
+                },
+                {
+                  "name": "Xhul'horac",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1677755109000
+                },
+                {
+                  "name": "Tyrant Velhari",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1677754835000
+                },
+                {
+                  "name": "Mannoroth",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1677755227000
+                },
+                {
+                  "name": "Archimonde",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1677755294000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Legion": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "The Emerald Nightmare",
+              "difficulty": "MYTHIC",
+              "mythicKills": 7,
+              "heroicKills": null,
+              "completedBosses": 7,
+              "totalBosses": 7,
+              "note": "7/7 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Nythendra",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1484251389000
+                },
+                {
+                  "name": "Il'gynoth, Heart of Corruption",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1484262283000
+                },
+                {
+                  "name": "Elerethe Renferal",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1484254512000
+                },
+                {
+                  "name": "Ursoc",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1484253225000
+                },
+                {
+                  "name": "Dragons of Nightmare",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1484256631000
+                },
+                {
+                  "name": "Cenarius",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1484597782000
+                },
+                {
+                  "name": "Xavius",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1484599960000
+                }
+              ]
+            },
+            {
+              "name": "Trial of Valor",
+              "difficulty": "MYTHIC",
+              "mythicKills": 3,
+              "heroicKills": null,
+              "completedBosses": 3,
+              "totalBosses": 3,
+              "note": "3/3 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Odyn",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1529001858000
+                },
+                {
+                  "name": "Guarm",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1529002484000
+                },
+                {
+                  "name": "Helya",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1529003448000
+                }
+              ]
+            },
+            {
+              "name": "The Nighthold",
+              "difficulty": "MYTHIC",
+              "mythicKills": 10,
+              "heroicKills": null,
+              "completedBosses": 10,
+              "totalBosses": 10,
+              "note": "10/10 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Skorpyron",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1597763304000
+                },
+                {
+                  "name": "Chronomatic Anomaly",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1597763393000
+                },
+                {
+                  "name": "Trilliax",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1597763506000
+                },
+                {
+                  "name": "Spellblade Aluriel",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1597763738000
+                },
+                {
+                  "name": "Tichondrius",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1597764090000
+                },
+                {
+                  "name": "Krosus",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1597764285000
+                },
+                {
+                  "name": "High Botanist Tel'arn",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1597763915000
+                },
+                {
+                  "name": "Star Augur Etraeus",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1597763745000
+                },
+                {
+                  "name": "Grand Magistrix Elisande",
+                  "completedCount": 23,
+                  "lastKillTimestamp": 1597764555000
+                },
+                {
+                  "name": "Gul'dan",
+                  "completedCount": 22,
+                  "lastKillTimestamp": 1599919794000
+                }
+              ]
+            },
+            {
+              "name": "Tomb of Sargeras",
+              "difficulty": "MYTHIC",
+              "mythicKills": 9,
+              "heroicKills": null,
+              "completedBosses": 9,
+              "totalBosses": 9,
+              "note": "9/9 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Goroth",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1593504725000
+                },
+                {
+                  "name": "Demonic Inquisition",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1593504805000
+                },
+                {
+                  "name": "Harjatan",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1593504922000
+                },
+                {
+                  "name": "Sisters of the Moon",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1593505220000
+                },
+                {
+                  "name": "Mistress Sassz'ine",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1593505056000
+                },
+                {
+                  "name": "The Desolate Host",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1593505353000
+                },
+                {
+                  "name": "Maiden of Vigilance",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1593505505000
+                },
+                {
+                  "name": "Fallen Avatar",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1593505718000
+                },
+                {
+                  "name": "Kil'jaeden",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1583012760000
+                }
+              ]
+            },
+            {
+              "name": "Antorus, the Burning Throne",
+              "difficulty": "MYTHIC",
+              "mythicKills": 11,
+              "heroicKills": null,
+              "completedBosses": 11,
+              "totalBosses": 11,
+              "note": "11/11 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Garothi Worldbreaker",
+                  "completedCount": 23,
+                  "lastKillTimestamp": 1598796496000
+                },
+                {
+                  "name": "Felhounds of Sargeras",
+                  "completedCount": 20,
+                  "lastKillTimestamp": 1598796589000
+                },
+                {
+                  "name": "Antoran High Command",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1598796813000
+                },
+                {
+                  "name": "Portal Keeper Hasabel",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1598797663000
+                },
+                {
+                  "name": "Eonar the Life-Binder",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1598797521000
+                },
+                {
+                  "name": "Imonar the Soulhunter",
+                  "completedCount": 17,
+                  "lastKillTimestamp": 1598797948000
+                },
+                {
+                  "name": "Kin'garoth",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1598798085000
+                },
+                {
+                  "name": "The Coven of Shivarra",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1598798292000
+                },
+                {
+                  "name": "Varimathras",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1598798204000
+                },
+                {
+                  "name": "Aggramar",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1598798443000
+                },
+                {
+                  "name": "Argus the Unmaker",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1642868380000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Battle for Azeroth": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Uldir",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Taloc",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1599420457000
+                },
+                {
+                  "name": "MOTHER",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1599420619000
+                },
+                {
+                  "name": "Fetid Devourer",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1599420814000
+                },
+                {
+                  "name": "Zek'voz, Herald of N'Zoth",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1600276581000
+                },
+                {
+                  "name": "Vectis",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1600276896000
+                },
+                {
+                  "name": "Zul, Reborn",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1599421475000
+                },
+                {
+                  "name": "Mythrax the Unraveler",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1599421579000
+                },
+                {
+                  "name": "G'huun",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1600797349000
+                }
+              ]
+            },
+            {
+              "name": "Battle of Dazar'alor",
+              "difficulty": "MYTHIC",
+              "mythicKills": 9,
+              "heroicKills": null,
+              "completedBosses": 9,
+              "totalBosses": 9,
+              "note": "9/9 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Champion of the Light",
+                  "completedCount": 31,
+                  "lastKillTimestamp": 1753526345000
+                },
+                {
+                  "name": "Grong, the Revenant",
+                  "completedCount": 27,
+                  "lastKillTimestamp": 1753526617000
+                },
+                {
+                  "name": "Jadefire Masters",
+                  "completedCount": 26,
+                  "lastKillTimestamp": 1753526548000
+                },
+                {
+                  "name": "Opulence",
+                  "completedCount": 29,
+                  "lastKillTimestamp": 1753526788000
+                },
+                {
+                  "name": "Conclave of the Chosen",
+                  "completedCount": 26,
+                  "lastKillTimestamp": 1753526891000
+                },
+                {
+                  "name": "King Rastakhan",
+                  "completedCount": 24,
+                  "lastKillTimestamp": 1753527280000
+                },
+                {
+                  "name": "High Tinker Mekkatorque",
+                  "completedCount": 23,
+                  "lastKillTimestamp": 1753527598000
+                },
+                {
+                  "name": "Stormwall Blockade",
+                  "completedCount": 21,
+                  "lastKillTimestamp": 1591987020000
+                },
+                {
+                  "name": "Lady Jaina Proudmoore",
+                  "completedCount": 31,
+                  "lastKillTimestamp": 1751474431000
+                }
+              ]
+            },
+            {
+              "name": "Crucible of Storms",
+              "difficulty": "MYTHIC",
+              "mythicKills": 2,
+              "heroicKills": null,
+              "completedBosses": 2,
+              "totalBosses": 2,
+              "note": "2/2 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "The Restless Cabal",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1731591553000
+                },
+                {
+                  "name": "Uu'nat, Harbinger of the Void",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1731591745000
+                }
+              ]
+            },
+            {
+              "name": "The Eternal Palace",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Abyssal Commander Sivara",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1600624912000
+                },
+                {
+                  "name": "Blackwater Behemoth",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1600625337000
+                },
+                {
+                  "name": "Radiance of Azshara",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1600625826000
+                },
+                {
+                  "name": "Lady Ashvane",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1600626085000
+                },
+                {
+                  "name": "Orgozoa",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1600626409000
+                },
+                {
+                  "name": "The Queen's Court",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1600626928000
+                },
+                {
+                  "name": "Za'qul, Harbinger of Ny'alotha",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1600627557000
+                },
+                {
+                  "name": "Queen Azshara",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1600628709000
+                }
+              ]
+            },
+            {
+              "name": "Ny'alotha, the Waking City",
+              "difficulty": "MYTHIC",
+              "mythicKills": 12,
+              "heroicKills": null,
+              "completedBosses": 12,
+              "totalBosses": 12,
+              "note": "12/12 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Wrathion, the Black Emperor",
+                  "completedCount": 18,
+                  "lastKillTimestamp": 1605205924000
+                },
+                {
+                  "name": "Maut",
+                  "completedCount": 18,
+                  "lastKillTimestamp": 1605206904000
+                },
+                {
+                  "name": "The Prophet Skitra",
+                  "completedCount": 17,
+                  "lastKillTimestamp": 1605206343000
+                },
+                {
+                  "name": "Dark Inquisitor Xanesh",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1605210224000
+                },
+                {
+                  "name": "The Hivemind",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1605211805000
+                },
+                {
+                  "name": "Shad'har the Insatiable",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1605208617000
+                },
+                {
+                  "name": "Drest'agath",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1605208233000
+                },
+                {
+                  "name": "Il'gynoth, Corruption Reborn",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1605209312000
+                },
+                {
+                  "name": "Vexiona",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1605210754000
+                },
+                {
+                  "name": "Ra-den the Despoiled",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1605213188000
+                },
+                {
+                  "name": "Carapace of N'Zoth",
+                  "completedCount": 17,
+                  "lastKillTimestamp": 1605214983000
+                },
+                {
+                  "name": "N'Zoth the Corruptor",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1605216138000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Shadowlands": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Castle Nathria",
+              "difficulty": "MYTHIC",
+              "mythicKills": 10,
+              "heroicKills": null,
+              "completedBosses": 10,
+              "totalBosses": 10,
+              "note": "10/10 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Shriekwing",
+                  "completedCount": 18,
+                  "lastKillTimestamp": 1668020436000
+                },
+                {
+                  "name": "Huntsman Altimor",
+                  "completedCount": 18,
+                  "lastKillTimestamp": 1666809289000
+                },
+                {
+                  "name": "Sun King's Salvation",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1666811864000
+                },
+                {
+                  "name": "Artificer Xy'mox",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1666814496000
+                },
+                {
+                  "name": "Hungering Destroyer",
+                  "completedCount": 21,
+                  "lastKillTimestamp": 1666809847000
+                },
+                {
+                  "name": "Lady Inerva Darkvein",
+                  "completedCount": 14,
+                  "lastKillTimestamp": 1663181616000
+                },
+                {
+                  "name": "The Council of Blood",
+                  "completedCount": 13,
+                  "lastKillTimestamp": 1666815244000
+                },
+                {
+                  "name": "Sludgefist",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1668021023000
+                },
+                {
+                  "name": "Stone Legion Generals",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1668022178000
+                },
+                {
+                  "name": "Sire Denathrius",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1668031243000
+                }
+              ]
+            },
+            {
+              "name": "Sanctum of Domination",
+              "difficulty": "MYTHIC",
+              "mythicKills": 10,
+              "heroicKills": null,
+              "completedBosses": 10,
+              "totalBosses": 10,
+              "note": "10/10 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "The Tarragrue",
+                  "completedCount": 23,
+                  "lastKillTimestamp": 1669575761000
+                },
+                {
+                  "name": "The Eye of the Jailer",
+                  "completedCount": 18,
+                  "lastKillTimestamp": 1669578665000
+                },
+                {
+                  "name": "The Nine",
+                  "completedCount": 19,
+                  "lastKillTimestamp": 1669579083000
+                },
+                {
+                  "name": "Remnant of Ner'zhul",
+                  "completedCount": 17,
+                  "lastKillTimestamp": 1669584607000
+                },
+                {
+                  "name": "Soulrender Dormazain",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1669579610000
+                },
+                {
+                  "name": "Painsmith Raznal",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1642104262000
+                },
+                {
+                  "name": "Guardian of the First Ones",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1669586985000
+                },
+                {
+                  "name": "Fatescribe Roh-Kalo",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1655911949000
+                },
+                {
+                  "name": "Kel'Thuzad",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1669576963000
+                },
+                {
+                  "name": "Sylvanas Windrunner",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1669577938000
+                }
+              ]
+            },
+            {
+              "name": "Sepulcher of the First Ones",
+              "difficulty": "MYTHIC",
+              "mythicKills": 11,
+              "heroicKills": null,
+              "completedBosses": 11,
+              "totalBosses": 11,
+              "note": "11/11 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Vigilant Guardian",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1669230373000
+                },
+                {
+                  "name": "Skolex, the Insatiable Ravener",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1669583307000
+                },
+                {
+                  "name": "Artificer Xy'mox",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1669583926000
+                },
+                {
+                  "name": "Dausegne, the Fallen Oracle",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1669240933000
+                },
+                {
+                  "name": "Prototype Pantheon",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1669580677000
+                },
+                {
+                  "name": "Lihuvim, Principal Architect",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1669582263000
+                },
+                {
+                  "name": "Halondrus the Reclaimer",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1665949010000
+                },
+                {
+                  "name": "Anduin Wrynn",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1669233341000
+                },
+                {
+                  "name": "Lords of Dread",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1669235716000
+                },
+                {
+                  "name": "Rygelon",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1669234588000
+                },
+                {
+                  "name": "The Jailer",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1669240227000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Dragonflight": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Vault of the Incarnates",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Eranog",
+                  "completedCount": 16,
+                  "lastKillTimestamp": 1717700389000
+                },
+                {
+                  "name": "Terros",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1717701065000
+                },
+                {
+                  "name": "The Primal Council",
+                  "completedCount": 15,
+                  "lastKillTimestamp": 1717703809000
+                },
+                {
+                  "name": "Sennarth, the Cold Breath",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1717701773000
+                },
+                {
+                  "name": "Dathea, Ascended",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1715889485000
+                },
+                {
+                  "name": "Kurog Grimtotem",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1715886606000
+                },
+                {
+                  "name": "Broodkeeper Diurna",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1717705857000
+                },
+                {
+                  "name": "Raszageth the Storm-Eater",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1717965880000
+                }
+              ]
+            },
+            {
+              "name": "Aberrus, the Shadowed Crucible",
+              "difficulty": "MYTHIC",
+              "mythicKills": 9,
+              "heroicKills": null,
+              "completedBosses": 9,
+              "totalBosses": 9,
+              "note": "9/9 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Kazzara, the Hellforged",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1718306463000
+                },
+                {
+                  "name": "The Amalgamation Chamber",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1716491442000
+                },
+                {
+                  "name": "The Forgotten Experiments",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1714682847000
+                },
+                {
+                  "name": "Assault of the Zaqali",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1718306999000
+                },
+                {
+                  "name": "Rashok, the Elder",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1718307797000
+                },
+                {
+                  "name": "The Vigilant Steward, Zskarn",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1716493430000
+                },
+                {
+                  "name": "Magmorax",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1718311514000
+                },
+                {
+                  "name": "Echo of Neltharion",
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1718312399000
+                },
+                {
+                  "name": "Scalecommander Sarkareth",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1699220171000
+                }
+              ]
+            },
+            {
+              "name": "Amirdrassil, the Dream's Hope",
+              "difficulty": "MYTHIC",
+              "mythicKills": 9,
+              "heroicKills": null,
+              "completedBosses": 9,
+              "totalBosses": 9,
+              "note": "9/9 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Gnarlroot",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1719511653000
+                },
+                {
+                  "name": "Igira the Cruel",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1719511884000
+                },
+                {
+                  "name": "Volcoross",
+                  "completedCount": 8,
+                  "lastKillTimestamp": 1717096566000
+                },
+                {
+                  "name": "Council of Dreams",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1717094023000
+                },
+                {
+                  "name": "Larodar, Keeper of the Flame",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1717098646000
+                },
+                {
+                  "name": "Nymue, Weaver of the Cycle",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1717095727000
+                },
+                {
+                  "name": "Smolderon",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1719512366000
+                },
+                {
+                  "name": "Tindral Sageswift, Seer of the Flame",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1724610099000
+                },
+                {
+                  "name": "Fyrakk the Blazing",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1724611652000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Current Season": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "The Dreamrift",
+              "difficulty": "MYTHIC",
+              "mythicKills": 1,
+              "heroicKills": null,
+              "completedBosses": 1,
+              "totalBosses": 1,
+              "note": "1/1 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Chimaerus the Undreamt God",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1779303375000
+                }
+              ]
+            },
+            {
+              "name": "The Voidspire",
+              "difficulty": "MYTHIC",
+              "mythicKills": 6,
+              "heroicKills": null,
+              "completedBosses": 6,
+              "totalBosses": 6,
+              "note": "6/6 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Imperator Averzian",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1784562721000
+                },
+                {
+                  "name": "Vorasius",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1784564642000
+                },
+                {
+                  "name": "Fallen-King Salhadaar",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1780689728000
+                },
+                {
+                  "name": "Vaelgor & Ezzorak",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1780694613000
+                },
+                {
+                  "name": "Lightblinded Vanguard",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1785349122000
+                },
+                {
+                  "name": "Crown of the Cosmos",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1785353343000
+                }
+              ]
+            },
+            {
+              "name": "March on Quel'Danas",
+              "difficulty": "MYTHIC",
+              "mythicKills": 1,
+              "heroicKills": null,
+              "completedBosses": 1,
+              "totalBosses": 2,
+              "note": "1/2 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Midnight Falls",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1784751226000
+                }
+              ]
+            },
+            {
+              "name": "Sporefall",
+              "difficulty": "MYTHIC",
+              "mythicKills": 1,
+              "heroicKills": null,
+              "completedBosses": 1,
+              "totalBosses": 1,
+              "note": "1/1 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Rotmire",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1784997192000
+                }
+              ]
+            },
+            {
+              "name": "The Tidebound Grotto",
+              "difficulty": "MYTHIC",
+              "mythicKills": 1,
+              "heroicKills": null,
+              "completedBosses": 1,
+              "totalBosses": 1,
+              "note": "1/1 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Nymrissa Wavecaller",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1789930879000
+                }
+              ]
+            },
+            {
+              "name": "The Venomous Abyss",
+              "difficulty": "MYTHIC",
+              "mythicKills": 5,
+              "heroicKills": null,
+              "completedBosses": 5,
+              "totalBosses": 8,
+              "note": "5/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Nek'zali the Soulcoiler",
+                  "completedCount": 4,
+                  "lastKillTimestamp": 1791396721000
+                },
+                {
+                  "name": "Entombed Sentinels",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1791398091000
+                },
+                {
+                  "name": "The Lost Explorers",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1791401851000
+                },
+                {
+                  "name": "Vashnik the Malignant",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1791400977000
+                },
+                {
+                  "name": "Sszorak",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1791141380000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "The War Within": [
+        {
+          "season": null,
+          "seasonName": "Historical Raids",
+          "raids": [
+            {
+              "name": "Nerub-ar Palace",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Ulgrax the Devourer",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1771441386000
+                },
+                {
+                  "name": "The Bloodbound Horror",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1771441611000
+                },
+                {
+                  "name": "Sikran, Captain of the Sureki",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1734637665000
+                },
+                {
+                  "name": "Rasha'nan",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1734638346000
+                },
+                {
+                  "name": "Broodtwister Ovi'nax",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1731011619000
+                },
+                {
+                  "name": "Nexus-Princess Ky'veza",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1768159902000
+                },
+                {
+                  "name": "The Silken Court",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1771442085000
+                },
+                {
+                  "name": "Queen Ansurek",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1771442549000
+                }
+              ]
+            },
+            {
+              "name": "Liberation of Undermine",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Vexie and the Geargrinders",
+                  "completedCount": 12,
+                  "lastKillTimestamp": 1771443167000
+                },
+                {
+                  "name": "Cauldron of Carnage",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1751828297000
+                },
+                {
+                  "name": "Rik Reverb",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1745180570000
+                },
+                {
+                  "name": "Stix Bunkjunker",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1744922984000
+                },
+                {
+                  "name": "Sprocketmonger Lockenstock",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1747595979000
+                },
+                {
+                  "name": "The One-Armed Bandit",
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1751480073000
+                },
+                {
+                  "name": "Mug'Zee, Heads of Security",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1771443639000
+                },
+                {
+                  "name": "Chrome King Gallywix",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1771445236000
+                }
+              ]
+            },
+            {
+              "name": "Manaforge Omega",
+              "difficulty": "MYTHIC",
+              "mythicKills": 8,
+              "heroicKills": null,
+              "completedBosses": 8,
+              "totalBosses": 8,
+              "note": "8/8 M",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Plexus Sentinel",
+                  "completedCount": 11,
+                  "lastKillTimestamp": 1770229998000
+                },
+                {
+                  "name": "Loom'ithar",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1770230984000
+                },
+                {
+                  "name": "Soulbinder Naazindhri",
+                  "completedCount": 10,
+                  "lastKillTimestamp": 1769625692000
+                },
+                {
+                  "name": "Forgeweaver Araz",
+                  "completedCount": 9,
+                  "lastKillTimestamp": 1770231494000
+                },
+                {
+                  "name": "The Soul Hunters",
+                  "completedCount": 6,
+                  "lastKillTimestamp": 1770231911000
+                },
+                {
+                  "name": "Fractillus",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1770232294000
+                },
+                {
+                  "name": "Nexus-King Salhadaar",
+                  "completedCount": 5,
+                  "lastKillTimestamp": 1771439503000
+                },
+                {
+                  "name": "Dimensius, the All-Devouring",
+                  "completedCount": 7,
+                  "lastKillTimestamp": 1771440740000
+                }
+              ]
             }
           ]
         }
@@ -274,9 +2317,2138 @@
   "unclassifiedRaidProgression": [
     {
       "name": "The Unbinding Of Kithix",
-      "note": "Progress unavailable",
+      "note": "",
       "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "source": "Raider.IO",
       "sourceSlug": "the-unbinding-of-kithix"
     }
-  ]
+  ],
+  "historicalRaidProgression": {
+    "Mists of Pandaria": [
+      {
+        "name": "Mogu'shan Vaults",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 6,
+        "completedBosses": 6,
+        "totalBosses": 6,
+        "note": "6/6 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "The Stone Guard",
+            "completedCount": 5,
+            "lastKillTimestamp": 1388851382000
+          },
+          {
+            "name": "Feng the Accursed",
+            "completedCount": 6,
+            "lastKillTimestamp": 1388851699000
+          },
+          {
+            "name": "Gara'jal the Spiritbinder",
+            "completedCount": 6,
+            "lastKillTimestamp": 1470576765000
+          },
+          {
+            "name": "The Spirit Kings",
+            "completedCount": 1,
+            "lastKillTimestamp": 1388852981000
+          },
+          {
+            "name": "Elegon",
+            "completedCount": 3,
+            "lastKillTimestamp": 1388853511000
+          },
+          {
+            "name": "Will of the Emperor",
+            "completedCount": 1,
+            "lastKillTimestamp": 1388854579000
+          }
+        ]
+      },
+      {
+        "name": "Heart of Fear",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 6,
+        "completedBosses": 6,
+        "totalBosses": 6,
+        "note": "6/6 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Imperial Vizier Zor'lok",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510747903000
+          },
+          {
+            "name": "Blade Lord Ta'yak",
+            "completedCount": 4,
+            "lastKillTimestamp": 1510748015000
+          },
+          {
+            "name": "Garalon",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510748156000
+          },
+          {
+            "name": "Wind Lord Mel'jarak",
+            "completedCount": 4,
+            "lastKillTimestamp": 1510748538000
+          },
+          {
+            "name": "Amber-Shaper Un'sok",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510748686000
+          },
+          {
+            "name": "Grand Empress Shek'zeer",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510748781000
+          }
+        ]
+      },
+      {
+        "name": "Terrace of Endless Spring",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 4,
+        "completedBosses": 4,
+        "totalBosses": 4,
+        "note": "4/4 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Protectors of the Endless",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510749660000
+          },
+          {
+            "name": "Tsulong",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510749710000
+          },
+          {
+            "name": "Lei Shi",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510749808000
+          },
+          {
+            "name": "Sha of Fear",
+            "completedCount": 2,
+            "lastKillTimestamp": 1510749928000
+          }
+        ]
+      },
+      {
+        "name": "Throne of Thunder",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 13,
+        "completedBosses": 13,
+        "totalBosses": 13,
+        "note": "13/13 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Jin'rokh the Breaker",
+            "completedCount": 9,
+            "lastKillTimestamp": 1567279842000
+          },
+          {
+            "name": "Horridon",
+            "completedCount": 6,
+            "lastKillTimestamp": 1567280001000
+          },
+          {
+            "name": "Council of Elders",
+            "completedCount": 4,
+            "lastKillTimestamp": 1567280170000
+          },
+          {
+            "name": "Tortos",
+            "completedCount": 5,
+            "lastKillTimestamp": 1567280286000
+          },
+          {
+            "name": "Megaera",
+            "completedCount": 3,
+            "lastKillTimestamp": 1567280891000
+          },
+          {
+            "name": "Ji-Kun",
+            "completedCount": 5,
+            "lastKillTimestamp": 1567281072000
+          },
+          {
+            "name": "Durumu the Forgotten",
+            "completedCount": 3,
+            "lastKillTimestamp": 1567281207000
+          },
+          {
+            "name": "Primordius",
+            "completedCount": 4,
+            "lastKillTimestamp": 1567281332000
+          },
+          {
+            "name": "Dark Animus",
+            "completedCount": 1,
+            "lastKillTimestamp": 1567281413000
+          },
+          {
+            "name": "Iron Qon",
+            "completedCount": 5,
+            "lastKillTimestamp": 1567281540000
+          },
+          {
+            "name": "Twin Empyreans",
+            "completedCount": 3,
+            "lastKillTimestamp": 1567281665000
+          },
+          {
+            "name": "Lei Shen",
+            "completedCount": 1,
+            "lastKillTimestamp": 1567281809000
+          },
+          {
+            "name": "Ra-den",
+            "completedCount": 1,
+            "lastKillTimestamp": 1567281917000
+          }
+        ]
+      },
+      {
+        "name": "Siege of Orgrimmar",
+        "difficulty": "MYTHIC",
+        "mythicKills": 14,
+        "heroicKills": null,
+        "completedBosses": 14,
+        "totalBosses": 14,
+        "note": "14/14 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Immerseus",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713864649000
+          },
+          {
+            "name": "The Fallen Protectors",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713864718000
+          },
+          {
+            "name": "Norushen",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713864924000
+          },
+          {
+            "name": "Sha of Pride",
+            "completedCount": 4,
+            "lastKillTimestamp": 1713865071000
+          },
+          {
+            "name": "Galakras",
+            "completedCount": 4,
+            "lastKillTimestamp": 1713865691000
+          },
+          {
+            "name": "Iron Juggernaut",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713865776000
+          },
+          {
+            "name": "Kor'kron Dark Shaman",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713865839000
+          },
+          {
+            "name": "General Nazgrim",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713866068000
+          },
+          {
+            "name": "Malkorok",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713866197000
+          },
+          {
+            "name": "Spoils of Pandaria",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713866790000
+          },
+          {
+            "name": "Thok the Bloodthirsty",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713866963000
+          },
+          {
+            "name": "Siegecrafter Blackfuse",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713867149000
+          },
+          {
+            "name": "Paragons of the Klaxxi",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713867457000
+          },
+          {
+            "name": "Garrosh Hellscream",
+            "completedCount": 5,
+            "lastKillTimestamp": 1713867792000
+          }
+        ]
+      }
+    ],
+    "Wrath of the Lich King": [
+      {
+        "name": "Trial of the Crusader",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 5,
+        "completedBosses": 5,
+        "totalBosses": 5,
+        "note": "5/5 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "The Northrend Beasts",
+            "completedCount": 9,
+            "lastKillTimestamp": 1525386819000
+          },
+          {
+            "name": "Lord Jaraxxus",
+            "completedCount": 9,
+            "lastKillTimestamp": 1525386928000
+          },
+          {
+            "name": "Champions of the Horde",
+            "completedCount": 6,
+            "lastKillTimestamp": 1525387044000
+          },
+          {
+            "name": "Twin Val'kyr",
+            "completedCount": 9,
+            "lastKillTimestamp": 1525387121000
+          },
+          {
+            "name": "Anub'arak",
+            "completedCount": 2,
+            "lastKillTimestamp": 1525387224000
+          }
+        ]
+      },
+      {
+        "name": "Icecrown Citadel",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 12,
+        "completedBosses": 12,
+        "totalBosses": 12,
+        "note": "12/12 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Lord Marrowgar",
+            "completedCount": 33,
+            "lastKillTimestamp": 1772901747000
+          },
+          {
+            "name": "Lady Deathwhisper",
+            "completedCount": 29,
+            "lastKillTimestamp": 1753473182000
+          },
+          {
+            "name": "Icecrown Gunship Battle",
+            "completedCount": 30,
+            "lastKillTimestamp": 1753473316000
+          },
+          {
+            "name": "Deathbringer Saurfang",
+            "completedCount": 31,
+            "lastKillTimestamp": 1753473470000
+          },
+          {
+            "name": "Festergut",
+            "completedCount": 35,
+            "lastKillTimestamp": 1753473539000
+          },
+          {
+            "name": "Rotface",
+            "completedCount": 34,
+            "lastKillTimestamp": 1753473574000
+          },
+          {
+            "name": "Professor Putricide",
+            "completedCount": 25,
+            "lastKillTimestamp": 1753473627000
+          },
+          {
+            "name": "Blood Prince Council",
+            "completedCount": 32,
+            "lastKillTimestamp": 1753473743000
+          },
+          {
+            "name": "Blood-Queen Lana'thel",
+            "completedCount": 31,
+            "lastKillTimestamp": 1753473775000
+          },
+          {
+            "name": "Valithria Dreamwalker",
+            "completedCount": 31,
+            "lastKillTimestamp": 1753473870000
+          },
+          {
+            "name": "Sindragosa",
+            "completedCount": 24,
+            "lastKillTimestamp": 1753474141000
+          },
+          {
+            "name": "The Lich King",
+            "completedCount": 16,
+            "lastKillTimestamp": 1753474385000
+          }
+        ]
+      },
+      {
+        "name": "The Ruby Sanctum",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 1,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Halion",
+            "completedCount": 1,
+            "lastKillTimestamp": 1347812683000
+          }
+        ]
+      }
+    ],
+    "Cataclysm": [
+      {
+        "name": "The Bastion of Twilight",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 5,
+        "completedBosses": 5,
+        "totalBosses": 5,
+        "note": "5/5 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Halfus Wyrmbreaker",
+            "completedCount": 15,
+            "lastKillTimestamp": 1776713738000
+          },
+          {
+            "name": "Theralion and Valiona",
+            "completedCount": 3,
+            "lastKillTimestamp": 1776713872000
+          },
+          {
+            "name": "Ascendant Council",
+            "completedCount": 1,
+            "lastKillTimestamp": 1776714032000
+          },
+          {
+            "name": "Cho'gall",
+            "completedCount": 1,
+            "lastKillTimestamp": 1776714084000
+          },
+          {
+            "name": "Sinestra",
+            "completedCount": 1,
+            "lastKillTimestamp": 1776714677000
+          }
+        ]
+      },
+      {
+        "name": "Blackwing Descent",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 5,
+        "completedBosses": 5,
+        "totalBosses": 6,
+        "note": "5/6 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Omnotron Defense System",
+            "completedCount": 1,
+            "lastKillTimestamp": 1308515832000
+          },
+          {
+            "name": "Magmaw",
+            "completedCount": 10,
+            "lastKillTimestamp": 1308768591000
+          },
+          {
+            "name": "Atramedes",
+            "completedCount": 6,
+            "lastKillTimestamp": 1305752737000
+          },
+          {
+            "name": "Chimaeron",
+            "completedCount": 9,
+            "lastKillTimestamp": 1308773132000
+          },
+          {
+            "name": "Maloriak",
+            "completedCount": 5,
+            "lastKillTimestamp": 1308599354000
+          }
+        ]
+      },
+      {
+        "name": "Throne of the Four Winds",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 2,
+        "completedBosses": 2,
+        "totalBosses": 2,
+        "note": "2/2 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "The Conclave of Wind",
+            "completedCount": 2,
+            "lastKillTimestamp": 1753478555000
+          },
+          {
+            "name": "Al'Akir",
+            "completedCount": 2,
+            "lastKillTimestamp": 1753478572000
+          }
+        ]
+      },
+      {
+        "name": "Firelands",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 7,
+        "completedBosses": 7,
+        "totalBosses": 7,
+        "note": "7/7 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Beth'tilac",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729856653000
+          },
+          {
+            "name": "Lord Rhyolith",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729856965000
+          },
+          {
+            "name": "Alysrazor",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729856912000
+          },
+          {
+            "name": "Shannox",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729857418000
+          },
+          {
+            "name": "Baleroc, the Gatekeeper",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729856749000
+          },
+          {
+            "name": "Majordomo Staghelm",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729857554000
+          },
+          {
+            "name": "Ragnaros",
+            "completedCount": 2,
+            "lastKillTimestamp": 1729857761000
+          }
+        ]
+      },
+      {
+        "name": "Dragon Soul",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 8,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Morchok",
+            "completedCount": 19,
+            "lastKillTimestamp": 1753616255000
+          },
+          {
+            "name": "Warlord Zon'ozz",
+            "completedCount": 10,
+            "lastKillTimestamp": 1753616312000
+          },
+          {
+            "name": "Yor'sahj the Unsleeping",
+            "completedCount": 13,
+            "lastKillTimestamp": 1753616360000
+          },
+          {
+            "name": "Hagara the Stormbinder",
+            "completedCount": 7,
+            "lastKillTimestamp": 1753616559000
+          },
+          {
+            "name": "Ultraxion",
+            "completedCount": 8,
+            "lastKillTimestamp": 1753616811000
+          },
+          {
+            "name": "Warmaster Blackhorn",
+            "completedCount": 7,
+            "lastKillTimestamp": 1753616985000
+          },
+          {
+            "name": "Spine of Deathwing",
+            "completedCount": 3,
+            "lastKillTimestamp": 1753617344000
+          },
+          {
+            "name": "Madness of Deathwing",
+            "completedCount": 3,
+            "lastKillTimestamp": 1753617443000
+          }
+        ]
+      }
+    ],
+    "Warlords of Draenor": [
+      {
+        "name": "Highmaul",
+        "difficulty": "MYTHIC",
+        "mythicKills": 7,
+        "heroicKills": null,
+        "completedBosses": 7,
+        "totalBosses": 7,
+        "note": "7/7 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Kargath Bladefist",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457641714000
+          },
+          {
+            "name": "The Butcher",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457642497000
+          },
+          {
+            "name": "Tectus",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457643360000
+          },
+          {
+            "name": "Brackenspore",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457642893000
+          },
+          {
+            "name": "Twin Ogron",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457643750000
+          },
+          {
+            "name": "Ko'ragh",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457644082000
+          },
+          {
+            "name": "Imperator Mar'gok",
+            "completedCount": 2,
+            "lastKillTimestamp": 1457644823000
+          }
+        ]
+      },
+      {
+        "name": "Blackrock Foundry",
+        "difficulty": "MYTHIC",
+        "mythicKills": 10,
+        "heroicKills": null,
+        "completedBosses": 10,
+        "totalBosses": 10,
+        "note": "10/10 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Oregorger",
+            "completedCount": 3,
+            "lastKillTimestamp": 1487865807000
+          },
+          {
+            "name": "Hans'gar and Franzok",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487866912000
+          },
+          {
+            "name": "Beastlord Darmac",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487866533000
+          },
+          {
+            "name": "Gruul",
+            "completedCount": 3,
+            "lastKillTimestamp": 1487865910000
+          },
+          {
+            "name": "Flamebender Ka'graz",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487867011000
+          },
+          {
+            "name": "Operator Thogar",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487866693000
+          },
+          {
+            "name": "The Blast Furnace",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487866386000
+          },
+          {
+            "name": "Kromog",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487867080000
+          },
+          {
+            "name": "The Iron Maidens",
+            "completedCount": 1,
+            "lastKillTimestamp": 1487866793000
+          },
+          {
+            "name": "Blackhand",
+            "completedCount": 3,
+            "lastKillTimestamp": 1615680429000
+          }
+        ]
+      },
+      {
+        "name": "Hellfire Citadel",
+        "difficulty": "MYTHIC",
+        "mythicKills": 13,
+        "heroicKills": null,
+        "completedBosses": 13,
+        "totalBosses": 13,
+        "note": "13/13 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Hellfire Assault",
+            "completedCount": 4,
+            "lastKillTimestamp": 1461779601000
+          },
+          {
+            "name": "Iron Reaver",
+            "completedCount": 4,
+            "lastKillTimestamp": 1461780026000
+          },
+          {
+            "name": "Kormrok",
+            "completedCount": 4,
+            "lastKillTimestamp": 1461780831000
+          },
+          {
+            "name": "Hellfire High Council",
+            "completedCount": 4,
+            "lastKillTimestamp": 1461781558000
+          },
+          {
+            "name": "Kilrogg Deadeye",
+            "completedCount": 4,
+            "lastKillTimestamp": 1461782207000
+          },
+          {
+            "name": "Gorefiend",
+            "completedCount": 4,
+            "lastKillTimestamp": 1479602548000
+          },
+          {
+            "name": "Shadow-Lord Iskar",
+            "completedCount": 12,
+            "lastKillTimestamp": 1677754932000
+          },
+          {
+            "name": "Socrethar the Eternal",
+            "completedCount": 13,
+            "lastKillTimestamp": 1677754689000
+          },
+          {
+            "name": "Fel Lord Zakuun",
+            "completedCount": 11,
+            "lastKillTimestamp": 1677755053000
+          },
+          {
+            "name": "Xhul'horac",
+            "completedCount": 9,
+            "lastKillTimestamp": 1677755109000
+          },
+          {
+            "name": "Tyrant Velhari",
+            "completedCount": 12,
+            "lastKillTimestamp": 1677754835000
+          },
+          {
+            "name": "Mannoroth",
+            "completedCount": 5,
+            "lastKillTimestamp": 1677755227000
+          },
+          {
+            "name": "Archimonde",
+            "completedCount": 5,
+            "lastKillTimestamp": 1677755294000
+          }
+        ]
+      }
+    ],
+    "Legion": [
+      {
+        "name": "The Emerald Nightmare",
+        "difficulty": "MYTHIC",
+        "mythicKills": 7,
+        "heroicKills": null,
+        "completedBosses": 7,
+        "totalBosses": 7,
+        "note": "7/7 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Nythendra",
+            "completedCount": 8,
+            "lastKillTimestamp": 1484251389000
+          },
+          {
+            "name": "Il'gynoth, Heart of Corruption",
+            "completedCount": 3,
+            "lastKillTimestamp": 1484262283000
+          },
+          {
+            "name": "Elerethe Renferal",
+            "completedCount": 8,
+            "lastKillTimestamp": 1484254512000
+          },
+          {
+            "name": "Ursoc",
+            "completedCount": 6,
+            "lastKillTimestamp": 1484253225000
+          },
+          {
+            "name": "Dragons of Nightmare",
+            "completedCount": 6,
+            "lastKillTimestamp": 1484256631000
+          },
+          {
+            "name": "Cenarius",
+            "completedCount": 2,
+            "lastKillTimestamp": 1484597782000
+          },
+          {
+            "name": "Xavius",
+            "completedCount": 2,
+            "lastKillTimestamp": 1484599960000
+          }
+        ]
+      },
+      {
+        "name": "Trial of Valor",
+        "difficulty": "MYTHIC",
+        "mythicKills": 3,
+        "heroicKills": null,
+        "completedBosses": 3,
+        "totalBosses": 3,
+        "note": "3/3 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Odyn",
+            "completedCount": 4,
+            "lastKillTimestamp": 1529001858000
+          },
+          {
+            "name": "Guarm",
+            "completedCount": 4,
+            "lastKillTimestamp": 1529002484000
+          },
+          {
+            "name": "Helya",
+            "completedCount": 4,
+            "lastKillTimestamp": 1529003448000
+          }
+        ]
+      },
+      {
+        "name": "The Nighthold",
+        "difficulty": "MYTHIC",
+        "mythicKills": 10,
+        "heroicKills": null,
+        "completedBosses": 10,
+        "totalBosses": 10,
+        "note": "10/10 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Skorpyron",
+            "completedCount": 15,
+            "lastKillTimestamp": 1597763304000
+          },
+          {
+            "name": "Chronomatic Anomaly",
+            "completedCount": 13,
+            "lastKillTimestamp": 1597763393000
+          },
+          {
+            "name": "Trilliax",
+            "completedCount": 12,
+            "lastKillTimestamp": 1597763506000
+          },
+          {
+            "name": "Spellblade Aluriel",
+            "completedCount": 11,
+            "lastKillTimestamp": 1597763738000
+          },
+          {
+            "name": "Tichondrius",
+            "completedCount": 6,
+            "lastKillTimestamp": 1597764090000
+          },
+          {
+            "name": "Krosus",
+            "completedCount": 6,
+            "lastKillTimestamp": 1597764285000
+          },
+          {
+            "name": "High Botanist Tel'arn",
+            "completedCount": 8,
+            "lastKillTimestamp": 1597763915000
+          },
+          {
+            "name": "Star Augur Etraeus",
+            "completedCount": 4,
+            "lastKillTimestamp": 1597763745000
+          },
+          {
+            "name": "Grand Magistrix Elisande",
+            "completedCount": 23,
+            "lastKillTimestamp": 1597764555000
+          },
+          {
+            "name": "Gul'dan",
+            "completedCount": 22,
+            "lastKillTimestamp": 1599919794000
+          }
+        ]
+      },
+      {
+        "name": "Tomb of Sargeras",
+        "difficulty": "MYTHIC",
+        "mythicKills": 9,
+        "heroicKills": null,
+        "completedBosses": 9,
+        "totalBosses": 9,
+        "note": "9/9 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Goroth",
+            "completedCount": 13,
+            "lastKillTimestamp": 1593504725000
+          },
+          {
+            "name": "Demonic Inquisition",
+            "completedCount": 12,
+            "lastKillTimestamp": 1593504805000
+          },
+          {
+            "name": "Harjatan",
+            "completedCount": 13,
+            "lastKillTimestamp": 1593504922000
+          },
+          {
+            "name": "Sisters of the Moon",
+            "completedCount": 12,
+            "lastKillTimestamp": 1593505220000
+          },
+          {
+            "name": "Mistress Sassz'ine",
+            "completedCount": 5,
+            "lastKillTimestamp": 1593505056000
+          },
+          {
+            "name": "The Desolate Host",
+            "completedCount": 10,
+            "lastKillTimestamp": 1593505353000
+          },
+          {
+            "name": "Maiden of Vigilance",
+            "completedCount": 3,
+            "lastKillTimestamp": 1593505505000
+          },
+          {
+            "name": "Fallen Avatar",
+            "completedCount": 3,
+            "lastKillTimestamp": 1593505718000
+          },
+          {
+            "name": "Kil'jaeden",
+            "completedCount": 1,
+            "lastKillTimestamp": 1583012760000
+          }
+        ]
+      },
+      {
+        "name": "Antorus, the Burning Throne",
+        "difficulty": "MYTHIC",
+        "mythicKills": 11,
+        "heroicKills": null,
+        "completedBosses": 11,
+        "totalBosses": 11,
+        "note": "11/11 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Garothi Worldbreaker",
+            "completedCount": 23,
+            "lastKillTimestamp": 1598796496000
+          },
+          {
+            "name": "Felhounds of Sargeras",
+            "completedCount": 20,
+            "lastKillTimestamp": 1598796589000
+          },
+          {
+            "name": "Antoran High Command",
+            "completedCount": 16,
+            "lastKillTimestamp": 1598796813000
+          },
+          {
+            "name": "Portal Keeper Hasabel",
+            "completedCount": 12,
+            "lastKillTimestamp": 1598797663000
+          },
+          {
+            "name": "Eonar the Life-Binder",
+            "completedCount": 15,
+            "lastKillTimestamp": 1598797521000
+          },
+          {
+            "name": "Imonar the Soulhunter",
+            "completedCount": 17,
+            "lastKillTimestamp": 1598797948000
+          },
+          {
+            "name": "Kin'garoth",
+            "completedCount": 11,
+            "lastKillTimestamp": 1598798085000
+          },
+          {
+            "name": "The Coven of Shivarra",
+            "completedCount": 10,
+            "lastKillTimestamp": 1598798292000
+          },
+          {
+            "name": "Varimathras",
+            "completedCount": 8,
+            "lastKillTimestamp": 1598798204000
+          },
+          {
+            "name": "Aggramar",
+            "completedCount": 7,
+            "lastKillTimestamp": 1598798443000
+          },
+          {
+            "name": "Argus the Unmaker",
+            "completedCount": 8,
+            "lastKillTimestamp": 1642868380000
+          }
+        ]
+      }
+    ],
+    "Battle for Azeroth": [
+      {
+        "name": "Uldir",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Taloc",
+            "completedCount": 10,
+            "lastKillTimestamp": 1599420457000
+          },
+          {
+            "name": "MOTHER",
+            "completedCount": 13,
+            "lastKillTimestamp": 1599420619000
+          },
+          {
+            "name": "Fetid Devourer",
+            "completedCount": 1,
+            "lastKillTimestamp": 1599420814000
+          },
+          {
+            "name": "Zek'voz, Herald of N'Zoth",
+            "completedCount": 7,
+            "lastKillTimestamp": 1600276581000
+          },
+          {
+            "name": "Vectis",
+            "completedCount": 6,
+            "lastKillTimestamp": 1600276896000
+          },
+          {
+            "name": "Zul, Reborn",
+            "completedCount": 1,
+            "lastKillTimestamp": 1599421475000
+          },
+          {
+            "name": "Mythrax the Unraveler",
+            "completedCount": 1,
+            "lastKillTimestamp": 1599421579000
+          },
+          {
+            "name": "G'huun",
+            "completedCount": 1,
+            "lastKillTimestamp": 1600797349000
+          }
+        ]
+      },
+      {
+        "name": "Battle of Dazar'alor",
+        "difficulty": "MYTHIC",
+        "mythicKills": 9,
+        "heroicKills": null,
+        "completedBosses": 9,
+        "totalBosses": 9,
+        "note": "9/9 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Champion of the Light",
+            "completedCount": 31,
+            "lastKillTimestamp": 1753526345000
+          },
+          {
+            "name": "Grong, the Revenant",
+            "completedCount": 27,
+            "lastKillTimestamp": 1753526617000
+          },
+          {
+            "name": "Jadefire Masters",
+            "completedCount": 26,
+            "lastKillTimestamp": 1753526548000
+          },
+          {
+            "name": "Opulence",
+            "completedCount": 29,
+            "lastKillTimestamp": 1753526788000
+          },
+          {
+            "name": "Conclave of the Chosen",
+            "completedCount": 26,
+            "lastKillTimestamp": 1753526891000
+          },
+          {
+            "name": "King Rastakhan",
+            "completedCount": 24,
+            "lastKillTimestamp": 1753527280000
+          },
+          {
+            "name": "High Tinker Mekkatorque",
+            "completedCount": 23,
+            "lastKillTimestamp": 1753527598000
+          },
+          {
+            "name": "Stormwall Blockade",
+            "completedCount": 21,
+            "lastKillTimestamp": 1591987020000
+          },
+          {
+            "name": "Lady Jaina Proudmoore",
+            "completedCount": 31,
+            "lastKillTimestamp": 1751474431000
+          }
+        ]
+      },
+      {
+        "name": "Crucible of Storms",
+        "difficulty": "MYTHIC",
+        "mythicKills": 2,
+        "heroicKills": null,
+        "completedBosses": 2,
+        "totalBosses": 2,
+        "note": "2/2 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "The Restless Cabal",
+            "completedCount": 1,
+            "lastKillTimestamp": 1731591553000
+          },
+          {
+            "name": "Uu'nat, Harbinger of the Void",
+            "completedCount": 1,
+            "lastKillTimestamp": 1731591745000
+          }
+        ]
+      },
+      {
+        "name": "The Eternal Palace",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Abyssal Commander Sivara",
+            "completedCount": 15,
+            "lastKillTimestamp": 1600624912000
+          },
+          {
+            "name": "Blackwater Behemoth",
+            "completedCount": 15,
+            "lastKillTimestamp": 1600625337000
+          },
+          {
+            "name": "Radiance of Azshara",
+            "completedCount": 15,
+            "lastKillTimestamp": 1600625826000
+          },
+          {
+            "name": "Lady Ashvane",
+            "completedCount": 11,
+            "lastKillTimestamp": 1600626085000
+          },
+          {
+            "name": "Orgozoa",
+            "completedCount": 15,
+            "lastKillTimestamp": 1600626409000
+          },
+          {
+            "name": "The Queen's Court",
+            "completedCount": 13,
+            "lastKillTimestamp": 1600626928000
+          },
+          {
+            "name": "Za'qul, Harbinger of Ny'alotha",
+            "completedCount": 13,
+            "lastKillTimestamp": 1600627557000
+          },
+          {
+            "name": "Queen Azshara",
+            "completedCount": 8,
+            "lastKillTimestamp": 1600628709000
+          }
+        ]
+      },
+      {
+        "name": "Ny'alotha, the Waking City",
+        "difficulty": "MYTHIC",
+        "mythicKills": 12,
+        "heroicKills": null,
+        "completedBosses": 12,
+        "totalBosses": 12,
+        "note": "12/12 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Wrathion, the Black Emperor",
+            "completedCount": 18,
+            "lastKillTimestamp": 1605205924000
+          },
+          {
+            "name": "Maut",
+            "completedCount": 18,
+            "lastKillTimestamp": 1605206904000
+          },
+          {
+            "name": "The Prophet Skitra",
+            "completedCount": 17,
+            "lastKillTimestamp": 1605206343000
+          },
+          {
+            "name": "Dark Inquisitor Xanesh",
+            "completedCount": 16,
+            "lastKillTimestamp": 1605210224000
+          },
+          {
+            "name": "The Hivemind",
+            "completedCount": 12,
+            "lastKillTimestamp": 1605211805000
+          },
+          {
+            "name": "Shad'har the Insatiable",
+            "completedCount": 12,
+            "lastKillTimestamp": 1605208617000
+          },
+          {
+            "name": "Drest'agath",
+            "completedCount": 8,
+            "lastKillTimestamp": 1605208233000
+          },
+          {
+            "name": "Il'gynoth, Corruption Reborn",
+            "completedCount": 7,
+            "lastKillTimestamp": 1605209312000
+          },
+          {
+            "name": "Vexiona",
+            "completedCount": 15,
+            "lastKillTimestamp": 1605210754000
+          },
+          {
+            "name": "Ra-den the Despoiled",
+            "completedCount": 13,
+            "lastKillTimestamp": 1605213188000
+          },
+          {
+            "name": "Carapace of N'Zoth",
+            "completedCount": 17,
+            "lastKillTimestamp": 1605214983000
+          },
+          {
+            "name": "N'Zoth the Corruptor",
+            "completedCount": 13,
+            "lastKillTimestamp": 1605216138000
+          }
+        ]
+      }
+    ],
+    "Shadowlands": [
+      {
+        "name": "Castle Nathria",
+        "difficulty": "MYTHIC",
+        "mythicKills": 10,
+        "heroicKills": null,
+        "completedBosses": 10,
+        "totalBosses": 10,
+        "note": "10/10 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Shriekwing",
+            "completedCount": 18,
+            "lastKillTimestamp": 1668020436000
+          },
+          {
+            "name": "Huntsman Altimor",
+            "completedCount": 18,
+            "lastKillTimestamp": 1666809289000
+          },
+          {
+            "name": "Sun King's Salvation",
+            "completedCount": 15,
+            "lastKillTimestamp": 1666811864000
+          },
+          {
+            "name": "Artificer Xy'mox",
+            "completedCount": 15,
+            "lastKillTimestamp": 1666814496000
+          },
+          {
+            "name": "Hungering Destroyer",
+            "completedCount": 21,
+            "lastKillTimestamp": 1666809847000
+          },
+          {
+            "name": "Lady Inerva Darkvein",
+            "completedCount": 14,
+            "lastKillTimestamp": 1663181616000
+          },
+          {
+            "name": "The Council of Blood",
+            "completedCount": 13,
+            "lastKillTimestamp": 1666815244000
+          },
+          {
+            "name": "Sludgefist",
+            "completedCount": 16,
+            "lastKillTimestamp": 1668021023000
+          },
+          {
+            "name": "Stone Legion Generals",
+            "completedCount": 11,
+            "lastKillTimestamp": 1668022178000
+          },
+          {
+            "name": "Sire Denathrius",
+            "completedCount": 2,
+            "lastKillTimestamp": 1668031243000
+          }
+        ]
+      },
+      {
+        "name": "Sanctum of Domination",
+        "difficulty": "MYTHIC",
+        "mythicKills": 10,
+        "heroicKills": null,
+        "completedBosses": 10,
+        "totalBosses": 10,
+        "note": "10/10 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "The Tarragrue",
+            "completedCount": 23,
+            "lastKillTimestamp": 1669575761000
+          },
+          {
+            "name": "The Eye of the Jailer",
+            "completedCount": 18,
+            "lastKillTimestamp": 1669578665000
+          },
+          {
+            "name": "The Nine",
+            "completedCount": 19,
+            "lastKillTimestamp": 1669579083000
+          },
+          {
+            "name": "Remnant of Ner'zhul",
+            "completedCount": 17,
+            "lastKillTimestamp": 1669584607000
+          },
+          {
+            "name": "Soulrender Dormazain",
+            "completedCount": 16,
+            "lastKillTimestamp": 1669579610000
+          },
+          {
+            "name": "Painsmith Raznal",
+            "completedCount": 3,
+            "lastKillTimestamp": 1642104262000
+          },
+          {
+            "name": "Guardian of the First Ones",
+            "completedCount": 8,
+            "lastKillTimestamp": 1669586985000
+          },
+          {
+            "name": "Fatescribe Roh-Kalo",
+            "completedCount": 2,
+            "lastKillTimestamp": 1655911949000
+          },
+          {
+            "name": "Kel'Thuzad",
+            "completedCount": 10,
+            "lastKillTimestamp": 1669576963000
+          },
+          {
+            "name": "Sylvanas Windrunner",
+            "completedCount": 6,
+            "lastKillTimestamp": 1669577938000
+          }
+        ]
+      },
+      {
+        "name": "Sepulcher of the First Ones",
+        "difficulty": "MYTHIC",
+        "mythicKills": 11,
+        "heroicKills": null,
+        "completedBosses": 11,
+        "totalBosses": 11,
+        "note": "11/11 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Vigilant Guardian",
+            "completedCount": 12,
+            "lastKillTimestamp": 1669230373000
+          },
+          {
+            "name": "Skolex, the Insatiable Ravener",
+            "completedCount": 12,
+            "lastKillTimestamp": 1669583307000
+          },
+          {
+            "name": "Artificer Xy'mox",
+            "completedCount": 8,
+            "lastKillTimestamp": 1669583926000
+          },
+          {
+            "name": "Dausegne, the Fallen Oracle",
+            "completedCount": 12,
+            "lastKillTimestamp": 1669240933000
+          },
+          {
+            "name": "Prototype Pantheon",
+            "completedCount": 8,
+            "lastKillTimestamp": 1669580677000
+          },
+          {
+            "name": "Lihuvim, Principal Architect",
+            "completedCount": 5,
+            "lastKillTimestamp": 1669582263000
+          },
+          {
+            "name": "Halondrus the Reclaimer",
+            "completedCount": 2,
+            "lastKillTimestamp": 1665949010000
+          },
+          {
+            "name": "Anduin Wrynn",
+            "completedCount": 3,
+            "lastKillTimestamp": 1669233341000
+          },
+          {
+            "name": "Lords of Dread",
+            "completedCount": 3,
+            "lastKillTimestamp": 1669235716000
+          },
+          {
+            "name": "Rygelon",
+            "completedCount": 2,
+            "lastKillTimestamp": 1669234588000
+          },
+          {
+            "name": "The Jailer",
+            "completedCount": 2,
+            "lastKillTimestamp": 1669240227000
+          }
+        ]
+      }
+    ],
+    "Dragonflight": [
+      {
+        "name": "Vault of the Incarnates",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Eranog",
+            "completedCount": 16,
+            "lastKillTimestamp": 1717700389000
+          },
+          {
+            "name": "Terros",
+            "completedCount": 7,
+            "lastKillTimestamp": 1717701065000
+          },
+          {
+            "name": "The Primal Council",
+            "completedCount": 15,
+            "lastKillTimestamp": 1717703809000
+          },
+          {
+            "name": "Sennarth, the Cold Breath",
+            "completedCount": 5,
+            "lastKillTimestamp": 1717701773000
+          },
+          {
+            "name": "Dathea, Ascended",
+            "completedCount": 2,
+            "lastKillTimestamp": 1715889485000
+          },
+          {
+            "name": "Kurog Grimtotem",
+            "completedCount": 4,
+            "lastKillTimestamp": 1715886606000
+          },
+          {
+            "name": "Broodkeeper Diurna",
+            "completedCount": 3,
+            "lastKillTimestamp": 1717705857000
+          },
+          {
+            "name": "Raszageth the Storm-Eater",
+            "completedCount": 1,
+            "lastKillTimestamp": 1717965880000
+          }
+        ]
+      },
+      {
+        "name": "Aberrus, the Shadowed Crucible",
+        "difficulty": "MYTHIC",
+        "mythicKills": 9,
+        "heroicKills": null,
+        "completedBosses": 9,
+        "totalBosses": 9,
+        "note": "9/9 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Kazzara, the Hellforged",
+            "completedCount": 8,
+            "lastKillTimestamp": 1718306463000
+          },
+          {
+            "name": "The Amalgamation Chamber",
+            "completedCount": 7,
+            "lastKillTimestamp": 1716491442000
+          },
+          {
+            "name": "The Forgotten Experiments",
+            "completedCount": 4,
+            "lastKillTimestamp": 1714682847000
+          },
+          {
+            "name": "Assault of the Zaqali",
+            "completedCount": 6,
+            "lastKillTimestamp": 1718306999000
+          },
+          {
+            "name": "Rashok, the Elder",
+            "completedCount": 4,
+            "lastKillTimestamp": 1718307797000
+          },
+          {
+            "name": "The Vigilant Steward, Zskarn",
+            "completedCount": 2,
+            "lastKillTimestamp": 1716493430000
+          },
+          {
+            "name": "Magmorax",
+            "completedCount": 2,
+            "lastKillTimestamp": 1718311514000
+          },
+          {
+            "name": "Echo of Neltharion",
+            "completedCount": 3,
+            "lastKillTimestamp": 1718312399000
+          },
+          {
+            "name": "Scalecommander Sarkareth",
+            "completedCount": 1,
+            "lastKillTimestamp": 1699220171000
+          }
+        ]
+      },
+      {
+        "name": "Amirdrassil, the Dream's Hope",
+        "difficulty": "MYTHIC",
+        "mythicKills": 9,
+        "heroicKills": null,
+        "completedBosses": 9,
+        "totalBosses": 9,
+        "note": "9/9 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Gnarlroot",
+            "completedCount": 12,
+            "lastKillTimestamp": 1719511653000
+          },
+          {
+            "name": "Igira the Cruel",
+            "completedCount": 11,
+            "lastKillTimestamp": 1719511884000
+          },
+          {
+            "name": "Volcoross",
+            "completedCount": 8,
+            "lastKillTimestamp": 1717096566000
+          },
+          {
+            "name": "Council of Dreams",
+            "completedCount": 11,
+            "lastKillTimestamp": 1717094023000
+          },
+          {
+            "name": "Larodar, Keeper of the Flame",
+            "completedCount": 7,
+            "lastKillTimestamp": 1717098646000
+          },
+          {
+            "name": "Nymue, Weaver of the Cycle",
+            "completedCount": 9,
+            "lastKillTimestamp": 1717095727000
+          },
+          {
+            "name": "Smolderon",
+            "completedCount": 5,
+            "lastKillTimestamp": 1719512366000
+          },
+          {
+            "name": "Tindral Sageswift, Seer of the Flame",
+            "completedCount": 6,
+            "lastKillTimestamp": 1724610099000
+          },
+          {
+            "name": "Fyrakk the Blazing",
+            "completedCount": 5,
+            "lastKillTimestamp": 1724611652000
+          }
+        ]
+      }
+    ],
+    "Current Season": [
+      {
+        "name": "The Dreamrift",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Chimaerus the Undreamt God",
+            "completedCount": 6,
+            "lastKillTimestamp": 1779303375000
+          }
+        ]
+      },
+      {
+        "name": "The Voidspire",
+        "difficulty": "MYTHIC",
+        "mythicKills": 6,
+        "heroicKills": null,
+        "completedBosses": 6,
+        "totalBosses": 6,
+        "note": "6/6 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Imperator Averzian",
+            "completedCount": 7,
+            "lastKillTimestamp": 1784562721000
+          },
+          {
+            "name": "Vorasius",
+            "completedCount": 9,
+            "lastKillTimestamp": 1784564642000
+          },
+          {
+            "name": "Fallen-King Salhadaar",
+            "completedCount": 6,
+            "lastKillTimestamp": 1780689728000
+          },
+          {
+            "name": "Vaelgor & Ezzorak",
+            "completedCount": 5,
+            "lastKillTimestamp": 1780694613000
+          },
+          {
+            "name": "Lightblinded Vanguard",
+            "completedCount": 2,
+            "lastKillTimestamp": 1785349122000
+          },
+          {
+            "name": "Crown of the Cosmos",
+            "completedCount": 2,
+            "lastKillTimestamp": 1785353343000
+          }
+        ]
+      },
+      {
+        "name": "March on Quel'Danas",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 2,
+        "note": "1/2 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Midnight Falls",
+            "completedCount": 1,
+            "lastKillTimestamp": 1784751226000
+          }
+        ]
+      },
+      {
+        "name": "Sporefall",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Rotmire",
+            "completedCount": 9,
+            "lastKillTimestamp": 1784997192000
+          }
+        ]
+      },
+      {
+        "name": "The Tidebound Grotto",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Nymrissa Wavecaller",
+            "completedCount": 1,
+            "lastKillTimestamp": 1789930879000
+          }
+        ]
+      },
+      {
+        "name": "The Venomous Abyss",
+        "difficulty": "MYTHIC",
+        "mythicKills": 5,
+        "heroicKills": null,
+        "completedBosses": 5,
+        "totalBosses": 8,
+        "note": "5/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Nek'zali the Soulcoiler",
+            "completedCount": 4,
+            "lastKillTimestamp": 1791396721000
+          },
+          {
+            "name": "Entombed Sentinels",
+            "completedCount": 5,
+            "lastKillTimestamp": 1791398091000
+          },
+          {
+            "name": "The Lost Explorers",
+            "completedCount": 6,
+            "lastKillTimestamp": 1791401851000
+          },
+          {
+            "name": "Vashnik the Malignant",
+            "completedCount": 5,
+            "lastKillTimestamp": 1791400977000
+          },
+          {
+            "name": "Sszorak",
+            "completedCount": 1,
+            "lastKillTimestamp": 1791141380000
+          }
+        ]
+      }
+    ],
+    "Midnight": [
+      {
+        "name": "The Dreamrift",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Chimaerus the Undreamt God",
+            "completedCount": 6,
+            "lastKillTimestamp": 1779303375000
+          }
+        ]
+      },
+      {
+        "name": "The Voidspire",
+        "difficulty": "MYTHIC",
+        "mythicKills": 6,
+        "heroicKills": null,
+        "completedBosses": 6,
+        "totalBosses": 6,
+        "note": "6/6 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Imperator Averzian",
+            "completedCount": 7,
+            "lastKillTimestamp": 1784562721000
+          },
+          {
+            "name": "Vorasius",
+            "completedCount": 9,
+            "lastKillTimestamp": 1784564642000
+          },
+          {
+            "name": "Fallen-King Salhadaar",
+            "completedCount": 6,
+            "lastKillTimestamp": 1780689728000
+          },
+          {
+            "name": "Vaelgor & Ezzorak",
+            "completedCount": 5,
+            "lastKillTimestamp": 1780694613000
+          },
+          {
+            "name": "Lightblinded Vanguard",
+            "completedCount": 2,
+            "lastKillTimestamp": 1785349122000
+          },
+          {
+            "name": "Crown of the Cosmos",
+            "completedCount": 2,
+            "lastKillTimestamp": 1785353343000
+          }
+        ]
+      },
+      {
+        "name": "March on Quel'Danas",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 2,
+        "note": "1/2 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Midnight Falls",
+            "completedCount": 1,
+            "lastKillTimestamp": 1784751226000
+          }
+        ]
+      },
+      {
+        "name": "Sporefall",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Rotmire",
+            "completedCount": 9,
+            "lastKillTimestamp": 1784997192000
+          }
+        ]
+      },
+      {
+        "name": "The Tidebound Grotto",
+        "difficulty": "MYTHIC",
+        "mythicKills": 1,
+        "heroicKills": null,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Nymrissa Wavecaller",
+            "completedCount": 1,
+            "lastKillTimestamp": 1789930879000
+          }
+        ]
+      },
+      {
+        "name": "The Venomous Abyss",
+        "difficulty": "MYTHIC",
+        "mythicKills": 5,
+        "heroicKills": null,
+        "completedBosses": 5,
+        "totalBosses": 8,
+        "note": "5/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Nek'zali the Soulcoiler",
+            "completedCount": 4,
+            "lastKillTimestamp": 1791396721000
+          },
+          {
+            "name": "Entombed Sentinels",
+            "completedCount": 5,
+            "lastKillTimestamp": 1791398091000
+          },
+          {
+            "name": "The Lost Explorers",
+            "completedCount": 6,
+            "lastKillTimestamp": 1791401851000
+          },
+          {
+            "name": "Vashnik the Malignant",
+            "completedCount": 5,
+            "lastKillTimestamp": 1791400977000
+          },
+          {
+            "name": "Sszorak",
+            "completedCount": 1,
+            "lastKillTimestamp": 1791141380000
+          }
+        ]
+      }
+    ],
+    "The War Within": [
+      {
+        "name": "Nerub-ar Palace",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Ulgrax the Devourer",
+            "completedCount": 11,
+            "lastKillTimestamp": 1771441386000
+          },
+          {
+            "name": "The Bloodbound Horror",
+            "completedCount": 11,
+            "lastKillTimestamp": 1771441611000
+          },
+          {
+            "name": "Sikran, Captain of the Sureki",
+            "completedCount": 5,
+            "lastKillTimestamp": 1734637665000
+          },
+          {
+            "name": "Rasha'nan",
+            "completedCount": 6,
+            "lastKillTimestamp": 1734638346000
+          },
+          {
+            "name": "Broodtwister Ovi'nax",
+            "completedCount": 1,
+            "lastKillTimestamp": 1731011619000
+          },
+          {
+            "name": "Nexus-Princess Ky'veza",
+            "completedCount": 2,
+            "lastKillTimestamp": 1768159902000
+          },
+          {
+            "name": "The Silken Court",
+            "completedCount": 5,
+            "lastKillTimestamp": 1771442085000
+          },
+          {
+            "name": "Queen Ansurek",
+            "completedCount": 5,
+            "lastKillTimestamp": 1771442549000
+          }
+        ]
+      },
+      {
+        "name": "Liberation of Undermine",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Vexie and the Geargrinders",
+            "completedCount": 12,
+            "lastKillTimestamp": 1771443167000
+          },
+          {
+            "name": "Cauldron of Carnage",
+            "completedCount": 6,
+            "lastKillTimestamp": 1751828297000
+          },
+          {
+            "name": "Rik Reverb",
+            "completedCount": 2,
+            "lastKillTimestamp": 1745180570000
+          },
+          {
+            "name": "Stix Bunkjunker",
+            "completedCount": 1,
+            "lastKillTimestamp": 1744922984000
+          },
+          {
+            "name": "Sprocketmonger Lockenstock",
+            "completedCount": 1,
+            "lastKillTimestamp": 1747595979000
+          },
+          {
+            "name": "The One-Armed Bandit",
+            "completedCount": 2,
+            "lastKillTimestamp": 1751480073000
+          },
+          {
+            "name": "Mug'Zee, Heads of Security",
+            "completedCount": 6,
+            "lastKillTimestamp": 1771443639000
+          },
+          {
+            "name": "Chrome King Gallywix",
+            "completedCount": 6,
+            "lastKillTimestamp": 1771445236000
+          }
+        ]
+      },
+      {
+        "name": "Manaforge Omega",
+        "difficulty": "MYTHIC",
+        "mythicKills": 8,
+        "heroicKills": null,
+        "completedBosses": 8,
+        "totalBosses": 8,
+        "note": "8/8 M",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Plexus Sentinel",
+            "completedCount": 11,
+            "lastKillTimestamp": 1770229998000
+          },
+          {
+            "name": "Loom'ithar",
+            "completedCount": 9,
+            "lastKillTimestamp": 1770230984000
+          },
+          {
+            "name": "Soulbinder Naazindhri",
+            "completedCount": 10,
+            "lastKillTimestamp": 1769625692000
+          },
+          {
+            "name": "Forgeweaver Araz",
+            "completedCount": 9,
+            "lastKillTimestamp": 1770231494000
+          },
+          {
+            "name": "The Soul Hunters",
+            "completedCount": 6,
+            "lastKillTimestamp": 1770231911000
+          },
+          {
+            "name": "Fractillus",
+            "completedCount": 7,
+            "lastKillTimestamp": 1770232294000
+          },
+          {
+            "name": "Nexus-King Salhadaar",
+            "completedCount": 5,
+            "lastKillTimestamp": 1771439503000
+          },
+          {
+            "name": "Dimensius, the All-Devouring",
+            "completedCount": 7,
+            "lastKillTimestamp": 1771440740000
+          }
+        ]
+      }
+    ]
+  }
 }
