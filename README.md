@@ -1,9 +1,7 @@
-# Draekhorr V4.9.4 — real boss images
+# Draekhorr V4.9.5 — Boss icons
 
-Replace only `scripts/sync_all.py` in the repository. Do not replace `data.json`, the website frontend, GitHub secrets or the workflow.
+Replace ONLY `scripts/sync_all.py` in the repository. Do not replace `data.json`, `script.js`, GitHub Actions workflow, or secrets.
 
-This version obtains `journalID` directly through Warcraft Logs `worldData.encounter(id)` (no zone ID required), then uses Blizzard's `/data/wow/journal-encounter/{id}` creature display references and `/data/wow/media/creature-display/{id}` assets for real artwork. Some encounters may lack assets or their image URLs may be unavailable; in those cases the existing frontend placeholder remains.
+Then run Actions > Sync WoW APIs > Run workflow. After the workflow commits the updated data.json and Pages deploys, refresh the website.
 
-After committing, run **Actions → Sync WoW APIs → Run workflow**. Inspect `DIAG WCL direct journal IDs=...` and `OK warcraftLogs: bosses=..., icons=..., HPS=...`. Then check `data.json` for `warcraftLogs.bossParses[].iconUrl`.
-
-This script passed Python syntax checks, but has not been executed with your API secrets. No guarantees that every boss has artwork.
+Boss image URLs are constructed from Warcraft Logs encounter IDs using the RPGLogs CDN pattern supplied by the site owner. Availability is not verified for every encounter. The existing frontend handles broken image links with a placeholder. The `icons=` log count indicates URLs populated, not successful image downloads.

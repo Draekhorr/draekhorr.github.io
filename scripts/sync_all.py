@@ -16,7 +16,7 @@ REGION, REALM, NAME = 'eu', 'draenor', 'draekhorr'
 # Current/previous season IDs are resolved from Raider.IO at runtime.
 # Never infer the active season from the character's highest score.
 WCL_URL = f'https://www.warcraftlogs.com/character/{REGION}/{REALM}/{NAME}'
-USER_AGENT = 'DraekhorrWoWLegacy/4.9'
+USER_AGENT = 'DraekhorrWoWLegacy/4.9.5'
 
 # Raid slug metadata is a verified historical mapping, not season detection.
 # Unknown/new raids stay unclassified until their season is confirmed.
@@ -487,6 +487,11 @@ def sync_warcraftlogs(data):
                      if isinstance(encounter.get(k), str) and encounter[k].startswith('https://')), None)
         encounter_id = encounter.get('id')
         journal_id = encounter.get('journalID') or journal_by_id.get(encounter_id)
+        # Warcraft Logs / RPGLogs boss CDN uses the WCL encounter ID.
+        # The frontend already falls back to a placeholder if the image is missing.
+        if icon is None and isinstance(encounter_id, int) and encounter_id > 0:
+            icon = (f'https://assets.rpglogs.com/img/warcraft/bosses/'
+                    f'{encounter_id}-icon.jpg?v=4')
         if icon is None:
             icon = blizzard_encounter_icon(journal_id, blizzard_access)
         if icon is None and isinstance(old.get('iconUrl'), str) and old['iconUrl'].startswith('https://'):
