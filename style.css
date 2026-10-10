@@ -8,3 +8,8 @@
 
 /* V4.2: raid history dropdowns */
 .raid-subheading{color:#eac47e;font:700 14px Cinzel,serif;letter-spacing:1px;margin:24px 0 14px}.raid-subheading span{color:#6bd6ef;font:700 11px Inter,Arial,sans-serif;letter-spacing:1px}.raid-history{display:grid;gap:12px;margin-bottom:24px}.expansion-dropdown{border:1px solid #3b5869;background:#0b1723;padding:0 16px}.expansion-dropdown summary{cursor:pointer;color:#eac47e;font-family:Cinzel,serif;font-weight:700;padding:17px 0}.expansion-dropdown summary:hover{color:#6bd6ef}.expansion-dropdown h5{font-size:12px;color:#6bd6ef;letter-spacing:1px;margin:8px 0 12px}.expansion-dropdown .data-card{padding:16px}.expansion-dropdown .data-card h4{font-size:14px}
+
+/* V4.4: cleaner Mythic Progression heading and history title */
+#raids .mythic-tagline{color:#83cfe0;font-size:14px;letter-spacing:0;line-height:1.7;font-weight:400;margin:0 0 20px;max-width:700px}
+#raids>h2{margin-bottom:12px}
+.raid-history-title{font-family:Cinzel,serif;font-size:17px;line-height:1.5;color:#eac47e;letter-spacing:.6px;margin:30px 0 16px;overflow-wrap:anywhere}

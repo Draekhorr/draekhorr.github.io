@@ -31,8 +31,11 @@ function renderRaids(data){
  if(!current||!history)return;
  current.replaceChildren();history.replaceChildren();
  const grouped=new Map(), seen=new Set();
+ const currentNames=new Set();
  const add=(expansion,season,raid)=>{
   if(!raid||!raid.name)return;
+  if(currentNames.has(String(raid.name).trim().toLowerCase()))return;
+  if(/^(current season|season-mn-2|midnight season 2)$/i.test(String(season).trim()))return;
   const key=[expansion,season,raid.name].join('|').toLowerCase();
   if(seen.has(key))return;
   seen.add(key);
@@ -45,7 +48,7 @@ function renderRaids(data){
  const normalizedCurrent=by.currentSeason?.raids;
  const legacy=Array.isArray(data.raidProgression)?data.raidProgression:[];
  const currentRaids=Array.isArray(normalizedCurrent)&&normalizedCurrent.length?normalizedCurrent:legacy.filter(r=>RAID_MAP[String(r.name||'').trim().toLowerCase()]?.current);
- for(const raid of currentRaids)current.append(makeRaidCard(raid));
+ for(const raid of currentRaids){currentNames.add(String(raid.name||'').trim().toLowerCase());current.append(makeRaidCard(raid));}
  if(!currentRaids.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No verified current-season raid progress available.';current.append(p)}
  if(el('raid-current-season'))el('raid-current-season').textContent=(by.currentSeason?.seasonName||data.raiderIo?.currentSeasonName||'CURRENT SEASON').toUpperCase();
  // Backend expansion history: expansion -> [{seasonName, raids}].
@@ -69,7 +72,7 @@ function renderRaids(data){
  // Fallback for old data.json, until the backend populates historical data.
  for(const raid of legacy){
   const key=String(raid.name||'').trim().toLowerCase(),meta=RAID_MAP[key];
-  if(meta?.current)continue;
+  if(meta?.current||currentNames.has(key))continue;
   add(meta?.expansion||'Unclassified raids',meta?.season||'Season unknown',raid);
  }
  const priority=['Midnight','The War Within','Dragonflight','Shadowlands','Battle for Azeroth','Legion','Warlords of Draenor','Mists of Pandaria','Cataclysm','Wrath of the Lich King','The Burning Crusade','Classic','Unclassified raids'];
