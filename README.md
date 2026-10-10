@@ -18,7 +18,11 @@ A WoW-themed, mobile-friendly showcase of a Shaman main since 2005. The hero hea
 
 The subtitle is: *20+ years of totems, countless raid wipes, and a collection of Cutting Edge achievements. Apparently, my guild application is still pending.*
 
-The site intentionally has **no Twitch or Kick integration**. Current raid progression and Warcraft Logs are displayed together, with Raider.IO directly afterward. Mounts and achievements are side-by-side on desktop and stacked on mobile.
+The site intentionally has **no Twitch or Kick integration**. A compact Raid Legacy total appears above current raid progression and Warcraft Logs, with Raider.IO directly afterward. The former standalone Cutting Edge card grid and WoWProgress section have been removed. Mounts and achievements are side-by-side on desktop and stacked on mobile.
+
+## Cutting Edge source of truth (V5.1)
+
+Cutting Edge badges are based **only** on Blizzard achievement records where `verified` is `true` and `tierId` has a known raid mapping. Mythic raid progression is independent: a full clear does not imply Cutting Edge, and an earned Cutting Edge does not require all earlier bosses to have been killed on that character. The site displays a single compact total of unique verified Cutting Edge achievement IDs above Mythic Progression. Mappings currently cover known Legion, BFA, Shadowlands, Dragonflight and The War Within raids; unmapped achievements remain counted in the total but do not produce a potentially incorrect raid badge. Adding a new raid may require updating the authoritative mapping. No backend change is required for V5.1.
 
 ## Feature overview and current status
 
@@ -28,7 +32,7 @@ The site intentionally has **no Twitch or Kick integration**. Current raid progr
 | Mythic raid progression | Show only current-season raids in main panel | Raider.IO sync implemented; classification of future raids is not fully dynamic |
 | Raid history | Compact expansion selector, only one expansion shown at a time | Blizzard historical encounter sync implemented; displayed data depends on API availability and frontend version |
 | Raid difficulty | Mythic where available; Heroic only for raids without Mythic | Parser implements priority based on available modes; historical completeness not guaranteed |
-| Cutting Edge | Completed achievements, dates and tier count | Blizzard sync implemented; verify IDs, timestamps and raid mapping before claiming tier clears |
+| Cutting Edge | Compact total above raids; CE badges on raid cards ONLY for verified Blizzard achievement IDs mapped to that raid | Frontend V5.1; currently mapped historical achievements only; unknown/new IDs are not guessed |
 | Raider.IO M+ | Current and previous seasonal scores in one row; dungeon cards with Score, Time, and icons | Current/previous lookup implemented; run time uses API `clear_time_ms` when present; dungeon icon URLs are API-provided or explicitly verified, otherwise fallback; future season transitions not yet tested |
 | Warcraft Logs | Per-boss healing Best and Highest HPS | WCL HPS metric confirmed in diagnostics; frontend expects `bestPercent` and `highestHps` |
 | WCL Best display | Integer from 0–100, truncated (not rounded), no percent sign | Frontend change specified for V4.9.3; check deployed `script.js` |
@@ -150,6 +154,7 @@ This release replaces **only** `scripts/sync_all.py`. It does not require new cr
 | V4.9.3 | Best parse display: integer 0–100, truncation, no percent symbol |
 | V4.9.4 | Attempted direct WCL encounter-to-Blizzard journal media mapping; diagnostic returned 0/10 journal IDs |
 | V4.9.5 | Boss image URLs generated from WCL encounter IDs using RPGLogs CDN; user confirmed images now appear |
+| **V5.1** | **Raid Legacy UI:** compact verified CE count above Mythic Progression, CE badge on historical raid cards only for mapped verified achievement IDs, no inference from kill counts; remove duplicate CE grid and unused WoWProgress section; no API changes |
 | **V5.0** | **Raider.IO UI overhaul:** two scores in one row, Ranking removed, dungeon icons with safe fallback, run Score + actual clear time when API supplies it, no TIMED/DEPLETED badge; complete cumulative README retained |
 
 ## Documentation rule for future releases

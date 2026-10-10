@@ -61,3 +61,16 @@
 #raiderio .rio-blue{color:#45a9ff!important}#raiderio .rio-purple{color:#bd79ff!important}#raiderio .rio-gold{color:#f0c268!important}#raiderio .rio-green{color:#6cd89a!important}#raiderio .rio-unranked{color:#a9b5c1!important}
 @media(max-width:920px){#raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}#raiderio .rio-score-tile{padding:22px}}
+
+/* V5.1: compact, understated Cutting Edge legacy above raid progression */
+.raid-legacy-intro{padding-bottom:16px!important}
+.raid-legacy-summary{display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid #3b4d5c;border-bottom:1px solid #3b4d5c;padding:22px 4px}
+.raid-legacy-summary h2{font-size:clamp(26px,3vw,40px);margin:5px 0 10px}
+.raid-legacy-summary p:not(.eyebrow){color:#94bbcc;font-size:14px;margin:0}
+.ce-summary{display:flex;align-items:center;gap:15px;max-width:250px;flex-shrink:0}
+.ce-summary strong{font:clamp(38px,5vw,56px)/1 Cinzel,serif;color:#e9c078}
+.ce-summary span{font-size:10px;letter-spacing:1.1px;line-height:1.7;color:#d4dfe4}
+.raid-progress-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ce-badge{display:inline-block!important;border:1px solid #a98851;border-radius:3px;background:#302618;color:#f1cc83!important;font:700 11px/1.4 Inter,Arial,sans-serif!important;letter-spacing:.6px;padding:2px 7px;text-decoration:none!important}
+.ce-badge:hover{background:#48361e}
+@media(max-width:640px){.raid-legacy-summary{align-items:flex-start;flex-direction:column}.ce-summary{max-width:none}}

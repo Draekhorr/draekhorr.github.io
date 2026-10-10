@@ -5,9 +5,9 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
- const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);if(ce.length){setValue('ce-count',ce.length);const tiers=ce.map(x=>x.tierId).filter(Boolean);if(tiers.length)setValue('ce-tier-count',new Set(tiers).size)}setCards('ce-list',ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
+ const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);safeLink('wowprogress-link',d.wowprogress?.profileUrl);
+ renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -19,10 +19,39 @@ const RAID_MAP={
  'sporefall':{expansion:'Midnight',season:'Season 1',current:false},
  'tier mn 1':{expansion:'Midnight',season:'Season 1',current:false}
 };
+// Only the Blizzard Cutting Edge achievement list can award a CE badge.
+// Raid progress (including full Mythic clears) NEVER grants Cutting Edge.
+// Verified achievement ID -> historical raid name. Unknown IDs get no badge
+// until an authoritative raid mapping is added; this prevents false positives.
+const CE_RAID_IDS={
+ '11191':'The Emerald Nightmare',
+ '11580':'Trial of Valor',
+ '11192':'The Nighthold',
+ '13323':"Battle of Dazar'alor",
+ '14069':"Ny'alotha, the Waking City",
+ '14461':'Castle Nathria',
+ '15135':'Sanctum of Domination',
+ '18254':'Aberrus, the Shadowed Crucible',
+ '19351':"Amirdrassil, the Dream's Hope",
+ '40254':"Nerub-ar Palace",
+ '41297':'Liberation of Undermine',
+ '41625':'Manaforge Omega'
+};
+let verifiedCeByRaid=new Map();
+function normalizeRaidName(value){return String(value||'').toLowerCase().replace(/[’‘`]/g,"'").replace(/[^a-z0-9]+/g,' ').trim();}
+function collectVerifiedCuttingEdges(achievements){
+ verifiedCeByRaid=new Map();
+ for(const achievement of Array.isArray(achievements)?achievements:[]){
+  if(achievement?.verified!==true)continue;
+  const raid=CE_RAID_IDS[String(achievement.tierId)];
+  if(!raid)continue;
+  verifiedCeByRaid.set(normalizeRaidName(raid),achievement);
+ }
+}
 function makeRaidCard(raid){
  const card=document.createElement('article');card.className='data-card';
  const h=document.createElement('h4');h.textContent=raid.name||'Unnamed raid';card.append(h);
- if(raid.note){const p=document.createElement('p');p.textContent=raid.note;card.append(p)}
+ if(raid.note||verifiedCeByRaid.has(normalizeRaidName(raid.name))){const p=document.createElement('p');p.className='raid-progress-line';if(raid.note){const progress=document.createElement('span');progress.textContent=raid.note;p.append(progress)}const achievement=verifiedCeByRaid.get(normalizeRaidName(raid.name));if(achievement){const badge=document.createElement('a');badge.className='ce-badge';badge.textContent='CE';badge.title=achievement.name||'Verified Cutting Edge';badge.setAttribute('aria-label',badge.title);if(typeof achievement.url==='string'&&/^https:\/\//i.test(achievement.url)){badge.href=achievement.url;badge.target='_blank';badge.rel='noopener noreferrer';}p.append(badge)}card.append(p)}
  if(raid.url&&/^https:\/\//.test(raid.url)){const a=document.createElement('a');a.href=raid.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='VIEW DETAILS ↗';card.append(a)}
  return card;
 }
