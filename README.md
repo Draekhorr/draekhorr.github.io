@@ -1,27 +1,20 @@
-# Draekhorr WoW showcase
+# Draekhorr — Azeroth Legacy (V3)
 
-This is a ready-to-publish static website for Draekhorr on EU Draenor. Statistics are intentionally blank until verified; no rare mount ownership has been assumed.
+Static World of Warcraft character showcase for Draekhorr, EU-Draenor.
 
-## Publish with GitHub Pages
-1. Create a free account at https://github.com/signup
-2. Create a public repository named `YOURUSERNAME.github.io`.
-3. Upload `index.html`, `style.css`, `script.js`, `data.json` into the repository root.
-4. Go to Settings > Pages, choose Deploy from a branch, main, / (root).
-5. Open `https://YOURUSERNAME.github.io` after deployment.
+## Changes in V3
+- Raid Progression is the first content section after the hero.
+- Raider.IO is second, with fields for current score, previous season, ranking and best runs.
+- Cutting Edge history and WoWProgress follow.
+- Mounts and Achievements are side-by-side 50/50 on desktop and stacked on mobile.
+- Uses the supplied Draekhorr avatar.
 
-## Collection data
-Edit `data.json` with your verified `mountCount`, `achievementPoints`, and arrays of mounts/achievements. Mount entries look like `{"name":"Mount name","rare":true,"note":"Where it came from"}`; achievements look like `{"name":"Achievement name","note":"Feats of Strength"}`. Add `updatedAt` when refreshed.
+## Publish
+Upload the **contents** of this folder (not the folder itself) to the root of the `Draekhorr/draekhorr.github.io` repository, replacing the existing files. Commit to `main`. GitHub Pages will deploy the new version.
 
-Blizzard's profile APIs can provide character, mounts, and achievements with a server-side OAuth client credentials token. Never place a Blizzard API client secret in this public repository or browser JavaScript. A future GitHub Actions sync can store credentials in repository secrets. Rarity percentages require independent verified data.
+## Data
+`data.json` contains placeholders. `script.js` displays real data only when added to the JSON. This release **does not** connect to Blizzard, Raider.IO or WoWProgress APIs automatically. GitHub Actions and an API sync script must be added separately. Do not put Blizzard client secrets in any public file.
 
-## Raider.IO, WoWProgress and Cutting Edge
-The site now includes a raid progression section, Raider.IO character link, WoWProgress link, and a Cutting Edge history panel. These are **not yet automatically synced**. Unknown stats display a dash rather than fabricated results.
+`accountWideMountCount` should only be filled using a verified account-wide source. The old `mountCount` is supported as a fallback for compatibility, but must not be mislabeled account-wide unless verified.
 
-For verified data, populate `data.json`:
-- `raiderIo.mythicPlusScore`: numeric score from Raider.IO; its public character API can be queried by a future sync job.
-- `raiderIo.profileUrl`: direct character profile URL.
-- `wowprogress.profileUrl`: verified WoWProgress character URL. Until then, the button opens the service homepage; WowProgress data may require manual updates if there is no supported public API.
-- `raidProgression`: list of `{ "name": "Raid name", "note": "Verified Mythic progress" }`.
-- `cuttingEdgeAchievements`: list of `{ "name": "Cutting Edge: Boss", "tierId": "unique-tier-key", "note": "Raid / expansion", "verified": true }` sourced from verified Blizzard achievement completions. `tierId` must be the same for achievements belonging to the same tier. The site computes both total verified CE achievements and the number of unique raid tiers with CE.
-
-Do not set `verified: true` without checking character/account achievement data and timestamps. Some historical achievements may be account-wide; label their scope accurately. The `avatar.png` is the provided Draekhorr artwork.
+`cuttingEdgeAchievements` entries require `verified: true`; unique `tierId` values determine the Cutting Edge raid tier count.

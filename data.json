@@ -1,11 +1,17 @@
 {
-  "mountCount": null,
+  "accountWideMountCount": null,
   "achievementPoints": null,
   "mounts": [],
   "achievements": [],
   "cuttingEdgeAchievements": [],
   "raidProgression": [],
-  "raiderIo": {"mythicPlusScore": null, "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr"},
+  "raiderIo": {
+    "mythicPlusScore": null,
+    "previousSeasonScore": null,
+    "ranking": null,
+    "bestRuns": [],
+    "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr"
+  },
   "wowprogress": {"profileUrl": null},
   "updatedAt": null
 }
