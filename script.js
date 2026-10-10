@@ -5,7 +5,7 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderGuildHeader(d.guild);renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderGuildHeader(d.guild ?? d.character?.guild ?? d.raiderIo?.guild);renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -214,9 +214,13 @@ function renderGuildHeader(guild){
  const wrap=el('guild-header'),link=el('guild-link');
  if(!wrap||!link)return;
  wrap.hidden=true;
- if(!guild||typeof guild.name!=='string'||!guild.name.trim())return;
- if(typeof guild.url!=='string'||!/^https:\/\/raider\.io\/guilds\//i.test(guild.url))return;
- link.textContent=guild.name.trim()+' ↗';
- link.href=guild.url;
+ if(!guild)return;
+ const name=typeof guild==='string'?guild:(guild.name||guild.guild_name);
+ if(typeof name!=='string'||!name.trim())return;
+ const url=typeof guild==='object'?guild.url:null;
+ const href=typeof url==='string'&&/^https:\/\/raider\.io\/guilds\//i.test(url)?url:
+   'https://raider.io/guilds/eu/draenor/'+encodeURIComponent(name.trim());
+ link.textContent=name.trim()+' ↗';
+ link.href=href;
  wrap.hidden=false;
 }

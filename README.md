@@ -140,3 +140,8 @@ The upper-left navigation now shows **DRAEKHORR · Current Guild ↗** when the 
 The additional `scripts/sync_guild.py` runs after the existing health-monitored WoW sync, preserving all existing API data and monitoring. It updates only `data.json.guild`. The GitHub Actions workflow commits this field with the other synced data every six hours. No new credentials are required.
 
 **Deployment:** Upload `index.html`, `script.js`, `style.css`, `README.md`, `scripts/sync_guild.py` and `.github/workflows/sync.yml` preserving directories. Run **Sync WoW APIs** once to populate the guild field, then wait for Pages deployment. The API must expose guild membership; if not, the fallback is the character name only. The guild URL is constructed from returned guild metadata if a profile URL is not provided.
+
+
+## V1.1.3 — Guild header reliability
+
+The header displays the current guild from `data.json.guild` with a link to its Raider.IO guild profile. The scheduled workflow runs `scripts/sync_guild.py` after the main sync, and commits the updated `data.json`. The guild sync accepts both object and string guild payloads, logs `DIAG GUILD` and `OK GUILD`/`WARN GUILD`, and preserves the last known guild when the service does not return membership. The frontend also accepts guild metadata nested under `character` or `raiderIo`. No guild is invented if the source returns none. Verify the guild sync step and live `data.json` after deployment.
