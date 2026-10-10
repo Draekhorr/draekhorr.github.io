@@ -138,8 +138,14 @@
     }
   ],
   "raiderIo": {
-    "mythicPlusScore": 3635.2,
-    "previousSeasonScore": null,
+    "currentSeason": "season-mn-2",
+    "currentSeasonName": "Midnight Season 2",
+    "currentSeasonScore": 3103,
+    "mythicPlusScore": 3103,
+    "previousSeason": "season-mn-1",
+    "previousSeasonName": "Midnight Season 1",
+    "previousSeasonScore": 3635.2,
+    "bestHistoricalScore": 3635.2,
     "bestRuns": [
       {
         "name": "Temple of Sethraliss +17",
@@ -182,7 +188,7 @@
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/692366-10-the-blinding-vale"
       }
     ],
-    "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr",
+    "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
     "ranking": null
   },
   "wowprogress": {
