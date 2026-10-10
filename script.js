@@ -2,12 +2,12 @@ const el=id=>document.getElementById(id);
 function setValue(id,value){if(value===null||value===undefined||value==='')return;el(id).textContent=typeof value==='number'?value.toLocaleString('en-US'):String(value)}
 function setCards(id,items,fallback){if(!Array.isArray(items)||!items.length)return;const parent=el(id);parent.replaceChildren();for(const item of items){const card=document.createElement('article');card.className='data-card';const title=document.createElement('h4');title.textContent=item.name||'Unnamed';card.append(title);if(item.note){const note=document.createElement('p');note.textContent=item.note;card.append(note)}if(item.url&&/^https:\/\//i.test(item.url)){const link=document.createElement('a');link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='VIEW DETAILS ↗';card.append(link)}parent.append(card)}}
 function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(id).href=url}
-fetch('data.json?v=4.9.2',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
+fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);if(ce.length){setValue('ce-count',ce.length);const tiers=ce.map(x=>x.tierId).filter(Boolean);if(tiers.length)setValue('ce-tier-count',new Set(tiers).size)}setCards('ce-list',ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- setValue('rio-score',d.raiderIo?.currentSeasonScore??d.raiderIo?.mythicPlusScore);setValue('rio-previous',d.raiderIo?.previousSeasonScore);setValue('rio-rank',d.raiderIo?.ranking);setCards('rio-runs',d.raiderIo?.bestRuns);safeLink('rio-link',d.raiderIo?.profileUrl);safeLink('wowprogress-link',d.wowprogress?.profileUrl);
+ renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);safeLink('wowprogress-link',d.wowprogress?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -115,5 +115,49 @@ function renderWclBosses(items){
   const hps=document.createElement('td');hps.className='wcl-value wcl-hps';
   const n=boss.highestHps == null ? NaN : Number(boss.highestHps);hps.textContent=Number.isFinite(n)&&n>0?Math.round(n).toLocaleString('en-US'):'—';
   tr.append(name,pct,hps);tbody.append(tr);
+ }
+}
+
+// Raider.IO Mythic+ dashboard. Never fabricate run times or dungeon icons.
+function rioScoreClass(value){
+ if(typeof value!=='number'||!Number.isFinite(value))return 'rio-unranked';
+ // Visual tiers only: not a claim about official Raider.IO thresholds.
+ return value>=3500?'rio-gold':value>=2500?'rio-purple':value>=1500?'rio-blue':'rio-green';
+}
+function rioDuration(run){
+ const ms=run.clearTimeMs;
+ if(typeof ms==='number'&&Number.isFinite(ms)&&ms>=0){
+  const seconds=Math.floor(ms/1000);
+  const m=Math.floor(seconds/60),s=seconds%60;
+  return `${m}:${String(s).padStart(2,'0')}`;
+ }
+ return '—';
+}
+function renderRaiderIo(rio){
+ if(!rio)return;
+ setValue('rio-score',rio.currentSeasonScore??rio.mythicPlusScore);
+ setValue('rio-previous',rio.previousSeasonScore);
+ if(el('rio-current-season'))el('rio-current-season').textContent=rio.currentSeasonName||rio.currentSeason||'';
+ if(el('rio-previous-season'))el('rio-previous-season').textContent=rio.previousSeasonName||rio.previousSeason||'';
+ for(const [id,value] of [['rio-score',rio.currentSeasonScore??rio.mythicPlusScore],['rio-previous',rio.previousSeasonScore]]){
+  const node=el(id);if(node)node.classList.add(rioScoreClass(value));
+ }
+ const parent=el('rio-runs');if(!parent)return;parent.replaceChildren();
+ const runs=Array.isArray(rio.bestRuns)?rio.bestRuns:[];
+ if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No current-season runs available.';parent.append(p);return;}
+ for(const run of runs){
+  const card=document.createElement('article');card.className='rio-run-card';
+  const header=document.createElement('div');header.className='rio-run-heading';
+  const imgUrl=typeof run.iconUrl==='string'&&/^https:\/\//i.test(run.iconUrl)?run.iconUrl:null;
+  const fallback=document.createElement('span');fallback.className='rio-run-icon-fallback';fallback.textContent='✦';fallback.setAttribute('aria-hidden','true');
+  if(imgUrl){const img=document.createElement('img');img.src=imgUrl;img.alt='';img.loading='lazy';img.className='rio-run-icon';img.onerror=()=>img.replaceWith(fallback);header.append(img);}
+  else header.append(fallback);
+  const title=document.createElement('h4');title.textContent=run.name||'Dungeon';header.append(title);card.append(header);
+  const info=document.createElement('div');info.className='rio-run-meta';
+  const score=document.createElement('span');score.textContent='Score: '+(typeof run.score==='number'?run.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—');score.className=rioScoreClass(run.score);
+  const time=document.createElement('span');time.textContent='Time: '+rioDuration(run);
+  info.append(score,time);card.append(info);
+  if(typeof run.url==='string'&&/^https:\/\//i.test(run.url)){const a=document.createElement('a');a.href=run.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='VIEW DETAILS ↗';card.append(a);}
+  parent.append(card);
  }
 }

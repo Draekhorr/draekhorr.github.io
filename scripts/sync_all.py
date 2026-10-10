@@ -108,6 +108,29 @@ def season_record(payload):
     return None
 
 
+# Explicitly verified icon path supplied for this dungeon. Other dungeons
+# use an image URL only when the API actually returns one.
+KNOWN_DUNGEON_ICONS = {
+    'temple of sethraliss': 'https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_templeofsethraliss.jpg',
+}
+
+def run_clear_time_ms(run):
+    # Raider.IO best-runs responses typically include clear_time_ms.
+    for field in ('clear_time_ms', 'clearTimeMs'):
+        value = run.get(field)
+        if isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0:
+            return int(value)
+    return None
+
+def run_icon_url(run):
+    for field in ('icon_url', 'iconUrl', 'dungeon_icon_url'):
+        value = run.get(field)
+        if isinstance(value, str) and value.startswith('https://'):
+            return value
+    dungeon = normalize(run.get('dungeon', '')).replace('-', ' ')
+    return KNOWN_DUNGEON_ICONS.get(dungeon)
+
+
 def sync_rio(data):
     rio = dict(as_dict(data.get('raiderIo')))
     current_record = previous_record = None
@@ -183,8 +206,16 @@ def sync_rio(data):
             if f'/{current}/' not in link:
                 continue
             runs.append({'name': f"{run.get('dungeon', 'Dungeon')} +{run.get('mythic_level', '?')}",
-                         'note': f"Score: {run.get('score', 'N/A')} | Timed: {run.get('is_completed_within_time', 'N/A')}",
+                         'score': run.get('score'),
+                         'clearTimeMs': run_clear_time_ms(run),
+                         'iconUrl': run_icon_url(run),
                          'url': link})
+        previous_runs = {r.get('url'): r for r in as_list(rio.get('bestRuns')) if isinstance(r, dict)}
+        for item in runs:
+            old = previous_runs.get(item.get('url'), {})
+            for key in ('clearTimeMs', 'iconUrl', 'score'):
+                if item.get(key) is None and old.get(key) is not None:
+                    item[key] = old[key]
         rio['bestRuns'] = runs
     data['raiderIo'] = rio
 

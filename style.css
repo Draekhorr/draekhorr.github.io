@@ -41,3 +41,23 @@
 .boss-name-cell .boss-icon{width:38px;height:38px;vertical-align:middle;margin-right:12px;border-radius:5px}
 .boss-icon-placeholder{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;vertical-align:middle;margin-right:12px;border:1px solid #405361;border-radius:5px;color:#879baa;background:#122333;font-size:20px}
 @media(max-width:700px){.wcl-table{font-size:14px;min-width:430px}.wcl-table td{padding:11px 9px}}
+
+/* V5.0: compact Raider.IO scoreboard and dungeon cards */
+#raiderio .rio-score-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:26px 0 20px}
+#raiderio .rio-score-tile{background:linear-gradient(140deg,#17202b,#0c1520);border:1px solid #425368;padding:28px 32px;min-width:0}
+#raiderio .rio-score-tile strong{display:block;font:clamp(36px,5vw,62px)/1.2 Cinzel,serif;overflow-wrap:anywhere}
+#raiderio .rio-score-tile p{font-size:11px;letter-spacing:1.5px;color:#c5d3de;margin:12px 0 6px}
+#raiderio .rio-season-label{font-size:12px;color:#74cde8}
+#raiderio .rio-run-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#raiderio .rio-run-card{min-width:0;padding:20px;background:linear-gradient(150deg,#172230,#0e1722);border:1px solid #465263;transition:border-color .2s,transform .2s}
+#raiderio .rio-run-card:hover{border-color:#d2ac65;transform:translateY(-2px)}
+#raiderio .rio-run-heading{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+#raiderio .rio-run-heading h4{font:700 16px/1.45 Cinzel,serif;color:#eac47e;margin:0;overflow-wrap:anywhere}
+#raiderio .rio-run-icon,#raiderio .rio-run-icon-fallback{width:48px;height:48px;flex:0 0 48px;border:1px solid #967b54;border-radius:5px;object-fit:cover}
+#raiderio .rio-run-icon-fallback{display:grid;place-items:center;background:#122839;color:#69cfe8;font-size:23px}
+#raiderio .rio-run-meta{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;color:#d2dce6;margin-bottom:14px}
+#raiderio .rio-run-card a{font-size:11px;color:#70d8ef;text-decoration:none;font-weight:700}
+#raiderio .rio-run-card a:hover{text-decoration:underline}
+#raiderio .rio-blue{color:#45a9ff!important}#raiderio .rio-purple{color:#bd79ff!important}#raiderio .rio-gold{color:#f0c268!important}#raiderio .rio-green{color:#6cd89a!important}#raiderio .rio-unranked{color:#a9b5c1!important}
+@media(max-width:920px){#raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}#raiderio .rio-score-tile{padding:22px}}

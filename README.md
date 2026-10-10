@@ -29,7 +29,7 @@ The site intentionally has **no Twitch or Kick integration**. Current raid progr
 | Raid history | Compact expansion selector, only one expansion shown at a time | Blizzard historical encounter sync implemented; displayed data depends on API availability and frontend version |
 | Raid difficulty | Mythic where available; Heroic only for raids without Mythic | Parser implements priority based on available modes; historical completeness not guaranteed |
 | Cutting Edge | Completed achievements, dates and tier count | Blizzard sync implemented; verify IDs, timestamps and raid mapping before claiming tier clears |
-| Raider.IO M+ | Current and previous seasonal scores, current-season runs | Current/previous season lookup implemented; observed Oct 2026 scores: 3103.1 / 3635.2; future transitions not yet tested |
+| Raider.IO M+ | Current and previous seasonal scores in one row; dungeon cards with Score, Time, and icons | Current/previous lookup implemented; run time uses API `clear_time_ms` when present; dungeon icon URLs are API-provided or explicitly verified, otherwise fallback; future season transitions not yet tested |
 | Warcraft Logs | Per-boss healing Best and Highest HPS | WCL HPS metric confirmed in diagnostics; frontend expects `bestPercent` and `highestHps` |
 | WCL Best display | Integer from 0–100, truncated (not rounded), no percent sign | Frontend change specified for V4.9.3; check deployed `script.js` |
 | WCL boss portraits | Actual boss icons from RPGLogs CDN | V4.9.5 generates image URLs using encounter IDs; individual image availability **not verified** |
@@ -63,7 +63,7 @@ The site intentionally has **no Twitch or Kick integration**. Current raid progr
 
 The sync calls the public character API and requests current/previous season data independently. It **does not** infer the active season from the highest historical M+ score. The current-season profile URL is generated from the returned season ID. Known raid slugs have a mapping; new or unknown slugs may remain unclassified until metadata is available. This means automatic season identification is implemented but **automatic classification of every future raid/expansion is not guaranteed**.
 
-Relevant JSON keys: `raiderIo.currentSeason`, `currentSeasonScore`, `previousSeason`, `previousSeasonScore`, `bestRuns`, `raidProgression`, `raidProgressionByExpansion`, `unclassifiedRaidProgression`.
+Relevant JSON keys: `raiderIo.currentSeason`, `currentSeasonScore`, `previousSeason`, `previousSeasonScore`, `bestRuns`, `raidProgression`, `raidProgressionByExpansion`, `unclassifiedRaidProgression`. Each `bestRuns[]` now includes `score`, `clearTimeMs`, `iconUrl`, `url`, `name`. Run times come from `clear_time_ms` where available; missing times display `—`, never invented. The dungeon icon URL is taken from an API field when present, or an explicitly verified known mapping (currently Temple of Sethraliss). Other icons show a neutral placeholder until their official URLs are verified. Colors are a visual approximation of Raider.IO rarity tiers, not officially verified thresholds. The Ranking tile and TIMED/DEPLETED status have been removed.
 
 ### Blizzard API
 
@@ -121,13 +121,14 @@ This release replaces **only** `scripts/sync_all.py`. It does not require new cr
 
 ## Known limitations / next work
 
-1. Confirm boss icon URLs return actual images for all encounter IDs; fall back gracefully for missing files.
+1. Boss images are now visible in the deployed site (confirmed by user); monitor CDN changes and fallback behavior.
 2. Verify the latest deployed frontend renders HPS and integer Best values correctly.
 3. Improve raid slug metadata so newly released raids classify without manual mapping.
 4. Test a real season/expansion transition before calling automation fully future-proof.
 5. Verify historical raid difficulty and boss counts, and correlate Cutting Edge badges to their raids.
 6. Determine a legitimate source for account-wide mount collection and rare mount metadata.
 7. Improve rare achievement and WoWProgress coverage.
+8. Verify dungeon icon URLs for additional dungeons and confirm run time fields on the next live Raider.IO sync.
 
 ## Changelog (cumulative)
 
@@ -148,7 +149,8 @@ This release replaces **only** `scripts/sync_all.py`. It does not require new cr
 | V4.9.2 | Frontend HPS and Best formatting and cache handling |
 | V4.9.3 | Best parse display: integer 0–100, truncation, no percent symbol |
 | V4.9.4 | Attempted direct WCL encounter-to-Blizzard journal media mapping; diagnostic returned 0/10 journal IDs |
-| **V4.9.5** | **Boss image URLs generated from WCL encounter IDs using RPGLogs CDN**; real image availability still to verify |
+| V4.9.5 | Boss image URLs generated from WCL encounter IDs using RPGLogs CDN; user confirmed images now appear |
+| **V5.0** | **Raider.IO UI overhaul:** two scores in one row, Ranking removed, dungeon icons with safe fallback, run Score + actual clear time when API supplies it, no TIMED/DEPLETED badge; complete cumulative README retained |
 
 ## Documentation rule for future releases
 
