@@ -30,30 +30,52 @@ def update(section, fn, data):
     return False
 
 def rio():
-    fields = 'mythic_plus_scores_by_season:current,mythic_plus_scores_by_season:previous,mythic_plus_best_runs,raid_progression'
+    """Fetch explicit season scores; never confuse highest historical with current."""
+    fields = ("mythic_plus_scores_by_season:season-mn-2,"
+              "mythic_plus_scores_by_season:season-mn-1,"
+              "mythic_plus_best_runs,raid_progression")
     q = urllib.parse.urlencode({'region': REGION, 'realm': REALM, 'name': NAME, 'fields': fields})
     obj = request('https://raider.io/api/v1/characters/profile?' + q)
     seasons = obj.get('mythic_plus_scores_by_season') or []
-    current = next((x for x in seasons if x.get('season') == 'current'), None)
-    previous = next((x for x in seasons if x.get('season') == 'previous'), None)
-    # API season values are often actual season IDs, so fallback to chronological order.
-    if current is None and seasons: current = seasons[0]
-    if previous is None and len(seasons) > 1: previous = seasons[1]
+    def score(season_id):
+        row = next((x for x in seasons if x.get('season') == season_id), None)
+        return (row.get('scores') or {}).get('all') if row else None
+    current_score = score('season-mn-2')
+    previous_score = score('season-mn-1')
+    # Fail instead of publishing a historical score as the current score.
+    if current_score is None:
+        raise ValueError('Raider.IO did not return season-mn-2 score; keeping previous Raider.IO data')
     runs = []
-    for r in (obj.get('mythic_plus_best_runs') or [])[:8]:
+    for r in (obj.get('mythic_plus_best_runs') or []):
+        url = r.get('url') or ''
+        if '/season-mn-2/' not in url:
+            continue
         runs.append({'name': f"{r.get('dungeon', 'Dungeon')} +{r.get('mythic_level', '?')}",
-                     'note': f"Score: {r.get('score', 'N/A')} | Timed: {r.get('num_keystone_upgrades', 0) > 0}",
-                     'url': r.get('url')})
+                     'note': f"Score: {r.get('score', 'N/A')} | Timed: {r.get('is_completed_within_time', r.get('num_keystone_upgrades', 0) > 0)}",
+                     'url': url})
+        if len(runs) >= 8:
+            break
     raids = []
     for raid, progress in (obj.get('raid_progression') or {}).items():
-        if not isinstance(progress, dict): continue
-        raids.append({'name': raid.replace('-', ' ').title(), 'note': progress.get('summary', 'Progress unavailable'),
+        if not isinstance(progress, dict):
+            continue
+        raids.append({'name': raid.replace('-', ' ').title(),
+                      'note': progress.get('summary') or 'Progress unavailable',
                       'url': obj.get('profile_url')})
-    return {'raiderIo': {'mythicPlusScore': (current or {}).get('scores', {}).get('all'),
-                          'previousSeasonScore': (previous or {}).get('scores', {}).get('all'),
-                          'bestRuns': runs, 'profileUrl': obj.get('profile_url'),
-                          'ranking': None},
-            'raidProgression': raids, 'raidSourceUrl': obj.get('profile_url')}
+    profile_url = 'https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2'
+    result = {'raiderIo': {'currentSeason': 'season-mn-2',
+                           'currentSeasonName': 'Midnight Season 2',
+                           'currentSeasonScore': current_score,
+                           'mythicPlusScore': current_score,
+                           'previousSeason': 'season-mn-1',
+                           'previousSeasonName': 'Midnight Season 1',
+                           'previousSeasonScore': previous_score,
+                           'bestRuns': runs,
+                           'profileUrl': profile_url},
+              'raidProgression': raids, 'raidSourceUrl': profile_url}
+    # Best historical score is not the same as current score. Preserve existing
+    # historical value unless we have verified a better value.
+    return result
 
 def token(url, cid, secret):
     auth = base64.b64encode(f'{cid}:{secret}'.encode()).decode()
@@ -115,9 +137,9 @@ def wcl():
     rankings = ranking.get('rankings') or [] if isinstance(ranking, dict) else []
     cards = []
     for row in rankings[:12]:
-        if not isinstance(row, dict): continue
+        if not isinstance(row, dict) or row.get('rankPercent') is None: continue
         cards.append({'name': row.get('encounter', {}).get('name', 'Boss') if isinstance(row.get('encounter'), dict) else 'Boss',
-                      'note': f"Rank percentile: {row.get('rankPercent', 'N/A')}",
+                      'note': f"Rank percentile: {row.get('rankPercent')}",
                       'url': f"https://www.warcraftlogs.com/character/eu/{REALM}/{NAME}"})
     return {'profileUrl': f'https://www.warcraftlogs.com/character/eu/{REALM}/{NAME}',
             'bestPerformanceAverage': ranking.get('bestPerformanceAverage') if isinstance(ranking, dict) else None,
