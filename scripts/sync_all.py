@@ -55,14 +55,35 @@ def rio():
                      'url': url})
         if len(runs) >= 8:
             break
-    raids = []
-    for raid, progress in (obj.get('raid_progression') or {}).items():
+    # Raider.IO raid_progression is a mixed-season map. Use an explicit,
+    # auditable slug allowlist instead of assuming all entries are current.
+    # Unknown raids are retained separately for review, not misclassified.
+    raid_meta = {
+        'the-venomous-abyss': ('The Venomous Abyss', 'season-mn-2'),
+        'the-tidebound-grotto': ('The Tidebound Grotto', 'season-mn-2'),
+        'sporefall': ('Sporefall', 'season-mn-1'),
+        'tier-mn-1': ('Midnight Season 1 Raid (name unverified)', 'season-mn-1'),
+    }
+    current, previous, unknown = [], [], []
+    profile_url = 'https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2'
+    for slug, progress in (obj.get('raid_progression') or {}).items():
         if not isinstance(progress, dict):
             continue
-        raids.append({'name': raid.replace('-', ' ').title(),
-                      'note': progress.get('summary') or 'Progress unavailable',
-                      'url': obj.get('profile_url')})
-    profile_url = 'https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2'
+        normalized = re.sub(r'[^a-z0-9]+', '-', slug.lower()).strip('-')
+        name, season = raid_meta.get(normalized, (slug.replace('-', ' ').title(), None))
+        summary = progress.get('summary')
+        entry = {'name': name, 'note': summary or 'Progress unavailable',
+                 'url': profile_url, 'sourceSlug': slug}
+        if season == 'season-mn-2':
+            current.append(entry)
+        elif season == 'season-mn-1':
+            previous.append(entry)
+        else:
+            unknown.append(entry)
+    if not current:
+        raise ValueError('No recognized Midnight Season 2 raids returned; preserving previous raid data')
+    # Old frontend expects raidProgression to be a flat list.
+    # It now contains ONLY the explicitly classified current-season raids.
     result = {'raiderIo': {'currentSeason': 'season-mn-2',
                            'currentSeasonName': 'Midnight Season 2',
                            'currentSeasonScore': current_score,
@@ -72,7 +93,14 @@ def rio():
                            'previousSeasonScore': previous_score,
                            'bestRuns': runs,
                            'profileUrl': profile_url},
-              'raidProgression': raids, 'raidSourceUrl': profile_url}
+              'raidProgression': current,
+              'raidProgressionByExpansion': {
+                  'currentSeason': {'expansion': 'Midnight', 'season': 'season-mn-2',
+                                    'seasonName': 'Midnight Season 2', 'raids': current},
+                  'history': {'Midnight': [
+                      {'season': 'season-mn-1', 'seasonName': 'Midnight Season 1', 'raids': previous}]}},
+              'unclassifiedRaidProgression': unknown,
+              'raidSourceUrl': profile_url}
     # Best historical score is not the same as current score. Preserve existing
     # historical value unless we have verified a better value.
     return result
