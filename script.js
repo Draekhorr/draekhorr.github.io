@@ -6,7 +6,7 @@ fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavai
  setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);if(ce.length){setValue('ce-count',ce.length);const tiers=ce.map(x=>x.tierId).filter(Boolean);if(tiers.length)setValue('ce-tier-count',new Set(tiers).size)}setCards('ce-list',ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
- setValue('wcl-best',d.warcraftLogs?.bestPerformanceAverage);setValue('wcl-median',d.warcraftLogs?.medianPerformanceAverage);setCards('wcl-parses',d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
+ renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
  setValue('rio-score',d.raiderIo?.currentSeasonScore??d.raiderIo?.mythicPlusScore);setValue('rio-previous',d.raiderIo?.previousSeasonScore);setValue('rio-rank',d.raiderIo?.ranking);setCards('rio-runs',d.raiderIo?.bestRuns);safeLink('rio-link',d.raiderIo?.profileUrl);safeLink('wowprogress-link',d.wowprogress?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
@@ -91,4 +91,25 @@ function renderRaids(data){
   history.append(details);
  }
  if(!grouped.size){const p=document.createElement('p');p.className='empty-state';p.textContent='Historical raids will appear after the Blizzard sync returns confirmed Mythic/Heroic progression.';history.append(p)}
+}
+
+// WCL: display per-boss healing results, never invent missing HPS.
+function renderWclBosses(items){
+ const tbody=el('wcl-parses');if(!tbody)return;tbody.replaceChildren();
+ if(!Array.isArray(items)||!items.length){const tr=document.createElement('tr');const td=document.createElement('td');td.colSpan=3;td.className='empty-state';td.textContent='No Warcraft Logs boss data available.';tr.append(td);tbody.append(tr);return;}
+ for(const boss of items){
+  const tr=document.createElement('tr');
+  const name=document.createElement('td');
+  const link=(typeof boss.url==='string'&&/^https:\/\//i.test(boss.url))?document.createElement('a'):document.createElement('span');
+  if(link.tagName==='A'){link.href=boss.url;link.target='_blank';link.rel='noopener noreferrer';}
+  link.textContent=boss.name||'Unknown boss';name.append(link);
+  const pct=document.createElement('td');pct.className='wcl-value';
+  let score=Number.isFinite(Number(boss.bestPercent))&&boss.bestPercent!==null&&boss.bestPercent!==undefined?Number(boss.bestPercent):null;
+  if(score===null){const match=String(boss.note||'').match(/Rank percentile:\s*([\d.]+)/i);if(match)score=Number(match[1]);}
+  pct.textContent=score===null?'—':Math.round(score).toLocaleString('en-US');
+  if(score!==null){pct.classList.add(score>=95?'parse-legendary':score>=75?'parse-epic':score>=50?'parse-rare':score>=25?'parse-uncommon':'parse-common');}
+  const hps=document.createElement('td');hps.className='wcl-value wcl-hps';
+  const n=boss.highestHps;hps.textContent=(typeof n==='number'&&Number.isFinite(n))?n.toLocaleString('en-US',{maximumFractionDigits:1}):'—';
+  tr.append(name,pct,hps);tbody.append(tr);
+ }
 }

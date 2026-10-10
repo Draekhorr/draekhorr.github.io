@@ -1,15 +1,9 @@
-DRAEKHORR V4.4 - MYTHIC FRONTEND FIX
+# Draekhorr V4.5 — Homepage + Warcraft Logs table
 
-Upload index.html, script.js, style.css to repository root.
-Do not replace data.json, scripts/sync_all.py, GitHub workflow, or secrets.
+Upload **index.html**, **script.js**, **style.css**, and **scripts/sync_all.py** to the same paths in your GitHub repository. Do not overwrite data.json, avatar.png, or .github/workflows/sync.yml.
 
-Changes:
-- Removed 01 / RAID PERFORMANCE label
-- Main title MYTHIC PROGRESSION
-- Tagline: Some bosses fell. Others took a few more pulls.
-- Removed old explanatory copy
-- RAID HISTORY heading without overlapping BY EXPANSION
-- Suppressed duplicate current-season raid cards in history dropdowns
-- Warcraft Logs panel stays beside raid progression
+The hero title and subtitle have been updated. The Warcraft Logs panel now shows Boss / Best % / Highest HPS and removes average metrics.
 
-Historical raids depend on available API data. No backend changes included.
+The sync script attempts a healing-specific Warcraft Logs query (`zoneRankings(metric: hps)`). If that argument is rejected, it falls back to the existing query and leaves HPS as — unless a previously verified HPS value exists. An `amount` is treated as HPS only for a successful healing-specific query. **API-specific semantics and whether amount is truly highest HPS require validation in GitHub Actions.**
+
+After committing, run Actions > Sync WoW APIs. Check for `OK warcraftLogs (... healing metric: True)` or `WARN WCL healing query unavailable`. If unavailable, share that log to adapt the GraphQL query.

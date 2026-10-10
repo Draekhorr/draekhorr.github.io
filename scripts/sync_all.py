@@ -261,29 +261,59 @@ def sync_blizzard(data):
 def sync_warcraftlogs(data):
     access = oauth('https://www.warcraftlogs.com/oauth/token',
                    'WARCRAFTLOGS_CLIENT_ID', 'WARCRAFTLOGS_CLIENT_SECRET')
-    query = '''query($name:String!,$server:String!,$region:String!){characterData{character(name:$name,serverSlug:$server,serverRegion:$region){id name zoneRankings}}}'''
-    result = http_json('https://www.warcraftlogs.com/api/v2/client',
-                       {'Authorization': 'Bearer ' + access},
-                       json_body={'query': query, 'variables': {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}})
-    if result.get('errors'):
-        raise RuntimeError('Warcraft Logs GraphQL errors: ' + str(result['errors'])[:400])
-    char = as_dict(as_dict(as_dict(result.get('data')).get('characterData')).get('character'))
-    if not char:
-        raise RuntimeError('Character not found in Warcraft Logs')
-    ranking = as_dict(char.get('zoneRankings'))
+    base = 'https://www.warcraftlogs.com/api/v2/client'
+    variables = {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}
+    def query_rankings(healing):
+        field = 'zoneRankings(metric: hps)' if healing else 'zoneRankings'
+        query = ('query($name:String!,$server:String!,$region:String!){'
+                 'characterData{character(name:$name,serverSlug:$server,'
+                 'serverRegion:$region){id name ' + field + '}}}')
+        result = http_json(base, {'Authorization': 'Bearer ' + access},
+                           json_body={'query': query, 'variables': variables})
+        if result.get('errors'):
+            raise RuntimeError(str(result['errors'])[:350])
+        char = as_dict(as_dict(as_dict(result.get('data')).get('characterData')).get('character'))
+        if not char:
+            raise RuntimeError('Character not found in Warcraft Logs')
+        return as_dict(char.get('zoneRankings'))
+
+    # Query HPS-specific rankings. If unsupported by the API schema, retain
+    # previous parse data rather than falsely labelling DPS as healing.
+    try:
+        ranking = query_rankings(True)
+        is_healing = True
+    except Exception as exc:
+        print(f'WARN WCL healing query unavailable: {type(exc).__name__}: {exc}', file=sys.stderr)
+        ranking = query_rankings(False)
+        is_healing = False
+
+    previous = {str(x.get('name', '')).casefold(): x
+                for x in as_list(as_dict(data.get('warcraftLogs')).get('bossParses'))
+                if isinstance(x, dict)}
     parses = []
-    for row in as_list(ranking.get('rankings')):
-        row = as_dict(row)
-        pct = row.get('rankPercent')
-        if not isinstance(pct, (int, float)):
+    for raw in as_list(ranking.get('rankings')):
+        row = as_dict(raw)
+        name = as_dict(row.get('encounter')).get('name')
+        if not name:
             continue
-        name = as_dict(row.get('encounter')).get('name') or 'Boss'
-        parses.append({'name': name, 'note': f'Rank percentile: {pct}', 'url': WCL_URL})
-    data['warcraftLogs'] = {'profileUrl': WCL_URL,
-                            'bestPerformanceAverage': ranking.get('bestPerformanceAverage'),
-                            'medianPerformanceAverage': ranking.get('medianPerformanceAverage'),
-                            'bossParses': parses}
-    print('OK warcraftLogs')
+        old = previous.get(name.casefold(), {})
+        percentile = row.get('rankPercent')
+        amount = row.get('amount')
+        hps = float(amount) if is_healing and isinstance(amount, (int, float)) and amount >= 0 else None
+        # On an unverified non-healing query, do not overwrite previously verified HPS.
+        if hps is None and isinstance(old.get('highestHps'), (int, float)):
+            hps = old['highestHps']
+        if not isinstance(percentile, (int, float)) and hps is None:
+            continue
+        parses.append({'name': name,
+                       'bestPercent': percentile if isinstance(percentile, (int, float)) else None,
+                       'highestHps': hps,
+                       'url': WCL_URL})
+    if not parses:
+        raise RuntimeError('Warcraft Logs returned no usable boss rankings; keeping previous data')
+    data['warcraftLogs'] = {'profileUrl': WCL_URL, 'bossParses': parses,
+                           'healingMetricConfirmed': is_healing}
+    print(f'OK warcraftLogs ({len(parses)} bosses; healing metric: {is_healing})')
 
 
 def main():

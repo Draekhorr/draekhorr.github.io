@@ -13,3 +13,17 @@
 #raids .mythic-tagline{color:#83cfe0;font-size:14px;letter-spacing:0;line-height:1.7;font-weight:400;margin:0 0 20px;max-width:700px}
 #raids>h2{margin-bottom:12px}
 .raid-history-title{font-family:Cinzel,serif;font-size:17px;line-height:1.5;color:#eac47e;letter-spacing:.6px;margin:30px 0 16px;overflow-wrap:anywhere}
+
+/* V4.5: compact Warcraft Logs healing boss table */
+.hero h1{font-size:clamp(30px,4.6vw,67px);line-height:1.17;overflow-wrap:break-word}
+.wcl-table-scroll{overflow-x:auto;margin:12px 0 25px;border:1px solid #354a59;background:#080f18}
+.wcl-table{border-collapse:collapse;width:100%;min-width:390px;font-size:13px}
+.wcl-table th{background:#162434;color:#eac47e;text-align:left;padding:13px 12px;font-size:12px}
+.wcl-table th:nth-child(n+2),.wcl-table td:nth-child(n+2){text-align:right;white-space:nowrap}
+.wcl-table td{padding:12px;border-top:1px solid #2a3e4c;color:#d8e4e9}
+.wcl-table tr:hover td{background:#172636}
+.wcl-table a{color:#92cafa;text-decoration:none;font-weight:600}
+.wcl-table a:hover{text-decoration:underline}
+.wcl-table .wcl-hps{color:#d4ed78;font-variant-numeric:tabular-nums}
+.wcl-table .parse-legendary{color:#ff8000}.wcl-table .parse-epic{color:#a335ee}.wcl-table .parse-rare{color:#0070dd}.wcl-table .parse-uncommon{color:#1eff00}.wcl-table .parse-common{color:#aaa}
+@media(max-width:700px){.hero h1{font-size:clamp(28px,7vw,48px)}}
