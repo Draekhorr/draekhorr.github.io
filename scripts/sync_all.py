@@ -340,10 +340,10 @@ def sync_blizzard(data):
     print('OK blizzard')
 
 
-def wcl_graphql(access, query, variables):
+def wcl_graphql(access, query, variables=None):
     result = http_json('https://www.warcraftlogs.com/api/v2/client',
                        {'Authorization': 'Bearer ' + access},
-                       json_body={'query': query, 'variables': variables})
+                       json_body={'query': query, 'variables': variables or {}})
     if result.get('errors'):
         raise RuntimeError(str(result['errors'])[:450])
     return as_dict(result.get('data'))
@@ -406,6 +406,10 @@ def sync_warcraftlogs(data):
         print('DIAG WCL ranking keys=' + ','.join(sorted(ranking.keys())))
         print('DIAG WCL boss keys=' + ','.join(sorted(rows[0].keys())))
         print('DIAG WCL encounter keys=' + ','.join(sorted(as_dict(rows[0].get('encounter')).keys())))
+        print('DIAG WCL ranking metric=' + str(ranking.get('metric')) + ' requested_hps=' + str(healing))
+        for r in rows[:8]:
+            e = as_dict(r.get('encounter'))
+            print('DIAG WCL sample boss=' + str(e.get('name')) + ' bestAmount=' + str(r.get('bestAmount')) + ' rankPercent=' + str(r.get('rankPercent')))
 
     # Try optional zone ID representations; not all WCL zoneRankings versions include one.
     zone = as_dict(ranking.get('zone'))
@@ -462,8 +466,13 @@ def sync_warcraftlogs(data):
         percentile = row.get('rankPercent')
         # amount is only accepted if this was explicitly requested as healing/HPS.
         # Some WCL ranking variants omit amount, so we do not infer HPS from percentiles.
-        amount = row.get('amount')
-        hps = float(amount) if healing and isinstance(amount, (int, float)) and amount >= 0 else None
+        # WCL ranking bestAmount is the best observed amount for the requested metric.
+        # Only expose it as HPS when the query explicitly requested hps and
+        # the returned ranking confirms that metric (or omits metric entirely).
+        amount = row.get('bestAmount')
+        reported_metric = str(ranking.get('metric') or '').lower()
+        hps_metric_ok = healing and (not reported_metric or reported_metric == 'hps')
+        hps = float(amount) if hps_metric_ok and isinstance(amount, (int, float)) and amount >= 0 else None
         if hps is None and isinstance(old.get('highestHps'), (int, float)):
             hps = old['highestHps']
         if not isinstance(percentile, (int, float)) and hps is None:
@@ -480,6 +489,8 @@ def sync_warcraftlogs(data):
                        'journalId': journal_id, 'iconUrl': icon,
                        'bestPercent': percentile if isinstance(percentile, (int, float)) else None,
                        'highestHps': hps, 'url': WCL_URL})
+    if healing and str(ranking.get('metric') or '').lower() not in ('', 'hps'):
+        print('WARN WCL requested hps but returned metric=' + str(ranking.get('metric')), file=sys.stderr)
     if not parses:
         raise RuntimeError('No usable Warcraft Logs boss rankings; preserving prior data')
     data['warcraftLogs'] = {'profileUrl': WCL_URL, 'bossParses': parses,

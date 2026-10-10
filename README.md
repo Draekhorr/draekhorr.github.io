@@ -1,19 +1,15 @@
-# Draekhorr V4.9 — Warcraft Logs diagnostics (safe update)
+# Draekhorr V4.9.1 - Warcraft Logs HPS diagnostics
 
-## Installation
-Replace **only** `scripts/sync_all.py` in the repository. `script.js` is included for compatibility but is unchanged from V4.8. Keep `data.json`, GitHub Secrets, and `.github/workflows/sync.yml` unchanged.
+Replace **only** `scripts/sync_all.py` in your GitHub repository. Keep `data.json`, `script.js`, `style.css`, GitHub workflow, and secrets unchanged.
 
-Then run **Actions > Sync WoW APIs > Run workflow**.
+## Changes
+- Fixes GraphQL schema inspection missing `variables` argument.
+- Reads `bestAmount` rather than nonexistent `amount` for Warcraft Logs HPS rankings, only when an HPS query succeeds and the returned metric is compatible.
+- Prints `DIAG WCL sample boss=... bestAmount=... rankPercent=...` for up to eight bosses to compare with Warcraft Logs UI.
+- Prints schema fields for Encounter and Zone for investigation of official boss icons. **Icons are not guaranteed yet**; no fake URLs or generated artwork are used.
+- Keeps Raider.IO dynamic season and Blizzard historical raid code from V4.9.
 
-## Why this version is diagnostic
-The live V4.8 response contained no zone ID, no image URLs, and no HPS amounts. V4.9 checks additional documented-looking payload keys, logs safe field names from the Warcraft Logs schema, and attempts journal-media mapping **only when a valid zone ID and journal IDs are available**. It never substitutes made-up HPS or unrelated boss pictures.
+## Run
+Commit the file and run Actions > Sync WoW APIs > Run workflow. Share lines beginning `DIAG WCL`, `WARN WCL`, and `OK warcraftLogs` (do not share secrets).
 
-Read these log lines after the run:
-- `DIAG WCL ranking keys=...`
-- `DIAG WCL boss keys=...`
-- `DIAG WCL encounter keys=...`
-- `DIAG WCL schema encounter fields=...`
-- `DIAG WCL schema zone fields=...`
-- `OK warcraftLogs: bosses=..., icons=..., HPS=...`
-
-**If icons/HPS remain zero, this release does not fix them yet.** The schema output is needed to implement a verified source for the media and HPS metrics. Raider.IO and Blizzard sync logic is carried forward unchanged from V4.8.
+This version is not tested with your private API credentials. If HPS numbers differ from the WCL UI, we will adjust the metric and query before treating them as final.
