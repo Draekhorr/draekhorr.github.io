@@ -13,18 +13,39 @@ import urllib.request
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data.json'
 REGION, REALM, NAME = 'eu', 'draenor', 'draekhorr'
-CURRENT, PREVIOUS = 'season-mn-2', 'season-mn-1'
-RIO_URL = f'https://raider.io/characters/{REGION}/{REALM}/Draekhorr?season={CURRENT}'
+# Current/previous season IDs are resolved from Raider.IO at runtime.
+# Never infer the active season from the character's highest score.
 WCL_URL = f'https://www.warcraftlogs.com/character/{REGION}/{REALM}/{NAME}'
-USER_AGENT = 'DraekhorrWoWLegacy/4.2'
+USER_AGENT = 'DraekhorrWoWLegacy/4.8'
 
-# These are known season associations, not inferred from raid order.
+# Raid slug metadata is a verified historical mapping, not season detection.
+# Unknown/new raids stay unclassified until their season is confirmed.
 RAID_SEASONS = {
-    'the-venomous-abyss': (CURRENT, 'The Venomous Abyss'),
-    'the-tidebound-grotto': (CURRENT, 'The Tidebound Grotto'),
-    'sporefall': (PREVIOUS, 'Sporefall'),
-    'tier-mn-1': (PREVIOUS, 'Tier MN 1 (unresolved raid label)'),
+    'the-venomous-abyss': ('season-mn-2', 'The Venomous Abyss'),
+    'the-tidebound-grotto': ('season-mn-2', 'The Tidebound Grotto'),
+    'sporefall': ('season-mn-1', 'Sporefall'),
+    'tier-mn-1': ('season-mn-1', 'Tier MN 1 (unresolved raid label)'),
 }
+
+
+def season_label(identifier):
+    match = re.fullmatch(r'season-(.+)-(\d+)', str(identifier or ''))
+    if not match:
+        return str(identifier or 'Season unavailable')
+    expansion, number = match.groups()
+    known = {'mn': 'Midnight', 'tww': 'The War Within', 'df': 'Dragonflight',
+             'sl': 'Shadowlands', 'bfa': 'Battle for Azeroth'}
+    return f"{known.get(expansion, expansion.upper())} Season {number}"
+
+
+def season_expansion(identifier):
+    label = season_label(identifier)
+    return label.rsplit(' Season ', 1)[0] if ' Season ' in label else 'Unknown expansion'
+
+
+def profile_url(season=None):
+    base = f'https://raider.io/characters/{REGION}/{REALM}/Draekhorr'
+    return base + ('?season=' + urllib.parse.quote(season) if season else '')
 
 
 def http_json(url, headers=None, form=None, json_body=None):
@@ -62,83 +83,144 @@ def normalize(value):
     return re.sub(r'[^a-z0-9]+', '-', str(value).lower()).strip('-')
 
 
-def score_for(payload, season):
-    for row in as_list(payload.get('mythic_plus_scores_by_season')):
-        if as_dict(row).get('season') == season:
-            val = as_dict(row.get('scores')).get('all')
-            if isinstance(val, (float, int)):
-                return val
+def score_for(payload, season=None):
+    rows = [as_dict(x) for x in as_list(as_dict(payload).get('mythic_plus_scores_by_season'))]
+    for row in rows:
+        if season is None or row.get('season') == season:
+            value = as_dict(row.get('scores')).get('all')
+            if isinstance(value, (int, float)):
+                return value
+    return None
+
+
+def rio_profile(fields):
+    url = 'https://raider.io/api/v1/characters/profile?' + urllib.parse.urlencode({
+        'region': REGION, 'realm': REALM, 'name': NAME, 'fields': fields
+    })
+    return http_json(url)
+
+
+def season_record(payload):
+    rows = [as_dict(x) for x in as_list(as_dict(payload).get('mythic_plus_scores_by_season'))]
+    for row in rows:
+        if isinstance(row.get('season'), str) and row['season']:
+            return row
     return None
 
 
 def sync_rio(data):
-    fields = ','.join([
-        f'mythic_plus_scores_by_season:{CURRENT}',
-        f'mythic_plus_scores_by_season:{PREVIOUS}',
-        'mythic_plus_best_runs', 'raid_progression'
-    ])
-    url = 'https://raider.io/api/v1/characters/profile?' + urllib.parse.urlencode({
-        'region': REGION, 'realm': REALM, 'name': NAME, 'fields': fields
-    })
-    payload = http_json(url)
     rio = dict(as_dict(data.get('raiderIo')))
-    current_score = score_for(payload, CURRENT)
-    previous_score = score_for(payload, PREVIOUS)
-    rio.update({'currentSeason': CURRENT, 'currentSeasonName': 'Midnight Season 2',
-                'previousSeason': PREVIOUS, 'previousSeasonName': 'Midnight Season 1',
-                'profileUrl': RIO_URL})
+    current_record = previous_record = None
+    # Raider.IO resolves the active and preceding seasons, including expansion boundaries.
+    # Independent calls prevent an unsupported field from suppressing the other data.
+    for tag in ('current', 'previous'):
+        try:
+            result = rio_profile('mythic_plus_scores_by_season:' + tag)
+            record = season_record(result)
+            if tag == 'current':
+                current_record = record
+            else:
+                previous_record = record
+            print(f"DIAG RIO {tag} season={record.get('season') if record else 'unavailable'}")
+        except Exception as exc:
+            print(f'WARN RIO {tag} season lookup: {type(exc).__name__}: {exc}')
+
+    # Never guess the current season from previous-season score or best historical score.
+    current = current_record.get('season') if current_record else None
+    previous = previous_record.get('season') if previous_record else None
+    if current and previous == current:
+        previous = None
+    if not current:
+        print('WARN RIO current season not resolved; preserving last verified season metadata')
+        current = rio.get('currentSeason')
+    if not previous:
+        # Subtract one only *within* an expansion. Season 1 requires provider metadata.
+        match = re.fullmatch(r'(season-.+)-(\d+)', current or '')
+        if match and int(match.group(2)) > 1:
+            previous = f'{match.group(1)}-{int(match.group(2))-1}'
+        else:
+            previous = rio.get('previousSeason')
+
+    current_score = score_for({'mythic_plus_scores_by_season': [current_record]}, current) if current_record else None
+    previous_score = score_for({'mythic_plus_scores_by_season': [previous_record]}, previous) if previous_record else None
+    if current:
+        rio.update({'currentSeason': current, 'currentSeasonName': season_label(current),
+                    'profileUrl': profile_url(current)})
+    if previous:
+        rio.update({'previousSeason': previous, 'previousSeasonName': season_label(previous)})
     if current_score is not None:
         rio['currentSeasonScore'] = current_score
         rio['mythicPlusScore'] = current_score
+        rio['currentSeasonScoreVerified'] = True
     else:
-        print('WARN RIO current score not supplied; preserving last known value')
+        # Avoid displaying stale values as verified for a newly detected season.
+        if current and current != as_dict(data.get('raiderIo')).get('currentSeason'):
+            rio['currentSeasonScore'] = None
+            rio['mythicPlusScore'] = None
+        rio['currentSeasonScoreVerified'] = False
+        print('WARN RIO current score unavailable; not substituting an old season score')
     if previous_score is not None:
         rio['previousSeasonScore'] = previous_score
-    valid_scores = [s for s in (current_score, previous_score, rio.get('bestHistoricalScore'))
-                    if isinstance(s, (int, float))]
-    if valid_scores:
-        rio['bestHistoricalScore'] = max(valid_scores)
-    if isinstance(payload.get('mythic_plus_best_runs'), list):
+    elif previous and previous != as_dict(data.get('raiderIo')).get('previousSeason'):
+        rio['previousSeasonScore'] = None
+    scores = [v for v in (current_score, previous_score, rio.get('bestHistoricalScore'))
+              if isinstance(v, (int, float))]
+    if scores:
+        rio['bestHistoricalScore'] = max(scores)
+
+    # Request raid progress and runs separately from season discovery.
+    try:
+        payload = rio_profile('mythic_plus_best_runs,raid_progression')
+    except Exception as exc:
+        print(f'WARN RIO raid/run lookup: {type(exc).__name__}: {exc}')
+        data['raiderIo'] = rio
+        return
+    if current and isinstance(payload.get('mythic_plus_best_runs'), list):
         runs = []
-        for run in payload['mythic_plus_best_runs']:
-            run = as_dict(run)
+        for item in payload['mythic_plus_best_runs']:
+            run = as_dict(item)
             link = run.get('url') or ''
-            if f'/{CURRENT}/' not in link:
+            if f'/{current}/' not in link:
                 continue
             runs.append({'name': f"{run.get('dungeon', 'Dungeon')} +{run.get('mythic_level', '?')}",
                          'note': f"Score: {run.get('score', 'N/A')} | Timed: {run.get('is_completed_within_time', 'N/A')}",
                          'url': link})
         rio['bestRuns'] = runs
     data['raiderIo'] = rio
+
     raw = as_dict(payload.get('raid_progression'))
     current_raids, previous_raids, unknown = [], [], []
+    history_by_expansion = {}
     for slug, progress in raw.items():
-        progress = as_dict(progress)
         key = normalize(slug)
         season, name = RAID_SEASONS.get(key, (None, str(slug).replace('-', ' ').title()))
-        entry = {'name': name, 'note': progress.get('summary') or '',
-                 'url': RIO_URL, 'source': 'Raider.IO', 'sourceSlug': slug}
-        if season == CURRENT:
+        entry = {'name': name, 'note': as_dict(progress).get('summary') or '',
+                 'url': profile_url(current), 'source': 'Raider.IO', 'sourceSlug': slug}
+        if season and current and season == current:
             current_raids.append(entry)
-        elif season == PREVIOUS:
-            previous_raids.append(entry)
+        elif season:
+            expansion = season_expansion(season)
+            groups = history_by_expansion.setdefault(expansion, {})
+            groups.setdefault(season, []).append(entry)
+            if season == previous:
+                previous_raids.append(entry)
         else:
             unknown.append(entry)
     if raw:
         data['raidProgression'] = current_raids
         data['unclassifiedRaidProgression'] = unknown
-    # Always write the season grouping even if the API's raid data is absent.
     progression = dict(as_dict(data.get('raidProgressionByExpansion')))
-    progression['currentSeason'] = {'expansion': 'Midnight', 'season': CURRENT,
-                                    'seasonName': 'Midnight Season 2',
-                                    'raids': current_raids if raw else as_list(data.get('raidProgression'))}
+    if current:
+        progression['currentSeason'] = {'expansion': season_expansion(current), 'season': current,
+                                        'seasonName': season_label(current), 'raids': current_raids}
     history = dict(as_dict(progression.get('history')))
-    history['Midnight'] = [{'season': PREVIOUS, 'seasonName': 'Midnight Season 1',
-                            'raids': previous_raids}]
+    for expansion, seasons in history_by_expansion.items():
+        history[expansion] = [{'season': season, 'seasonName': season_label(season), 'raids': raids}
+                              for season, raids in seasons.items()]
     progression['history'] = history
     data['raidProgressionByExpansion'] = progression
-    data['raidSourceUrl'] = RIO_URL
-    print(f'OK raiderio; current score={current_score}; previous score={previous_score}; current raids={len(current_raids)}')
+    data['raidSourceUrl'] = profile_url(current)
+    print(f'OK raiderio: current={current} score={current_score}; previous={previous} score={previous_score}; current raids={len(current_raids)}')
 
 
 def select_difficulty(modes):

@@ -35,7 +35,7 @@ function renderRaids(data){
  const add=(expansion,season,raid)=>{
   if(!raid||!raid.name)return;
   if(currentNames.has(String(raid.name).trim().toLowerCase()))return;
-  if(/^(current season|season-mn-2|midnight season 2)$/i.test(String(season).trim()))return;
+  if(String(season).trim().toLowerCase()===String(by.currentSeason?.seasonName||'').trim().toLowerCase() || String(season).trim()===String(by.currentSeason?.season||''))return;
   const key=[expansion,season,raid.name].join('|').toLowerCase();
   if(seen.has(key))return;
   seen.add(key);
@@ -47,7 +47,7 @@ function renderRaids(data){
  const by=data.raidProgressionByExpansion||{};
  const normalizedCurrent=by.currentSeason?.raids;
  const legacy=Array.isArray(data.raidProgression)?data.raidProgression:[];
- const currentRaids=Array.isArray(normalizedCurrent)&&normalizedCurrent.length?normalizedCurrent:legacy.filter(r=>RAID_MAP[String(r.name||'').trim().toLowerCase()]?.current);
+ const currentRaids=Array.isArray(normalizedCurrent)?normalizedCurrent:legacy.filter(r=>RAID_MAP[String(r.name||'').trim().toLowerCase()]?.current);
  for(const raid of currentRaids){currentNames.add(String(raid.name||'').trim().toLowerCase());current.append(makeRaidCard(raid));}
  if(!currentRaids.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No verified current-season raid progress available.';current.append(p)}
  if(el('raid-current-season'))el('raid-current-season').textContent=(by.currentSeason?.seasonName||data.raiderIo?.currentSeasonName||'CURRENT SEASON').toUpperCase();
