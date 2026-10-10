@@ -183,44 +183,49 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T18:41:08+00:00",
+  "updatedAt": "2026-10-10T19:00:33+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
-    "bestPerformanceAverage": 40.57064537399497,
-    "medianPerformanceAverage": 3.333312458048485,
     "bossParses": [
       {
         "name": "Nek'zali the Soulcoiler",
-        "note": "Rank percentile: 84.1589219317973",
+        "bestPercent": 81.009,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
         "name": "Entombed Sentinels",
-        "note": "Rank percentile: 75.60265844705422",
+        "bestPercent": 73.1836,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
         "name": "Vashnik the Malignant",
-        "note": "Rank percentile: 45.753281343048315",
+        "bestPercent": 70.983,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
         "name": "The Lost Explorers",
-        "note": "Rank percentile: 35.90901052206998",
+        "bestPercent": 90.7747,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
         "name": "Sszorak",
-        "note": "Rank percentile: 1",
+        "bestPercent": 13.0044,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
         "name": "Nymrissa Wavecaller",
-        "note": "Rank percentile: 1",
+        "bestPercent": 78.86449636917531,
+        "highestHps": null,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       }
-    ]
+    ],
+    "healingMetricConfirmed": true
   },
   "character": {
     "name": "Draekhorr",
