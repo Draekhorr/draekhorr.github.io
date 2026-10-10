@@ -253,3 +253,14 @@ section:not(.hero){padding-block:clamp(34px,5.5vw,78px)}
 .guild-header a{color:#5fd1ec;text-decoration:none;overflow-wrap:anywhere;font-weight:700}
 .guild-header a:hover,.guild-header a:focus-visible{color:#eac47e;text-decoration:underline}
 @media(max-width:700px){.brand-group{font-size:14px;gap:0.35rem}.guild-header:not([hidden]){gap:0.35rem}}
+
+/* V1.1.4 - identity and realm on two lines; compact hero transition */
+header .brand-stack{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:5px}
+header .brand-stack .brand-group{width:100%;align-items:baseline;gap:0.6rem}
+header .header-realm{margin:0;color:#b8a887;font:700 10px/1.4 Inter,Arial,sans-serif;letter-spacing:0.16em}
+header{align-items:center}
+.hero{padding-top:clamp(28px,4vw,55px)}
+@media(max-width:700px){header .brand-stack{width:100%}header .brand-stack .brand-group{gap:0.35rem}header .header-realm{font-size:10px}.hero{padding-top:clamp(24px,5vw,40px)}}
+
+/* V1.1.5: Mythic+ introduction */
+.mythic-plus-subtitle { color: #b8c9d4; font-size: clamp(0.95rem, 1.2vw, 1.15rem); line-height: 1.6; margin: 0.35rem 0 1.6rem; max-width: 65ch; }

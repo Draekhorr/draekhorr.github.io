@@ -145,3 +145,12 @@ The additional `scripts/sync_guild.py` runs after the existing health-monitored 
 ## V1.1.3 — Guild header reliability
 
 The header displays the current guild from `data.json.guild` with a link to its Raider.IO guild profile. The scheduled workflow runs `scripts/sync_guild.py` after the main sync, and commits the updated `data.json`. The guild sync accepts both object and string guild payloads, logs `DIAG GUILD` and `OK GUILD`/`WARN GUILD`, and preserves the last known guild when the service does not return membership. The frontend also accepts guild metadata nested under `character` or `raiderIo`. No guild is invented if the source returns none. Verify the guild sync step and live `data.json` after deployment.
+
+
+## V1.1.4 — Two-line identity header
+
+The top-left header shows the character name and dynamic Raider.IO guild link on the first line, with **EU • DRAENOR** immediately beneath. The realm label was removed from the hero introduction, allowing the Restoration Shaman headline to begin higher on the page. Desktop and mobile layouts remain responsive. Only `index.html` and `style.css` change; the included `README.md` is the updated full project documentation. No API sync required.
+
+## V1.1.5 — Mythic+ heading and subtitle
+
+The Mythic+ section heading changes from **RAIDER.IO** to **MYTHIC+**, with the subtitle “Mythic+ isn’t the goal. It’s just how I fund my raiding addiction.” The Raider.IO profile link, current and previous season scores, dungeon cards, API integrations, and scheduled sync remain unchanged. Only `index.html` and `style.css` are modified; no API sync is needed.
