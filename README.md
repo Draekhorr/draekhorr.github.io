@@ -260,3 +260,20 @@ Download the artifact from the workflow run summary and share `raid_kills_audit.
 - Fixed Achievement Points binding: frontend reads `achievementPoints` from `data.json`, rather than leaving its value blank.
 - No changes to the WoW API sync, raid progression, Warcraft Logs, or Raider.IO.
 - Updated script cache version to `5.6.1`.
+
+## V5.7 — Season transition safety and dynamic raid classification
+
+This release changes the raid progression engine and the frontend together. It preserves the V5.6.1 design and all existing Blizzard, Warcraft Logs, and Raider.IO statistics.
+
+- The active Mythic+ season continues to be resolved from Raider.IO `mythic_plus_scores_by_season:current` (not inferred from score).
+- When a newly resolved season differs from the last saved season, the old `currentSeason.raids` are archived into `raidProgressionByExpansion.history` **before** current season data are replaced. Previous history entries are merged rather than overwritten, including across expansion boundaries.
+- If a Raider.IO raid progress record includes an explicit `season` / `season_slug` / `seasonSlug`, the backend uses it to classify the raid. Existing verified mappings are retained for legacy entries. Unknown raid seasons remain in `unclassifiedRaidProgression` and generate a warning instead of being falsely labeled as current.
+- On a season transition, stale current raid records are not carried into the new season. On an unchanged season, a temporary empty raid response may retain previously confirmed current raids.
+- Blizzard historical raids no longer overwrite saved season-specific history. The current expansion is determined from the active season, not from a hardcoded `Midnight` string.
+- The frontend reads the active season and expansion from JSON and does not hardcode `Midnight` as the exclusion for historical raids.
+
+**Important limitation:** Raider.IO's character `raid_progression` response does not always provide a raid's season. The legacy `RAID_SEASONS` mapping remains as a fallback, and truly new raids lacking authoritative season metadata are held as *unclassified*. This prevents incorrect current-season claims but does **not** guarantee that brand-new raids will appear automatically on day one. A separate validated raid metadata source is still needed for complete zero-maintenance discovery. Blizzard historical encounter data can also omit zero-kill raids.
+
+**Install:** Replace `scripts/sync_all.py`, root `script.js`, and this complete `README.md`. Do not replace `data.json`, workflow, assets, or credentials. Commit and run **Sync WoW APIs** once. Check `DIAG RIO season transition` and `WARN RIO ... unclassified` in logs. The frontend update deploys with GitHub Pages; refresh the page after deployment.
+
+**Validation:** Python compilation, JavaScript syntax check, and a simulated cross-expansion transition test passed. Live API schema behavior on future expansions remains unverified.

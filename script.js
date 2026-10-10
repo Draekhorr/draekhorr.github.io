@@ -74,7 +74,7 @@ function renderRaids(data){
  const by=data.raidProgressionByExpansion||{};
  const normalizedCurrent=by.currentSeason?.raids;
  const legacy=Array.isArray(data.raidProgression)?data.raidProgression:[];
- const currentRaids=Array.isArray(normalizedCurrent)?normalizedCurrent:legacy.filter(r=>RAID_MAP[String(r.name||'').trim().toLowerCase()]?.current);
+ const currentRaids=Array.isArray(normalizedCurrent)?normalizedCurrent:legacy;
  for(const raid of currentRaids){currentNames.add(String(raid.name||'').trim().toLowerCase());current.append(makeRaidCard(raid));}
  if(!currentRaids.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No verified current-season raid progress available.';current.append(p)}
  if(el('raid-current-season'))el('raid-current-season').textContent=(by.currentSeason?.seasonName||data.raiderIo?.currentSeasonName||'CURRENT SEASON').toUpperCase();
@@ -92,12 +92,12 @@ function renderRaids(data){
   if(!Array.isArray(raids))continue;
   for(const raid of raids){
    if(!raid||!['MYTHIC','HEROIC'].includes(String(raid.difficulty||'').toUpperCase()))continue;
-   if(expansion==='Midnight')continue;
+   if(expansion===by.currentSeason?.expansion)continue;
    add(expansion,'Historical raids',raid);
   }
  }
  // Fallback for old data.json, until the backend populates historical data.
- for(const raid of legacy){
+ for(const raid of (Object.keys(historyData).length?[]:legacy)){
   const key=String(raid.name||'').trim().toLowerCase(),meta=RAID_MAP[key];
   if(meta?.current||currentNames.has(key))continue;
   add(meta?.expansion||'Unclassified raids',meta?.season||'Season unknown',raid);

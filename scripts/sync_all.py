@@ -220,37 +220,72 @@ def sync_rio(data):
     data['raiderIo'] = rio
 
     raw = as_dict(payload.get('raid_progression'))
-    current_raids, previous_raids, unknown = [], [], []
-    history_by_expansion = {}
+    progression = dict(as_dict(data.get('raidProgressionByExpansion')))
+    history = dict(as_dict(progression.get('history')))
+    old_current = as_dict(progression.get('currentSeason'))
+    old_season = old_current.get('season')
+
+    def add_history(expansion, season, raids):
+        if not expansion or not season or not raids:
+            return
+        groups = [g for g in as_list(history.get(expansion)) if isinstance(g, dict)]
+        match = next((g for g in groups if g.get('season') == season), None)
+        if match is None:
+            match = {'season': season, 'seasonName': season_label(season), 'raids': []}
+            groups.insert(0, match)
+        existing = {normalize(r.get('sourceSlug') or r.get('name')): r
+                    for r in as_list(match.get('raids')) if isinstance(r, dict)}
+        for raid in raids:
+            key = normalize(raid.get('sourceSlug') or raid.get('name'))
+            if key:
+                existing[key] = raid
+        match['raids'] = list(existing.values())
+        history[expansion] = groups
+
+    # Archive the last known current season BEFORE replacing it. This also works
+    # when the expansion prefix changes (e.g. season-mn-3 -> season-next-1).
+    if current and old_season and old_season != current:
+        add_history(old_current.get('expansion') or season_expansion(old_season),
+                    old_season, as_list(old_current.get('raids')))
+        print(f'DIAG RIO season transition {old_season} -> {current}; archived previous current raids')
+
+    current_raids, unknown = [], []
     for slug, progress in raw.items():
+        info = as_dict(progress)
         key = normalize(slug)
-        season, name = RAID_SEASONS.get(key, (None, str(slug).replace('-', ' ').title()))
-        entry = {'name': name, 'note': as_dict(progress).get('summary') or '',
+        fallback_season, fallback_name = RAID_SEASONS.get(key, (None, str(slug).replace('-', ' ').title()))
+        # Prefer explicit metadata supplied by the provider. Never infer a raid's
+        # season from the active M+ season, its name, or a nonzero kill count.
+        metadata_season = next((info.get(k) for k in ('season', 'season_slug', 'seasonSlug')
+                                if isinstance(info.get(k), str) and
+                                re.fullmatch(r'season-[a-z0-9-]+-\d+', info[k])), None)
+        raid_season = metadata_season or fallback_season
+        raid_name = info.get('name') if isinstance(info.get('name'), str) else fallback_name
+        entry = {'name': raid_name, 'note': info.get('summary') or '',
                  'url': profile_url(current), 'source': 'Raider.IO', 'sourceSlug': slug}
-        if season and current and season == current:
+        if raid_season and current and raid_season == current:
             current_raids.append(entry)
-        elif season:
-            expansion = season_expansion(season)
-            groups = history_by_expansion.setdefault(expansion, {})
-            groups.setdefault(season, []).append(entry)
-            if season == previous:
-                previous_raids.append(entry)
+        elif raid_season:
+            add_history(season_expansion(raid_season), raid_season, [entry])
         else:
             unknown.append(entry)
+
+    # On temporary API failures, retain previously confirmed current raids only
+    # if the active season did not change. Never show last season as current.
+    if not raw and current and old_season == current:
+        current_raids = as_list(old_current.get('raids'))
     if raw:
-        data['raidProgression'] = current_raids
         data['unclassifiedRaidProgression'] = unknown
-    progression = dict(as_dict(data.get('raidProgressionByExpansion')))
     if current:
-        progression['currentSeason'] = {'expansion': season_expansion(current), 'season': current,
-                                        'seasonName': season_label(current), 'raids': current_raids}
-    history = dict(as_dict(progression.get('history')))
-    for expansion, seasons in history_by_expansion.items():
-        history[expansion] = [{'season': season, 'seasonName': season_label(season), 'raids': raids}
-                              for season, raids in seasons.items()]
+        progression['currentSeason'] = {'expansion': season_expansion(current),
+                                        'season': current, 'seasonName': season_label(current),
+                                        'raids': current_raids}
+        data['raidProgression'] = current_raids
     progression['history'] = history
     data['raidProgressionByExpansion'] = progression
     data['raidSourceUrl'] = profile_url(current)
+    if unknown:
+        print(f'WARN RIO {len(unknown)} raids lack verified season metadata; held as unclassified')
     print(f'OK raiderio: current={current} score={current_score}; previous={previous} score={previous_score}; current raids={len(current_raids)}')
 
 
@@ -485,10 +520,15 @@ def sync_blizzard(data):
         data['historicalRaidProgression'] = history
         progression = dict(as_dict(data.get('raidProgressionByExpansion')))
         grouped = dict(as_dict(progression.get('history')))
+        active_expansion = as_dict(progression.get('currentSeason')).get('expansion')
         for expansion, raids in history.items():
-            if normalize(expansion) == 'midnight':
-                continue
-            grouped[expansion] = [{'season': None, 'seasonName': 'Historical Raids', 'raids': raids}]
+            # Current expansion raid kills are not necessarily current season.
+            # Do not overwrite season-specific history with Blizzard's aggregate.
+            groups = [g for g in as_list(grouped.get(expansion)) if isinstance(g, dict)]
+            groups = [g for g in groups if g.get('season') is not None]
+            if normalize(expansion) != normalize(active_expansion):
+                groups.append({'season': None, 'seasonName': 'Historical Raids', 'raids': raids})
+            grouped[expansion] = groups
         progression['history'] = grouped
         data['raidProgressionByExpansion'] = progression
     except Exception as exc:
