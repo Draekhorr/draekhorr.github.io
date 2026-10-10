@@ -112,29 +112,16 @@
   ],
   "raidProgression": [
     {
-      "name": "The Unbinding Of Kithix",
-      "note": "",
-      "url": "https://raider.io/characters/eu/draenor/Draekhorr"
-    },
-    {
       "name": "The Tidebound Grotto",
       "note": "1/1 M",
-      "url": "https://raider.io/characters/eu/draenor/Draekhorr"
+      "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "sourceSlug": "the-tidebound-grotto"
     },
     {
       "name": "The Venomous Abyss",
       "note": "5/8 M",
-      "url": "https://raider.io/characters/eu/draenor/Draekhorr"
-    },
-    {
-      "name": "Sporefall",
-      "note": "1/1 M",
-      "url": "https://raider.io/characters/eu/draenor/Draekhorr"
-    },
-    {
-      "name": "Tier Mn 1",
-      "note": "8/9 M",
-      "url": "https://raider.io/characters/eu/draenor/Draekhorr"
+      "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "sourceSlug": "the-venomous-abyss"
     }
   ],
   "raiderIo": {
@@ -194,8 +181,8 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T18:26:19+00:00",
-  "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr",
+  "updatedAt": "2026-10-10T18:33:39+00:00",
+  "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "bestPerformanceAverage": 40.57064537399497,
     "medianPerformanceAverage": 3.333312458048485,
@@ -242,6 +229,54 @@
   },
   "characterMountCount": 792,
   "raidProgressionByExpansion": {
-    "history": {}
-  }
+    "currentSeason": {
+      "expansion": "Midnight",
+      "season": "season-mn-2",
+      "seasonName": "Midnight Season 2",
+      "raids": [
+        {
+          "name": "The Tidebound Grotto",
+          "note": "1/1 M",
+          "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+          "sourceSlug": "the-tidebound-grotto"
+        },
+        {
+          "name": "The Venomous Abyss",
+          "note": "5/8 M",
+          "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+          "sourceSlug": "the-venomous-abyss"
+        }
+      ]
+    },
+    "history": {
+      "Midnight": [
+        {
+          "season": "season-mn-1",
+          "seasonName": "Midnight Season 1",
+          "raids": [
+            {
+              "name": "Sporefall",
+              "note": "1/1 M",
+              "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+              "sourceSlug": "sporefall"
+            },
+            {
+              "name": "Midnight Season 1 Raid (name unverified)",
+              "note": "8/9 M",
+              "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+              "sourceSlug": "tier-mn-1"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "unclassifiedRaidProgression": [
+    {
+      "name": "The Unbinding Of Kithix",
+      "note": "Progress unavailable",
+      "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
+      "sourceSlug": "the-unbinding-of-kithix"
+    }
+  ]
 }
