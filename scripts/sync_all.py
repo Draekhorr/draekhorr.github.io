@@ -412,19 +412,24 @@ def sync_blizzard(data):
         # instance-wide totals are deliberately not counted without verification.
         raid_hint = re.compile(r'raid|icecrown|dragon soul|highmaul|blackrock foundry|hellfire citadel|emerald nightmare', re.I)
         kill_hint = re.compile(r'\b(kills?|defeats?|victories|slain|destructions)\b', re.I)
-        exclude = re.compile(r'dungeon|world boss|trash|arena|battleground|player|pvp|total|most|highest|raid bosses killed', re.I)
+        # Do not exclude 'player': legacy 10-player / 25-player raids are valid.
+        exclude = re.compile(r'dungeon|world boss|trash|arena|battleground|\bpvp\b|\btotal\b|\bmost\b|\bhighest\b|raid bosses killed', re.I)
         candidates = []
+        review_candidates = []
         for row in entries:
             label = row['name']
             path = ' / '.join(row['categories'])
-            if not kill_hint.search(label):
+            if not kill_hint.search(label) or row['quantity'] < 0:
                 continue
             context = label + ' ' + path
-            if not raid_hint.search(context) or exclude.search(context):
+            if exclude.search(context):
                 continue
-            if row['quantity'] < 0:
-                continue
-            candidates.append(row)
+            if raid_hint.search(context):
+                candidates.append(row)
+            else:
+                # Preserve ambiguous kill counters for manual classification;
+                # never silently add them to the candidate sum.
+                review_candidates.append(row)
         candidates.sort(key=lambda row: (str(row['categories']), row['name']))
         audit = {
             'description': 'Candidate per-boss raid kill counters across all difficulties. REVIEW REQUIRED; not an authoritative lifetime total.',
@@ -432,6 +437,8 @@ def sync_blizzard(data):
             'candidateCount': len(candidates),
             'candidateSum': sum(int(row['quantity']) for row in candidates),
             'candidateStatistics': candidates,
+            'unclassifiedKillStatistics': review_candidates,
+            'unclassifiedCount': len(review_candidates),
             'warnings': [
                 'Name/category matching can miss raids or include aggregate counters.',
                 'Some Blizzard historic statistics may be missing or duplicated across categories.',
@@ -440,7 +447,7 @@ def sync_blizzard(data):
         }
         audit_path = ROOT / 'raid_kills_audit.json'
         audit_path.write_text(json.dumps(audit, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
-        print(f"DIAG Blizzard raid kill audit: candidates={len(candidates)} candidateSum={audit['candidateSum']} (UNVERIFIED)")
+        print(f"DIAG Blizzard raid kill audit: candidates={len(candidates)} candidateSum={audit['candidateSum']} unclassified={audit['unclassifiedCount']} (UNVERIFIED)")
         print('OK Blizzard lifetime totalDeaths=' + str(lifetime.get('totalDeaths')) +
               ' raidDeaths=' + str(lifetime.get('raidDeaths')))
     except Exception as exc:

@@ -205,3 +205,22 @@ After deploying, run **Actions → Sync WoW APIs** once and inspect lines beginn
 - Deployment: replace `index.html`, `script.js`, `scripts/sync_all.py`, and the complete `README.md`. Keep the existing CSS, `data.json`, workflows and secrets. Run the sync, then review `raid_kills_audit.json` and `DIAG Blizzard raid kill audit` output. If the workflow commits only `data.json`, also add `raid_kills_audit.json` to the commit step so the audit is retained.
 
 Changelog: **V5.5** — validated lifetime death counters; raid boss kill audit across all difficulties; no unverified total published.
+
+
+## V5.5.1 — Raid kill audit fix
+
+Fixed a filter bug: the word `player` previously excluded valid legacy raid counters such as `Icecrown 10 player` and `Icecrown 25 player`. The audit now retains ambiguous kill counters separately under `unclassifiedKillStatistics` for manual review. `candidateSum` is still **not a verified lifetime total**, and the site continues to show `—` until the full set is validated.
+
+**Installation:** Replace only `scripts/sync_all.py` and this complete `README.md`. Run the existing **Sync WoW APIs** workflow. The script generates `raid_kills_audit.json` in the repository root during the workflow, but the file is not necessarily committed or uploaded by the existing workflow. To download it, add this GitHub Actions step **after** the Python sync step to your existing workflow:
+
+```yaml
+- name: Upload raid kills audit
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: raid-kills-audit
+    path: raid_kills_audit.json
+    if-no-files-found: warn
+```
+
+Download the artifact from the workflow run summary and share `raid_kills_audit.json` for classification. Do not commit credentials or tokens.
