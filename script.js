@@ -5,7 +5,8 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
- const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);if(ce.length){setValue('ce-count',ce.length);const tiers=ce.map(x=>x.tierId).filter(Boolean);if(tiers.length)setValue('ce-tier-count',new Set(tiers).size)}setCards('ce-list',ce);setCards('raid-list',d.raidProgression);
+ const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);if(ce.length){setValue('ce-count',ce.length);const tiers=ce.map(x=>x.tierId).filter(Boolean);if(tiers.length)setValue('ce-tier-count',new Set(tiers).size)}setCards('ce-list',ce);setCards('raid-list',d.raidProgression);safeLink('raid-source-link',d.raidSourceUrl);
+ setValue('wcl-best',d.warcraftLogs?.bestPerformanceAverage);setValue('wcl-median',d.warcraftLogs?.medianPerformanceAverage);setCards('wcl-parses',d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
  setValue('rio-score',d.raiderIo?.mythicPlusScore);setValue('rio-previous',d.raiderIo?.previousSeasonScore);setValue('rio-rank',d.raiderIo?.ranking);setCards('rio-runs',d.raiderIo?.bestRuns);safeLink('rio-link',d.raiderIo?.profileUrl);safeLink('wowprogress-link',d.wowprogress?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});

@@ -12,6 +12,15 @@
     "bestRuns": [],
     "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr"
   },
-  "wowprogress": {"profileUrl": null},
-  "updatedAt": null
+  "wowprogress": {
+    "profileUrl": null
+  },
+  "updatedAt": null,
+  "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr",
+  "warcraftLogs": {
+    "bestPerformanceAverage": null,
+    "medianPerformanceAverage": null,
+    "bossParses": [],
+    "profileUrl": "https://www.warcraftlogs.com/"
+  }
 }

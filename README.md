@@ -1,20 +1,21 @@
-# Draekhorr — Azeroth Legacy (V3)
+# Draekhorr WoW Legacy — V4
 
-Static World of Warcraft character showcase for Draekhorr, EU-Draenor.
+Static GitHub Pages website for Draekhorr (EU-Draenor).
 
-## Changes in V3
-- Raid Progression is the first content section after the hero.
-- Raider.IO is second, with fields for current score, previous season, ranking and best runs.
-- Cutting Edge history and WoWProgress follow.
-- Mounts and Achievements are side-by-side 50/50 on desktop and stacked on mobile.
-- Uses the supplied Draekhorr avatar.
+## V4 changes
+- Mythic Raid Progression and Warcraft Logs share one section, in two equal columns on desktop and stacked on mobile.
+- Raider.IO follows directly after the combined raid section.
+- Cutting Edge Legacy, WoWProgress, then Mounts and Achievements (two columns).
+- Original Draekhorr artwork retained.
 
 ## Publish
-Upload the **contents** of this folder (not the folder itself) to the root of the `Draekhorr/draekhorr.github.io` repository, replacing the existing files. Commit to `main`. GitHub Pages will deploy the new version.
+Upload the **contents** of this ZIP to the root of `Draekhorr/draekhorr.github.io` and commit changes. Keep GitHub Pages configured for `main` / `(root)`.
 
-## Data
-`data.json` contains placeholders. `script.js` displays real data only when added to the JSON. This release **does not** connect to Blizzard, Raider.IO or WoWProgress APIs automatically. GitHub Actions and an API sync script must be added separately. Do not put Blizzard client secrets in any public file.
+## Data and security
+This is a frontend/layout update, **not yet a live API integration**. No scores, raid kills, or parses are fabricated. `data.json` contains null values until verified data is fetched.
 
-`accountWideMountCount` should only be filled using a verified account-wide source. The old `mountCount` is supported as a fallback for compatibility, but must not be mislabeled account-wide unless verified.
+To populate the combined section, write `raidProgression` as an array of `{ "name": "...", "note": "...", "url": "https://..." }` and `warcraftLogs` as `{ "bestPerformanceAverage": number|null, "medianPerformanceAverage": number|null, "bossParses": [{"name":"...","note":"...","url":"https://..."}], "profileUrl":"https://..." }`. The other fields follow the V3 schema.
 
-`cuttingEdgeAchievements` entries require `verified: true`; unique `tierId` values determine the Cutting Edge raid tier count.
+Never put Blizzard or Warcraft Logs client secrets into the repository, `data.json`, or browser JavaScript. Future API sync should run server-side (e.g. GitHub Actions) and commit only public results.
+
+The `accountWideMountCount` field must only be populated from a verified account-wide source, not from character-only mount counts.
