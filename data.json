@@ -138,42 +138,58 @@
     "bestRuns": [
       {
         "name": "Temple of Sethraliss +17",
-        "note": "Score: 442 | Timed: N/A",
+        "score": 442,
+        "clearTimeMs": 1815149,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_templeofsethraliss.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/14037108-17-temple-of-sethraliss"
       },
       {
         "name": "Kings' Rest +16",
-        "note": "Score: 430.7 | Timed: N/A",
+        "score": 430.7,
+        "clearTimeMs": 1679953,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kingsrest.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/13823927-16-kings-rest"
       },
       {
         "name": "Ruby Life Pools +15",
-        "note": "Score: 410.2 | Timed: N/A",
+        "score": 410.2,
+        "clearTimeMs": 1670519,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_lifepools.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8824704-15-ruby-life-pools"
       },
       {
         "name": "Altar of Fangs +14",
-        "note": "Score: 401.2 | Timed: N/A",
+        "score": 401.2,
+        "clearTimeMs": 1503645,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_altaroffangs.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8813495-14-altar-of-fangs"
       },
       {
         "name": "Den of Nalorakk +14",
-        "note": "Score: 401 | Timed: N/A",
+        "score": 401,
+        "clearTimeMs": 1614301,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_proveyourworth.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/8841590-14-den-of-nalorakk"
       },
       {
         "name": "Murder Row +11",
-        "note": "Score: 346.8 | Timed: N/A",
+        "score": 346.8,
+        "clearTimeMs": 1397135,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_murderrow.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/4954715-11-murder-row"
       },
       {
         "name": "Voidscar Arena +11",
-        "note": "Score: 343.2 | Timed: N/A",
+        "score": 343.2,
+        "clearTimeMs": 1405871,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_voidscararena.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/6511383-11-voidscar-arena"
       },
       {
         "name": "The Blinding Vale +10",
-        "note": "Score: 328 | Timed: N/A",
+        "score": 328,
+        "clearTimeMs": 1418203,
+        "iconUrl": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_lightbloom.jpg",
         "url": "https://raider.io/mythic-plus-runs/season-mn-2/692366-10-the-blinding-vale"
       }
     ],
@@ -184,7 +200,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T21:30:23+00:00",
+  "updatedAt": "2026-10-10T21:42:05+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
