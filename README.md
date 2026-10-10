@@ -1,7 +1,8 @@
-Draekhorr V4.6 frontend + WCL sync
+# Draekhorr V4.7 — Warcraft Logs boss visuals
 
-Upload index.html, script.js, style.css to repository root and scripts/sync_all.py to scripts/. Do not replace data.json or secrets.
+Replace in repository root: `index.html`, `script.js`, `style.css`, `scripts/sync_all.py`.
+Do not overwrite `data.json`, secrets, or `.github/workflows/sync.yml`.
 
-Raid History now uses one expansion selector, initially closed. Warcraft Logs renders real boss icons ONLY when iconUrl is available in data.json. The current Warcraft Logs ranking API response may not provide icon URLs; missing icons remain absent (no generated or invented images). The backend preserves existing valid iconUrl values and reads them if included in encounter metadata. To populate missing icons, a verified encounter-to-image source is still needed.
+The backend attempts Warcraft Logs zone metadata -> encounter journalID -> Blizzard encounter media. These APIs may not expose usable image assets; in that case the frontend shows a neutral placeholder, **not** a fabricated boss image. The sync prints the number of resolved icons and HPS values.
 
-Run Sync WoW APIs after upload, then refresh Pages.
+After commit: Actions -> Sync WoW APIs -> Run workflow. Check the `OK warcraftLogs: bosses=..., icons=..., HPS=...` log line. The WCL `amount` field is only treated as HPS if the healing metric query succeeds.

@@ -258,68 +258,126 @@ def sync_blizzard(data):
     print('OK blizzard')
 
 
+def wcl_graphql(access, query, variables):
+    result = http_json('https://www.warcraftlogs.com/api/v2/client',
+                       {'Authorization': 'Bearer ' + access},
+                       json_body={'query': query, 'variables': variables})
+    if result.get('errors'):
+        raise RuntimeError(str(result['errors'])[:450])
+    return as_dict(result.get('data'))
+
+
+def blizzard_encounter_icon(journal_id, blizzard_access):
+    """Use official Blizzard journal encounter media when available.
+
+    Media is optional: never guess an image URL or expose the access token.
+    """
+    if not isinstance(journal_id, int) or journal_id <= 0 or not blizzard_access:
+        return None
+    endpoint = (f'https://eu.api.blizzard.com/data/wow/journal-encounter/{journal_id}/media'
+                '?namespace=static-eu&locale=en_GB')
+    try:
+        payload = http_json(endpoint, {'Authorization': 'Bearer ' + blizzard_access})
+        for asset in as_list(payload.get('assets')):
+            asset = as_dict(asset)
+            if str(asset.get('key', '')).lower() in ('icon', 'image', 'splash'):
+                url = asset.get('value')
+                if isinstance(url, str) and url.startswith('https://'):
+                    return url
+    except Exception:
+        pass
+    return None
+
+
 def sync_warcraftlogs(data):
     access = oauth('https://www.warcraftlogs.com/oauth/token',
                    'WARCRAFTLOGS_CLIENT_ID', 'WARCRAFTLOGS_CLIENT_SECRET')
-    base = 'https://www.warcraftlogs.com/api/v2/client'
     variables = {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}
-    def query_rankings(healing):
+    def rankings(healing):
         field = 'zoneRankings(metric: hps)' if healing else 'zoneRankings'
         query = ('query($name:String!,$server:String!,$region:String!){'
                  'characterData{character(name:$name,serverSlug:$server,'
                  'serverRegion:$region){id name ' + field + '}}}')
-        result = http_json(base, {'Authorization': 'Bearer ' + access},
-                           json_body={'query': query, 'variables': variables})
-        if result.get('errors'):
-            raise RuntimeError(str(result['errors'])[:350])
-        char = as_dict(as_dict(as_dict(result.get('data')).get('characterData')).get('character'))
+        payload = wcl_graphql(access, query, variables)
+        char = as_dict(as_dict(payload.get('characterData')).get('character'))
         if not char:
             raise RuntimeError('Character not found in Warcraft Logs')
         return as_dict(char.get('zoneRankings'))
 
-    # Query HPS-specific rankings. If unsupported by the API schema, retain
-    # previous parse data rather than falsely labelling DPS as healing.
     try:
-        ranking = query_rankings(True)
-        is_healing = True
+        ranking = rankings(True)
+        healing = True
     except Exception as exc:
-        print(f'WARN WCL healing query unavailable: {type(exc).__name__}: {exc}', file=sys.stderr)
-        ranking = query_rankings(False)
-        is_healing = False
+        print(f'WARN WCL healing rankings: {type(exc).__name__}: {exc}', file=sys.stderr)
+        ranking = rankings(False)
+        healing = False
 
-    previous = {str(x.get('name', '')).casefold(): x
+    # The standard zoneRankings JSON encounter typically has id/name but no image URL.
+    # Query WCL zone metadata separately to get journalID; an invalid/unavailable
+    # optional metadata query must not break the rankings sync.
+    journal_by_id = {}
+    zone_id = as_dict(ranking.get('zone')).get('id')
+    if isinstance(zone_id, int):
+        try:
+            metadata = wcl_graphql(access,
+                'query($id:Int!){zoneData{zone(id:$id){encounters{id name journalID}}}}',
+                {'id': zone_id})
+            zone = as_dict(as_dict(metadata.get('zoneData')).get('zone'))
+            for item in as_list(zone.get('encounters')):
+                item = as_dict(item)
+                if isinstance(item.get('id'), int) and isinstance(item.get('journalID'), int):
+                    journal_by_id[item['id']] = item['journalID']
+            print(f'DIAG WCL journal mapping: {len(journal_by_id)} encounters')
+        except Exception as exc:
+            print(f'WARN WCL optional zone metadata: {type(exc).__name__}: {exc}', file=sys.stderr)
+    else:
+        print('DIAG WCL zone ID unavailable; journal media lookup skipped')
+
+    blizzard_access = None
+    if journal_by_id:
+        try:
+            blizzard_access = oauth('https://oauth.battle.net/token',
+                                    'BLIZZARD_CLIENT_ID', 'BLIZZARD_CLIENT_SECRET')
+        except Exception as exc:
+            print(f'WARN Blizzard media authentication: {type(exc).__name__}: {exc}', file=sys.stderr)
+
+    old_rows = {str(x.get('name', '')).casefold(): x
                 for x in as_list(as_dict(data.get('warcraftLogs')).get('bossParses'))
                 if isinstance(x, dict)}
     parses = []
     for raw in as_list(ranking.get('rankings')):
         row = as_dict(raw)
-        name = as_dict(row.get('encounter')).get('name')
+        encounter = as_dict(row.get('encounter'))
+        name = encounter.get('name')
         if not name:
             continue
-        old = previous.get(name.casefold(), {})
+        old = old_rows.get(name.casefold(), {})
         percentile = row.get('rankPercent')
         amount = row.get('amount')
-        hps = float(amount) if is_healing and isinstance(amount, (int, float)) and amount >= 0 else None
-        # On an unverified non-healing query, do not overwrite previously verified HPS.
+        hps = float(amount) if healing and isinstance(amount, (int, float)) and amount >= 0 else None
         if hps is None and isinstance(old.get('highestHps'), (int, float)):
             hps = old['highestHps']
         if not isinstance(percentile, (int, float)) and hps is None:
             continue
-        # Only use a real URL if supplied by the encounter metadata.
-        encounter = as_dict(row.get('encounter'))
-        icon = next((encounter[k] for k in ('iconUrl', 'icon', 'imageUrl') if isinstance(encounter.get(k), str) and encounter[k].startswith('https://')), None)
+        icon = next((encounter[k] for k in ('iconUrl', 'imageUrl', 'icon')
+                     if isinstance(encounter.get(k), str) and encounter[k].startswith('https://')), None)
+        encounter_id = encounter.get('id')
+        journal_id = encounter.get('journalID') or journal_by_id.get(encounter_id)
+        if icon is None:
+            icon = blizzard_encounter_icon(journal_id, blizzard_access)
         if icon is None and isinstance(old.get('iconUrl'), str) and old['iconUrl'].startswith('https://'):
             icon = old['iconUrl']
-        parses.append({'name': name,
-                       'iconUrl': icon,
+        parses.append({'name': name, 'encounterId': encounter_id,
+                       'journalId': journal_id, 'iconUrl': icon,
                        'bestPercent': percentile if isinstance(percentile, (int, float)) else None,
-                       'highestHps': hps,
-                       'url': WCL_URL})
+                       'highestHps': hps, 'url': WCL_URL})
     if not parses:
-        raise RuntimeError('Warcraft Logs returned no usable boss rankings; keeping previous data')
+        raise RuntimeError('No usable Warcraft Logs boss rankings; preserving prior data')
     data['warcraftLogs'] = {'profileUrl': WCL_URL, 'bossParses': parses,
-                           'healingMetricConfirmed': is_healing}
-    print(f'OK warcraftLogs ({len(parses)} bosses; healing metric: {is_healing})')
+                           'healingMetricConfirmed': healing}
+    icons = sum(bool(row.get('iconUrl')) for row in parses)
+    hps_count = sum(row.get('highestHps') is not None for row in parses)
+    print(f'OK warcraftLogs: bosses={len(parses)}, icons={icons}, HPS={hps_count}, healing={healing}')
 
 
 def main():

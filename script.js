@@ -104,7 +104,8 @@ function renderWclBosses(items){
   const link=(typeof boss.url==='string'&&/^https:\/\//i.test(boss.url))?document.createElement('a'):document.createElement('span');
   if(link.tagName==='A'){link.href=boss.url;link.target='_blank';link.rel='noopener noreferrer';}
   const icon=typeof boss.iconUrl==='string'&&/^https:\/\//i.test(boss.iconUrl)?boss.iconUrl:null;
-  if(icon){const img=document.createElement('img');img.src=icon;img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';img.className='boss-icon';img.onerror=()=>img.remove();name.append(img);}
+  const placeholder=document.createElement('span');placeholder.className='boss-icon-placeholder';placeholder.textContent='✦';placeholder.setAttribute('aria-hidden','true');
+  if(icon){const img=document.createElement('img');img.src=icon;img.alt='';img.loading='lazy';img.className='boss-icon';img.onerror=()=>img.replaceWith(placeholder);name.append(img);}else{name.append(placeholder);}
   name.classList.add('boss-name-cell');link.textContent=boss.name||'Unknown boss';name.append(link);
   const pct=document.createElement('td');pct.className='wcl-value';
   let score=Number.isFinite(Number(boss.bestPercent))&&boss.bestPercent!==null&&boss.bestPercent!==undefined?Number(boss.bestPercent):null;
