@@ -7,7 +7,7 @@ fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavai
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderCharacter(d.character);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -188,5 +188,22 @@ function renderRaiderIo(rio){
   info.append(score,time);card.append(info);
   if(typeof run.url==='string'&&/^https:\/\//i.test(run.url)){const a=document.createElement('a');a.href=run.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='VIEW DETAILS ↗';card.append(a);}
   parent.append(card);
+ }
+}
+
+// V5.2 character banner. Never infer an active specialization from class alone.
+function renderCharacter(character){
+ if(!character||typeof character!=='object')return;
+ if(character.name)setValue('character-name',String(character.name).toUpperCase());
+ if(character.race)setValue('character-race',character.race);
+ const spec=typeof character.specialization==='string'&&character.specialization.trim()?character.specialization.trim():null;
+ const cls=typeof character.class==='string'?character.class:'Shaman';
+ setValue('character-spec',spec?`${spec} ${cls}`:cls);
+ const ilvl=Number(character.itemLevel);
+ if(character.itemLevel!=null&&Number.isFinite(ilvl)&&ilvl>0)setValue('character-ilvl',Math.trunc(ilvl));
+ const portrait=el('character-portrait');
+ if(portrait&&typeof character.portraitUrl==='string'&&/^https:\/\//i.test(character.portraitUrl)){
+  portrait.onerror=()=>{portrait.onerror=null;portrait.src='avatar.png';};
+  portrait.src=character.portraitUrl;
  }
 }

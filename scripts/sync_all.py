@@ -317,6 +317,7 @@ def parse_encounters(payload):
 
 
 def sync_blizzard(data):
+    previous_data = {'character': dict(as_dict(data.get('character')))}
     access = oauth('https://oauth.battle.net/token', 'BLIZZARD_CLIENT_ID', 'BLIZZARD_CLIENT_SECRET')
     base = f'https://eu.api.blizzard.com/profile/wow/character/{REALM}/{NAME}'
     headers = {'Authorization': 'Bearer ' + access}
@@ -328,6 +329,39 @@ def sync_blizzard(data):
                          'race': as_dict(profile.get('race')).get('name'),
                          'itemLevel': profile.get('equipped_item_level')}
     data['achievementPoints'] = profile.get('achievement_points')
+    # V5.2: best-effort Blizzard character media and active specialization.
+    # Keep the last verified portrait on transient API failures.
+    character = data['character']
+    active_spec = as_dict(profile.get('active_spec')).get('name')
+    if isinstance(active_spec, str) and active_spec.strip():
+        character['specialization'] = active_spec.strip()
+    else:
+        previous_spec = as_dict(as_dict(previous_data.get('character')).get('active_spec')).get('name')
+        character['specialization'] = (as_dict(previous_data.get('character')).get('specialization')
+                                       or previous_spec)
+    old_portrait = as_dict(previous_data.get('character')).get('portraitUrl')
+    if isinstance(old_portrait, str) and old_portrait.startswith('https://'):
+        character['portraitUrl'] = old_portrait
+    try:
+        media = get('/character-media')
+        assets = as_list(media.get('assets'))
+        # Prefer an in-game character bust over a tiny avatar when available.
+        candidates = {}
+        for asset in assets:
+            asset = as_dict(asset)
+            url = asset.get('value')
+            if isinstance(url, str) and url.startswith('https://'):
+                candidates[str(asset.get('key') or '').lower()] = url
+        portrait = (candidates.get('inset') or candidates.get('main-raw')
+                    or candidates.get('main') or candidates.get('avatar'))
+        if portrait:
+            character['portraitUrl'] = portrait
+            print('OK Blizzard character portrait')
+        else:
+            print('WARN Blizzard character media: no usable portrait asset')
+    except Exception as exc:
+        print(f'WARN Blizzard character media: {type(exc).__name__}: {exc}', file=sys.stderr)
+
     try:
         ach = get('/achievements')
         cutting = []

@@ -22,7 +22,7 @@ The site intentionally has **no Twitch or Kick integration**. A compact Raid Leg
 
 ## Cutting Edge source of truth (V5.1)
 
-Cutting Edge badges are based **only** on Blizzard achievement records where `verified` is `true` and `tierId` has a known raid mapping. Mythic raid progression is independent: a full clear does not imply Cutting Edge, and an earned Cutting Edge does not require all earlier bosses to have been killed on that character. The site displays a single compact total of unique verified Cutting Edge achievement IDs above Mythic Progression. Mappings currently cover known Legion, BFA, Shadowlands, Dragonflight and The War Within raids; unmapped achievements remain counted in the total but do not produce a potentially incorrect raid badge. Adding a new raid may require updating the authoritative mapping. No backend change is required for V5.1.
+Cutting Edge badges are based **only** on Blizzard achievement records where `verified` is `true` and `tierId` has a known raid mapping. Mythic raid progression is independent: a full clear does not imply Cutting Edge, and an earned Cutting Edge does not require all earlier bosses to have been killed on that character. The site displays a single compact total of unique verified Cutting Edge achievement IDs under Raid History within the Mythic Progression panel. Mappings currently cover known Legion, BFA, Shadowlands, Dragonflight and The War Within raids; unmapped achievements remain counted in the total but do not produce a potentially incorrect raid badge. Adding a new raid may require updating the authoritative mapping. No backend change is required for V5.1.
 
 ## Feature overview and current status
 
@@ -32,7 +32,7 @@ Cutting Edge badges are based **only** on Blizzard achievement records where `ve
 | Mythic raid progression | Show only current-season raids in main panel | Raider.IO sync implemented; classification of future raids is not fully dynamic |
 | Raid history | Compact expansion selector, only one expansion shown at a time | Blizzard historical encounter sync implemented; displayed data depends on API availability and frontend version |
 | Raid difficulty | Mythic where available; Heroic only for raids without Mythic | Parser implements priority based on available modes; historical completeness not guaranteed |
-| Cutting Edge | Compact total above raids; CE badges on raid cards ONLY for verified Blizzard achievement IDs mapped to that raid | Frontend V5.1; currently mapped historical achievements only; unknown/new IDs are not guessed |
+| Cutting Edge | Compact total below Raid History; CE badges on raid cards ONLY for verified Blizzard achievement IDs mapped to that raid | Frontend V5.1; currently mapped historical achievements only; unknown/new IDs are not guessed |
 | Raider.IO M+ | Current and previous seasonal scores in one row; dungeon cards with Score, Time, and icons | Current/previous lookup implemented; run time uses API `clear_time_ms` when present; dungeon icon URLs are API-provided or explicitly verified, otherwise fallback; future season transitions not yet tested |
 | Warcraft Logs | Per-boss healing Best and Highest HPS | WCL HPS metric confirmed in diagnostics; frontend expects `bestPercent` and `highestHps` |
 | WCL Best display | Integer from 0–100, truncated (not rounded), no percent sign | Frontend change specified for V4.9.3; check deployed `script.js` |
@@ -154,9 +154,20 @@ This release replaces **only** `scripts/sync_all.py`. It does not require new cr
 | V4.9.3 | Best parse display: integer 0–100, truncation, no percent symbol |
 | V4.9.4 | Attempted direct WCL encounter-to-Blizzard journal media mapping; diagnostic returned 0/10 journal IDs |
 | V4.9.5 | Boss image URLs generated from WCL encounter IDs using RPGLogs CDN; user confirmed images now appear |
-| **V5.1** | **Raid Legacy UI:** compact verified CE count above Mythic Progression, CE badge on historical raid cards only for mapped verified achievement IDs, no inference from kill counts; remove duplicate CE grid and unused WoWProgress section; no API changes |
+| **V5.1** | **Raid Legacy UI:** compact verified CE count under Raid History within the Mythic Progression panel, CE badge on historical raid cards only for mapped verified achievement IDs, no inference from kill counts; remove duplicate CE grid and unused WoWProgress section; no API changes |
 | **V5.0** | **Raider.IO UI overhaul:** two scores in one row, Ranking removed, dungeon icons with safe fallback, run Score + actual clear time when API supplies it, no TIMED/DEPLETED badge; complete cumulative README retained |
 
 ## Documentation rule for future releases
 
 **Always carry forward and update this entire README** with each ZIP or code patch. Record what changed, what remained untouched, what was actually tested, and what still needs verification. The README must remain a complete onboarding and maintenance guide—not just release notes for the newest version.
+
+
+## V5.2 — Character Profile and Cutting Edge placement
+
+The character identity banner appears **between the homepage hero and Mythic Progression**. It displays the character name, race, class, active specialization when supplied by the Blizzard character profile, realm/region, and equipped item level. The banner uses the official Blizzard character-media portrait when an accessible HTTPS image is returned; otherwise it falls back to the existing `avatar.png`. If Blizzard omits specialization, the website shows the class without guessing the specialization. Item level and character data refresh through the existing GitHub Actions sync. No new secrets are required.
+
+The **single verified Cutting Edge total** is now located **immediately below the Raid History expansion selector/results, inside the left Mythic Raid Progression panel**, above the raid source link. It counts distinct verified achievement IDs; individual CE badges still require explicit achievement-to-raid mapping and never derive from raid kill totals. The old standalone Raid Legacy section above the raids was removed.
+
+Deployment: replace `index.html`, `style.css`, `script.js`, `scripts/sync_all.py` and this **entire** `README.md` in their existing repository locations. Keep `data.json`, `.github/workflows/sync.yml`, GitHub Secrets and `avatar.png`. Commit, run **Actions → Sync WoW APIs**, then wait for GitHub Pages deployment and refresh. Portrait availability depends on Blizzard's media response; a missing image is not an API sync failure.
+
+Changelog: **V5.2** — compact Blizzard-backed character profile banner; automatic item level, best-effort active spec and official portrait with artwork fallback; move CE summary directly under Raid History; retain existing Raider.IO and Warcraft Logs behavior.

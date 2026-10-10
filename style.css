@@ -74,3 +74,13 @@
 .ce-badge{display:inline-block!important;border:1px solid #a98851;border-radius:3px;background:#302618;color:#f1cc83!important;font:700 11px/1.4 Inter,Arial,sans-serif!important;letter-spacing:.6px;padding:2px 7px;text-decoration:none!important}
 .ce-badge:hover{background:#48361e}
 @media(max-width:640px){.raid-legacy-summary{align-items:flex-start;flex-direction:column}.ce-summary{max-width:none}}
+
+/* V5.2: restrained character identity banner, and CE summary inside Raid History */
+.character-profile-section{padding-top:28px!important;padding-bottom:14px!important}
+.character-profile-banner{display:grid;grid-template-columns:136px minmax(0,1fr) auto;align-items:center;gap:25px;min-height:176px;padding:22px 28px;background:linear-gradient(110deg,#12293b 0%,#111e2c 55%,#0a1420 100%);border:1px solid #786340;box-shadow:inset 0 1px 0 #3a596044}
+.character-portrait-frame{width:136px;height:136px;overflow:hidden;border:1px solid #69839a;background:#091725;border-radius:6px}
+.character-portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.character-profile-copy{min-width:0}.character-profile-copy h2{font:clamp(27px,3.2vw,44px)/1.2 Cinzel,serif;color:#f0e7d5;margin:7px 0}.character-role{color:#77d7ef;font-weight:700;margin:8px 0}.character-realm{font-size:12px;letter-spacing:1.2px;color:#b6c5d0;margin:7px 0}.character-tagline{font-size:13px;color:#9fb6c6;margin:14px 0 0}
+.character-ilvl{min-width:104px;text-align:center;border-left:1px solid #355064;padding:16px 0 16px 22px}.character-ilvl span{display:block;color:#a7bbc8;font-size:10px;letter-spacing:1.5px}.character-ilvl strong{display:block;margin-top:8px;color:#eac47e;font:clamp(26px,3vw,38px)/1.2 Cinzel,serif}
+#raid-legacy.raid-legacy-intro{padding:8px 0 22px!important;margin-top:10px}#raid-legacy .raid-legacy-summary{padding:16px 0;gap:14px}#raid-legacy .raid-legacy-summary h2{font-size:20px}#raid-legacy .raid-legacy-summary p:not(.eyebrow){font-size:12px;line-height:1.5}#raid-legacy .ce-summary{gap:9px;max-width:145px}#raid-legacy .ce-summary strong{font-size:34px}#raid-legacy .ce-summary span{font-size:9px}
+@media(max-width:680px){.character-profile-banner{grid-template-columns:90px 1fr;gap:16px;padding:18px}.character-portrait-frame{width:90px;height:90px}.character-ilvl{grid-column:1/-1;border-left:0;border-top:1px solid #355064;padding:12px 0 0;text-align:left}.character-ilvl strong{font-size:30px}#raid-legacy .raid-legacy-summary{flex-direction:column;align-items:flex-start}#raid-legacy .ce-summary{max-width:none}}
