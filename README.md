@@ -1,9 +1,9 @@
-Draekhorr V4.9.2 frontend hotfix
+# Draekhorr V4.9.4 — real boss images
 
-Upload index.html and script.js to repository root. Do not replace style.css, data.json, scripts/sync_all.py, or GitHub Actions workflow.
+Replace only `scripts/sync_all.py` in the repository. Do not replace `data.json`, the website frontend, GitHub secrets or the workflow.
 
-Changes: versioned JS and JSON fetch to avoid stale caches; bestPercent shown with one decimal and %; highestHps displayed as rounded integer, with zero/null as dash.
+This version obtains `journalID` directly through Warcraft Logs `worldData.encounter(id)` (no zone ID required), then uses Blizzard's `/data/wow/journal-encounter/{id}` creature display references and `/data/wow/media/creature-display/{id}` assets for real artwork. Some encounters may lack assets or their image URLs may be unavailable; in those cases the existing frontend placeholder remains.
 
-IMPORTANT: index.html is based on the previously provided V4.8 markup. If you have customized index.html since then, upload ONLY script.js and change the existing script tag to src="script.js?v=4.9.2" manually.
+After committing, run **Actions → Sync WoW APIs → Run workflow**. Inspect `DIAG WCL direct journal IDs=...` and `OK warcraftLogs: bosses=..., icons=..., HPS=...`. Then check `data.json` for `warcraftLogs.bossParses[].iconUrl`.
 
-No API sync is required; wait for Pages deployment and hard refresh. Boss images still require iconUrl from backend.
+This script passed Python syntax checks, but has not been executed with your API secrets. No guarantees that every boss has artwork.

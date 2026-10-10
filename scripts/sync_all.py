@@ -350,25 +350,60 @@ def wcl_graphql(access, query, variables=None):
 
 
 def blizzard_encounter_icon(journal_id, blizzard_access):
-    """Use official Blizzard journal encounter media when available.
+    """Resolve actual Blizzard creature-display artwork for a journal encounter.
 
-    Media is optional: never guess an image URL or expose the access token.
+    Blizzard's journal-encounter endpoint references creatures[].creature_display;
+    the creature-display media endpoint supplies the image URL. No guessed URLs.
     """
     if not isinstance(journal_id, int) or journal_id <= 0 or not blizzard_access:
         return None
-    endpoint = (f'https://eu.api.blizzard.com/data/wow/journal-encounter/{journal_id}/media'
-                '?namespace=static-eu&locale=en_GB')
+    headers = {'Authorization': 'Bearer ' + blizzard_access}
+    base = 'https://eu.api.blizzard.com/data/wow/'
+    suffix = '?namespace=static-eu&locale=en_GB'
     try:
-        payload = http_json(endpoint, {'Authorization': 'Bearer ' + blizzard_access})
-        for asset in as_list(payload.get('assets')):
-            asset = as_dict(asset)
-            if str(asset.get('key', '')).lower() in ('icon', 'image', 'splash'):
-                url = asset.get('value')
-                if isinstance(url, str) and url.startswith('https://'):
-                    return url
-    except Exception:
-        pass
+        journal = http_json(base + f'journal-encounter/{journal_id}' + suffix, headers)
+    except Exception as exc:
+        print(f'WARN WCL journal encounter {journal_id}: {type(exc).__name__}', file=sys.stderr)
+        return None
+    for creature in as_list(journal.get('creatures')):
+        display = as_dict(as_dict(creature).get('creature_display'))
+        display_id = display.get('id')
+        if not isinstance(display_id, int) or display_id <= 0:
+            continue
+        try:
+            media = http_json(base + f'media/creature-display/{display_id}' + suffix, headers)
+            assets = [as_dict(a) for a in as_list(media.get('assets'))]
+            for kind in ('portrait', 'zoom', 'rotate'):
+                for asset in assets:
+                    url = asset.get('value')
+                    if asset.get('key') == kind and isinstance(url, str) and url.startswith('https://'):
+                        return url
+        except Exception as exc:
+            print(f'WARN WCL creature display {display_id}: {type(exc).__name__}', file=sys.stderr)
     return None
+
+
+def wcl_journal_ids(access, encounter_ids):
+    """Get journal IDs directly by WCL encounter ID (no zone ID needed)."""
+    mapping = {}
+    ids = sorted({v for v in encounter_ids if isinstance(v, int) and v > 0})
+    for start in range(0, len(ids), 8):
+        batch = ids[start:start + 8]
+        aliases = ' '.join(
+            f'e{i}:encounter(id:{eid}){{id name journalID}}'
+            for i, eid in enumerate(batch)
+        )
+        try:
+            response = wcl_graphql(access, '{worldData{' + aliases + '}}')
+            world = as_dict(response.get('worldData'))
+            for i, eid in enumerate(batch):
+                journal = as_dict(world.get(f'e{i}')).get('journalID')
+                if isinstance(journal, int) and journal > 0:
+                    mapping[eid] = journal
+        except Exception as exc:
+            print(f'WARN WCL encounter metadata: {type(exc).__name__}: {exc}', file=sys.stderr)
+    print(f'DIAG WCL direct journal IDs={len(mapping)}/{len(ids)}')
+    return mapping
 
 
 def sync_warcraftlogs(data):
@@ -411,40 +446,11 @@ def sync_warcraftlogs(data):
             e = as_dict(r.get('encounter'))
             print('DIAG WCL sample boss=' + str(e.get('name')) + ' bestAmount=' + str(r.get('bestAmount')) + ' rankPercent=' + str(r.get('rankPercent')))
 
-    # Try optional zone ID representations; not all WCL zoneRankings versions include one.
-    zone = as_dict(ranking.get('zone'))
-    zone_id = next((v for v in (zone.get('id'), ranking.get('zoneID'), ranking.get('zoneId'),
-                                ranking.get('zone_id')) if isinstance(v, int)), None)
-    journal_by_id = {}
-    if zone_id is not None:
-        try:
-            metadata = wcl_graphql(access,
-                'query($id:Int!){zoneData{zone(id:$id){encounters{id name journalID}}}}',
-                {'id': zone_id})
-            zone_info = as_dict(as_dict(metadata.get('zoneData')).get('zone'))
-            for item in as_list(zone_info.get('encounters')):
-                item = as_dict(item)
-                if isinstance(item.get('id'), int) and isinstance(item.get('journalID'), int):
-                    journal_by_id[item['id']] = item['journalID']
-            print(f'DIAG WCL journal mapping={len(journal_by_id)}')
-        except Exception as exc:
-            print(f'WARN WCL zone metadata: {type(exc).__name__}: {exc}', file=sys.stderr)
-    else:
-        print('DIAG WCL zone ID not exposed in zoneRankings; cannot map journal media directly')
-
-    # Introspection helps identify an authoritative route to encounter media.
-    # It is a small, optional request; failures never stop the sync.
-    try:
-        schema = wcl_graphql(access,
-            '{encounter:__type(name:"Encounter"){fields{name}} '
-            'zone:__type(name:"Zone"){fields{name}}}')
-        for label in ('encounter', 'zone'):
-            names = [x.get('name') for x in as_list(as_dict(schema.get(label)).get('fields'))
-                     if isinstance(x, dict) and isinstance(x.get('name'), str)]
-            print(f'DIAG WCL schema {label} fields=' + ','.join(names[:45]))
-    except Exception as exc:
-        print(f'WARN WCL schema inspection: {type(exc).__name__}: {exc}', file=sys.stderr)
-
+    # WCL worldData.encounter(id) provides journalID directly. The previous
+    # zoneRankings payload did not expose a zone ID, so zone lookup was skipped.
+    journal_by_id = wcl_journal_ids(
+        access, [as_dict(r.get('encounter')).get('id') for r in rows]
+    )
     blizzard_access = None
     if journal_by_id:
         try:
@@ -472,7 +478,7 @@ def sync_warcraftlogs(data):
         amount = row.get('bestAmount')
         reported_metric = str(ranking.get('metric') or '').lower()
         hps_metric_ok = healing and (not reported_metric or reported_metric == 'hps')
-        hps = float(amount) if hps_metric_ok and isinstance(amount, (int, float)) and amount >= 0 else None
+        hps = float(amount) if hps_metric_ok and isinstance(amount, (int, float)) and amount > 0 else None
         if hps is None and isinstance(old.get('highestHps'), (int, float)):
             hps = old['highestHps']
         if not isinstance(percentile, (int, float)) and hps is None:
@@ -496,7 +502,7 @@ def sync_warcraftlogs(data):
     data['warcraftLogs'] = {'profileUrl': WCL_URL, 'bossParses': parses,
                            'healingMetricConfirmed': healing}
     icons = sum(bool(row.get('iconUrl')) for row in parses)
-    hps_count = sum(row.get('highestHps') is not None for row in parses)
+    hps_count = sum(isinstance(row.get('highestHps'), (int, float)) and row['highestHps'] > 0 for row in parses)
     print(f'OK warcraftLogs: bosses={len(parses)}, icons={icons}, HPS={hps_count}, healing={healing}')
 
 
