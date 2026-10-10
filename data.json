@@ -184,7 +184,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T19:31:54+00:00",
+  "updatedAt": "2026-10-10T19:36:15+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -195,7 +195,7 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 81.009,
-        "highestHps": null,
+        "highestHps": 283522.06898012,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -204,7 +204,7 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 73.1836,
-        "highestHps": null,
+        "highestHps": 319729.64387421,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -213,7 +213,7 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 70.983,
-        "highestHps": null,
+        "highestHps": 274699.30581682,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -222,7 +222,7 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 90.7747,
-        "highestHps": null,
+        "highestHps": 356319.49310837,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -231,7 +231,34 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 13.0044,
-        "highestHps": null,
+        "highestHps": 307441.77358334,
+        "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+      },
+      {
+        "name": "The Twin Fangs",
+        "encounterId": 3421,
+        "journalId": null,
+        "iconUrl": null,
+        "bestPercent": null,
+        "highestHps": 0.0,
+        "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+      },
+      {
+        "name": "The Coiled Altar",
+        "encounterId": 3429,
+        "journalId": null,
+        "iconUrl": null,
+        "bestPercent": null,
+        "highestHps": 0.0,
+        "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+      },
+      {
+        "name": "Ula'tek",
+        "encounterId": 3492,
+        "journalId": null,
+        "iconUrl": null,
+        "bestPercent": null,
+        "highestHps": 0.0,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -240,7 +267,16 @@
         "journalId": null,
         "iconUrl": null,
         "bestPercent": 78.86449636917531,
-        "highestHps": null,
+        "highestHps": 275053.30267129,
+        "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+      },
+      {
+        "name": "Kith'ix",
+        "encounterId": 3513,
+        "journalId": null,
+        "iconUrl": null,
+        "bestPercent": null,
+        "highestHps": 0.0,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       }
     ],
