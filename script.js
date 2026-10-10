@@ -3,7 +3,7 @@ function setValue(id,value){if(value===null||value===undefined||value==='')retur
 function setCards(id,items,fallback){if(!Array.isArray(items)||!items.length)return;const parent=el(id);parent.replaceChildren();for(const item of items){const card=document.createElement('article');card.className='data-card';const title=document.createElement('h4');title.textContent=item.name||'Unnamed';card.append(title);if(item.note){const note=document.createElement('p');note.textContent=item.note;card.append(note)}if(item.url&&/^https:\/\//i.test(item.url)){const link=document.createElement('a');link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='VIEW DETAILS ↗';card.append(link)}parent.append(card)}}
 function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(id).href=url}
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
- setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);
+ setValue('mounts-count',d.accountWideMountCount??d.mountCount);setValue('points',d.achievementPoints);setValue('lifetime-achievement-points',d.achievementPoints);
  const mounts=d.mounts||[];if(mounts.length)setValue('rare-count',mounts.filter(x=>x.rare).length);setCards('mount-list',mounts);setCards('achievement-list',d.achievements);if(d.achievements?.length)setValue('achievement-count',d.achievements.length);
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
@@ -202,7 +202,7 @@ function renderCharacter(character){
  const ilvl=Number(character.itemLevel);
  if(character.itemLevel!=null&&Number.isFinite(ilvl)&&ilvl>0)setValue('character-ilvl',Math.trunc(ilvl));
  const lifetime=character.lifetimeStatistics||{};
- const lifetimeValues=[['lifetime-raid-deaths',lifetime.raidDeaths],['lifetime-deaths',lifetime.totalDeaths],['lifetime-falling-deaths',lifetime.fallingDeaths],['lifetime-raid-kills',lifetime.raidBossKills]];
+ const lifetimeValues=[['lifetime-raid-deaths',lifetime.raidDeaths],['lifetime-deaths',lifetime.totalDeaths],['lifetime-falling-deaths',lifetime.fallingDeaths],['lifetime-achievement-points',null]];
  for(const [id,value] of lifetimeValues){const node=el(id);if(node&&value!=null&&Number.isFinite(Number(value))&&Number(value)>=0)node.textContent=Number(value).toLocaleString('en-US',{maximumFractionDigits:0});}
  const portrait=el('character-portrait');
  if(portrait&&typeof character.portraitUrl==='string'&&/^https:\/\//i.test(character.portraitUrl)){

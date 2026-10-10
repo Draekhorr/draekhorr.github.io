@@ -224,3 +224,14 @@ Fixed a filter bug: the word `player` previously excluded valid legacy raid coun
 ```
 
 Download the artifact from the workflow run summary and share `raid_kills_audit.json` for classification. Do not commit credentials or tokens.
+
+
+## V5.5.2 — Character banner achievement points
+
+- Replaced the unverified **Raid Boss Kills** tile in the character banner with **Achievement Points**.
+- Reads the verified existing top-level `data.json` field `achievementPoints` (Blizzard profile); does not require another API endpoint or manual values.
+- Retains **Total Deaths**, **Raid Deaths**, **Gravity Wins**, item level, Raider.IO, Warcraft Logs, Cutting Edge and historical raids.
+- Raid kill audit remains diagnostic-only; the banner no longer depends on it.
+- Frontend cache-busting script version is `5.5.2`.
+
+**Install:** Replace only root `index.html`, root `script.js`, and root `README.md`. Leave `scripts/sync_all.py`, `data.json`, `style.css`, workflow and secrets untouched. Commit and wait for GitHub Pages deployment; no API sync needed.
