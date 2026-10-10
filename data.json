@@ -200,7 +200,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T21:42:05+00:00",
+  "updatedAt": "2026-10-10T21:59:21+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -303,7 +303,9 @@
     "level": 90,
     "class": "Shaman",
     "race": "Dwarf",
-    "itemLevel": 331
+    "itemLevel": 331,
+    "specialization": "Restoration",
+    "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-main-raw.png"
   },
   "characterMountCount": 792,
   "raidProgressionByExpansion": {
