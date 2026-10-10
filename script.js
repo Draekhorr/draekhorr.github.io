@@ -28,30 +28,64 @@ function makeRaidCard(raid){
 }
 function renderRaids(data){
  const current=el('raid-list'),history=el('raid-history');
+ if(!current||!history)return;
  current.replaceChildren();history.replaceChildren();
- const raids=Array.isArray(data.raidProgression)?data.raidProgression:[];
- const grouped=new Map();let count=0;
- const byExpansion=data.raidProgressionByExpansion;
- // Use the normalized backend format when available; legacy data uses known raid names.
- if(byExpansion&&typeof byExpansion==='object'){
-  // Still use legacy entries for now unless a recognizable structured raids array exists.
-  // This avoids silently dropping raids from differently shaped API sync versions.
- }
- for(const raid of raids){
-  const key=String(raid.name||'').trim().toLowerCase();const meta=RAID_MAP[key];
-  if(meta?.current){current.append(makeRaidCard(raid));count++;continue}
-  const expansion=meta?.expansion||'Unclassified raids';const season=meta?.season||'Season unknown';
+ const grouped=new Map(), seen=new Set();
+ const add=(expansion,season,raid)=>{
+  if(!raid||!raid.name)return;
+  const key=[expansion,season,raid.name].join('|').toLowerCase();
+  if(seen.has(key))return;
+  seen.add(key);
   if(!grouped.has(expansion))grouped.set(expansion,new Map());
-  const seasons=grouped.get(expansion);if(!seasons.has(season))seasons.set(season,[]);
+  const seasons=grouped.get(expansion);
+  if(!seasons.has(season))seasons.set(season,[]);
   seasons.get(season).push(raid);
+ };
+ const by=data.raidProgressionByExpansion||{};
+ const normalizedCurrent=by.currentSeason?.raids;
+ const legacy=Array.isArray(data.raidProgression)?data.raidProgression:[];
+ const currentRaids=Array.isArray(normalizedCurrent)&&normalizedCurrent.length?normalizedCurrent:legacy.filter(r=>RAID_MAP[String(r.name||'').trim().toLowerCase()]?.current);
+ for(const raid of currentRaids)current.append(makeRaidCard(raid));
+ if(!currentRaids.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No verified current-season raid progress available.';current.append(p)}
+ if(el('raid-current-season'))el('raid-current-season').textContent=(by.currentSeason?.seasonName||data.raiderIo?.currentSeasonName||'CURRENT SEASON').toUpperCase();
+ // Backend expansion history: expansion -> [{seasonName, raids}].
+ const historyData=by.history||{};
+ for(const [expansion,groups] of Object.entries(historyData)){
+  if(Array.isArray(groups))for(const group of groups){
+   if(!group||!Array.isArray(group.raids))continue;
+   for(const raid of group.raids)add(expansion,group.seasonName||'Historical raids',raid);
+  }
  }
- if(!count){const p=document.createElement('p');p.className='empty-state';p.textContent='No current season raid progress available.';current.append(p)}
- for(const [expansion,seasons] of grouped){
+ // Raw Blizzard historical data: expansion -> [raid]. Also works if grouped history is empty.
+ const historical=data.historicalRaidProgression||{};
+ for(const [expansion,raids] of Object.entries(historical)){
+  if(!Array.isArray(raids))continue;
+  for(const raid of raids){
+   if(!raid||!['MYTHIC','HEROIC'].includes(String(raid.difficulty||'').toUpperCase()))continue;
+   if(expansion==='Midnight')continue;
+   add(expansion,'Historical raids',raid);
+  }
+ }
+ // Fallback for old data.json, until the backend populates historical data.
+ for(const raid of legacy){
+  const key=String(raid.name||'').trim().toLowerCase(),meta=RAID_MAP[key];
+  if(meta?.current)continue;
+  add(meta?.expansion||'Unclassified raids',meta?.season||'Season unknown',raid);
+ }
+ const priority=['Midnight','The War Within','Dragonflight','Shadowlands','Battle for Azeroth','Legion','Warlords of Draenor','Mists of Pandaria','Cataclysm','Wrath of the Lich King','The Burning Crusade','Classic','Unclassified raids'];
+ for(const expansion of [...grouped.keys()].sort((a,b)=>{
+  const ia=priority.indexOf(a),ib=priority.indexOf(b);
+  return (ia<0?999:ia)-(ib<0?999:ib)||a.localeCompare(b);
+ })){
   const details=document.createElement('details');details.className='expansion-dropdown';
   const summary=document.createElement('summary');summary.textContent=expansion;details.append(summary);
-  for(const [season,entries] of seasons){const h=document.createElement('h5');h.textContent=season;details.append(h);
-   const list=document.createElement('div');list.className='raid-items';for(const raid of entries)list.append(makeRaidCard(raid));details.append(list)}
+  for(const [season,entries] of grouped.get(expansion)){
+   const h=document.createElement('h5');h.textContent=season;details.append(h);
+   const list=document.createElement('div');list.className='raid-items';
+   for(const raid of entries)list.append(makeRaidCard(raid));
+   details.append(list);
+  }
   history.append(details);
  }
- if(!grouped.size){const p=document.createElement('p');p.className='empty-state';p.textContent='No historical raid data available yet.';history.append(p)}
+ if(!grouped.size){const p=document.createElement('p');p.className='empty-state';p.textContent='Historical raids will appear after the Blizzard sync returns confirmed Mythic/Heroic progression.';history.append(p)}
 }

@@ -1,234 +1,306 @@
 #!/usr/bin/env python3
-"""Best-effort API sync. No third-party dependencies. Never writes credentials."""
-import base64, datetime, json, os, pathlib, re, sys, urllib.parse, urllib.request
-ROOT = pathlib.Path(__file__).resolve().parents[1]
+"""Draekhorr WoW Legacy sync. Secrets are read only from environment."""
+import base64
+import datetime as dt
+import json
+import os
+from pathlib import Path
+import re
+import sys
+import urllib.parse
+import urllib.request
+
+ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data.json'
 REGION, REALM, NAME = 'eu', 'draenor', 'draekhorr'
-HEADERS = {'User-Agent': 'DraekhorrWoWLegacy/1.0 (personal non-commercial fan site)'}
+CURRENT, PREVIOUS = 'season-mn-2', 'season-mn-1'
+RIO_URL = f'https://raider.io/characters/{REGION}/{REALM}/Draekhorr?season={CURRENT}'
+WCL_URL = f'https://www.warcraftlogs.com/character/{REGION}/{REALM}/{NAME}'
+USER_AGENT = 'DraekhorrWoWLegacy/4.2'
 
-def request(url, headers=None, body=None):
-    h = {**HEADERS, **(headers or {})}
-    if isinstance(body, dict):
-        body = urllib.parse.urlencode(body).encode()
-        h.setdefault('Content-Type', 'application/x-www-form-urlencoded')
-    req = urllib.request.Request(url, data=body, headers=h)
-    with urllib.request.urlopen(req, timeout=25) as response:
-        return json.load(response)
+# These are known season associations, not inferred from raid order.
+RAID_SEASONS = {
+    'the-venomous-abyss': (CURRENT, 'The Venomous Abyss'),
+    'the-tidebound-grotto': (CURRENT, 'The Tidebound Grotto'),
+    'sporefall': (PREVIOUS, 'Sporefall'),
+    'tier-mn-1': (PREVIOUS, 'Tier MN 1 (unresolved raid label)'),
+}
 
-def update(section, fn, data):
-    try:
-        changes = fn()
-        if changes is not None:
-            if section is None:
-                if 'raiderIo' in changes and isinstance(changes['raiderIo'], dict):
-                    changes['raiderIo'] = {**(data.get('raiderIo') or {}), **changes['raiderIo']}
-                data.update(changes)
-            else:
-                data[section] = {**data.get(section, {}), **changes}
-            print(f'OK {section or "blizzard"}', flush=True)
-            return True
-    except Exception as exc:
-        print(f'WARN {section or "blizzard"}: {type(exc).__name__}: {exc}', file=sys.stderr, flush=True)
-    return False
 
-def rio():
-    """Fetch explicit season scores; never confuse highest historical with current."""
-    fields = ("mythic_plus_scores_by_season:season-mn-2,"
-              "mythic_plus_scores_by_season:season-mn-1,"
-              "mythic_plus_best_runs,raid_progression")
-    q = urllib.parse.urlencode({'region': REGION, 'realm': REALM, 'name': NAME, 'fields': fields})
-    obj = request('https://raider.io/api/v1/characters/profile?' + q)
-    seasons = obj.get('mythic_plus_scores_by_season') or []
-    print('DIAG RIO season entries:', [
-        {'season': str(x.get('season')), 'score_keys': list((x.get('scores') or {}).keys())}
-        for x in seasons if isinstance(x, dict)
-    ], flush=True)
-    def score(season_id):
-        for row in seasons:
-            if not isinstance(row, dict):
+def http_json(url, headers=None, form=None, json_body=None):
+    hdr = {'User-Agent': USER_AGENT, **(headers or {})}
+    body = None
+    if form is not None:
+        body = urllib.parse.urlencode(form).encode()
+        hdr['Content-Type'] = 'application/x-www-form-urlencoded'
+    if json_body is not None:
+        body = json.dumps(json_body).encode()
+        hdr['Content-Type'] = 'application/json'
+    req = urllib.request.Request(url, data=body, headers=hdr)
+    with urllib.request.urlopen(req, timeout=35) as resp:
+        return json.load(resp)
+
+
+def oauth(url, id_name, secret_name):
+    cid, secret = os.getenv(id_name), os.getenv(secret_name)
+    if not cid or not secret:
+        raise RuntimeError('Missing credentials for ' + id_name)
+    basic = base64.b64encode(f'{cid}:{secret}'.encode()).decode()
+    return http_json(url, {'Authorization': 'Basic ' + basic},
+                     form={'grant_type': 'client_credentials'})['access_token']
+
+
+def as_dict(value):
+    return value if isinstance(value, dict) else {}
+
+
+def as_list(value):
+    return value if isinstance(value, list) else []
+
+
+def normalize(value):
+    return re.sub(r'[^a-z0-9]+', '-', str(value).lower()).strip('-')
+
+
+def score_for(payload, season):
+    for row in as_list(payload.get('mythic_plus_scores_by_season')):
+        if as_dict(row).get('season') == season:
+            val = as_dict(row.get('scores')).get('all')
+            if isinstance(val, (float, int)):
+                return val
+    return None
+
+
+def sync_rio(data):
+    fields = ','.join([
+        f'mythic_plus_scores_by_season:{CURRENT}',
+        f'mythic_plus_scores_by_season:{PREVIOUS}',
+        'mythic_plus_best_runs', 'raid_progression'
+    ])
+    url = 'https://raider.io/api/v1/characters/profile?' + urllib.parse.urlencode({
+        'region': REGION, 'realm': REALM, 'name': NAME, 'fields': fields
+    })
+    payload = http_json(url)
+    rio = dict(as_dict(data.get('raiderIo')))
+    current_score = score_for(payload, CURRENT)
+    previous_score = score_for(payload, PREVIOUS)
+    rio.update({'currentSeason': CURRENT, 'currentSeasonName': 'Midnight Season 2',
+                'previousSeason': PREVIOUS, 'previousSeasonName': 'Midnight Season 1',
+                'profileUrl': RIO_URL})
+    if current_score is not None:
+        rio['currentSeasonScore'] = current_score
+        rio['mythicPlusScore'] = current_score
+    else:
+        print('WARN RIO current score not supplied; preserving last known value')
+    if previous_score is not None:
+        rio['previousSeasonScore'] = previous_score
+    valid_scores = [s for s in (current_score, previous_score, rio.get('bestHistoricalScore'))
+                    if isinstance(s, (int, float))]
+    if valid_scores:
+        rio['bestHistoricalScore'] = max(valid_scores)
+    if isinstance(payload.get('mythic_plus_best_runs'), list):
+        runs = []
+        for run in payload['mythic_plus_best_runs']:
+            run = as_dict(run)
+            link = run.get('url') or ''
+            if f'/{CURRENT}/' not in link:
                 continue
-            season = row.get('season')
-            slug = season.get('slug') if isinstance(season, dict) else season
-            if slug == season_id:
-                return (row.get('scores') or {}).get('all')
-        return None
-    current_score = score('season-mn-2')
-    previous_score = score('season-mn-1')
-    if current_score is None:
-        print('WARN RIO current season score unavailable; preserving prior score; raid data will still update', flush=True)
-    runs = []
-    for r in (obj.get('mythic_plus_best_runs') or []):
-        url = r.get('url') or ''
-        if '/season-mn-2/' not in url:
-            continue
-        runs.append({'name': f"{r.get('dungeon', 'Dungeon')} +{r.get('mythic_level', '?')}",
-                     'note': f"Score: {r.get('score', 'N/A')} | Timed: {r.get('is_completed_within_time', r.get('num_keystone_upgrades', 0) > 0)}",
-                     'url': url})
-        if len(runs) >= 8:
-            break
-    # Raider.IO raid_progression is a mixed-season map. Use an explicit,
-    # auditable slug allowlist instead of assuming all entries are current.
-    # Unknown raids are retained separately for review, not misclassified.
-    raid_meta = {
-        'the-venomous-abyss': ('The Venomous Abyss', 'season-mn-2'),
-        'the-tidebound-grotto': ('The Tidebound Grotto', 'season-mn-2'),
-        'sporefall': ('Sporefall', 'season-mn-1'),
-        'tier-mn-1': ('Midnight Season 1 Raid (name unverified)', 'season-mn-1'),
-    }
-    current, previous, unknown = [], [], []
-    profile_url = 'https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2'
-    for slug, progress in (obj.get('raid_progression') or {}).items():
-        if not isinstance(progress, dict):
-            continue
-        normalized = re.sub(r'[^a-z0-9]+', '-', slug.lower()).strip('-')
-        name, season = raid_meta.get(normalized, (slug.replace('-', ' ').title(), None))
-        summary = progress.get('summary')
-        entry = {'name': name, 'note': summary or 'Progress unavailable',
-                 'url': profile_url, 'sourceSlug': slug}
-        if season == 'season-mn-2':
-            current.append(entry)
-        elif season == 'season-mn-1':
-            previous.append(entry)
+            runs.append({'name': f"{run.get('dungeon', 'Dungeon')} +{run.get('mythic_level', '?')}",
+                         'note': f"Score: {run.get('score', 'N/A')} | Timed: {run.get('is_completed_within_time', 'N/A')}",
+                         'url': link})
+        rio['bestRuns'] = runs
+    data['raiderIo'] = rio
+    raw = as_dict(payload.get('raid_progression'))
+    current_raids, previous_raids, unknown = [], [], []
+    for slug, progress in raw.items():
+        progress = as_dict(progress)
+        key = normalize(slug)
+        season, name = RAID_SEASONS.get(key, (None, str(slug).replace('-', ' ').title()))
+        entry = {'name': name, 'note': progress.get('summary') or '',
+                 'url': RIO_URL, 'source': 'Raider.IO', 'sourceSlug': slug}
+        if season == CURRENT:
+            current_raids.append(entry)
+        elif season == PREVIOUS:
+            previous_raids.append(entry)
         else:
             unknown.append(entry)
-    if not current:
-        print('WARN RIO no classified current raids; preserving previous raid data', flush=True)
-    # Old frontend expects raidProgression to be a flat list.
-    # It now contains ONLY the explicitly classified current-season raids.
-    result = {'raiderIo': {'currentSeason': 'season-mn-2',
-                           'currentSeasonName': 'Midnight Season 2',
-                           **({'currentSeasonScore': current_score, 'mythicPlusScore': current_score} if current_score is not None else {}),
-                           'previousSeason': 'season-mn-1',
-                           'previousSeasonName': 'Midnight Season 1',
-                           **({'previousSeasonScore': previous_score} if previous_score is not None else {}),
-                           'bestRuns': runs,
-                           'profileUrl': profile_url},
-              'raidProgression': current,
-              'raidProgressionByExpansion': {
-                  'currentSeason': {'expansion': 'Midnight', 'season': 'season-mn-2',
-                                    'seasonName': 'Midnight Season 2', 'raids': current},
-                  'history': {'Midnight': [
-                      {'season': 'season-mn-1', 'seasonName': 'Midnight Season 1', 'raids': previous}]}},
-              'unclassifiedRaidProgression': unknown,
-              'raidSourceUrl': profile_url}
-    if not current:
-        result.pop('raidProgression', None)
-        result.pop('raidProgressionByExpansion', None)
+    if raw:
+        data['raidProgression'] = current_raids
+        data['unclassifiedRaidProgression'] = unknown
+    # Always write the season grouping even if the API's raid data is absent.
+    progression = dict(as_dict(data.get('raidProgressionByExpansion')))
+    progression['currentSeason'] = {'expansion': 'Midnight', 'season': CURRENT,
+                                    'seasonName': 'Midnight Season 2',
+                                    'raids': current_raids if raw else as_list(data.get('raidProgression'))}
+    history = dict(as_dict(progression.get('history')))
+    history['Midnight'] = [{'season': PREVIOUS, 'seasonName': 'Midnight Season 1',
+                            'raids': previous_raids}]
+    progression['history'] = history
+    data['raidProgressionByExpansion'] = progression
+    data['raidSourceUrl'] = RIO_URL
+    print(f'OK raiderio; current score={current_score}; previous score={previous_score}; current raids={len(current_raids)}')
+
+
+def select_difficulty(modes):
+    """Prefer Mythic if present, otherwise Heroic. Never fall back to Heroic if Mythic exists."""
+    available = {}
+    for mode in as_list(modes):
+        mode = as_dict(mode)
+        difficulty = as_dict(mode.get('difficulty'))
+        kind = str(difficulty.get('type') or difficulty.get('name') or '').upper()
+        if 'MYTHIC' in kind:
+            available['MYTHIC'] = mode
+        elif 'HEROIC' in kind:
+            available['HEROIC'] = mode
+    if 'MYTHIC' in available:
+        return 'MYTHIC', available['MYTHIC']
+    if 'HEROIC' in available:
+        return 'HEROIC', available['HEROIC']
+    return None, None
+
+
+def parse_encounters(payload):
+    """Blizzard: expansions[].instances[].modes[].progress is an object."""
+    result = {}
+    for expansion in as_list(as_dict(payload).get('expansions')):
+        expansion = as_dict(expansion)
+        exp_name = as_dict(expansion.get('expansion')).get('name')
+        if not exp_name:
+            continue
+        for raid in as_list(expansion.get('instances')):
+            raid = as_dict(raid)
+            info = as_dict(raid.get('instance'))
+            raid_name = info.get('name')
+            if not raid_name:
+                continue
+            difficulty, mode = select_difficulty(raid.get('modes'))
+            if not mode:
+                continue
+            progress = as_dict(mode.get('progress'))
+            completed = progress.get('completed_count')
+            total = progress.get('total_count')
+            if not isinstance(completed, int) or not isinstance(total, int) or total <= 0:
+                print(f'WARN Blizzard raid progress missing counts: {raid_name} ({difficulty})')
+                continue
+            # Don't imply a zero is a confirmed run. No boss kills -> omit from history.
+            if completed <= 0:
+                continue
+            bosses = []
+            for row in as_list(progress.get('encounters')):
+                row = as_dict(row)
+                encounter = as_dict(row.get('encounter'))
+                if encounter.get('name'):
+                    bosses.append({'name': encounter['name'],
+                                   'completedCount': row.get('completed_count'),
+                                   'lastKillTimestamp': row.get('last_kill_timestamp')})
+            entry = {'name': raid_name, 'difficulty': difficulty,
+                     'mythicKills': completed if difficulty == 'MYTHIC' else None,
+                     'heroicKills': completed if difficulty == 'HEROIC' else None,
+                     'completedBosses': completed, 'totalBosses': total,
+                     'note': f'{completed}/{total} {"M" if difficulty == "MYTHIC" else "H"}',
+                     'source': 'Blizzard', 'bosses': bosses}
+            result.setdefault(exp_name, []).append(entry)
     return result
 
-def token(url, cid, secret):
-    auth = base64.b64encode(f'{cid}:{secret}'.encode()).decode()
-    return request(url, {'Authorization': 'Basic ' + auth}, {'grant_type': 'client_credentials'})['access_token']
 
-def blizzard():
-    cid, secret = os.getenv('BLIZZARD_CLIENT_ID'), os.getenv('BLIZZARD_CLIENT_SECRET')
-    if not cid or not secret: raise RuntimeError('Missing Blizzard credentials')
-    access = token('https://oauth.battle.net/token', cid, secret)
+def sync_blizzard(data):
+    access = oauth('https://oauth.battle.net/token', 'BLIZZARD_CLIENT_ID', 'BLIZZARD_CLIENT_SECRET')
+    base = f'https://eu.api.blizzard.com/profile/wow/character/{REALM}/{NAME}'
     headers = {'Authorization': 'Bearer ' + access}
     def get(path):
-        return request('https://eu.api.blizzard.com' + path + ('&' if '?' in path else '?') + 'namespace=profile-eu&locale=en_GB', headers)
-    changes = {}
-    profile = get(f'/profile/wow/character/{REALM}/{NAME}')
-    changes['character'] = {'name': profile.get('name'), 'level': profile.get('level'),
-                            'class': (profile.get('character_class') or {}).get('name'),
-                            'race': (profile.get('race') or {}).get('name'),
-                            'itemLevel': profile.get('equipped_item_level')}
-    changes['achievementPoints'] = profile.get('achievement_points')
+        return http_json(base + path + '?namespace=profile-eu&locale=en_GB', headers)
+    profile = get('')
+    data['character'] = {'name': profile.get('name'), 'level': profile.get('level'),
+                         'class': as_dict(profile.get('character_class')).get('name'),
+                         'race': as_dict(profile.get('race')).get('name'),
+                         'itemLevel': profile.get('equipped_item_level')}
+    data['achievementPoints'] = profile.get('achievement_points')
     try:
-        achievements = get(f'/profile/wow/character/{REALM}/{NAME}/achievements')
-        ce = []
-        for item in achievements.get('achievements', []):
-            a = item.get('achievement') or {}
-            title = a.get('name') or ''
-            if re.search(r'^Cutting Edge:', title, re.I):
-                ce.append({'name': title, 'tierId': str(a.get('id')), 'verified': True,
-                           'note': str(item.get('completed_timestamp', '')),
-                           'url': f"https://www.wowhead.com/achievement={a.get('id')}"})
-        changes['cuttingEdgeAchievements'] = ce
+        ach = get('/achievements')
+        cutting = []
+        for row in as_list(ach.get('achievements')):
+            row = as_dict(row)
+            a = as_dict(row.get('achievement'))
+            name = a.get('name') or ''
+            if name.lower().startswith('cutting edge:'):
+                aid = a.get('id')
+                timestamp = row.get('completed_timestamp')
+                # Keep raw API timestamps; avoid treating future timestamps as verified.
+                now_ms = int(dt.datetime.now(dt.timezone.utc).timestamp() * 1000)
+                verified = isinstance(timestamp, (int, float)) and 0 < timestamp <= now_ms
+                cutting.append({'name': name, 'tierId': str(aid), 'verified': verified,
+                                'note': str(timestamp or ''),
+                                'url': f'https://www.wowhead.com/achievement={aid}'})
+        data['cuttingEdgeAchievements'] = cutting
     except Exception as exc:
-        print(f'WARN Blizzard achievements: {exc}', file=sys.stderr)
-    # Public character mount collection is NOT necessarily the full Battle.net account-wide collection.
+        print(f'WARN Blizzard achievements: {type(exc).__name__}: {exc}', file=sys.stderr)
     try:
-        mounts = get(f'/profile/wow/character/{REALM}/{NAME}/collections/mounts')
-        entries = mounts.get('mounts') or []
-        changes['characterMountCount'] = len(entries)
-        # Never populate accountWideMountCount from character collection.
+        mounts = get('/collections/mounts')
+        if isinstance(mounts.get('mounts'), list):
+            data['characterMountCount'] = len(mounts['mounts'])
     except Exception as exc:
-        print(f'WARN Blizzard mounts: {exc}', file=sys.stderr)
-    # Diagnostic-only historical encounters request. Never print response values,
-    # URLs, tokens, headers, character metadata, or raw JSON.
+        print(f'WARN Blizzard mounts: {type(exc).__name__}: {exc}', file=sys.stderr)
     try:
-        encounters = get(f'/profile/wow/character/{REALM}/{NAME}/encounters/raids')
-        if not isinstance(encounters, dict):
-            print('DIAG BLIZZARD encounters root type:', type(encounters).__name__, flush=True)
-        else:
-            print('DIAG BLIZZARD encounters root keys:', sorted(encounters.keys()), flush=True)
-            expansions = encounters.get('expansions')
-            print('DIAG BLIZZARD expansions type:', type(expansions).__name__, flush=True)
-            if isinstance(expansions, list):
-                print('DIAG BLIZZARD expansions count:', len(expansions), flush=True)
-                for i, item in enumerate(expansions[:3]):
-                    print('DIAG BLIZZARD expansion', i, 'type:', type(item).__name__,
-                          'keys:', sorted(item.keys()) if isinstance(item, dict) else '(not object)', flush=True)
-                    if isinstance(item, dict):
-                        instances = item.get('instances')
-                        print('DIAG BLIZZARD instances type:', type(instances).__name__, flush=True)
-                        if isinstance(instances, list) and instances:
-                            first = instances[0]
-                            print('DIAG BLIZZARD first instance type:', type(first).__name__,
-                                  'keys:', sorted(first.keys()) if isinstance(first, dict) else '(not object)', flush=True)
-                            if isinstance(first, dict):
-                                modes = first.get('modes')
-                                print('DIAG BLIZZARD modes type:', type(modes).__name__, flush=True)
-                                if isinstance(modes, list) and modes:
-                                    mode = modes[0]
-                                    print('DIAG BLIZZARD first mode type:', type(mode).__name__,
-                                          'keys:', sorted(mode.keys()) if isinstance(mode, dict) else '(not object)', flush=True)
-            else:
-                print('DIAG BLIZZARD expansions is not a list; historical parser intentionally skipped', flush=True)
+        encounters = get('/encounters/raids')
+        history = parse_encounters(encounters)
+        print(f'OK Blizzard historical raids: {sum(map(len, history.values()))} raids across {len(history)} expansions')
+        data['historicalRaidProgression'] = history
+        progression = dict(as_dict(data.get('raidProgressionByExpansion')))
+        grouped = dict(as_dict(progression.get('history')))
+        for expansion, raids in history.items():
+            if normalize(expansion) == 'midnight':
+                continue
+            grouped[expansion] = [{'season': None, 'seasonName': 'Historical Raids', 'raids': raids}]
+        progression['history'] = grouped
+        data['raidProgressionByExpansion'] = progression
     except Exception as exc:
-        # HTTP errors may contain sensitive request details; log only status/type.
-        status = getattr(exc, 'code', None)
-        print('WARN Blizzard historical encounters:', type(exc).__name__,
-              'HTTP status:', status if isinstance(status, int) else 'n/a', flush=True)
-    return changes
+        print(f'WARN Blizzard historical raids: {type(exc).__name__}: {exc}', file=sys.stderr)
+    print('OK blizzard')
 
-def wcl():
-    cid, secret = os.getenv('WARCRAFTLOGS_CLIENT_ID'), os.getenv('WARCRAFTLOGS_CLIENT_SECRET')
-    if not cid or not secret: raise RuntimeError('Missing Warcraft Logs credentials')
-    access = token('https://www.warcraftlogs.com/oauth/token', cid, secret)
-    query = '''query($name:String!, $server:String!, $region:String!) {
-      characterData { character(name:$name, serverSlug:$server, serverRegion:$region) {
-        id name zoneRankings } } }'''
-    body = json.dumps({'query': query, 'variables': {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}}).encode()
-    req = urllib.request.Request('https://www.warcraftlogs.com/api/v2/client', data=body,
-             headers={**HEADERS, 'Authorization': 'Bearer ' + access, 'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=30) as response: result = json.load(response)
-    if result.get('errors'): raise RuntimeError(str(result['errors'])[:500])
-    character = ((result.get('data') or {}).get('characterData') or {}).get('character')
-    if not character: raise RuntimeError('Character not found in Warcraft Logs')
-    ranking = character.get('zoneRankings') or {}
-    # GraphQL JSON scalar varies by zone and encounter; do not mislabel it as a lifetime average.
-    rankings = ranking.get('rankings') or [] if isinstance(ranking, dict) else []
-    cards = []
-    for row in rankings[:12]:
-        if not isinstance(row, dict) or row.get('rankPercent') is None: continue
-        cards.append({'name': row.get('encounter', {}).get('name', 'Boss') if isinstance(row.get('encounter'), dict) else 'Boss',
-                      'note': f"Rank percentile: {row.get('rankPercent')}",
-                      'url': f"https://www.warcraftlogs.com/character/eu/{REALM}/{NAME}"})
-    return {'profileUrl': f'https://www.warcraftlogs.com/character/eu/{REALM}/{NAME}',
-            'bestPerformanceAverage': ranking.get('bestPerformanceAverage') if isinstance(ranking, dict) else None,
-            'medianPerformanceAverage': ranking.get('medianPerformanceAverage') if isinstance(ranking, dict) else None,
-            'bossParses': cards}
+
+def sync_warcraftlogs(data):
+    access = oauth('https://www.warcraftlogs.com/oauth/token',
+                   'WARCRAFTLOGS_CLIENT_ID', 'WARCRAFTLOGS_CLIENT_SECRET')
+    query = '''query($name:String!,$server:String!,$region:String!){characterData{character(name:$name,serverSlug:$server,serverRegion:$region){id name zoneRankings}}}'''
+    result = http_json('https://www.warcraftlogs.com/api/v2/client',
+                       {'Authorization': 'Bearer ' + access},
+                       json_body={'query': query, 'variables': {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}})
+    if result.get('errors'):
+        raise RuntimeError('Warcraft Logs GraphQL errors: ' + str(result['errors'])[:400])
+    char = as_dict(as_dict(as_dict(result.get('data')).get('characterData')).get('character'))
+    if not char:
+        raise RuntimeError('Character not found in Warcraft Logs')
+    ranking = as_dict(char.get('zoneRankings'))
+    parses = []
+    for row in as_list(ranking.get('rankings')):
+        row = as_dict(row)
+        pct = row.get('rankPercent')
+        if not isinstance(pct, (int, float)):
+            continue
+        name = as_dict(row.get('encounter')).get('name') or 'Boss'
+        parses.append({'name': name, 'note': f'Rank percentile: {pct}', 'url': WCL_URL})
+    data['warcraftLogs'] = {'profileUrl': WCL_URL,
+                            'bestPerformanceAverage': ranking.get('bestPerformanceAverage'),
+                            'medianPerformanceAverage': ranking.get('medianPerformanceAverage'),
+                            'bossParses': parses}
+    print('OK warcraftLogs')
+
 
 def main():
-    data = json.loads(OUT.read_text()) if OUT.exists() else {}
-    results = [update(None, rio, data), update('warcraftLogs', wcl, data), update(None, blizzard, data)]
-    if any(results):
-        data['updatedAt'] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
-        OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n')
-        print('Wrote data.json')
-    else:
-        print('ERROR all APIs failed; preserving previous data.json', file=sys.stderr)
-        sys.exit(1)
-if __name__ == '__main__': main()
+    data = json.loads(OUT.read_text(encoding='utf-8')) if OUT.exists() else {}
+    successes = 0
+    for name, function in [('raiderio', sync_rio), ('warcraftLogs', sync_warcraftlogs), ('blizzard', sync_blizzard)]:
+        try:
+            function(data)
+            successes += 1
+        except Exception as exc:
+            print(f'WARN {name}: {type(exc).__name__}: {exc}', file=sys.stderr)
+    if successes == 0:
+        raise SystemExit('ERROR: All API integrations failed; data.json untouched')
+    data['updatedAt'] = dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
+    OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print('Wrote data.json')
+
+
+if __name__ == '__main__':
+    main()
