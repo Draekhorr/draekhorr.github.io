@@ -110,7 +110,7 @@ function renderWclBosses(items){
   const pct=document.createElement('td');pct.className='wcl-value';
   let score=Number.isFinite(Number(boss.bestPercent))&&boss.bestPercent!==null&&boss.bestPercent!==undefined?Number(boss.bestPercent):null;
   if(score===null){const match=String(boss.note||'').match(/Rank percentile:\s*([\d.]+)/i);if(match)score=Number(match[1]);}
-  pct.textContent=score===null?'—':score.toFixed(1)+'%';
+  pct.textContent=score===null||!Number.isFinite(score)?'—':String(Math.trunc(Math.max(0,Math.min(100,score))));
   if(score!==null){pct.classList.add(score>=95?'parse-legendary':score>=75?'parse-epic':score>=50?'parse-rare':score>=25?'parse-uncommon':'parse-common');}
   const hps=document.createElement('td');hps.className='wcl-value wcl-hps';
   const n=boss.highestHps == null ? NaN : Number(boss.highestHps);hps.textContent=Number.isFinite(n)&&n>0?Math.round(n).toLocaleString('en-US'):'—';
