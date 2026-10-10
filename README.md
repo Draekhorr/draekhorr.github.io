@@ -1,9 +1,7 @@
-# Draekhorr API Sync V3
+# Draekhorr V4.2 Frontend Fix
 
-Replace ONLY `scripts/sync_all.py` in the repository. Keep `.github/workflows/sync.yml`, secrets, and existing `data.json` unchanged. Then run **Actions > Sync WoW APIs > Run workflow**.
+Upload **index.html**, **script.js**, and **style.css** to the repository root, replacing the existing files. `avatar.png` is included only for convenience. Do not overwrite your live `data.json`, `.github/workflows/sync.yml`, or `scripts/sync_all.py`.
 
-This version separates explicitly recognized Midnight Season 2 raids from Season 1 raids. `raidProgression` (legacy frontend field) contains current raids only. `raidProgressionByExpansion` provides structured data for future dropdowns. `unclassifiedRaidProgression` retains unknown raid slugs without guessing their season. Other expansions are not populated without verifiable progression data.
+This version shows only The Venomous Abyss and The Tidebound Grotto under current Midnight Season 2; Sporefall and Tier MN 1 appear in the Midnight > Season 1 dropdown. Unknown raid names are grouped under Unclassified raids rather than incorrectly assigned. Current Mythic+ score prefers `raiderIo.currentSeasonScore`.
 
-The season mapping is currently an explicit allowlist based on your confirmed raids, **not automatic season detection**. Review/update the mapping when seasons change. `tier-mn-1` is left with an unverified display name. Cutting Edge data is unchanged. Existing V4 frontend will only use `raidProgression`; expansion dropdowns require a separate frontend update.
-
-The script has passed Python syntax compilation, but has not been run against your private API credentials. If any API fails, inspect Actions logs. GitHub Actions scheduled sync can overwrite manual edits to data.json.
+This is a frontend-only fix using known raid names. It does not fetch full historical progression from external APIs.
