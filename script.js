@@ -5,7 +5,7 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderGuildHeader(d.guild);renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -207,4 +207,16 @@ function renderCharacter(character,achievementPoints){
   portrait.onerror=()=>{portrait.onerror=null;portrait.src='avatar.png';};
   portrait.src=character.portraitUrl;
  }
+}
+
+// Header guild link is populated only from verified guild metadata in data.json.
+function renderGuildHeader(guild){
+ const wrap=el('guild-header'),link=el('guild-link');
+ if(!wrap||!link)return;
+ wrap.hidden=true;
+ if(!guild||typeof guild.name!=='string'||!guild.name.trim())return;
+ if(typeof guild.url!=='string'||!/^https:\/\/raider\.io\/guilds\//i.test(guild.url))return;
+ link.textContent=guild.name.trim()+' ↗';
+ link.href=guild.url;
+ wrap.hidden=false;
 }

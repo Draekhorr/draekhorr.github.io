@@ -126,3 +126,17 @@ The website now uses a fluid container and adaptive typography, with responsive 
 **Files changed:** `index.html` (cache-busting version), `style.css` (responsive overrides), `README.md`. `script.js` is included for compatibility with the dynamic raid engine but is unchanged; backend, API credentials and workflow schedules are untouched.
 
 **Deployment:** Replace the included root files, commit, wait for GitHub Pages, and refresh. No API sync required. Recommended visual checks at 320, 375, 430, 768, 1024, 1440 and 1920 CSS pixels. Real-browser visual validation remains necessary.
+
+
+## V1.1.2 - Ultrawide hero refinement
+
+The desktop hero at viewport widths of 1600px and above uses a smaller heading, tighter spacing, and a maximum 450px artwork size. The existing mobile and tablet layout is unchanged. CSS cache version updated to `1.1.1`. No API or sync changes are required.
+
+
+## V1.1.2 — Dynamic Guild Header
+
+The upper-left navigation now shows **DRAEKHORR · Current Guild ↗** when the Raider.IO public character API returns guild membership. The guild name links to its Raider.IO guild profile. If guild metadata is unavailable, the header shows only DRAEKHORR.
+
+The additional `scripts/sync_guild.py` runs after the existing health-monitored WoW sync, preserving all existing API data and monitoring. It updates only `data.json.guild`. The GitHub Actions workflow commits this field with the other synced data every six hours. No new credentials are required.
+
+**Deployment:** Upload `index.html`, `script.js`, `style.css`, `README.md`, `scripts/sync_guild.py` and `.github/workflows/sync.yml` preserving directories. Run **Sync WoW APIs** once to populate the guild field, then wait for Pages deployment. The API must expose guild membership; if not, the fallback is the character name only. The guild URL is constructed from returned guild metadata if a profile URL is not provided.
