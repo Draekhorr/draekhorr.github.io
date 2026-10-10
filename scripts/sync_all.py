@@ -345,15 +345,16 @@ def sync_blizzard(data):
     try:
         media = get('/character-media')
         assets = as_list(media.get('assets'))
-        # Prefer an in-game character bust over a tiny avatar when available.
+        # Prefer the Blizzard headshot for this compact square portrait.
+        # Full-body/inset renders become too small in a narrow banner.
         candidates = {}
         for asset in assets:
             asset = as_dict(asset)
             url = asset.get('value')
             if isinstance(url, str) and url.startswith('https://'):
                 candidates[str(asset.get('key') or '').lower()] = url
-        portrait = (candidates.get('inset') or candidates.get('main-raw')
-                    or candidates.get('main') or candidates.get('avatar'))
+        portrait = (candidates.get('avatar') or candidates.get('inset')
+                    or candidates.get('main-raw') or candidates.get('main'))
         if portrait:
             character['portraitUrl'] = portrait
             print('OK Blizzard character portrait')
@@ -361,6 +362,37 @@ def sync_blizzard(data):
             print('WARN Blizzard character media: no usable portrait asset')
     except Exception as exc:
         print(f'WARN Blizzard character media: {type(exc).__name__}: {exc}', file=sys.stderr)
+
+    # V5.4: diagnostic-only. Blizzard does not guarantee these lifetime counters.
+    # Never guess totals, never publish unverified data, never log credentials.
+    try:
+        stats_payload = get('/achievements/statistics')
+        candidates = []
+        def walk_statistics(node, depth=0):
+            if depth > 14:
+                return
+            if isinstance(node, list):
+                for child in node:
+                    walk_statistics(child, depth + 1)
+            elif isinstance(node, dict):
+                label = node.get('name') or as_dict(node.get('statistic')).get('name')
+                identifier = node.get('id') or as_dict(node.get('statistic')).get('id')
+                value = node.get('quantity', node.get('value'))
+                if isinstance(label, str) and isinstance(value, (int, float)) and not isinstance(value, bool):
+                    candidates.append((str(identifier or '?'), label[:100], value))
+                for child in node.values():
+                    if isinstance(child, (list, dict)):
+                        walk_statistics(child, depth + 1)
+        walk_statistics(stats_payload)
+        print(f'DIAG Blizzard lifetime statistics entries={len(candidates)}')
+        keywords = ('played', 'death', 'healing', 'heal', 'raid', 'boss')
+        matches = [item for item in candidates if any(word in item[1].lower() for word in keywords)]
+        for stat_id, label, value in matches[:60]:
+            print(f'DIAG Blizzard lifetime candidate id={stat_id} name={label!r} value={value}')
+        if not matches:
+            print('DIAG Blizzard lifetime: no matching named numeric counters; endpoint structure may differ')
+    except Exception as exc:
+        print(f'WARN Blizzard lifetime statistics: {type(exc).__name__}: {exc}', file=sys.stderr)
 
     try:
         ach = get('/achievements')

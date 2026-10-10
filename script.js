@@ -201,6 +201,9 @@ function renderCharacter(character){
  setValue('character-spec',spec?`${spec} ${cls}`:cls);
  const ilvl=Number(character.itemLevel);
  if(character.itemLevel!=null&&Number.isFinite(ilvl)&&ilvl>0)setValue('character-ilvl',Math.trunc(ilvl));
+ const lifetime=character.lifetimeStatistics||{};
+ const lifetimeValues=[['lifetime-played',lifetime.timePlayed],['lifetime-deaths',lifetime.totalDeaths],['lifetime-healing',lifetime.totalHealing],['lifetime-raid-kills',lifetime.raidBossKills]];
+ for(const [id,value] of lifetimeValues){const node=el(id);if(node&&value!=null&&Number.isFinite(Number(value))&&Number(value)>=0)node.textContent=Number(value).toLocaleString('en-US',{maximumFractionDigits:0});}
  const portrait=el('character-portrait');
  if(portrait&&typeof character.portraitUrl==='string'&&/^https:\/\//i.test(character.portraitUrl)){
   portrait.onerror=()=>{portrait.onerror=null;portrait.src='avatar.png';};

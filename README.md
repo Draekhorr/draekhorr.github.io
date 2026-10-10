@@ -171,3 +171,25 @@ The **single verified Cutting Edge total** is now located **immediately below th
 Deployment: replace `index.html`, `style.css`, `script.js`, `scripts/sync_all.py` and this **entire** `README.md` in their existing repository locations. Keep `data.json`, `.github/workflows/sync.yml`, GitHub Secrets and `avatar.png`. Commit, run **Actions → Sync WoW APIs**, then wait for GitHub Pages deployment and refresh. Portrait availability depends on Blizzard's media response; a missing image is not an API sync failure.
 
 Changelog: **V5.2** — compact Blizzard-backed character profile banner; automatic item level, best-effort active spec and official portrait with artwork fallback; move CE summary directly under Raid History; retain existing Raider.IO and Warcraft Logs behavior.
+
+
+## V5.3 — Compact Character Profile (2026-10-11)
+
+- Removed the extra “Still dropping totems since 2005.” tagline from the character banner.
+- Reduced the banner height, portrait frame and vertical whitespace before Mythic Progression; removed the intervening top border.
+- Changed Blizzard character media preference to the official `avatar` headshot for the compact square frame, falling back to `inset`, `main-raw`, then `main` when unavailable.
+- Character portrait remains API-driven. A new **Sync WoW APIs** run is required to refresh `character.portraitUrl` in `data.json`.
+- Preserved Mythic Progression, Raider.IO, Warcraft Logs, Cutting Edge, and the rest of the V5.2 features.
+- This version does not generate or modify any character artwork.
+
+
+## V5.4 — Lifetime statistics (diagnostic phase)
+
+The character banner now has a compact two-by-two lifetime statistics area between the character identity and item level: **Time Played**, **Total Deaths**, **Total Healing**, and **Raid Boss Kills**. Unavailable metrics display an em dash (`—`), never an invented number. The portrait, item level, Raid History, Cutting Edge logic, Raider.IO and Warcraft Logs are unchanged.
+
+The Blizzard sync performs a **non-fatal diagnostic** request to `/profile/wow/character/draenor/draekhorr/achievements/statistics`. It logs candidate statistic names, IDs and values without logging credentials. This diagnostic **does not populate** `character.lifetimeStatistics`: the availability and exact meaning of the four requested lifetime counters have not been verified. In particular, the public API may not expose total `/played` time, lifetime healing, or lifetime raid-boss kill counts. Do not conflate a category-specific achievement statistic with a character lifetime total.
+
+After deploying, run **Actions → Sync WoW APIs** once and inspect lines beginning `DIAG Blizzard lifetime` or `WARN Blizzard lifetime`. Confirm IDs, meanings, and units before implementing mapping and enabling numeric display. Do not publish approximations from Warcraft Logs as lifetime totals. GitHub Secrets, workflow and `data.json` should not be overwritten manually.
+
+### Version history addition
+- **V5.4:** Compact four-metric character banner; safe Blizzard statistics diagnostics, no unverified lifetime values.

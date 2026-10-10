@@ -84,3 +84,30 @@
 .character-ilvl{min-width:104px;text-align:center;border-left:1px solid #355064;padding:16px 0 16px 22px}.character-ilvl span{display:block;color:#a7bbc8;font-size:10px;letter-spacing:1.5px}.character-ilvl strong{display:block;margin-top:8px;color:#eac47e;font:clamp(26px,3vw,38px)/1.2 Cinzel,serif}
 #raid-legacy.raid-legacy-intro{padding:8px 0 22px!important;margin-top:10px}#raid-legacy .raid-legacy-summary{padding:16px 0;gap:14px}#raid-legacy .raid-legacy-summary h2{font-size:20px}#raid-legacy .raid-legacy-summary p:not(.eyebrow){font-size:12px;line-height:1.5}#raid-legacy .ce-summary{gap:9px;max-width:145px}#raid-legacy .ce-summary strong{font-size:34px}#raid-legacy .ce-summary span{font-size:9px}
 @media(max-width:680px){.character-profile-banner{grid-template-columns:90px 1fr;gap:16px;padding:18px}.character-portrait-frame{width:90px;height:90px}.character-ilvl{grid-column:1/-1;border-left:0;border-top:1px solid #355064;padding:12px 0 0;text-align:left}.character-ilvl strong{font-size:30px}#raid-legacy .raid-legacy-summary{flex-direction:column;align-items:flex-start}#raid-legacy .ce-summary{max-width:none}}
+
+/* V5.3: compact character banner, true Blizzard headshot, tighter raid transition */
+#character-profile.character-profile-section{padding:12px 0 0!important;border-top:0}
+.character-profile-banner{grid-template-columns:104px minmax(0,1fr) auto;gap:20px;min-height:132px;padding:14px 22px}
+.character-portrait-frame{width:104px;height:104px;border-radius:8px;background:#071622}
+.character-portrait-frame img{object-fit:cover;object-position:center center}
+.character-profile-copy .eyebrow{margin:0 0 5px}
+.character-profile-copy h2{font-size:clamp(25px,3vw,38px);margin:3px 0}
+.character-role{margin:5px 0}
+.character-realm{margin:4px 0}
+.character-ilvl{padding:8px 0 8px 20px}
+#raids{padding-top:28px!important;border-top:0!important}
+#raids>h2{margin-top:0}
+@media(max-width:680px){
+ .character-profile-banner{grid-template-columns:76px minmax(0,1fr);gap:12px;padding:12px;min-height:0}
+ .character-portrait-frame{width:76px;height:76px}
+ .character-ilvl{grid-column:1/-1;padding:8px 0 0;border-left:0;border-top:1px solid #355064;text-align:left}
+ #raids{padding-top:22px!important}
+}
+
+/* V5.4: lifetime statistics in the center of the character banner */
+#character-profile .character-profile-banner{grid-template-columns:104px minmax(205px,1fr) minmax(260px,1.15fr) auto;gap:18px}
+.character-lifetime{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px;align-content:center;min-width:0}
+.lifetime-stat{min-width:0}.lifetime-stat span{display:block;color:#7ed8ed;font-size:10px;letter-spacing:.8px;font-weight:700;line-height:1.3}
+.lifetime-stat strong{display:block;margin-top:4px;color:#e7c27e;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+@media(max-width:950px){#character-profile .character-profile-banner{grid-template-columns:90px minmax(0,1fr) auto}.character-lifetime{grid-column:2;grid-row:2}.character-ilvl{grid-column:3;grid-row:1 / span 2}.character-portrait-frame{width:90px;height:90px}}
+@media(max-width:600px){#character-profile .character-profile-banner{grid-template-columns:76px minmax(0,1fr);gap:12px}.character-lifetime{grid-column:1/-1;grid-row:auto;gap:14px}.character-ilvl{grid-column:1/-1;grid-row:auto;border-left:0;border-top:1px solid #355064;padding:8px 0 0;text-align:left}.character-portrait-frame{width:76px;height:76px}}
