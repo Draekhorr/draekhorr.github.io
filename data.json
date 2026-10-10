@@ -129,8 +129,8 @@
   "raiderIo": {
     "currentSeason": "season-mn-2",
     "currentSeasonName": "Midnight Season 2",
-    "currentSeasonScore": 3103,
-    "mythicPlusScore": 3103,
+    "currentSeasonScore": 3103.1,
+    "mythicPlusScore": 3103.1,
     "previousSeason": "season-mn-1",
     "previousSeasonName": "Midnight Season 1",
     "previousSeasonScore": 3635.2,
@@ -178,12 +178,13 @@
       }
     ],
     "profileUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
-    "ranking": null
+    "ranking": null,
+    "currentSeasonScoreVerified": true
   },
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-10T19:14:50+00:00",
+  "updatedAt": "2026-10-10T19:27:04+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
