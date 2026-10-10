@@ -363,34 +363,86 @@ def sync_blizzard(data):
     except Exception as exc:
         print(f'WARN Blizzard character media: {type(exc).__name__}: {exc}', file=sys.stderr)
 
-    # V5.4: diagnostic-only. Blizzard does not guarantee these lifetime counters.
-    # Never guess totals, never publish unverified data, never log credentials.
+    # V5.5: audited raid boss kill counters. No assumed lifetime total.
     try:
         stats_payload = get('/achievements/statistics')
-        candidates = []
-        def walk_statistics(node, depth=0):
-            if depth > 14:
+        entries = []
+        def walk_stats(node, categories=(), depth=0):
+            if depth > 20:
                 return
             if isinstance(node, list):
                 for child in node:
-                    walk_statistics(child, depth + 1)
+                    walk_stats(child, categories, depth + 1)
             elif isinstance(node, dict):
-                label = node.get('name') or as_dict(node.get('statistic')).get('name')
-                identifier = node.get('id') or as_dict(node.get('statistic')).get('id')
+                category = as_dict(node.get('category'))
+                category_name = category.get('name') if isinstance(category.get('name'), str) else None
+                if not category_name and isinstance(node.get('name'), str) and not isinstance(node.get('quantity'), (int, float)):
+                    category_name = node['name']
+                path = categories + ((category_name,) if category_name else ())
+                statistic = as_dict(node.get('statistic'))
+                label = node.get('name') or statistic.get('name')
+                identifier = node.get('id') or statistic.get('id')
                 value = node.get('quantity', node.get('value'))
                 if isinstance(label, str) and isinstance(value, (int, float)) and not isinstance(value, bool):
-                    candidates.append((str(identifier or '?'), label[:100], value))
-                for child in node.values():
-                    if isinstance(child, (list, dict)):
-                        walk_statistics(child, depth + 1)
-        walk_statistics(stats_payload)
-        print(f'DIAG Blizzard lifetime statistics entries={len(candidates)}')
-        keywords = ('played', 'death', 'healing', 'heal', 'raid', 'boss')
-        matches = [item for item in candidates if any(word in item[1].lower() for word in keywords)]
-        for stat_id, label, value in matches[:60]:
-            print(f'DIAG Blizzard lifetime candidate id={stat_id} name={label!r} value={value}')
-        if not matches:
-            print('DIAG Blizzard lifetime: no matching named numeric counters; endpoint structure may differ')
+                    entries.append({'id': identifier, 'name': label, 'quantity': value,
+                                    'categories': list(categories)})
+                for key, child in node.items():
+                    if isinstance(child, (list, dict)) and key not in ('statistic', 'category'):
+                        walk_stats(child, path, depth + 1)
+        walk_stats(stats_payload)
+        # Dedupe repeated references by Blizzard statistic ID; never double count.
+        unique = {}
+        for entry in entries:
+            key = str(entry['id']) if entry['id'] is not None else None
+            if key is not None:
+                unique.setdefault(key, entry)
+        entries = list(unique.values())
+        print(f'DIAG Blizzard lifetime statistics entries={len(entries)}')
+        by_id = {str(row['id']): row for row in entries}
+        lifetime = dict(as_dict(character.get('lifetimeStatistics')))
+        for field, stat_id in [('totalDeaths', '60'), ('raidDeaths', '14784'),
+                               ('dungeonDeaths', '14787'), ('fallingDeaths', '114')]:
+            row = by_id.get(stat_id)
+            if row and isinstance(row['quantity'], (int, float)) and row['quantity'] >= 0:
+                lifetime[field] = int(row['quantity'])
+        character['lifetimeStatistics'] = lifetime
+
+        # All difficulty variants count: LFR, Normal, Heroic, Mythic, legacy 10/25.
+        # Strictly select *individual raid boss* counters. Generic 'kills' and
+        # instance-wide totals are deliberately not counted without verification.
+        raid_hint = re.compile(r'raid|icecrown|dragon soul|highmaul|blackrock foundry|hellfire citadel|emerald nightmare', re.I)
+        kill_hint = re.compile(r'\b(kills?|defeats?|victories|slain|destructions)\b', re.I)
+        exclude = re.compile(r'dungeon|world boss|trash|arena|battleground|player|pvp|total|most|highest|raid bosses killed', re.I)
+        candidates = []
+        for row in entries:
+            label = row['name']
+            path = ' / '.join(row['categories'])
+            if not kill_hint.search(label):
+                continue
+            context = label + ' ' + path
+            if not raid_hint.search(context) or exclude.search(context):
+                continue
+            if row['quantity'] < 0:
+                continue
+            candidates.append(row)
+        candidates.sort(key=lambda row: (str(row['categories']), row['name']))
+        audit = {
+            'description': 'Candidate per-boss raid kill counters across all difficulties. REVIEW REQUIRED; not an authoritative lifetime total.',
+            'character': f'{NAME}-{REALM}-{REGION}',
+            'candidateCount': len(candidates),
+            'candidateSum': sum(int(row['quantity']) for row in candidates),
+            'candidateStatistics': candidates,
+            'warnings': [
+                'Name/category matching can miss raids or include aggregate counters.',
+                'Some Blizzard historic statistics may be missing or duplicated across categories.',
+                'Do not publish candidateSum as verified lifetime Raid Boss Kills until audited.'
+            ]
+        }
+        audit_path = ROOT / 'raid_kills_audit.json'
+        audit_path.write_text(json.dumps(audit, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+        print(f"DIAG Blizzard raid kill audit: candidates={len(candidates)} candidateSum={audit['candidateSum']} (UNVERIFIED)")
+        print('OK Blizzard lifetime totalDeaths=' + str(lifetime.get('totalDeaths')) +
+              ' raidDeaths=' + str(lifetime.get('raidDeaths')))
     except Exception as exc:
         print(f'WARN Blizzard lifetime statistics: {type(exc).__name__}: {exc}', file=sys.stderr)
 

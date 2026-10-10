@@ -193,3 +193,15 @@ After deploying, run **Actions → Sync WoW APIs** once and inspect lines beginn
 
 ### Version history addition
 - **V5.4:** Compact four-metric character banner; safe Blizzard statistics diagnostics, no unverified lifetime values.
+
+
+## V5.5 — Lifetime raid kill audit and verified death counters
+
+- The character banner now displays verified Blizzard statistic IDs: total deaths (60), raid deaths (14784), and falling deaths (114). Time played and total healing are removed because no verified automatic source exists.
+- Raid Boss Kills includes **every difficulty** (LFR, Normal, Heroic, Mythic, legacy 10/25), and counts repeated kills, not just unique bosses. Dungeon/world bosses and trash are excluded.
+- The Blizzard statistics endpoint is parsed into a deduplicated-by-ID candidate audit saved as `raid_kills_audit.json` at the repository root. The audit contains candidate names, IDs, quantities, category paths and a candidate sum.
+- **The candidate sum is NOT yet a verified lifetime total.** Keyword filtering is insufficient to guarantee full coverage or eliminate every overlapping statistic. The banner intentionally shows `—` for Raid Boss Kills until the audit is reviewed and a reliable classification strategy is implemented. Do not manually copy the candidate sum into `data.json`.
+- Existing Raider.IO, Warcraft Logs, raid progression, and Cutting Edge sync are unchanged. The API secrets are never written to the audit.
+- Deployment: replace `index.html`, `script.js`, `scripts/sync_all.py`, and the complete `README.md`. Keep the existing CSS, `data.json`, workflows and secrets. Run the sync, then review `raid_kills_audit.json` and `DIAG Blizzard raid kill audit` output. If the workflow commits only `data.json`, also add `raid_kills_audit.json` to the commit step so the audit is retained.
+
+Changelog: **V5.5** — validated lifetime death counters; raid boss kill audit across all difficulties; no unverified total published.
