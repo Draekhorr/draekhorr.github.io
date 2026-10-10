@@ -8,36 +8,37 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: wow-data-sync
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install dependencies
         run: pip install requests
-
-      - name: Sync WoW Data
+      - name: Sync WoW Data and record health
         env:
           BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
           BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
           WARCRAFTLOGS_CLIENT_ID: ${{ secrets.WARCRAFTLOGS_CLIENT_ID }}
           WARCRAFTLOGS_CLIENT_SECRET: ${{ secrets.WARCRAFTLOGS_CLIENT_SECRET }}
-        run: python scripts/sync_all.py
-
-      - name: Commit updated data
+        run: python scripts/health_monitor.py
+      - name: Sync current guild from Raider.IO
+        run: python scripts/sync_guild.py
+      - name: Commit updated data and health
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json
+          git add data.json health_state.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update WoW API data"
+            git commit -m "Update WoW API data and health"
             git push
           fi
