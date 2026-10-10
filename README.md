@@ -13,12 +13,12 @@ Personal World of Warcraft character showcase for **Draekhorr — Draenor (EU)**
 
 A WoW-themed, mobile-friendly showcase of a Shaman main since 2005. The hero headline is:
 
-> SHAMAN SINCE 2005.  
+> RESTORATION SHAMAN SINCE 2005.  
 > STILL WAITING FOR A TOP GUILD TO NOTICE.
 
-The subtitle is: *20+ years of totems, countless raid wipes, and a collection of Cutting Edge achievements. Apparently, my guild application is still pending.*
+The subtitle is: *Started in Vanilla. Still waiting for someone to appreciate my totems.*
 
-The site intentionally has **no Twitch or Kick integration**. A compact Raid Legacy total appears above current raid progression and Warcraft Logs, with Raider.IO directly afterward. The former standalone Cutting Edge card grid and WoWProgress section have been removed. Mounts and achievements are side-by-side on desktop and stacked on mobile.
+The site intentionally has **no Twitch or Kick integration**. A compact Raid Legacy total appears under Raid History in the Mythic Progression panel, alongside Warcraft Logs; Raider.IO follows afterward. The former standalone Cutting Edge card grid and WoWProgress section have been removed. The former Mounts & Achievements section is removed from the website; Blizzard achievement points remain in the character banner.
 
 ## Cutting Edge source of truth (V5.1)
 
@@ -235,3 +235,18 @@ Download the artifact from the workflow run summary and share `raid_kills_audit.
 - Frontend cache-busting script version is `5.5.2`.
 
 **Install:** Replace only root `index.html`, root `script.js`, and root `README.md`. Leave `scripts/sync_all.py`, `data.json`, `style.css`, workflow and secrets untouched. Commit and wait for GitHub Pages deployment; no API sync needed.
+
+
+## V5.6 — Hero copy, Raid Legacy copy, and footer cleanup
+
+- Removed the entire **Mounts & Achievements** section and its navigation link. The character banner's **Achievement Points** counter remains, sourced from Blizzard. Backend data collection is unchanged.
+- Hero headline: **RESTORATION SHAMAN SINCE 2005.** / **STILL WAITING FOR A TOP GUILD TO NOTICE.**
+- Hero subtitle: *Started in Vanilla. Still waiting for someone to appreciate my totems.*
+- Raid Legacy **THE LONG GAME.** subtitle: *Still chasing Cutting Edge. Unfortunately, my fingers are on cooldown.*
+- Outro headline, on one line: **HOME IS WHERE YOUR HEARTHSTONE IS.** Removed the Official Armory button from the outro (the external source links in other sections are unaffected).
+- Footer quip: *Powered by Windfury, caffeine, and questionable life choices since 2005.*
+- Small attribution: *World of Warcraft © Blizzard Entertainment · Unofficial fan project.*
+- Preserved `#status` in the footer for existing sync-status JavaScript; removed obsolete collection DOM updates so missing collection nodes cannot break the page.
+- Existing character stats, Raid History, Cutting Edge badges, Warcraft Logs, Raider.IO and automatic API sync are preserved.
+
+**Install:** Replace root `index.html`, `script.js`, `style.css` and this complete `README.md`. Do **not** replace `data.json`, `scripts/sync_all.py`, `.github/workflows/`, avatar assets or GitHub Secrets. Commit, wait for GitHub Pages deployment, then hard refresh. No API sync required.
