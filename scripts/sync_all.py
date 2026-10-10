@@ -16,7 +16,7 @@ REGION, REALM, NAME = 'eu', 'draenor', 'draekhorr'
 # Current/previous season IDs are resolved from Raider.IO at runtime.
 # Never infer the active season from the character's highest score.
 WCL_URL = f'https://www.warcraftlogs.com/character/{REGION}/{REALM}/{NAME}'
-USER_AGENT = 'DraekhorrWoWLegacy/4.8'
+USER_AGENT = 'DraekhorrWoWLegacy/4.9'
 
 # Raid slug metadata is a verified historical mapping, not season detection.
 # Unknown/new raids stay unclassified until their season is confirmed.
@@ -372,9 +372,16 @@ def blizzard_encounter_icon(journal_id, blizzard_access):
 
 
 def sync_warcraftlogs(data):
+    """Sync verified WCL healing rankings; investigate media/HPS without fabricating values.
+
+    The public zoneRankings payload is JSON and does not necessarily contain a
+    zone ID, HPS amount, or an image URL. We preserve known-good values and log
+    only schema/key metadata, never access tokens or private reports.
+    """
     access = oauth('https://www.warcraftlogs.com/oauth/token',
                    'WARCRAFTLOGS_CLIENT_ID', 'WARCRAFTLOGS_CLIENT_SECRET')
     variables = {'name': 'Draekhorr', 'server': REALM, 'region': 'EU'}
+
     def rankings(healing):
         field = 'zoneRankings(metric: hps)' if healing else 'zoneRankings'
         query = ('query($name:String!,$server:String!,$region:String!){'
@@ -394,26 +401,45 @@ def sync_warcraftlogs(data):
         ranking = rankings(False)
         healing = False
 
-    # The standard zoneRankings JSON encounter typically has id/name but no image URL.
-    # Query WCL zone metadata separately to get journalID; an invalid/unavailable
-    # optional metadata query must not break the rankings sync.
+    rows = [as_dict(x) for x in as_list(ranking.get('rankings'))]
+    if rows:
+        print('DIAG WCL ranking keys=' + ','.join(sorted(ranking.keys())))
+        print('DIAG WCL boss keys=' + ','.join(sorted(rows[0].keys())))
+        print('DIAG WCL encounter keys=' + ','.join(sorted(as_dict(rows[0].get('encounter')).keys())))
+
+    # Try optional zone ID representations; not all WCL zoneRankings versions include one.
+    zone = as_dict(ranking.get('zone'))
+    zone_id = next((v for v in (zone.get('id'), ranking.get('zoneID'), ranking.get('zoneId'),
+                                ranking.get('zone_id')) if isinstance(v, int)), None)
     journal_by_id = {}
-    zone_id = as_dict(ranking.get('zone')).get('id')
-    if isinstance(zone_id, int):
+    if zone_id is not None:
         try:
             metadata = wcl_graphql(access,
                 'query($id:Int!){zoneData{zone(id:$id){encounters{id name journalID}}}}',
                 {'id': zone_id})
-            zone = as_dict(as_dict(metadata.get('zoneData')).get('zone'))
-            for item in as_list(zone.get('encounters')):
+            zone_info = as_dict(as_dict(metadata.get('zoneData')).get('zone'))
+            for item in as_list(zone_info.get('encounters')):
                 item = as_dict(item)
                 if isinstance(item.get('id'), int) and isinstance(item.get('journalID'), int):
                     journal_by_id[item['id']] = item['journalID']
-            print(f'DIAG WCL journal mapping: {len(journal_by_id)} encounters')
+            print(f'DIAG WCL journal mapping={len(journal_by_id)}')
         except Exception as exc:
-            print(f'WARN WCL optional zone metadata: {type(exc).__name__}: {exc}', file=sys.stderr)
+            print(f'WARN WCL zone metadata: {type(exc).__name__}: {exc}', file=sys.stderr)
     else:
-        print('DIAG WCL zone ID unavailable; journal media lookup skipped')
+        print('DIAG WCL zone ID not exposed in zoneRankings; cannot map journal media directly')
+
+    # Introspection helps identify an authoritative route to encounter media.
+    # It is a small, optional request; failures never stop the sync.
+    try:
+        schema = wcl_graphql(access,
+            '{encounter:__type(name:"Encounter"){fields{name}} '
+            'zone:__type(name:"Zone"){fields{name}}}')
+        for label in ('encounter', 'zone'):
+            names = [x.get('name') for x in as_list(as_dict(schema.get(label)).get('fields'))
+                     if isinstance(x, dict) and isinstance(x.get('name'), str)]
+            print(f'DIAG WCL schema {label} fields=' + ','.join(names[:45]))
+    except Exception as exc:
+        print(f'WARN WCL schema inspection: {type(exc).__name__}: {exc}', file=sys.stderr)
 
     blizzard_access = None
     if journal_by_id:
@@ -427,14 +453,15 @@ def sync_warcraftlogs(data):
                 for x in as_list(as_dict(data.get('warcraftLogs')).get('bossParses'))
                 if isinstance(x, dict)}
     parses = []
-    for raw in as_list(ranking.get('rankings')):
-        row = as_dict(raw)
+    for row in rows:
         encounter = as_dict(row.get('encounter'))
         name = encounter.get('name')
-        if not name:
+        if not isinstance(name, str) or not name:
             continue
         old = old_rows.get(name.casefold(), {})
         percentile = row.get('rankPercent')
+        # amount is only accepted if this was explicitly requested as healing/HPS.
+        # Some WCL ranking variants omit amount, so we do not infer HPS from percentiles.
         amount = row.get('amount')
         hps = float(amount) if healing and isinstance(amount, (int, float)) and amount >= 0 else None
         if hps is None and isinstance(old.get('highestHps'), (int, float)):
