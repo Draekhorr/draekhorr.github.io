@@ -277,3 +277,30 @@ This release changes the raid progression engine and the frontend together. It p
 **Install:** Replace `scripts/sync_all.py`, root `script.js`, and this complete `README.md`. Do not replace `data.json`, workflow, assets, or credentials. Commit and run **Sync WoW APIs** once. Check `DIAG RIO season transition` and `WARN RIO ... unclassified` in logs. The frontend update deploys with GitHub Pages; refresh the page after deployment.
 
 **Validation:** Python compilation, JavaScript syntax check, and a simulated cross-expansion transition test passed. Live API schema behavior on future expansions remains unverified.
+
+## V5.8 — API health monitoring and monthly critical-only notifications
+
+The scheduled sync continues at `0 */6 * * *` (UTC). `scripts/health_monitor.py` wraps the existing `scripts/sync_all.py`, checks the success markers for Raider.IO, Warcraft Logs, and Blizzard, and stores state in `health_state.json`. A critical incident starts when a service fails **three consecutive checks**; a later successful check records its resolution. State is committed alongside `data.json` so counters survive between GitHub Actions runs. The health file is public in this public repository; it contains timestamps and service status, **not credentials**.
+
+On the first day of each month at **09:15 UTC**, `.github/workflows/monthly-critical-report.yml` examines critical incidents **first detected in the preceding calendar month**. If there were none, it creates no issue. Otherwise it creates at most one GitHub Issue summarizing those incidents, and attempts to assign it to the repository owner. GitHub notifications can email the assignee depending on account settings; GitHub does not guarantee exactly one email. There is no SMTP integration or additional email provider.
+
+### Install and activate
+
+1. Copy `.github/workflows/sync.yml` and `.github/workflows/monthly-critical-report.yml` into the repository, preserving paths. Copy `scripts/health_monitor.py` and `scripts/monthly_critical_issue.py` into `scripts/`. Replace the root `README.md` with this complete updated document.
+2. Ensure repository **Settings → General → Features → Issues** is enabled.
+3. Ensure **Settings → Actions → General → Workflow permissions** permits the workflows to use their declared `contents: write` / `issues: write` permissions (organization policy may override).
+4. In your GitHub account **Settings → Notifications**, enable email notifications for participating/assigned issues and verify the account email is the intended inbox. A repo owner may need to subscribe to notifications.
+5. Run **Actions → Sync WoW APIs → Run workflow** once. Check the `HEALTH` lines and `health_state.json` commit.
+6. The monthly workflow runs automatically on the 1st. Manual runs still report the **previous calendar month**; if no critical incident occurred, no issue is created. You can verify issue creation in the Issues tab when an incident exists.
+
+### Important limitations
+
+- A missing `OK` marker counts as a service failure, even when the sync script exits successfully after catching an exception. A complete script failure counts as a failure for every service.
+- Partial degradation *within* a service (e.g. missing icons while WCL rankings succeed) is not classified as critical by this first version. Add field-level validators separately if needed.
+- If GitHub Actions does not execute at all (disabled schedules, GitHub outage), no check is recorded and no monthly notification can be guaranteed.
+- The incident month is the **month when the third consecutive failure is detected**, not necessarily the month when the first failure began. Incidents that started in a previous month but remain unresolved are not repeated in subsequent monthly issues.
+- No new GitHub Secrets or Gmail App Passwords are required. GitHub's notification preferences determine email delivery.
+
+### Changelog
+
+- **V5.8**: Added persistent per-service sync health, three-failure critical incident tracking, and monthly GitHub Issue reports only when incidents occurred; preserved all existing site and API integrations.
