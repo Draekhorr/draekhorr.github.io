@@ -9,6 +9,8 @@ import json
 import os
 from pathlib import Path
 import sys
+import urllib.request
+import urllib.error
 
 from sync_all import oauth, wcl_graphql, as_dict, as_list, OUT, REALM, WCL_URL
 
@@ -71,6 +73,44 @@ def discover_zones(access):
     return list(zones.values())
 
 
+# The character's verified Midnight Season 1 raid ranking zone.
+MIDNIGHT_S1_ZONE = 46
+MIDNIGHT_S1_NAMES = {
+    'imperator averzian', 'vorasius', 'fallen-king salhadaar',
+    'vaelgor & ezzorak', 'lightblinded vanguard', 'crown of the cosmos',
+    'chimaerus, the undreamt god', "belo'ren, child of al'ar", 'midnight falls'
+}
+
+
+def icon_exists(url):
+    """Validate HTTP image content, not merely a syntactically valid CDN URL."""
+    try:
+        req = urllib.request.Request(url, method='HEAD', headers={'User-Agent': 'DraekhorrWoWLegacy/1.5.7'})
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            return resp.status == 200 and resp.headers.get('Content-Type', '').lower().startswith('image/')
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError):
+        return False
+
+
+def normalize_name(name):
+    return ' '.join(str(name or '').casefold().split())
+
+
+def merge_rows(existing, fetched):
+    """Keep verified old values when a fresh response omits a metric."""
+    old_by_name = {normalize_name(row.get('name')): row for row in as_list(existing) if isinstance(row, dict)}
+    merged = []
+    for row in fetched:
+        old = old_by_name.get(normalize_name(row.get('name')), {})
+        updated = dict(old)
+        updated.update({k: v for k, v in row.items() if v is not None})
+        merged.append(updated)
+    for name, old in old_by_name.items():
+        if name not in {normalize_name(row.get('name')) for row in fetched}:
+            merged.append(old)
+    return merged
+
+
 def run():
     access = oauth('https://www.warcraftlogs.com/oauth/token',
                    'WARCRAFTLOGS_CLIENT_ID', 'WARCRAFTLOGS_CLIENT_SECRET')
@@ -85,18 +125,20 @@ def run():
     if 'metric' not in arg_names:
         raise RuntimeError('WCL zoneRankings does not expose a healing metric')
     zones = discover_zones(access)
-    if not zones:
-        raise RuntimeError('No Warcraft Logs zones discovered; no data changed')
+    if not any(z.get('id') == MIDNIGHT_S1_ZONE for z in zones):
+        zones.append({'id': MIDNIGHT_S1_ZONE, 'name': 'Midnight Season 1'})
+        print('DIAG WCL added explicit verified zone=46')
     data = json.loads(OUT.read_text(encoding='utf-8'))
     wcl = as_dict(data.get('warcraftLogs'))
     archive = as_dict(wcl.get('seasonArchive')).copy()
     current_encounters = {x.get('encounterId') for x in as_list(wcl.get('bossParses')) if isinstance(x, dict)}
-    added, skipped, errors = 0, 0, 0
+    added, skipped, errors, repaired = 0, 0, 0, 0
     for zone in zones:
         zone_id, zone_name = zone['id'], zone.get('name') or f'Zone {zone["id"]}'
         key = f'wcl-zone-{zone_id}'
-        if key in archive and as_list(as_dict(archive[key]).get('bossParses')):
-            old = as_dict(archive[key])
+        old = as_dict(archive.get(key))
+        # Refresh zone 46 even if archived; other populated zones stay untouched.
+        if zone_id != MIDNIGHT_S1_ZONE and as_list(old.get('bossParses')):
             skipped += 1
             continue
         args = f'{zone_arg}:{zone_id},metric:hps'
@@ -117,31 +159,45 @@ def run():
                 eid, name = encounter.get('id'), encounter.get('name')
                 if not isinstance(eid, int) or not name:
                     continue
+                if zone_id == MIDNIGHT_S1_ZONE and normalize_name(name) not in MIDNIGHT_S1_NAMES:
+                    continue
                 pct = row.get('rankPercent')
                 amount = row.get('bestAmount')
                 hps = float(amount) if isinstance(amount, (int,float)) and amount > 0 else None
                 if not isinstance(pct, (int,float)) and hps is None:
                     continue
+                icon = f'https://assets.rpglogs.com/img/warcraft/bosses/{eid}-icon.jpg?v=4'
+                if zone_id == MIDNIGHT_S1_ZONE and not icon_exists(icon):
+                    print(f'WARN WCL icon unavailable encounter={eid} name={name!r}')
+                    icon = None
                 parses.append({'name':name,'encounterId':eid,'journalId':None,
-                               'iconUrl':f'https://assets.rpglogs.com/img/warcraft/bosses/{eid}-icon.jpg?v=4',
+                               'iconUrl':icon,
                                'bestPercent':pct if isinstance(pct,(int,float)) else None,
                                'highestHps':hps,'url':WCL_URL})
             # Avoid saving an overlapping current-zone snapshot as historical.
-            if not parses or (current_encounters and all(p['encounterId'] in current_encounters for p in parses)):
+            if not parses or (zone_id != MIDNIGHT_S1_ZONE and current_encounters and all(p['encounterId'] in current_encounters for p in parses)):
                 skipped += 1
                 continue
-            archive[key] = {'name':zone_name, 'bossParses':parses, 'zoneId':zone_id,
+            parses = merge_rows(old.get('bossParses'), parses)
+            archive[key] = {'name':('Midnight Season 1' if zone_id == MIDNIGHT_S1_ZONE else zone_name), 'bossParses':parses, 'zoneId':zone_id,
                             'source':'Warcraft Logs', 'archivedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}
-            added += 1
+            if old:
+                repaired += 1
+            else:
+                added += 1
+            if zone_id == MIDNIGHT_S1_ZONE:
+                # Prefer live API metadata over the earlier screenshot-only frontend rows.
+                archive['season-mn-1'] = {'name':'Midnight Season 1', 'bossParses':parses, 'zoneId':46, 'source':'Warcraft Logs', 'archivedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}
+                print(f'OK WCL Midnight S1 zone=46 bosses={len(parses)} icons={sum(bool(x.get('iconUrl')) for x in parses)}')
             print(f'OK WCL historical zone={zone_id} name={zone_name!r} bosses={len(parses)}')
         except Exception as exc:
             errors += 1
             print(f'WARN WCL historical zone={zone_id}: {type(exc).__name__}: {exc}',file=sys.stderr)
     wcl['seasonArchive'] = archive
     data['warcraftLogs'] = wcl
-    if added:
+    if added or repaired:
         OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    print(f'DIAG WCL backfill: added={added} existing_or_empty={skipped} errors={errors} archive={len(archive)}')
+    print(f'DIAG WCL backfill: added={added} repaired={repaired} existing_or_empty={skipped} errors={errors} archive={len(archive)}')
 
 
 if __name__ == '__main__':

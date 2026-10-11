@@ -1,4 +1,4 @@
-# Draekhorr — V1.5.5
+# Draekhorr — V1.5.7
 
 World of Warcraft character showcase with Blizzard, Raider.IO and Warcraft Logs.
 
@@ -17,3 +17,9 @@ Replace `index.html`, `script.js`, `style.css`, `scripts/sync_all.py` and `scrip
 ## V1.5.6 — Midnight Season 1 Warcraft Logs
 
 The Warcraft Logs selector retains its expansion groups. Under MIDNIGHT, the former Sporefall-only option is replaced with **Midnight Season 1**, containing the nine raid bosses and their healing statistics transcribed from the supplied Warcraft Logs zone 46 screenshot. Missing parse values remain unavailable (—). The current season and every other archived raid remain unchanged. This is a frontend snapshot, not an API backfill; update the snapshot if the source values change.
+
+## V1.5.7 — Midnight Season 1 metadata repair
+
+Run **Backfill Warcraft Logs** manually after deploying the updated `scripts/wcl_backfill.py`. The script explicitly requests verified WCL zone 46, refreshes its existing archive entry, saves API encounter IDs, validates image response content types for its boss icons, and publishes the result as `season-mn-1`. Existing percent/HPS values are retained if a fresh row omits them. The frontend prefers the new API-backed archive and falls back to the previously supplied screenshot snapshot until the backfill succeeds. Other expansions and Mythic+ remain unchanged.
+
+The backfill requires the existing WCL secrets and a working GitHub Actions workflow. Check logs for `OK WCL Midnight S1 zone=46` and `DIAG WCL backfill`. Icon checks are best-effort: network errors may produce a placeholder until a later run.

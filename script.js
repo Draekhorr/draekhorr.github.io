@@ -210,9 +210,11 @@ function renderWclHistory(wcl,data){
  // Preserve all other archive entries and the current season exactly as received.
  const oldSporefall=records.findIndex(r=>r.expansion==='Midnight'&&normalizeRaidName(r.label)==='sporefall');
  if(oldSporefall>=0)records.splice(oldSporefall,1);
+ const liveS1=archive['season-mn-1']?.bossParses?.length?archive['season-mn-1'].bossParses:archive['wcl-zone-46']?.bossParses;
+ const seasonOneRows=Array.isArray(liveS1)&&liveS1.length?liveS1:MIDNIGHT_S1_BOSSES;
  const existingS1=records.find(r=>r.id==='season-mn-1');
- if(existingS1){existingS1.label='Midnight Season 1';existingS1.expansion='Midnight';existingS1.bossParses=MIDNIGHT_S1_BOSSES;}
- else records.push({id:'season-mn-1',label:'Midnight Season 1',expansion:'Midnight',bossParses:MIDNIGHT_S1_BOSSES});
+ if(existingS1){existingS1.label='Midnight Season 1';existingS1.expansion='Midnight';existingS1.bossParses=seasonOneRows;}
+ else records.push({id:'season-mn-1',label:'Midnight Season 1',expansion:'Midnight',bossParses:seasonOneRows});
  records.sort((a,b)=>a.id===currentId?-1:b.id===currentId?1:b.label.localeCompare(a.label,undefined,{numeric:true}));
  fillGroupedOptions(selector,records,currentId);
  selector.title=records.length<=1?'No additional verified raid logs available yet.':'Select historical raid logs';
