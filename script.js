@@ -4,8 +4,8 @@ function setCards(id,items,fallback){if(!Array.isArray(items)||!items.length)ret
 function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(id).href=url}
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
- renderWclBosses(d.warcraftLogs?.bossParses);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderGuildHeader(d.guild ?? d.character?.guild ?? d.raiderIo?.guild);renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderWclHistory(d.warcraftLogs);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
+ renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -121,6 +121,29 @@ function renderRaids(data){
  if(!grouped.size){const p=document.createElement('p');p.className='empty-state';p.textContent='Historical raids will appear after the Blizzard sync returns confirmed Mythic/Heroic progression.';history.append(p)}
 }
 
+// The selector replaces the current table; only recorded snapshots are offered.
+function renderWclHistory(wcl){
+ const selector=el('wcl-season-select');
+ if(!selector){renderWclBosses(wcl?.bossParses);return;}
+ selector.replaceChildren();
+ const archive=wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{};
+ const currentId=String(wcl?.currentSeasonId||'current');
+ const records=Object.entries(archive).filter(([,entry])=>Array.isArray(entry?.bossParses)&&entry.bossParses.length);
+ if(!records.some(([id])=>id===currentId)&&Array.isArray(wcl?.bossParses)&&wcl.bossParses.length){
+  records.push([currentId,{name:wcl?.currentSeasonName||'Current season',bossParses:wcl.bossParses}]);
+ }
+ records.sort(([a],[b])=>a===currentId?-1:b===currentId?1:b.localeCompare(a,undefined,{numeric:true}));
+ for(const [id,entry] of records){selector.add(new Option(`${entry.name||id}${id===currentId?' (Current)':''}`,id));}
+ const show=()=>{
+  const entry=records.find(([id])=>id===selector.value)?.[1];
+  renderWclBosses(entry?.bossParses||[]);
+ };
+ selector.disabled=records.length<=1;
+ selector.value=records.some(([id])=>id===currentId)?currentId:records[0]?.[0]||'';
+ selector.onchange=show;
+ show();
+}
+
 // WCL: display per-boss healing results, never invent missing HPS.
 function renderWclBosses(items){
  const tbody=el('wcl-parses');if(!tbody)return;tbody.replaceChildren();
@@ -207,20 +230,4 @@ function renderCharacter(character,achievementPoints){
   portrait.onerror=()=>{portrait.onerror=null;portrait.src='avatar.png';};
   portrait.src=character.portraitUrl;
  }
-}
-
-// Header guild link is populated only from verified guild metadata in data.json.
-function renderGuildHeader(guild){
- const wrap=el('guild-header'),link=el('guild-link');
- if(!wrap||!link)return;
- wrap.hidden=true;
- if(!guild)return;
- const name=typeof guild==='string'?guild:(guild.name||guild.guild_name);
- if(typeof name!=='string'||!name.trim())return;
- const url=typeof guild==='object'?guild.url:null;
- const href=typeof url==='string'&&/^https:\/\/raider\.io\/guilds\//i.test(url)?url:
-   'https://raider.io/guilds/eu/draenor/'+encodeURIComponent(name.trim());
- link.textContent=name.trim()+' ↗';
- link.href=href;
- wrap.hidden=false;
 }

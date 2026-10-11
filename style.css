@@ -153,3 +153,8 @@ nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;whit
 @media(max-width:600px){header{align-items:flex-start;flex-direction:column;gap:14px}.brand-group{font-size:14px;gap:.35rem}nav{width:100%;gap:8px}nav a{font-size:11px;padding:10px 12px;border:1px solid #344654;border-radius:3px}.hero h1{font-size:clamp(29px,8vw,47px)}.hero .btn{margin-top:18px}.character-profile-banner{grid-template-columns:72px minmax(0,1fr);gap:12px;padding:14px}.character-portrait-frame{width:72px}.character-profile-copy{grid-column:2;grid-row:1}.character-profile-copy h2{font-size:clamp(23px,7vw,34px)}.character-lifetime{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-top:14px}.character-ilvl{grid-column:1/-1;grid-row:3;text-align:left;border-left:0;border-top:1px solid #355064;padding:12px 0 0}#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}.raid-legacy-summary{flex-direction:column;align-items:flex-start}.ce-summary{max-width:none}.raid-logs-panel{padding:16px}.wcl-table{min-width:420px}.outro .hearthstone-heading{font-size:clamp(12px,3.8vw,22px)}}
 @media(max-width:360px){.character-lifetime{gap:12px 8px}.lifetime-stat span{font-size:9px}.wcl-table{min-width:400px}.raid-logs-panel{padding:12px}.outro .hearthstone-heading{font-size:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#raiderio .rio-run-card{transition:none}}
+
+/* Warcraft Logs historical season selector */
+.wcl-season-label{display:block;color:#8fb9ca;font-size:11px;font-weight:700;letter-spacing:.12em;margin:16px 0 9px}
+#wcl-season-select{font-family:Inter,Arial,sans-serif;font-size:13px;letter-spacing:.02em;max-width:100%}
+#wcl-season-select:disabled{opacity:.7;cursor:default}

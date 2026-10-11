@@ -700,8 +700,29 @@ def sync_warcraftlogs(data):
         print('WARN WCL requested hps but returned metric=' + str(ranking.get('metric')), file=sys.stderr)
     if not parses:
         raise RuntimeError('No usable Warcraft Logs boss rankings; preserving prior data')
+    # Preserve per-season snapshots across successful syncs and season transitions.
+    # A snapshot is not a historical WCL API backfill: only seasons actually
+    # observed by this site's sync can be archived without additional WCL queries.
+    previous = as_dict(data.get('warcraftLogs'))
+    archive = as_dict(previous.get('seasonArchive')).copy()
+    season_id = as_dict(data.get('raiderIo')).get('currentSeason')
+    season_name = as_dict(data.get('raiderIo')).get('currentSeasonName') or season_id
+    previous_id = previous.get('currentSeasonId')
+    if previous_id and previous_id != season_id and as_list(previous.get('bossParses')):
+        archive.setdefault(str(previous_id), {
+            'name': previous.get('currentSeasonName') or str(previous_id),
+            'bossParses': previous['bossParses'],
+            'archivedAt': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
+        })
+    if season_id:
+        archive[str(season_id)] = {'name': season_name, 'bossParses': parses,
+                                   'archivedAt': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}
     data['warcraftLogs'] = {'profileUrl': WCL_URL, 'bossParses': parses,
-                           'healingMetricConfirmed': healing}
+                           'healingMetricConfirmed': healing,
+                           'currentSeasonId': season_id,
+                           'currentSeasonName': season_name,
+                           'seasonArchive': archive}
+    print(f'DIAG WCL archived seasons={len(archive)} current={season_id}')
     icons = sum(bool(row.get('iconUrl')) for row in parses)
     hps_count = sum(isinstance(row.get('highestHps'), (int, float)) and row['highestHps'] > 0 for row in parses)
     print(f'OK warcraftLogs: bosses={len(parses)}, icons={icons}, HPS={hps_count}, healing={healing}')
