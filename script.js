@@ -5,7 +5,7 @@ function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclHistory(d.warcraftLogs,d);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo,d.warcraftLogs);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -209,7 +209,59 @@ function rioDuration(run){
  }
  return '—';
 }
-function renderRaiderIo(rio){
+// Match WCL historical dungeon zones to Raider.IO dungeon names, never by run time.
+// An archived WCL zone is NOT evidence that its parse came from the displayed RIO run.
+function dungeonKey(name){
+ return String(name||'').toLowerCase().replace(/[’‘`]/g,"'")
+  .replace(/\s*\+\d+\s*$/,'').replace(/[^a-z0-9]+/g,' ').trim();
+}
+function wclDungeonIndex(wcl,rio){
+ const runs=Array.isArray(rio?.bestRuns)?rio.bestRuns:[];
+ const valid=new Set(runs.map(r=>dungeonKey(r.name)).filter(Boolean));
+ const index=new Map();
+ const archives=wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{};
+ for(const [id,zone] of Object.entries(archives)){
+  if(!id.startsWith('wcl-zone-')||!zone||!Array.isArray(zone.bossParses))continue;
+  const key=dungeonKey(zone.name);
+  if(!valid.has(key))continue;
+  const rows=zone.bossParses.filter(row=>row&&typeof row==='object');
+  const percents=rows.map(row=>Number(row.bestPercent)).filter((v,i)=>rows[i].bestPercent!=null&&Number.isFinite(v)&&v>=0&&v<=100);
+  const amounts=rows.map(row=>Number(row.highestHps)).filter(v=>Number.isFinite(v)&&v>0);
+  if(!percents.length&&!amounts.length)continue;
+  const prev=index.get(key);
+  const best=percents.length?Math.max(...percents):null;
+  const hps=amounts.length?Math.max(...amounts):null;
+  index.set(key,{
+   bestPercent:best==null?prev?.bestPercent??null:Math.max(best,prev?.bestPercent??0),
+   highestHps:hps==null?prev?.highestHps??null:Math.max(hps,prev?.highestHps??0),
+   url:typeof zone.url==='string'&&/^https:\/\//i.test(zone.url)?zone.url:(rows.find(r=>typeof r.url==='string'&&/^https:\/\//i.test(r.url))?.url||wcl?.profileUrl||null)
+  });
+ }
+ return index;
+}
+function appendDungeonHealing(card,performance){
+ if(!performance)return;
+ const box=document.createElement('div');box.className='rio-wcl-metrics';
+ const label=document.createElement('p');label.className='rio-wcl-caption';label.textContent='WARCRAFT LOGS · DUNGEON HEALING (SEPARATE RUNS)';box.append(label);
+ const stats=document.createElement('div');stats.className='rio-wcl-stats';
+ if(performance.bestPercent!=null){
+  const row=document.createElement('span');row.textContent='Best parse: ';
+  const strong=document.createElement('strong');strong.textContent=String(Math.trunc(performance.bestPercent));
+  strong.className=performance.bestPercent>=95?'parse-legendary':performance.bestPercent>=75?'parse-epic':performance.bestPercent>=50?'parse-rare':performance.bestPercent>=25?'parse-uncommon':'parse-common';
+  row.append(strong);stats.append(row);
+ }
+ if(performance.highestHps!=null){
+  const row=document.createElement('span');row.textContent='Highest HPS: ';
+  const strong=document.createElement('strong');strong.textContent=Math.round(performance.highestHps).toLocaleString('en-US');
+  row.append(strong);stats.append(row);
+ }
+ box.append(stats);
+ if(performance.url&&/^https:\/\//i.test(performance.url)){
+  const link=document.createElement('a');link.href=performance.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='WCL SOURCE ↗';box.append(link);
+ }
+ card.append(box);
+}
+function renderRaiderIo(rio,wcl){
  if(!rio)return;
  setValue('rio-score',rio.currentSeasonScore??rio.mythicPlusScore);
  setValue('rio-previous',rio.previousSeasonScore);
@@ -219,6 +271,7 @@ function renderRaiderIo(rio){
   const node=el(id);if(node)node.classList.add(rioScoreClass(value));
  }
  const parent=el('rio-runs');if(!parent)return;parent.replaceChildren();
+ const dungeonHealing=wclDungeonIndex(wcl,rio);
  const runs=Array.isArray(rio.bestRuns)?rio.bestRuns:[];
  if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No current-season runs available.';parent.append(p);return;}
  for(const run of runs){
@@ -233,6 +286,7 @@ function renderRaiderIo(rio){
   const score=document.createElement('span');score.textContent='Score: '+(typeof run.score==='number'?run.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—');score.className=rioScoreClass(run.score);
   const time=document.createElement('span');time.textContent='Time: '+rioDuration(run);
   info.append(score,time);card.append(info);
+  appendDungeonHealing(card,dungeonHealing.get(dungeonKey(run.name)));
   if(typeof run.url==='string'&&/^https:\/\//i.test(run.url)){const a=document.createElement('a');a.href=run.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='VIEW DETAILS ↗';card.append(a);}
   parent.append(card);
  }

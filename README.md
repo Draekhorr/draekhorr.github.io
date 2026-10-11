@@ -114,3 +114,12 @@ The selector in the Warcraft Logs panel now offers **raid / archived season** en
 ### V1.3.1 — Raid-only Warcraft Logs dropdown
 
 The historical Warcraft Logs dropdown now hides dungeon and Mythic+ zones in the frontend. Archived zone names must match a raid present in the Blizzard raid progression data. The current-season snapshot remains visible. No backend, API, or workflow changes. This is a presentation filter, not a substitute for server-side raid-only filtering; an unmatched legitimate raid may be hidden until Blizzard raid metadata contains its name.
+
+
+## Mythic+ Warcraft Logs display (V1.4)
+
+The Mythic+ dungeon cards can optionally show **Best healing parse** and **Highest HPS** when the existing `warcraftLogs.seasonArchive` contains a Warcraft Logs zone whose normalized name exactly matches a Raider.IO dungeon. These values are *per dungeon/zone*, not necessarily from the Raider.IO run shown in the card. No missing values are invented. Best parse is truncated to an integer without a percent symbol.
+
+**Important:** This release is a frontend integration only. The current data file may not contain any Mythic+ Warcraft Logs entries, so the cards will remain unchanged until real dungeon-zone records are collected. Existing historical backfill is not guaranteed to retrieve Mythic+ healing rankings; a separate verified backend collector may be needed. The RAID Warcraft Logs dropdown continues to exclude dungeons.
+
+Deployment: replace `index.html`, `script.js`, `style.css`, and `README.md`; no API sync required for this frontend update.
