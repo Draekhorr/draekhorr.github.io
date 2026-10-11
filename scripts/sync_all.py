@@ -271,48 +271,6 @@ def sync_rio(data):
             entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
         season_history[sid] = entry
     rio['seasonHistory'] = season_history
-    # Persist verified season scores and captured runs across expansion transitions.
-    # Historical runs are NOT synthesized from a score-only API response.
-    season_history = dict(as_dict(rio.get('seasonHistory')))
-    for sid, score in ((current, current_score), (previous, previous_score)):
-        if not sid:
-            continue
-        entry = dict(as_dict(season_history.get(sid)))
-        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
-        if isinstance(score, (int, float)):
-            entry['score'] = score
-        if sid == current:
-            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
-        season_history[sid] = entry
-    rio['seasonHistory'] = season_history
-    # Persist verified season scores and captured runs across expansion transitions.
-    # Historical runs are NOT synthesized from a score-only API response.
-    season_history = dict(as_dict(rio.get('seasonHistory')))
-    for sid, score in ((current, current_score), (previous, previous_score)):
-        if not sid:
-            continue
-        entry = dict(as_dict(season_history.get(sid)))
-        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
-        if isinstance(score, (int, float)):
-            entry['score'] = score
-        if sid == current:
-            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
-        season_history[sid] = entry
-    rio['seasonHistory'] = season_history
-    # Persist verified season scores and captured runs across expansion transitions.
-    # Historical runs are NOT synthesized from a score-only API response.
-    season_history = dict(as_dict(rio.get('seasonHistory')))
-    for sid, score in ((current, current_score), (previous, previous_score)):
-        if not sid:
-            continue
-        entry = dict(as_dict(season_history.get(sid)))
-        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
-        if isinstance(score, (int, float)):
-            entry['score'] = score
-        if sid == current:
-            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
-        season_history[sid] = entry
-    rio['seasonHistory'] = season_history
     data['raiderIo'] = rio
 
     raw = as_dict(payload.get('raid_progression'))
@@ -817,7 +775,8 @@ def sync_warcraftlogs(data):
                            'healingMetricConfirmed': healing,
                            'currentSeasonId': season_id,
                            'currentSeasonName': season_name,
-                           'seasonArchive': archive}
+                           'seasonArchive': archive,
+                           'dungeonArchive': as_dict(previous.get('dungeonArchive'))}
     print(f'DIAG WCL archived seasons={len(archive)} current={season_id}')
     icons = sum(bool(row.get('iconUrl')) for row in parses)
     hps_count = sum(isinstance(row.get('highestHps'), (int, float)) and row['highestHps'] > 0 for row in parses)

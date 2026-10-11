@@ -248,7 +248,7 @@ function wclDungeonIndex(wcl,rio){
  const runs=Array.isArray(rio?.bestRuns)?rio.bestRuns:[];
  const valid=new Set(runs.map(r=>dungeonKey(r.name)).filter(Boolean));
  const index=new Map();
- const archives=wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{};
+ const archives=wcl?.dungeonArchive&&Object.keys(wcl.dungeonArchive).length?wcl.dungeonArchive:(wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{});
  for(const [id,zone] of Object.entries(archives)){
   if(!id.startsWith('wcl-zone-')||!zone||!Array.isArray(zone.bossParses))continue;
   const key=dungeonKey(zone.name);
@@ -322,7 +322,7 @@ function setupMplusHistorySelector(rio,wcl){
   if(scoreNode){scoreNode.textContent=typeof entry.score==='number'?entry.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—';scoreNode.classList.remove('rio-gold','rio-purple','rio-blue','rio-green','rio-unranked');scoreNode.classList.add(rioScoreClass(entry.score));}
   const labelNode=el('rio-current-season');if(labelNode)labelNode.textContent=entry.label;
   const titleNode=el('rio-selected-score-label');if(titleNode)titleNode.textContent=entry.id===currentId?'CURRENT MYTHIC+ SCORE':'SELECTED SEASON SCORE';
-  renderMplusRunCards(entry.runs,wcl);
+  renderMplusRunCards(entry.runs,entry.id===currentId?wcl:null);
   safeLink('rio-link',rio.profileUrl?.split('?')[0]+'?season='+encodeURIComponent(entry.id));
  };
  if(selector&&records.length){
@@ -348,7 +348,7 @@ function renderRaiderIo(rio,wcl){
 function renderMplusRunCards(runs,wcl){
  const parent=el('rio-runs');if(!parent)return;parent.replaceChildren();
  const dungeonHealing=wclDungeonIndex(wcl,{bestRuns:runs});
- if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No archived dungeon runs available for this season.';parent.append(p);return;}
+ if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No verified dungeon runs or season-specific healing logs archived for this season yet.';parent.append(p);return;}
  for(const run of runs){
   const card=document.createElement('article');card.className='rio-run-card';
   const header=document.createElement('div');header.className='rio-run-heading';
