@@ -196,6 +196,46 @@ def sync_rio(data):
         payload = rio_profile('mythic_plus_best_runs,raid_progression')
     except Exception as exc:
         print(f'WARN RIO raid/run lookup: {type(exc).__name__}: {exc}')
+        season_history = dict(as_dict(rio.get('seasonHistory')))
+        for sid, score in ((current, current_score), (previous, previous_score)):
+            if not sid:
+                continue
+            entry = dict(as_dict(season_history.get(sid)))
+            entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+            if isinstance(score, (int, float)):
+                entry['score'] = score
+            season_history[sid] = entry
+        rio['seasonHistory'] = season_history
+        season_history = dict(as_dict(rio.get('seasonHistory')))
+        for sid, score in ((current, current_score), (previous, previous_score)):
+            if not sid:
+                continue
+            entry = dict(as_dict(season_history.get(sid)))
+            entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+            if isinstance(score, (int, float)):
+                entry['score'] = score
+            season_history[sid] = entry
+        rio['seasonHistory'] = season_history
+        season_history = dict(as_dict(rio.get('seasonHistory')))
+        for sid, score in ((current, current_score), (previous, previous_score)):
+            if not sid:
+                continue
+            entry = dict(as_dict(season_history.get(sid)))
+            entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+            if isinstance(score, (int, float)):
+                entry['score'] = score
+            season_history[sid] = entry
+        rio['seasonHistory'] = season_history
+        season_history = dict(as_dict(rio.get('seasonHistory')))
+        for sid, score in ((current, current_score), (previous, previous_score)):
+            if not sid:
+                continue
+            entry = dict(as_dict(season_history.get(sid)))
+            entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+            if isinstance(score, (int, float)):
+                entry['score'] = score
+            season_history[sid] = entry
+        rio['seasonHistory'] = season_history
         data['raiderIo'] = rio
         return
     if current and isinstance(payload.get('mythic_plus_best_runs'), list):
@@ -217,6 +257,62 @@ def sync_rio(data):
                 if item.get(key) is None and old.get(key) is not None:
                     item[key] = old[key]
         rio['bestRuns'] = runs
+    # Persist verified season scores and captured runs across expansion transitions.
+    # Historical runs are NOT synthesized from a score-only API response.
+    season_history = dict(as_dict(rio.get('seasonHistory')))
+    for sid, score in ((current, current_score), (previous, previous_score)):
+        if not sid:
+            continue
+        entry = dict(as_dict(season_history.get(sid)))
+        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+        if isinstance(score, (int, float)):
+            entry['score'] = score
+        if sid == current:
+            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
+        season_history[sid] = entry
+    rio['seasonHistory'] = season_history
+    # Persist verified season scores and captured runs across expansion transitions.
+    # Historical runs are NOT synthesized from a score-only API response.
+    season_history = dict(as_dict(rio.get('seasonHistory')))
+    for sid, score in ((current, current_score), (previous, previous_score)):
+        if not sid:
+            continue
+        entry = dict(as_dict(season_history.get(sid)))
+        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+        if isinstance(score, (int, float)):
+            entry['score'] = score
+        if sid == current:
+            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
+        season_history[sid] = entry
+    rio['seasonHistory'] = season_history
+    # Persist verified season scores and captured runs across expansion transitions.
+    # Historical runs are NOT synthesized from a score-only API response.
+    season_history = dict(as_dict(rio.get('seasonHistory')))
+    for sid, score in ((current, current_score), (previous, previous_score)):
+        if not sid:
+            continue
+        entry = dict(as_dict(season_history.get(sid)))
+        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+        if isinstance(score, (int, float)):
+            entry['score'] = score
+        if sid == current:
+            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
+        season_history[sid] = entry
+    rio['seasonHistory'] = season_history
+    # Persist verified season scores and captured runs across expansion transitions.
+    # Historical runs are NOT synthesized from a score-only API response.
+    season_history = dict(as_dict(rio.get('seasonHistory')))
+    for sid, score in ((current, current_score), (previous, previous_score)):
+        if not sid:
+            continue
+        entry = dict(as_dict(season_history.get(sid)))
+        entry.update({'name': season_label(sid), 'expansion': season_expansion(sid)})
+        if isinstance(score, (int, float)):
+            entry['score'] = score
+        if sid == current:
+            entry['bestRuns'] = list(as_list(rio.get('bestRuns')))
+        season_history[sid] = entry
+    rio['seasonHistory'] = season_history
     data['raiderIo'] = rio
 
     raw = as_dict(payload.get('raid_progression'))

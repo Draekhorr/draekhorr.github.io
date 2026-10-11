@@ -1,4 +1,4 @@
-# Draekhorr WoW Legacy — V1.3
+# Draekhorr WoW Legacy — V1
 
 An unofficial, automatically updated World of Warcraft character showcase for **Draekhorr**, a Restoration Shaman on **EU–Draenor**.
 
@@ -15,7 +15,7 @@ An unofficial, automatically updated World of Warcraft character showcase for **
 | Lifetime stats | Total deaths, raid deaths, falling deaths (“Gravity Wins”), achievement points | Blizzard |
 | Mythic raids | Current raid progression and historical raids grouped by expansion | Raider.IO / Blizzard |
 | Cutting Edge | Earned achievement count and discreet raid badges | Verified Blizzard achievements |
-| Mythic+ | Current/previous season scores, dungeon runs, scores, icons and completion times | Raider.IO |
+| Mythic+ | Current/previous season scores, archived season scores when verified, and available dungeon runs grouped by expansion | Raider.IO |
 | Warcraft Logs | Boss portraits, best healing parse and highest HPS | Warcraft Logs / RPGLogs CDN |
 
 The site uses a responsive layout for mobile, tablet, desktop and ultrawide displays. The header shows the current guild when Raider.IO provides it. The Mythic+ section uses the subtitle *“Mythic+ isn't the goal. It's just how I fund my raiding addiction.”* The Mounts & Achievements collection section and WoWProgress section are not displayed.
@@ -144,3 +144,11 @@ Restores the dynamic guild name and Raider.IO guild link in the top-left header 
 The Mythic+ expansion/season picker is now placed **after the two score tiles and before the dungeon cards**. It uses a native HTML `<details>` disclosure, so it is **closed on every initial page load** and opens directly below its `SELECT SEASON` heading when clicked. The user can close it again by clicking the heading. The season selection logic and available options are unchanged; historical seasons still require real stored data. Raid Logs and the dynamic guild header are unaffected.
 
 Deployment: replace `index.html`, `style.css`, and `README.md`. No API sync or workflow changes are needed.
+
+## Mythic+ season archive
+
+The collapsed **SELECT SEASON** control sits below the score tiles and above the dungeon cards. It groups verified season entries by expansion (newest first). Selecting a season replaces the left score tile and dungeon cards; the right tile continues to show the previous season score for context. When a season has a verified score but no archived runs, the site explicitly reports that its runs are unavailable. It never reuses current-season runs as historical runs.
+
+`scripts/sync_all.py` persists `raiderIo.seasonHistory` (season ID, name, expansion, verified score and captured best runs). The first sync can populate current and previous **scores**; older dungeon runs require a separately verified historical source or a snapshot captured while that season was active. Historical Warcraft Logs Mythic+ HPS collection remains a separate unfinished integration.
+
+Install `index.html`, `style.css`, `script.js`, `scripts/sync_all.py`, and this README; run the existing Sync WoW APIs workflow once to initialize the archive. No new credentials or workflow files are required.

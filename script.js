@@ -2,10 +2,11 @@ const el=id=>document.getElementById(id);
 function setValue(id,value){if(value===null||value===undefined||value==='')return;el(id).textContent=typeof value==='number'?value.toLocaleString('en-US'):String(value)}
 function setCards(id,items,fallback){if(!Array.isArray(items)||!items.length)return;const parent=el(id);parent.replaceChildren();for(const item of items){const card=document.createElement('article');card.className='data-card';const title=document.createElement('h4');title.textContent=item.name||'Unnamed';card.append(title);if(item.note){const note=document.createElement('p');note.textContent=item.note;card.append(note)}if(item.url&&/^https:\/\//i.test(item.url)){const link=document.createElement('a');link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='VIEW DETAILS ↗';card.append(link)}parent.append(card)}}
 function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(id).href=url}
+function renderGuild(guild){const wrapper=el('guild-header'),link=el('guild-link');if(!wrapper||!link)return;const name=typeof guild?.name==='string'?guild.name.trim():'';const url=guild?.url;if(!name||typeof url!=='string'||!/^https:\/\//i.test(url)){wrapper.hidden=true;return;}link.textContent=name+' ↗';link.href=url;wrapper.hidden=false;}
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
  renderWclHistory(d.warcraftLogs,d);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
- renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo,d.warcraftLogs);safeLink('rio-link',d.raiderIo?.profileUrl);
+ renderGuild(d.guild);renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo,d.warcraftLogs);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
 
@@ -289,18 +290,50 @@ function appendDungeonHealing(card,performance){
  }
  card.append(box);
 }
-function renderMplusHistorySelector(rio){
- const selector=el('rio-season-select');if(!selector)return;
- // Current bestRuns are the only season-specific M+ runs in the existing JSON.
- // Never show previous seasons with current-season runs or scores.
- const id=String(rio.currentSeason||'current');
- const label=rio.currentSeasonName||id;
- const expansion=expansionFromSeason(label)||'Current expansion';
- fillGroupedOptions(selector,[{id,label:label.replace(/^.*?Season/i,'Season'),expansion}],id);
- selector.title='Historical Mythic+ runs require season-specific data from Raider.IO.';
+function setupMplusHistorySelector(rio,wcl){
+ const selector=el('rio-season-select');
+ const currentId=String(rio.currentSeason||'current');
+ const history=rio.seasonHistory&&typeof rio.seasonHistory==='object'?rio.seasonHistory:{};
+ const entries=new Map();
+ for(const [id,entry] of Object.entries(history)){
+  if(!entry||typeof entry!=='object')continue;
+  const score=typeof entry.score==='number'&&Number.isFinite(entry.score)?entry.score:null;
+  const runs=Array.isArray(entry.bestRuns)?entry.bestRuns:[];
+  if(score===null&&!runs.length)continue;
+  const label=entry.name||id;
+  entries.set(id,{id,label,expansion:entry.expansion||expansionFromSeason(label)||'Other',score,runs});
+ }
+ // Legacy data: previous season score is verified even before history is created.
+ for(const [id,label,score,runs] of [
+  [currentId,rio.currentSeasonName||currentId,rio.currentSeasonScore??rio.mythicPlusScore,rio.bestRuns],
+  [rio.previousSeason,rio.previousSeasonName||rio.previousSeason,rio.previousSeasonScore,[]]
+ ]){
+  if(!id||entries.has(id))continue;
+  if(typeof score!=='number'&&!Array.isArray(runs))continue;
+  entries.set(String(id),{id:String(id),label,expansion:expansionFromSeason(label)||'Other',score:typeof score==='number'?score:null,runs:Array.isArray(runs)?runs:[]});
+ }
+ const records=[...entries.values()].sort((a,b)=>{
+  const x=EXPANSION_ORDER.indexOf(a.expansion),y=EXPANSION_ORDER.indexOf(b.expansion);
+  if(x!==y)return (x<0?999:x)-(y<0?999:y);
+  return b.id.localeCompare(a.id,undefined,{numeric:true});
+ });
+ const display=entry=>{
+  const scoreNode=el('rio-score');
+  if(scoreNode){scoreNode.textContent=typeof entry.score==='number'?entry.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—';scoreNode.classList.remove('rio-gold','rio-purple','rio-blue','rio-green','rio-unranked');scoreNode.classList.add(rioScoreClass(entry.score));}
+  const labelNode=el('rio-current-season');if(labelNode)labelNode.textContent=entry.label;
+  const titleNode=el('rio-selected-score-label');if(titleNode)titleNode.textContent=entry.id===currentId?'CURRENT MYTHIC+ SCORE':'SELECTED SEASON SCORE';
+  renderMplusRunCards(entry.runs,wcl);
+  safeLink('rio-link',rio.profileUrl?.split('?')[0]+'?season='+encodeURIComponent(entry.id));
+ };
+ if(selector&&records.length){
+  fillGroupedOptions(selector,records,currentId);
+  selector.onchange=()=>{const selected=entries.get(selector.value);if(selected)display(selected);};
+ }
+ const initial=entries.get(currentId)||records[0];
+ if(initial)display(initial);
 }
+
 function renderRaiderIo(rio,wcl){
- renderMplusHistorySelector(rio);
  if(!rio)return;
  setValue('rio-score',rio.currentSeasonScore??rio.mythicPlusScore);
  setValue('rio-previous',rio.previousSeasonScore);
@@ -309,10 +342,13 @@ function renderRaiderIo(rio,wcl){
  for(const [id,value] of [['rio-score',rio.currentSeasonScore??rio.mythicPlusScore],['rio-previous',rio.previousSeasonScore]]){
   const node=el(id);if(node)node.classList.add(rioScoreClass(value));
  }
+  setupMplusHistorySelector(rio,wcl);
+}
+
+function renderMplusRunCards(runs,wcl){
  const parent=el('rio-runs');if(!parent)return;parent.replaceChildren();
- const dungeonHealing=wclDungeonIndex(wcl,rio);
- const runs=Array.isArray(rio.bestRuns)?rio.bestRuns:[];
- if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No current-season runs available.';parent.append(p);return;}
+ const dungeonHealing=wclDungeonIndex(wcl,{bestRuns:runs});
+ if(!runs.length){const p=document.createElement('p');p.className='empty-state';p.textContent='No archived dungeon runs available for this season.';parent.append(p);return;}
  for(const run of runs){
   const card=document.createElement('article');card.className='rio-run-card';
   const header=document.createElement('div');header.className='rio-run-heading';
