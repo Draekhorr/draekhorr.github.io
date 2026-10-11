@@ -4,7 +4,7 @@ function setCards(id,items,fallback){if(!Array.isArray(items)||!items.length)ret
 function safeLink(id,url){if(typeof url==='string'&&/^https:\/\//i.test(url))el(id).href=url}
 fetch('data.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
  const ce=(d.cuttingEdgeAchievements||[]).filter(x=>x.verified===true);setValue('ce-count',new Set(ce.map(x=>String(x.tierId)).filter(Boolean)).size);collectVerifiedCuttingEdges(ce);renderRaids(d);safeLink('raid-source-link',d.raidSourceUrl);
- renderWclHistory(d.warcraftLogs);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
+ renderWclHistory(d.warcraftLogs,d);safeLink('wcl-link',d.warcraftLogs?.profileUrl);
  renderCharacter(d.character,d.achievementPoints);renderRaiderIo(d.raiderIo);safeLink('rio-link',d.raiderIo?.profileUrl);
  if(d.updatedAt)el('status').textContent='Data updated: '+d.updatedAt;
 }).catch(()=>{el('status').textContent='Data unavailable. Use GitHub Pages or a local web server.'});
@@ -122,13 +122,38 @@ function renderRaids(data){
 }
 
 // The selector replaces the current table; only recorded snapshots are offered.
-function renderWclHistory(wcl){
+// Only show archived zones that match a raid in Blizzard's raid progression.
+// This filters out dungeon / Mythic+ zones even if the backfill stored them.
+function knownRaidNames(data){
+ const names=new Set();
+ const add=raid=>{if(raid?.name)names.add(normalizeRaidName(raid.name));};
+ const by=data?.raidProgressionByExpansion||{};
+ (by.currentSeason?.raids||[]).forEach(add);
+ for(const groups of Object.values(by.history||{})){
+  if(Array.isArray(groups))for(const group of groups)(group?.raids||[]).forEach(add);
+ }
+ for(const raids of Object.values(data?.historicalRaidProgression||{})){
+  if(Array.isArray(raids))raids.forEach(add);
+ }
+ (data?.raidProgression||[]).forEach(add);
+ return names;
+}
+function renderWclHistory(wcl,data){
  const selector=el('wcl-season-select');
  if(!selector){renderWclBosses(wcl?.bossParses);return;}
  selector.replaceChildren();
  const archive=wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{};
  const currentId=String(wcl?.currentSeasonId||'current');
- const records=Object.entries(archive).filter(([,entry])=>Array.isArray(entry?.bossParses)&&entry.bossParses.length);
+ const raidNames=knownRaidNames(data);
+ const records=Object.entries(archive).filter(([id,entry])=>{
+  if(!Array.isArray(entry?.bossParses)||!entry.bossParses.length)return false;
+  // The live season snapshot is explicitly raid-only in our existing WCL sync.
+  if(id===currentId)return true;
+  const zoneName=normalizeRaidName(entry.name);
+  // Historical backfill uses wcl-zone-ID entries. Require a verified raid name.
+  // Do not guess from boss names: those can overlap with dungeon encounters.
+  return raidNames.has(zoneName);
+ });
  if(!records.some(([id])=>id===currentId)&&Array.isArray(wcl?.bossParses)&&wcl.bossParses.length){
   records.push([currentId,{name:wcl?.currentSeasonName||'Current season',bossParses:wcl.bossParses}]);
  }

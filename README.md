@@ -109,3 +109,8 @@ The normal 6-hour sync still records the current season. To discover older Warcr
 The selector in the Warcraft Logs panel now offers **raid / archived season** entries; selecting one replaces the table. Only zones for which the WCL API returns character healing rankings appear. Historical coverage depends on WCL API availability and whether logs exist. The backfill is best-effort and has not been verified against live WCL credentials in this package.
 
 **Diagnostics:** `DIAG WCL backfill discovered zones=...` and `DIAG WCL backfill: added=... existing_or_empty=... errors=...`. If `added=0`, the API may not expose the required zone enumeration/rankings; inspect warnings before attempting another approach. Keep the backfill manual to avoid repeated API-heavy discovery every six hours.
+
+
+### V1.3.1 — Raid-only Warcraft Logs dropdown
+
+The historical Warcraft Logs dropdown now hides dungeon and Mythic+ zones in the frontend. Archived zone names must match a raid present in the Blizzard raid progression data. The current-season snapshot remains visible. No backend, API, or workflow changes. This is a presentation filter, not a substitute for server-side raid-only filtering; an unmatched legitimate raid may be hidden until Blizzard raid metadata contains its name.
