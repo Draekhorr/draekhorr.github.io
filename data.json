@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-11T16:24:29+00:00",
+  "updatedAt": "2026-10-11T18:09:51+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -391,8 +391,8 @@
         "encounterId": 3420,
         "journalId": null,
         "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3420-icon.jpg?v=4",
-        "bestPercent": 13.0044,
-        "highestHps": 307441.77358334,
+        "bestPercent": 62.150998479628186,
+        "highestHps": 359631.68639561,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -489,8 +489,8 @@
             "encounterId": 3420,
             "journalId": null,
             "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3420-icon.jpg?v=4",
-            "bestPercent": 13.0044,
-            "highestHps": 307441.77358334,
+            "bestPercent": 62.150998479628186,
+            "highestHps": 359631.68639561,
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           },
           {
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-11T16:24:25+00:00"
+        "archivedAt": "2026-10-11T18:09:46+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
