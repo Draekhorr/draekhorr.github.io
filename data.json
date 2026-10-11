@@ -264,6 +264,81 @@
         "name": "Midnight Season 1",
         "expansion": "Midnight",
         "score": 3635.2
+      },
+      "season-bfa-1": {
+        "score": 1039.8,
+        "name": "Battle for Azeroth Season 1",
+        "expansion": "Battle for Azeroth"
+      },
+      "season-bfa-2": {
+        "score": 1177.9,
+        "name": "Battle for Azeroth Season 2",
+        "expansion": "Battle for Azeroth"
+      },
+      "season-bfa-3": {
+        "score": 1347.1,
+        "name": "Battle for Azeroth Season 3",
+        "expansion": "Battle for Azeroth"
+      },
+      "season-bfa-4": {
+        "score": 2801.6,
+        "name": "Battle for Azeroth Season 4",
+        "expansion": "Battle for Azeroth"
+      },
+      "season-df-1": {
+        "score": 2754.9,
+        "name": "Dragonflight Season 1",
+        "expansion": "Dragonflight"
+      },
+      "season-df-2": {
+        "score": 2550.7,
+        "name": "Dragonflight Season 2",
+        "expansion": "Dragonflight"
+      },
+      "season-df-3": {
+        "score": 2891,
+        "name": "Dragonflight Season 3",
+        "expansion": "Dragonflight"
+      },
+      "season-df-4": {
+        "score": 2162.5,
+        "name": "Dragonflight Season 4",
+        "expansion": "Dragonflight"
+      },
+      "season-sl-1": {
+        "score": 1616,
+        "name": "Shadowlands Season 1",
+        "expansion": "Shadowlands"
+      },
+      "season-sl-2": {
+        "score": 2461.9,
+        "name": "Shadowlands Season 2",
+        "expansion": "Shadowlands"
+      },
+      "season-sl-3": {
+        "score": 3015.4,
+        "name": "Shadowlands Season 3",
+        "expansion": "Shadowlands"
+      },
+      "season-sl-4": {
+        "score": 2418.8,
+        "name": "Shadowlands Season 4",
+        "expansion": "Shadowlands"
+      },
+      "season-tww-1": {
+        "score": 2830.5,
+        "name": "The War Within Season 1",
+        "expansion": "The War Within"
+      },
+      "season-tww-2": {
+        "score": 3003.4,
+        "name": "The War Within Season 2",
+        "expansion": "The War Within"
+      },
+      "season-tww-3": {
+        "score": 3070.3,
+        "name": "The War Within Season 3",
+        "expansion": "The War Within"
       }
     }
   },
