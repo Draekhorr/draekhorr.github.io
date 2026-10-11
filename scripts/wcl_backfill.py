@@ -90,13 +90,6 @@ def run():
     data = json.loads(OUT.read_text(encoding='utf-8'))
     wcl = as_dict(data.get('warcraftLogs'))
     archive = as_dict(wcl.get('seasonArchive')).copy()
-    dungeon_archive = dict(as_dict(wcl.get('dungeonArchive')))
-    # Only classify zones as dungeons when their names match verified RIO runs.
-    rio_runs = as_list(as_dict(data.get('raiderIo')).get('bestRuns'))
-    def dungeon_name(value):
-        import re
-        return re.sub(r'[^a-z0-9]+', ' ', re.sub(r'\s*\+\d+\s*$', '', str(value or '').lower())).strip()
-    verified_dungeons = {dungeon_name(r.get('name')) for r in rio_runs if isinstance(r, dict)}
     current_encounters = {x.get('encounterId') for x in as_list(wcl.get('bossParses')) if isinstance(x, dict)}
     added, skipped, errors = 0, 0, 0
     for zone in zones:
@@ -104,8 +97,6 @@ def run():
         key = f'wcl-zone-{zone_id}'
         if key in archive and as_list(as_dict(archive[key]).get('bossParses')):
             old = as_dict(archive[key])
-            if dungeon_name(zone_name) in verified_dungeons:
-                dungeon_archive[key] = old
             skipped += 1
             continue
         args = f'{zone_arg}:{zone_id},metric:hps'
@@ -141,19 +132,14 @@ def run():
                 continue
             archive[key] = {'name':zone_name, 'bossParses':parses, 'zoneId':zone_id,
                             'source':'Warcraft Logs', 'archivedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')}
-            if dungeon_name(zone_name) in verified_dungeons:
-                dungeon_archive[key] = archive[key]
-                print(f'OK WCL dungeon zone={zone_id} name={zone_name!r}')
             added += 1
             print(f'OK WCL historical zone={zone_id} name={zone_name!r} bosses={len(parses)}')
         except Exception as exc:
             errors += 1
             print(f'WARN WCL historical zone={zone_id}: {type(exc).__name__}: {exc}',file=sys.stderr)
-    changed_dungeons = dungeon_archive != as_dict(wcl.get('dungeonArchive'))
     wcl['seasonArchive'] = archive
-    wcl['dungeonArchive'] = dungeon_archive
     data['warcraftLogs'] = wcl
-    if added or changed_dungeons:
+    if added:
         OUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'DIAG WCL backfill: added={added} existing_or_empty={skipped} errors={errors} archive={len(archive)}')
 

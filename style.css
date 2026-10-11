@@ -160,15 +160,6 @@ nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;whit
 #wcl-season-select:disabled{opacity:.7;cursor:default}
 
 /* Mythic+ Warcraft Logs metrics: displayed only for verified dungeon-name matches. */
-#raiderio .rio-wcl-metrics{border-top:1px solid #344b5a;margin:14px 0 10px;padding-top:12px;min-width:0}
-#raiderio .rio-wcl-caption{color:#82bdcf;font-size:10px;letter-spacing:.07em;line-height:1.5;margin:0 0 9px}
-#raiderio .rio-wcl-stats{display:flex;flex-wrap:wrap;gap:8px 18px;color:#d0dce5;font-size:12px;line-height:1.6;margin-bottom:8px}
-#raiderio .rio-wcl-stats strong{font-variant-numeric:tabular-nums;font-weight:800}
-#raiderio .rio-wcl-stats .parse-legendary{color:#ff8000}
-#raiderio .rio-wcl-stats .parse-epic{color:#a335ee}
-#raiderio .rio-wcl-stats .parse-rare{color:#4a9bff}
-#raiderio .rio-wcl-stats .parse-uncommon{color:#1eff00}
-#raiderio .rio-wcl-stats .parse-common{color:#aaa}
 
 /* Unified historical navigation */
 .history-filter{margin:20px 0 16px;max-width:100%}

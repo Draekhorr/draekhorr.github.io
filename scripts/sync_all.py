@@ -775,8 +775,7 @@ def sync_warcraftlogs(data):
                            'healingMetricConfirmed': healing,
                            'currentSeasonId': season_id,
                            'currentSeasonName': season_name,
-                           'seasonArchive': archive,
-                           'dungeonArchive': as_dict(previous.get('dungeonArchive'))}
+                           'seasonArchive': archive}
     print(f'DIAG WCL archived seasons={len(archive)} current={season_id}')
     icons = sum(bool(row.get('iconUrl')) for row in parses)
     hps_count = sum(isinstance(row.get('highestHps'), (int, float)) and row['highestHps'] > 0 for row in parses)
