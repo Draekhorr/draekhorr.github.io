@@ -1,4 +1,4 @@
-# Draekhorr WoW Legacy — V1
+# Draekhorr WoW Legacy — V1.3
 
 An unofficial, automatically updated World of Warcraft character showcase for **Draekhorr**, a Restoration Shaman on **EU–Draenor**.
 
@@ -101,3 +101,11 @@ The `warcraftLogs.seasonArchive` object in `data.json` stores season-keyed snaps
 **Historical coverage limitation:** This version does not retroactively retrieve Warcraft Logs rankings for expansions before the site began recording season snapshots. The dropdown shows only seasons with captured data. Raider.IO season identifiers are used for archive labels, not as Warcraft Logs zone identifiers. To backfill older expansions, a separate verified Warcraft Logs zone/partition discovery integration is required. A saved snapshot represents the most recently synced rankings for that season, not necessarily its final end-of-season rankings.
 
 Files changed: `scripts/sync_all.py`, `script.js`, `index.html`, `style.css`. The existing six-hour GitHub Actions schedule remains unchanged. Commit the files, then manually run Sync WoW APIs once to initialize the first snapshot. The workflow already commits `data.json`.
+
+## Historical Warcraft Logs backfill (V1.3)
+
+The normal 6-hour sync still records the current season. To discover older Warcraft Logs healing parses, run the **Backfill Warcraft Logs** workflow manually (Actions → Backfill Warcraft Logs → Run workflow). It enumerates WCL zones using GraphQL introspection, requests actual `hps` rankings by zone, and merges only nonempty historical results into `data.json`. The existing archive is preserved. It does not infer old HPS from Blizzard raid kills.
+
+The selector in the Warcraft Logs panel now offers **raid / archived season** entries; selecting one replaces the table. Only zones for which the WCL API returns character healing rankings appear. Historical coverage depends on WCL API availability and whether logs exist. The backfill is best-effort and has not been verified against live WCL credentials in this package.
+
+**Diagnostics:** `DIAG WCL backfill discovered zones=...` and `DIAG WCL backfill: added=... existing_or_empty=... errors=...`. If `added=0`, the API may not expose the required zone enumeration/rankings; inspect warnings before attempting another approach. Keep the backfill manual to avoid repeated API-heavy discovery every six hours.

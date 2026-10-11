@@ -139,6 +139,7 @@ function renderWclHistory(wcl){
   renderWclBosses(entry?.bossParses||[]);
  };
  selector.disabled=records.length<=1;
+ selector.title=records.length<=1?"Historical Warcraft Logs will appear after the backfill finds eligible raids.":"Choose a raid or archived season";
  selector.value=records.some(([id])=>id===currentId)?currentId:records[0]?.[0]||'';
  selector.onchange=show;
  show();
