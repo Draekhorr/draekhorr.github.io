@@ -1833,7 +1833,7 @@
         "archivedAt": "2026-10-11T15:24:19+00:00"
       },
       "wcl-zone-46": {
-        "name": "VS / DR / MQD",
+        "name": "Midnight Season 1",
         "bossParses": [
           {
             "name": "Imperator Averzian",
@@ -1910,7 +1910,7 @@
         ],
         "zoneId": 46,
         "source": "Warcraft Logs",
-        "archivedAt": "2026-10-11T15:24:19+00:00"
+        "archivedAt": "2026-10-11T16:12:08+00:00"
       },
       "wcl-zone-44": {
         "name": "Manaforge Omega",
@@ -2665,6 +2665,86 @@
         "zoneId": 8,
         "source": "Warcraft Logs",
         "archivedAt": "2026-10-11T15:24:38+00:00"
+      },
+      "season-mn-1": {
+        "name": "Midnight Season 1",
+        "bossParses": [
+          {
+            "name": "Imperator Averzian",
+            "encounterId": 3176,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3176-icon.jpg?v=4",
+            "bestPercent": 84.4826,
+            "highestHps": 139711.45997429,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vorasius",
+            "encounterId": 3177,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3177-icon.jpg?v=4",
+            "bestPercent": 74.0005,
+            "highestHps": 132722.40822994,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fallen-King Salhadaar",
+            "encounterId": 3179,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3179-icon.jpg?v=4",
+            "bestPercent": 62.5713,
+            "highestHps": 134585.86430319,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vaelgor & Ezzorak",
+            "encounterId": 3178,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3178-icon.jpg?v=4",
+            "bestPercent": 61.1114,
+            "highestHps": 141366.99398194,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Lightblinded Vanguard",
+            "encounterId": 3180,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3180-icon.jpg?v=4",
+            "bestPercent": 88.1698,
+            "highestHps": 163906.08728444,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Crown of the Cosmos",
+            "encounterId": 3181,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3181-icon.jpg?v=4",
+            "bestPercent": 62.1823,
+            "highestHps": 155953.6195694,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Chimaerus, the Undreamt God",
+            "encounterId": 3306,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3306-icon.jpg?v=4",
+            "bestPercent": 86.5029,
+            "highestHps": 129923.37829393,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Midnight Falls",
+            "encounterId": 3183,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3183-icon.jpg?v=4",
+            "bestPercent": 26.3587,
+            "highestHps": 158473.88931294,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 46,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T16:12:08+00:00"
       }
     },
     "dungeonArchive": {}
