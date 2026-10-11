@@ -123,3 +123,14 @@ The Mythic+ dungeon cards can optionally show **Best healing parse** and **Highe
 **Important:** This release is a frontend integration only. The current data file may not contain any Mythic+ Warcraft Logs entries, so the cards will remain unchanged until real dungeon-zone records are collected. Existing historical backfill is not guaranteed to retrieve Mythic+ healing rankings; a separate verified backend collector may be needed. The RAID Warcraft Logs dropdown continues to exclude dungeons.
 
 Deployment: replace `index.html`, `script.js`, `style.css`, and `README.md`; no API sync required for this frontend update.
+
+
+## V1.5 — Unified expansion navigation
+
+Warcraft Logs raid selection now uses expansion-grouped options. Only verified raid zones with real WCL healing data appear. The current season is selected by default.
+
+The Mythic+ section also includes an expansion-grouped season selector. **At present only the current season is selectable**, because the existing `raiderIo.bestRuns` dataset contains current-season runs only. Historical seasons must not be populated with current-season scores/runs.
+
+**Known limitation:** Mythic+ Warcraft Logs metrics are not guaranteed to appear. The existing WCL archive contains raid data; a verified dungeon-healing backend collector is still required. This update does not fabricate HPS or parse values, and does not change API sync workflows.
+
+Deployment: replace `index.html`, `script.js`, `style.css`, and `README.md`.

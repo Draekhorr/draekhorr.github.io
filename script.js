@@ -138,36 +138,64 @@ function knownRaidNames(data){
  (data?.raidProgression||[]).forEach(add);
  return names;
 }
+// Unified expansion headings, with no invented historical results.
+const EXPANSION_ORDER=['Midnight','The War Within','Dragonflight','Shadowlands','Battle for Azeroth','Legion','Warlords of Draenor','Mists of Pandaria','Cataclysm','Wrath of the Lich King','The Burning Crusade','Classic'];
+function expansionForRaid(name,data){
+ const key=normalizeRaidName(name);
+ const by=data?.raidProgressionByExpansion||{};
+ const current=by.currentSeason;
+ if((current?.raids||[]).some(r=>normalizeRaidName(r.name)===key))return current.expansion||'Current expansion';
+ for(const [exp,groups] of Object.entries(by.history||{}))for(const group of Array.isArray(groups)?groups:[]){
+  if((group.raids||[]).some(r=>normalizeRaidName(r.name)===key))return exp;
+ }
+ for(const [exp,raids] of Object.entries(data?.historicalRaidProgression||{})){
+  if(Array.isArray(raids)&&raids.some(r=>normalizeRaidName(r.name)===key))return exp;
+ }
+ return null;
+}
+function expansionFromSeason(name){
+ const label=String(name||'');
+ return EXPANSION_ORDER.find(exp=>label.toLowerCase().includes(exp.toLowerCase()))||null;
+}
+function fillGroupedOptions(selector,records,currentId){
+ selector.replaceChildren();
+ const groups=new Map();
+ for(const item of records){const group=item.expansion||'Other';if(!groups.has(group))groups.set(group,[]);groups.get(group).push(item);}
+ const order=[...groups.keys()].sort((a,b)=>{
+  const ai=EXPANSION_ORDER.indexOf(a),bi=EXPANSION_ORDER.indexOf(b);
+  return (ai<0?999:ai)-(bi<0?999:bi)||a.localeCompare(b);
+ });
+ for(const name of order){
+  const group=document.createElement('optgroup');group.label=name.toUpperCase();
+  for(const item of groups.get(name))group.append(new Option(item.label+(item.id===currentId?' (Current)':''),item.id));
+  selector.append(group);
+ }
+ selector.value=records.some(item=>item.id===currentId)?currentId:records[0]?.id||'';
+ selector.disabled=records.length<=1;
+}
 function renderWclHistory(wcl,data){
  const selector=el('wcl-season-select');
  if(!selector){renderWclBosses(wcl?.bossParses);return;}
- selector.replaceChildren();
  const archive=wcl?.seasonArchive&&typeof wcl.seasonArchive==='object'?wcl.seasonArchive:{};
  const currentId=String(wcl?.currentSeasonId||'current');
  const raidNames=knownRaidNames(data);
- const records=Object.entries(archive).filter(([id,entry])=>{
-  if(!Array.isArray(entry?.bossParses)||!entry.bossParses.length)return false;
-  // The live season snapshot is explicitly raid-only in our existing WCL sync.
-  if(id===currentId)return true;
-  const zoneName=normalizeRaidName(entry.name);
-  // Historical backfill uses wcl-zone-ID entries. Require a verified raid name.
-  // Do not guess from boss names: those can overlap with dungeon encounters.
-  return raidNames.has(zoneName);
- });
- if(!records.some(([id])=>id===currentId)&&Array.isArray(wcl?.bossParses)&&wcl.bossParses.length){
-  records.push([currentId,{name:wcl?.currentSeasonName||'Current season',bossParses:wcl.bossParses}]);
+ const records=[];
+ for(const [id,entry] of Object.entries(archive)){
+  if(!Array.isArray(entry?.bossParses)||!entry.bossParses.length)continue;
+  const isCurrent=id===currentId;
+  if(!isCurrent&&!raidNames.has(normalizeRaidName(entry.name)))continue;
+  const expansion=isCurrent?(data?.raidProgressionByExpansion?.currentSeason?.expansion||expansionFromSeason(entry.name)):expansionForRaid(entry.name,data);
+  if(!expansion)continue; // Never label unknown dungeon zones as raids.
+  records.push({id,label:entry.name||id,expansion,bossParses:entry.bossParses});
  }
- records.sort(([a],[b])=>a===currentId?-1:b===currentId?1:b.localeCompare(a,undefined,{numeric:true}));
- for(const [id,entry] of records){selector.add(new Option(`${entry.name||id}${id===currentId?' (Current)':''}`,id));}
- const show=()=>{
-  const entry=records.find(([id])=>id===selector.value)?.[1];
-  renderWclBosses(entry?.bossParses||[]);
- };
- selector.disabled=records.length<=1;
- selector.title=records.length<=1?"Historical Warcraft Logs will appear after the backfill finds eligible raids.":"Choose a raid or archived season";
- selector.value=records.some(([id])=>id===currentId)?currentId:records[0]?.[0]||'';
- selector.onchange=show;
- show();
+ if(!records.some(x=>x.id===currentId)&&Array.isArray(wcl?.bossParses)&&wcl.bossParses.length){
+  records.push({id:currentId,label:wcl?.currentSeasonName||'Current season',expansion:data?.raidProgressionByExpansion?.currentSeason?.expansion||'Current expansion',bossParses:wcl.bossParses});
+ }
+ records.sort((a,b)=>a.id===currentId?-1:b.id===currentId?1:b.label.localeCompare(a.label,undefined,{numeric:true}));
+ fillGroupedOptions(selector,records,currentId);
+ selector.title=records.length<=1?'No additional verified raid logs available yet.':'Select historical raid logs';
+ const show=()=>renderWclBosses(records.find(x=>x.id===selector.value)?.bossParses||[]);
+ selector.onchange=show;show();
 }
 
 // WCL: display per-boss healing results, never invent missing HPS.
@@ -261,7 +289,18 @@ function appendDungeonHealing(card,performance){
  }
  card.append(box);
 }
+function renderMplusHistorySelector(rio){
+ const selector=el('rio-season-select');if(!selector)return;
+ // Current bestRuns are the only season-specific M+ runs in the existing JSON.
+ // Never show previous seasons with current-season runs or scores.
+ const id=String(rio.currentSeason||'current');
+ const label=rio.currentSeasonName||id;
+ const expansion=expansionFromSeason(label)||'Current expansion';
+ fillGroupedOptions(selector,[{id,label:label.replace(/^.*?Season/i,'Season'),expansion}],id);
+ selector.title='Historical Mythic+ runs require season-specific data from Raider.IO.';
+}
 function renderRaiderIo(rio,wcl){
+ renderMplusHistorySelector(rio);
  if(!rio)return;
  setValue('rio-score',rio.currentSeasonScore??rio.mythicPlusScore);
  setValue('rio-previous',rio.previousSeasonScore);

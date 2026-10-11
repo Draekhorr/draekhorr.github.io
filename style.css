@@ -169,3 +169,9 @@ nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;whit
 #raiderio .rio-wcl-stats .parse-rare{color:#4a9bff}
 #raiderio .rio-wcl-stats .parse-uncommon{color:#1eff00}
 #raiderio .rio-wcl-stats .parse-common{color:#aaa}
+
+/* Unified historical navigation */
+.history-filter{margin:20px 0 16px;max-width:100%}
+.history-filter label{display:block;margin-bottom:8px;color:#8fc8d8;font-size:11px;font-weight:800;letter-spacing:.12em}
+.raid-expansion-select optgroup{font-weight:800;color:#eac47e;background:#101a26}
+.raid-expansion-select option{color:#e0e9f0;background:#101a26;font-family:Inter,Arial,sans-serif}
