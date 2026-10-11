@@ -395,6 +395,2206 @@
           }
         ],
         "archivedAt": "2026-10-11T15:16:00+00:00"
+      },
+      "wcl-zone-55": {
+        "name": "Mythic+ Season 2",
+        "bossParses": [
+          {
+            "name": "Altar of Fangs",
+            "encounterId": 12993,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12993-icon.jpg?v=4",
+            "bestPercent": 90.00101854715561,
+            "highestHps": 280129557.92553,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Den of Nalorakk",
+            "encounterId": 12825,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12825-icon.jpg?v=4",
+            "bestPercent": 89.9992,
+            "highestHps": 280110548.02552,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kings' Rest",
+            "encounterId": 61762,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61762-icon.jpg?v=4",
+            "bestPercent": 94.9969964392994,
+            "highestHps": 320110054.39623,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Murder Row",
+            "encounterId": 12813,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12813-icon.jpg?v=4",
+            "bestPercent": 62.97054826162218,
+            "highestHps": 200108768.48529,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Ruby Life Pools",
+            "encounterId": 112521,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/112521-icon.jpg?v=4",
+            "bestPercent": 94.9957,
+            "highestHps": 300133609.56474,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Temple of Sethraliss",
+            "encounterId": 61877,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61877-icon.jpg?v=4",
+            "bestPercent": 96.99986622534931,
+            "highestHps": 340145814.31668,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Blinding Vale",
+            "encounterId": 12859,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12859-icon.jpg?v=4",
+            "bestPercent": 65.0122,
+            "highestHps": 200092449.12459,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Voidscar Arena",
+            "encounterId": 12923,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12923-icon.jpg?v=4",
+            "bestPercent": 64.2337,
+            "highestHps": 200104356.89758,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 55,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:51+00:00"
+      },
+      "wcl-zone-47": {
+        "name": "Mythic+ Season 1",
+        "bossParses": [
+          {
+            "name": "Algeth'ar Academy",
+            "encounterId": 112526,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/112526-icon.jpg?v=4",
+            "bestPercent": 96.99936067434899,
+            "highestHps": 380059481.49452,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Magisters' Terrace",
+            "encounterId": 12811,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12811-icon.jpg?v=4",
+            "bestPercent": 29.010146966716704,
+            "highestHps": 100027749.625,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Maisara Caverns",
+            "encounterId": 12874,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12874-icon.jpg?v=4",
+            "bestPercent": 85.00173534563876,
+            "highestHps": 320070852.90222,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Nexus-Point Xenas",
+            "encounterId": 12915,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12915-icon.jpg?v=4",
+            "bestPercent": 89.99564345511601,
+            "highestHps": 340064117.50863,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Pit of Saron",
+            "encounterId": 10658,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/10658-icon.jpg?v=4",
+            "bestPercent": 97.00069884186573,
+            "highestHps": 380087387.44392,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Seat of the Triumvirate",
+            "encounterId": 361753,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/361753-icon.jpg?v=4",
+            "bestPercent": 95.00029799133577,
+            "highestHps": 340088246.27908,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Skyreach",
+            "encounterId": 61209,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61209-icon.jpg?v=4",
+            "bestPercent": 97.00059270611929,
+            "highestHps": 360089780.25695,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Windrunner Spire",
+            "encounterId": 12805,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12805-icon.jpg?v=4",
+            "bestPercent": 96.9999,
+            "highestHps": 360081514.58379,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 47,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:53+00:00"
+      },
+      "wcl-zone-45": {
+        "name": "Mythic+ Season 3",
+        "bossParses": [
+          {
+            "name": "Ara-Kara, City of Echoes",
+            "encounterId": 62660,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62660-icon.jpg?v=4",
+            "bestPercent": 71.67773843833758,
+            "highestHps": 241745970.55507,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Eco-Dome Al'dani",
+            "encounterId": 12830,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12830-icon.jpg?v=4",
+            "bestPercent": 90.8503466122093,
+            "highestHps": 201700643.93072,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Halls of Atonement",
+            "encounterId": 62287,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62287-icon.jpg?v=4",
+            "bestPercent": 96.3020846231489,
+            "highestHps": 201794968.56095,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Operation: Floodgate",
+            "encounterId": 62773,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62773-icon.jpg?v=4",
+            "bestPercent": 79.97977398455221,
+            "highestHps": 222126196.17439,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Priory of the Sacred Flame",
+            "encounterId": 62649,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62649-icon.jpg?v=4",
+            "bestPercent": 98.73593291346138,
+            "highestHps": 242237714.16325,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Tazavesh: So'leah's Gambit",
+            "encounterId": 112442,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/112442-icon.jpg?v=4",
+            "bestPercent": 91.60842707149492,
+            "highestHps": 221219215.48167,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Dawnbreaker",
+            "encounterId": 62662,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62662-icon.jpg?v=4",
+            "bestPercent": 80.13129263543124,
+            "highestHps": 221706812.09795,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 45,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:54+00:00"
+      },
+      "wcl-zone-43": {
+        "name": "Mythic+ Season 2",
+        "bossParses": [
+          {
+            "name": "Darkflame Cleft",
+            "encounterId": 12651,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12651-icon.jpg?v=4",
+            "bestPercent": 80.02175253038632,
+            "highestHps": 240882847.06019,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Operation: Floodgate",
+            "encounterId": 12773,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12773-icon.jpg?v=4",
+            "bestPercent": 73.95585006204351,
+            "highestHps": 241176974.8562,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Operation: Mechagon - Workshop",
+            "encounterId": 112098,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/112098-icon.jpg?v=4",
+            "bestPercent": 89.95150462248279,
+            "highestHps": 200769931.44477,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Priory of the Sacred Flame",
+            "encounterId": 12649,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12649-icon.jpg?v=4",
+            "bestPercent": 79.7977315281281,
+            "highestHps": 201083049.31672,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The MOTHERLODE!!",
+            "encounterId": 61594,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61594-icon.jpg?v=4",
+            "bestPercent": 80.01932874401518,
+            "highestHps": 241115077.92564,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Rookery",
+            "encounterId": 12648,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12648-icon.jpg?v=4",
+            "bestPercent": 89.99020337774026,
+            "highestHps": 241120212.77204,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Theater of Pain",
+            "encounterId": 62293,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62293-icon.jpg?v=4",
+            "bestPercent": 71.39452272458685,
+            "highestHps": 220901190.27997,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 43,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:55+00:00"
+      },
+      "wcl-zone-39": {
+        "name": "Mythic+ Season 1",
+        "bossParses": [
+          {
+            "name": "Ara-Kara, City of Echoes",
+            "encounterId": 12660,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12660-icon.jpg?v=4",
+            "bestPercent": 90.00115211635728,
+            "highestHps": 200646277.39853,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "City of Threads",
+            "encounterId": 12669,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12669-icon.jpg?v=4",
+            "bestPercent": 69.95878847215474,
+            "highestHps": 120339332.38552,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Grim Batol",
+            "encounterId": 60670,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/60670-icon.jpg?v=4",
+            "bestPercent": 78.68906269037491,
+            "highestHps": 180554639.02672,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Mists of Tirna Scithe",
+            "encounterId": 62290,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62290-icon.jpg?v=4",
+            "bestPercent": 80.02591540437344,
+            "highestHps": 180365132.74731,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Siege of Boralus",
+            "encounterId": 61822,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61822-icon.jpg?v=4",
+            "bestPercent": 69.99216362320286,
+            "highestHps": 200460692.95486,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Dawnbreaker",
+            "encounterId": 12662,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12662-icon.jpg?v=4",
+            "bestPercent": 80.0312852729378,
+            "highestHps": 220676961.81615,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Necrotic Wake",
+            "encounterId": 62286,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62286-icon.jpg?v=4",
+            "bestPercent": 89.96632832186924,
+            "highestHps": 140386365.88345,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 39,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:56+00:00"
+      },
+      "wcl-zone-36": {
+        "name": "Mythic+ Season 3",
+        "bossParses": [
+          {
+            "name": "Atal'Dazar",
+            "encounterId": 61763,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61763-icon.jpg?v=4",
+            "bestPercent": 90.00126417082674,
+            "highestHps": 440082131.05391,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Black Rook Hold",
+            "encounterId": 61501,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61501-icon.jpg?v=4",
+            "bestPercent": 84.99748141276619,
+            "highestHps": 420091422.02025,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Darkheart Thicket",
+            "encounterId": 61466,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61466-icon.jpg?v=4",
+            "bestPercent": 78.77253780609004,
+            "highestHps": 400058651.12758,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dawn of the Infinite: Galakrond's Fall",
+            "encounterId": 12579,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12579-icon.jpg?v=4",
+            "bestPercent": 85.00112661203562,
+            "highestHps": 420092037.32773,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dawn of the Infinite: Murozond's Rise",
+            "encounterId": 12580,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12580-icon.jpg?v=4",
+            "bestPercent": 65.00212773959088,
+            "highestHps": 380072080.71176,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Everbloom",
+            "encounterId": 61279,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61279-icon.jpg?v=4",
+            "bestPercent": 90.0073422845022,
+            "highestHps": 440098170.75493,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Throne of the Tides",
+            "encounterId": 10643,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/10643-icon.jpg?v=4",
+            "bestPercent": 85.0029301009923,
+            "highestHps": 360078669.69259,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Waycrest Manor",
+            "encounterId": 61862,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61862-icon.jpg?v=4",
+            "bestPercent": 85.00728578556573,
+            "highestHps": 420097496.80872,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 36,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:23:57+00:00"
+      },
+      "wcl-zone-34": {
+        "name": "Mythic+ Season 2",
+        "bossParses": [
+          {
+            "name": "Brackenhide Hollow",
+            "encounterId": 12520,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12520-icon.jpg?v=4",
+            "bestPercent": 15.000145295327084,
+            "highestHps": 220019537.93797,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Freehold",
+            "encounterId": 61754,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61754-icon.jpg?v=4",
+            "bestPercent": 89.99962422062563,
+            "highestHps": 400041131.79834,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Neltharion's Lair",
+            "encounterId": 61458,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61458-icon.jpg?v=4",
+            "bestPercent": 80.00883455171696,
+            "highestHps": 380053825.07346,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Neltharus",
+            "encounterId": 12519,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12519-icon.jpg?v=4",
+            "bestPercent": 55.395405365696,
+            "highestHps": 340038793.54266,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Underrot",
+            "encounterId": 61841,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61841-icon.jpg?v=4",
+            "bestPercent": 87.12694243139565,
+            "highestHps": 400039759.44592,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 34,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:01+00:00"
+      },
+      "wcl-zone-32": {
+        "name": "Mythic+ Season 1",
+        "bossParses": [
+          {
+            "name": "Court of Stars",
+            "encounterId": 61571,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61571-icon.jpg?v=4",
+            "bestPercent": 94.99941300255648,
+            "highestHps": 400017251.31759,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Halls of Valor",
+            "encounterId": 61477,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61477-icon.jpg?v=4",
+            "bestPercent": 97.00049299632283,
+            "highestHps": 300018068.5705,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Shadowmoon Burial Grounds",
+            "encounterId": 61176,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/61176-icon.jpg?v=4",
+            "bestPercent": 95.9330489068798,
+            "highestHps": 420025585.0686,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Temple of the Jade Serpent",
+            "encounterId": 10960,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/10960-icon.jpg?v=4",
+            "bestPercent": 95.04826066545243,
+            "highestHps": 400027289.33,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Nokhud Offensive",
+            "encounterId": 12516,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12516-icon.jpg?v=4",
+            "bestPercent": 80.00108224160992,
+            "highestHps": 220017887.57381,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 32,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:06+00:00"
+      },
+      "wcl-zone-30": {
+        "name": "Mythic+ Season 4",
+        "bossParses": [
+          {
+            "name": "Operation: Mechagon - Workshop",
+            "encounterId": 62098,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/62098-icon.jpg?v=4",
+            "bestPercent": 25.000018207269488,
+            "highestHps": 260003984.55269,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 30,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:08+00:00"
+      },
+      "wcl-zone-35": {
+        "name": "Amirdrassil, the Dream's Hope",
+        "bossParses": [
+          {
+            "name": "Gnarlroot",
+            "encounterId": 2820,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2820-icon.jpg?v=4",
+            "bestPercent": 71.636860951627,
+            "highestHps": 220420.53181732,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Igira the Cruel",
+            "encounterId": 2709,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2709-icon.jpg?v=4",
+            "bestPercent": 64.711893016772,
+            "highestHps": 197837.62680826,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Volcoross",
+            "encounterId": 2737,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2737-icon.jpg?v=4",
+            "bestPercent": 75.868554732959,
+            "highestHps": 224604.19232269,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Council of Dreams",
+            "encounterId": 2728,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2728-icon.jpg?v=4",
+            "bestPercent": 89.58783774752,
+            "highestHps": 264826.78048073,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Larodar, Keeper of the Flame",
+            "encounterId": 2731,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2731-icon.jpg?v=4",
+            "bestPercent": 46.164197157266,
+            "highestHps": 258786.74033467,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Nymue, Weaver of the Cycle",
+            "encounterId": 2708,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2708-icon.jpg?v=4",
+            "bestPercent": 41.403769770018,
+            "highestHps": 196553.93825238,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Smolderon",
+            "encounterId": 2824,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2824-icon.jpg?v=4",
+            "bestPercent": 36.427901932481,
+            "highestHps": 264359.92488524,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Tindral Sageswift, Seer of the Flame",
+            "encounterId": 2786,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2786-icon.jpg?v=4",
+            "bestPercent": 12.278926897293,
+            "highestHps": 222045.18135501,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fyrakk the Blazing",
+            "encounterId": 2677,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2677-icon.jpg?v=4",
+            "bestPercent": 6.2500315977542,
+            "highestHps": 213662.83897433,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 35,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:09+00:00"
+      },
+      "wcl-zone-33": {
+        "name": "Aberrus, the Shadowed Crucible",
+        "bossParses": [
+          {
+            "name": "Kazzara, the Hellforged",
+            "encounterId": 2688,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2688-icon.jpg?v=4",
+            "bestPercent": 62.953422842321,
+            "highestHps": 125177.8851131,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Amalgamation Chamber",
+            "encounterId": 2687,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2687-icon.jpg?v=4",
+            "bestPercent": 82.666005876345,
+            "highestHps": 133135.85459663,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Forgotten Experiments",
+            "encounterId": 2693,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2693-icon.jpg?v=4",
+            "bestPercent": 82.103299371842,
+            "highestHps": 152837.14274542,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Assault of the Zaqali",
+            "encounterId": 2682,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2682-icon.jpg?v=4",
+            "bestPercent": 73.58223693426,
+            "highestHps": 114790.44049846,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Rashok, the Elder",
+            "encounterId": 2680,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2680-icon.jpg?v=4",
+            "bestPercent": 16.902205546312,
+            "highestHps": 156406.30981284,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Echo of Neltharion",
+            "encounterId": 2684,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2684-icon.jpg?v=4",
+            "bestPercent": 14.28886723038,
+            "highestHps": 114709.01301856,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Scalecommander Sarkareth",
+            "encounterId": 2685,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2685-icon.jpg?v=4",
+            "bestPercent": 8.1603782615656,
+            "highestHps": 107792.66994141,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 33,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:10+00:00"
+      },
+      "wcl-zone-31": {
+        "name": "Vault of the Incarnates",
+        "bossParses": [
+          {
+            "name": "Eranog",
+            "encounterId": 2587,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2587-icon.jpg?v=4",
+            "bestPercent": 97.76690011669,
+            "highestHps": 106172.7630106,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Terros",
+            "encounterId": 2639,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2639-icon.jpg?v=4",
+            "bestPercent": 79.261305626192,
+            "highestHps": 88317.732635139,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Primal Council",
+            "encounterId": 2590,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2590-icon.jpg?v=4",
+            "bestPercent": 88.897295461475,
+            "highestHps": 84633.924164416,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sennarth, The Cold Breath",
+            "encounterId": 2592,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2592-icon.jpg?v=4",
+            "bestPercent": 71.961815140289,
+            "highestHps": 78362.096003528,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dathea, Ascended",
+            "encounterId": 2635,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2635-icon.jpg?v=4",
+            "bestPercent": 34.796243148411,
+            "highestHps": 75237.880673783,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kurog Grimtotem",
+            "encounterId": 2605,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2605-icon.jpg?v=4",
+            "bestPercent": 60.593519731795,
+            "highestHps": 94620.954147932,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Broodkeeper Diurna",
+            "encounterId": 2614,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2614-icon.jpg?v=4",
+            "bestPercent": 36.00572941973,
+            "highestHps": 74295.524457985,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 31,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:11+00:00"
+      },
+      "wcl-zone-29": {
+        "name": "Sepulcher of the First Ones",
+        "bossParses": [
+          {
+            "name": "Vigilant Guardian",
+            "encounterId": 2512,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2512-icon.jpg?v=4",
+            "bestPercent": 75.578083709091,
+            "highestHps": 17753.34747791,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dausegne, the Fallen Oracle",
+            "encounterId": 2540,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2540-icon.jpg?v=4",
+            "bestPercent": 71.761174968538,
+            "highestHps": 14783.428608239,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Prototype Pantheon",
+            "encounterId": 2544,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2544-icon.jpg?v=4",
+            "bestPercent": 28.174376857469,
+            "highestHps": 14881.788790705,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Skolex, the Insatiable Ravener",
+            "encounterId": 2542,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2542-icon.jpg?v=4",
+            "bestPercent": 68.124066630994,
+            "highestHps": 16232.536359037,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 29,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:11+00:00"
+      },
+      "wcl-zone-28": {
+        "name": "Sanctum of Domination",
+        "bossParses": [
+          {
+            "name": "The Tarragrue",
+            "encounterId": 2423,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2423-icon.jpg?v=4",
+            "bestPercent": 97.820697867473,
+            "highestHps": 12812.764908822,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Eye of the Jailer",
+            "encounterId": 2433,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2433-icon.jpg?v=4",
+            "bestPercent": 97.382960326753,
+            "highestHps": 9221.8625904368,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Nine",
+            "encounterId": 2429,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2429-icon.jpg?v=4",
+            "bestPercent": 95.417461473811,
+            "highestHps": 12422.227427883,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Remnant of Ner'zhul",
+            "encounterId": 2432,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2432-icon.jpg?v=4",
+            "bestPercent": 94.778066926496,
+            "highestHps": 13985.61836659,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Soulrender Dormazain",
+            "encounterId": 2434,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2434-icon.jpg?v=4",
+            "bestPercent": 93.595339737593,
+            "highestHps": 12945.017470888,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Painsmith Raznal",
+            "encounterId": 2430,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2430-icon.jpg?v=4",
+            "bestPercent": 58.644013048804,
+            "highestHps": 9365.4968821951,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Guardian of the First Ones",
+            "encounterId": 2436,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2436-icon.jpg?v=4",
+            "bestPercent": 83.781245963292,
+            "highestHps": 16148.473791552,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fatescribe Roh-Kalo",
+            "encounterId": 2431,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2431-icon.jpg?v=4",
+            "bestPercent": 26.62781962322,
+            "highestHps": 8377.9677765389,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kel'Thuzad",
+            "encounterId": 2422,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2422-icon.jpg?v=4",
+            "bestPercent": 72.832755544975,
+            "highestHps": 9074.1333641605,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sylvanas Windrunner",
+            "encounterId": 2435,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2435-icon.jpg?v=4",
+            "bestPercent": 35.858458267513,
+            "highestHps": 9703.3977839707,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 28,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:13+00:00"
+      },
+      "wcl-zone-26": {
+        "name": "Castle Nathria",
+        "bossParses": [
+          {
+            "name": "Shriekwing",
+            "encounterId": 2398,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2398-icon.jpg?v=4",
+            "bestPercent": 82.9431,
+            "highestHps": 6140.4388509251,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Huntsman Altimor",
+            "encounterId": 2418,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2418-icon.jpg?v=4",
+            "bestPercent": 98.5573,
+            "highestHps": 8848.3269082498,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Hungering Destroyer",
+            "encounterId": 2383,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2383-icon.jpg?v=4",
+            "bestPercent": 97.1865,
+            "highestHps": 7356.8114547062,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sun King's Salvation",
+            "encounterId": 2402,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2402-icon.jpg?v=4",
+            "bestPercent": 84.7549,
+            "highestHps": 10216.777369176,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Artificer Xy'mox",
+            "encounterId": 2405,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2405-icon.jpg?v=4",
+            "bestPercent": 97.137,
+            "highestHps": 8795.9838522446,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Lady Inerva Darkvein",
+            "encounterId": 2406,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2406-icon.jpg?v=4",
+            "bestPercent": 82.6522,
+            "highestHps": 7771.2555285745,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Council of Blood",
+            "encounterId": 2412,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2412-icon.jpg?v=4",
+            "bestPercent": 99.4846,
+            "highestHps": 9797.0525865125,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sludgefist",
+            "encounterId": 2399,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2399-icon.jpg?v=4",
+            "bestPercent": 54.1283,
+            "highestHps": 9155.4133640892,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Stone Legion Generals",
+            "encounterId": 2417,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2417-icon.jpg?v=4",
+            "bestPercent": 48.0842,
+            "highestHps": 5575.1454249343,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sire Denathrius",
+            "encounterId": 2407,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2407-icon.jpg?v=4",
+            "bestPercent": 13.713,
+            "highestHps": 6429.4809484391,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 26,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:15+00:00"
+      },
+      "wcl-zone-20": {
+        "name": "Mythic+ Dungeons",
+        "bossParses": [
+          {
+            "name": "Freehold",
+            "encounterId": 11754,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/11754-icon.jpg?v=4",
+            "bestPercent": 85.00003139117078,
+            "highestHps": 420001428.74382,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kings' Rest",
+            "encounterId": 11762,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/11762-icon.jpg?v=4",
+            "bestPercent": 17.4999650450443,
+            "highestHps": 200000510.41338,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Operation: Mechagon - Junkyard",
+            "encounterId": 12097,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12097-icon.jpg?v=4",
+            "bestPercent": 84.99999412100553,
+            "highestHps": 440001612.20583,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Shrine of the Storm",
+            "encounterId": 11864,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/11864-icon.jpg?v=4",
+            "bestPercent": 69.99989886806999,
+            "highestHps": 400000529.03393,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The MOTHERLODE!!",
+            "encounterId": 11594,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/11594-icon.jpg?v=4",
+            "bestPercent": 90.00000954971209,
+            "highestHps": 460001616.51219,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 20,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:17+00:00"
+      },
+      "wcl-zone-17": {
+        "name": "Antorus, The Burning Throne",
+        "bossParses": [
+          {
+            "name": "Garothi Worldbreaker",
+            "encounterId": 2076,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2076-icon.jpg?v=4",
+            "bestPercent": 93.3179,
+            "highestHps": 1418960.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Felhounds of Sargeras",
+            "encounterId": 2074,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2074-icon.jpg?v=4",
+            "bestPercent": 67.0521,
+            "highestHps": 997625.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Antoran High Command",
+            "encounterId": 2070,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2070-icon.jpg?v=4",
+            "bestPercent": 69.3684,
+            "highestHps": 1328990.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Defense of Eonar",
+            "encounterId": 2075,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2075-icon.jpg?v=4",
+            "bestPercent": 60.2343,
+            "highestHps": 689981.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Portal Keeper Hasabel",
+            "encounterId": 2064,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2064-icon.jpg?v=4",
+            "bestPercent": 58.8752,
+            "highestHps": 1415230.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Imonar the Soulhunter",
+            "encounterId": 2082,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2082-icon.jpg?v=4",
+            "bestPercent": 28.8474,
+            "highestHps": 1068550.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kin'garoth",
+            "encounterId": 2088,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2088-icon.jpg?v=4",
+            "bestPercent": 34.7074,
+            "highestHps": 1132580.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Varimathras",
+            "encounterId": 2069,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2069-icon.jpg?v=4",
+            "bestPercent": 38.7432,
+            "highestHps": 1544360.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Coven of Shivarra",
+            "encounterId": 2073,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2073-icon.jpg?v=4",
+            "bestPercent": 16.4348,
+            "highestHps": 982631.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 17,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:17+00:00"
+      },
+      "wcl-zone-13": {
+        "name": "Tomb of Sargeras",
+        "bossParses": [
+          {
+            "name": "Goroth",
+            "encounterId": 2032,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2032-icon.jpg?v=4",
+            "bestPercent": 84.5898,
+            "highestHps": 856232.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Demonic Inquisition",
+            "encounterId": 2048,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2048-icon.jpg?v=4",
+            "bestPercent": 67.3366,
+            "highestHps": 785562.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Harjatan",
+            "encounterId": 2036,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2036-icon.jpg?v=4",
+            "bestPercent": 76.9165,
+            "highestHps": 1154990.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Mistress Sassz'ine",
+            "encounterId": 2037,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2037-icon.jpg?v=4",
+            "bestPercent": 30.2865,
+            "highestHps": 863165.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sisters of the Moon",
+            "encounterId": 2050,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2050-icon.jpg?v=4",
+            "bestPercent": 72.0628,
+            "highestHps": 1109000.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Desolate Host",
+            "encounterId": 2054,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2054-icon.jpg?v=4",
+            "bestPercent": 75.1922,
+            "highestHps": 1016330.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 13,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:18+00:00"
+      },
+      "wcl-zone-11": {
+        "name": "The Nighthold",
+        "bossParses": [
+          {
+            "name": "Skorpyron",
+            "encounterId": 1849,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1849-icon.jpg?v=4",
+            "bestPercent": 84.2646,
+            "highestHps": 846481.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Chronomatic Anomaly",
+            "encounterId": 1865,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1865-icon.jpg?v=4",
+            "bestPercent": 84.8749,
+            "highestHps": 886921.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Trilliax",
+            "encounterId": 1867,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1867-icon.jpg?v=4",
+            "bestPercent": 57.9146,
+            "highestHps": 418519.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Spellblade Aluriel",
+            "encounterId": 1871,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1871-icon.jpg?v=4",
+            "bestPercent": 49.9334,
+            "highestHps": 491096.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Tichondrius",
+            "encounterId": 1862,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1862-icon.jpg?v=4",
+            "bestPercent": 28.6815,
+            "highestHps": 425879.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Star Augur Etraeus",
+            "encounterId": 1863,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1863-icon.jpg?v=4",
+            "bestPercent": 6.39867,
+            "highestHps": 227346.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Krosus",
+            "encounterId": 1842,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1842-icon.jpg?v=4",
+            "bestPercent": 46.4756,
+            "highestHps": 672015.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "High Botanist Tel'arn",
+            "encounterId": 1886,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1886-icon.jpg?v=4",
+            "bestPercent": 51.1916,
+            "highestHps": 556226.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Grand Magistrix Elisande",
+            "encounterId": 1872,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1872-icon.jpg?v=4",
+            "bestPercent": 9.64784,
+            "highestHps": 567811.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Gul'dan",
+            "encounterId": 1866,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1866-icon.jpg?v=4",
+            "bestPercent": 9.14141,
+            "highestHps": 462024.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 11,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:18+00:00"
+      },
+      "wcl-zone-50": {
+        "name": "Sporefall",
+        "bossParses": [
+          {
+            "name": "Rotmire",
+            "encounterId": 3159,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3159-icon.jpg?v=4",
+            "bestPercent": 88.19824381144824,
+            "highestHps": 174665.63992494,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 50,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:19+00:00"
+      },
+      "wcl-zone-46": {
+        "name": "VS / DR / MQD",
+        "bossParses": [
+          {
+            "name": "Imperator Averzian",
+            "encounterId": 3176,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3176-icon.jpg?v=4",
+            "bestPercent": 84.4826,
+            "highestHps": 139711.45997429,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vorasius",
+            "encounterId": 3177,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3177-icon.jpg?v=4",
+            "bestPercent": 74.0005,
+            "highestHps": 132722.40822994,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fallen-King Salhadaar",
+            "encounterId": 3179,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3179-icon.jpg?v=4",
+            "bestPercent": 62.5713,
+            "highestHps": 134585.86430319,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vaelgor & Ezzorak",
+            "encounterId": 3178,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3178-icon.jpg?v=4",
+            "bestPercent": 61.1114,
+            "highestHps": 141366.99398194,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Lightblinded Vanguard",
+            "encounterId": 3180,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3180-icon.jpg?v=4",
+            "bestPercent": 88.1698,
+            "highestHps": 163906.08728444,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Crown of the Cosmos",
+            "encounterId": 3181,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3181-icon.jpg?v=4",
+            "bestPercent": 62.1823,
+            "highestHps": 155953.6195694,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Chimaerus, the Undreamt God",
+            "encounterId": 3306,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3306-icon.jpg?v=4",
+            "bestPercent": 86.5029,
+            "highestHps": 129923.37829393,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Midnight Falls",
+            "encounterId": 3183,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3183-icon.jpg?v=4",
+            "bestPercent": 26.3587,
+            "highestHps": 158473.88931294,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 46,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:19+00:00"
+      },
+      "wcl-zone-44": {
+        "name": "Manaforge Omega",
+        "bossParses": [
+          {
+            "name": "Plexus Sentinel",
+            "encounterId": 3129,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3129-icon.jpg?v=4",
+            "bestPercent": 82.4279,
+            "highestHps": 4967365.448505,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Loom'ithar",
+            "encounterId": 3131,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3131-icon.jpg?v=4",
+            "bestPercent": 40.4978,
+            "highestHps": 4405004.1653895,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Soulbinder Naazindhri",
+            "encounterId": 3130,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3130-icon.jpg?v=4",
+            "bestPercent": 94.1731,
+            "highestHps": 7153781.5336149,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Forgeweaver Araz",
+            "encounterId": 3132,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3132-icon.jpg?v=4",
+            "bestPercent": 67.6936,
+            "highestHps": 4754835.242815,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Soul Hunters",
+            "encounterId": 3122,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3122-icon.jpg?v=4",
+            "bestPercent": 65.4825,
+            "highestHps": 5561347.8556448,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fractillus",
+            "encounterId": 3133,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3133-icon.jpg?v=4",
+            "bestPercent": 65.6378,
+            "highestHps": 4802625.6187787,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Nexus-King Salhadaar",
+            "encounterId": 3134,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3134-icon.jpg?v=4",
+            "bestPercent": 2.65374,
+            "highestHps": 3464016.6560669,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dimensius, the All-Devouring",
+            "encounterId": 3135,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3135-icon.jpg?v=4",
+            "bestPercent": 19.6554,
+            "highestHps": 5320686.970166,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 44,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:19+00:00"
+      },
+      "wcl-zone-42": {
+        "name": "Liberation of Undermine",
+        "bossParses": [
+          {
+            "name": "Vexie and the Geargrinders",
+            "encounterId": 3009,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3009-icon.jpg?v=4",
+            "bestPercent": 90.4988,
+            "highestHps": 2876598.2948847,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Cauldron of Carnage",
+            "encounterId": 3010,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3010-icon.jpg?v=4",
+            "bestPercent": 63.0181,
+            "highestHps": 2153495.7727929,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Stix Bunkjunker",
+            "encounterId": 3012,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3012-icon.jpg?v=4",
+            "bestPercent": 25.512,
+            "highestHps": 2048768.9796584,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Rik Reverb",
+            "encounterId": 3011,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3011-icon.jpg?v=4",
+            "bestPercent": 56.9089,
+            "highestHps": 2547656.5214838,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sprocketmonger Lockenstock",
+            "encounterId": 3013,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3013-icon.jpg?v=4",
+            "bestPercent": 38.1881,
+            "highestHps": 2864954.5871368,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "One-Armed Bandit",
+            "encounterId": 3014,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3014-icon.jpg?v=4",
+            "bestPercent": 50.5527,
+            "highestHps": 3126837.6649097,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Mug'Zee, Heads of Security",
+            "encounterId": 3015,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3015-icon.jpg?v=4",
+            "bestPercent": 79.7463,
+            "highestHps": 3624644.6072529,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Chrome King Gallywix",
+            "encounterId": 3016,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3016-icon.jpg?v=4",
+            "bestPercent": 27.0639,
+            "highestHps": 2842558.6353809,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 42,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:20+00:00"
+      },
+      "wcl-zone-38": {
+        "name": "Nerub-ar Palace",
+        "bossParses": [
+          {
+            "name": "Ulgrax the Devourer",
+            "encounterId": 2902,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2902-icon.jpg?v=4",
+            "bestPercent": 91.453453301738,
+            "highestHps": 1365697.6568902,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Bloodbound Horror",
+            "encounterId": 2917,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2917-icon.jpg?v=4",
+            "bestPercent": 50.052576248681,
+            "highestHps": 1010791.9547693,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sikran, Captain of the Sureki",
+            "encounterId": 2898,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2898-icon.jpg?v=4",
+            "bestPercent": 99.621711259534,
+            "highestHps": 1547461.3584869,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Rasha'nan",
+            "encounterId": 2918,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2918-icon.jpg?v=4",
+            "bestPercent": 97.088099830759,
+            "highestHps": 1788895.2074418,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Broodtwister Ovi'nax",
+            "encounterId": 2919,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2919-icon.jpg?v=4",
+            "bestPercent": 38.594544150972,
+            "highestHps": 1557742.1310375,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Nexus-Princess Ky'veza",
+            "encounterId": 2920,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2920-icon.jpg?v=4",
+            "bestPercent": 9.1111543122872,
+            "highestHps": 1434954.8290188,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Silken Court",
+            "encounterId": 2921,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2921-icon.jpg?v=4",
+            "bestPercent": 1.630678984064,
+            "highestHps": 952276.18478171,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 38,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:21+00:00"
+      },
+      "wcl-zone-25": {
+        "name": "Mythic+ Seasons 1 - 3",
+        "bossParses": [
+          {
+            "name": "De Other Side",
+            "encounterId": 12291,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12291-icon.jpg?v=4",
+            "bestPercent": 94.99990365598073,
+            "highestHps": 400004507.09104,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Halls of Atonement",
+            "encounterId": 12287,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12287-icon.jpg?v=4",
+            "bestPercent": 89.9999400421284,
+            "highestHps": 400003373.43398,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Mists of Tirna Scithe",
+            "encounterId": 12290,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12290-icon.jpg?v=4",
+            "bestPercent": 94.99994186054985,
+            "highestHps": 400003821.64638,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Plaguefall",
+            "encounterId": 12289,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12289-icon.jpg?v=4",
+            "bestPercent": 85.00063138685856,
+            "highestHps": 380006785.93522,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sanguine Depths",
+            "encounterId": 12284,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12284-icon.jpg?v=4",
+            "bestPercent": 94.92644593027539,
+            "highestHps": 400005787.72616,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Spires of Ascension",
+            "encounterId": 12285,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12285-icon.jpg?v=4",
+            "bestPercent": 84.99999353825916,
+            "highestHps": 400002964.85192,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Necrotic Wake",
+            "encounterId": 12286,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12286-icon.jpg?v=4",
+            "bestPercent": 90.00001432720993,
+            "highestHps": 400003640.43976,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Theater of Pain",
+            "encounterId": 12293,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/12293-icon.jpg?v=4",
+            "bestPercent": 95.00000835571278,
+            "highestHps": 420006101.61901,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 25,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:29+00:00"
+      },
+      "wcl-zone-24": {
+        "name": "Ny'alotha",
+        "bossParses": [
+          {
+            "name": "Wrathion",
+            "encounterId": 2329,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2329-icon.jpg?v=4",
+            "bestPercent": 80.279,
+            "highestHps": 78906.5,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Maut",
+            "encounterId": 2327,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2327-icon.jpg?v=4",
+            "bestPercent": 68.3601,
+            "highestHps": 131513.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Prophet Skitra",
+            "encounterId": 2334,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2334-icon.jpg?v=4",
+            "bestPercent": 94.4189,
+            "highestHps": 128657.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dark Inquisitor Xanesh",
+            "encounterId": 2328,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2328-icon.jpg?v=4",
+            "bestPercent": 71.9146,
+            "highestHps": 131901.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Hivemind",
+            "encounterId": 2333,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2333-icon.jpg?v=4",
+            "bestPercent": 81.4893,
+            "highestHps": 113075.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Shad'har the Insatiable",
+            "encounterId": 2335,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2335-icon.jpg?v=4",
+            "bestPercent": 86.1864,
+            "highestHps": 154312.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Drest'agath",
+            "encounterId": 2343,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2343-icon.jpg?v=4",
+            "bestPercent": 75.8371,
+            "highestHps": 90305.5,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vexiona",
+            "encounterId": 2336,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2336-icon.jpg?v=4",
+            "bestPercent": 84.9966,
+            "highestHps": 111268.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Ra-den the Despoiled",
+            "encounterId": 2331,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2331-icon.jpg?v=4",
+            "bestPercent": 37.0751,
+            "highestHps": 91989.5,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Il'gynoth, Corruption Reborn",
+            "encounterId": 2345,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2345-icon.jpg?v=4",
+            "bestPercent": 76.8148,
+            "highestHps": 67855.9,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Carapace of N'Zoth",
+            "encounterId": 2337,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2337-icon.jpg?v=4",
+            "bestPercent": 41.135,
+            "highestHps": 72600.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "N'Zoth the Corruptor",
+            "encounterId": 2344,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2344-icon.jpg?v=4",
+            "bestPercent": 31.6435,
+            "highestHps": 92511.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 24,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:29+00:00"
+      },
+      "wcl-zone-23": {
+        "name": "The Eternal Palace",
+        "bossParses": [
+          {
+            "name": "Abyssal Commander Sivara",
+            "encounterId": 2298,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2298-icon.jpg?v=4",
+            "bestPercent": 74.4286,
+            "highestHps": 61582.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Radiance of Azshara",
+            "encounterId": 2305,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2305-icon.jpg?v=4",
+            "bestPercent": 78.5309,
+            "highestHps": 45666.4,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Blackwater Behemoth",
+            "encounterId": 2289,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2289-icon.jpg?v=4",
+            "bestPercent": 89.5456,
+            "highestHps": 44911.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Lady Ashvane",
+            "encounterId": 2304,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2304-icon.jpg?v=4",
+            "bestPercent": 45.8807,
+            "highestHps": 58348.8,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Orgozoa",
+            "encounterId": 2303,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2303-icon.jpg?v=4",
+            "bestPercent": 56.3831,
+            "highestHps": 65620.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Queen's Court",
+            "encounterId": 2311,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2311-icon.jpg?v=4",
+            "bestPercent": 19.3592,
+            "highestHps": 48775.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Za'qul",
+            "encounterId": 2293,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2293-icon.jpg?v=4",
+            "bestPercent": 44.3806,
+            "highestHps": 48403.8,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 23,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:33+00:00"
+      },
+      "wcl-zone-21": {
+        "name": "Battle of Dazar'alor",
+        "bossParses": [
+          {
+            "name": "Champion of the Light",
+            "encounterId": 2265,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2265-icon.jpg?v=4",
+            "bestPercent": 88.2452,
+            "highestHps": 36819.5,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Jadefire Masters",
+            "encounterId": 2266,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2266-icon.jpg?v=4",
+            "bestPercent": 79.3546,
+            "highestHps": 36246.2,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Grong",
+            "encounterId": 2263,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2263-icon.jpg?v=4",
+            "bestPercent": 53.7705,
+            "highestHps": 36470.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Opulence",
+            "encounterId": 2271,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2271-icon.jpg?v=4",
+            "bestPercent": 83.2793,
+            "highestHps": 32392.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Conclave of the Chosen",
+            "encounterId": 2268,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2268-icon.jpg?v=4",
+            "bestPercent": 48.0542,
+            "highestHps": 28398.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "King Rastakhan",
+            "encounterId": 2272,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2272-icon.jpg?v=4",
+            "bestPercent": 19.695,
+            "highestHps": 20652.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 21,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:34+00:00"
+      },
+      "wcl-zone-19": {
+        "name": "Uldir",
+        "bossParses": [
+          {
+            "name": "Taloc",
+            "encounterId": 2144,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2144-icon.jpg?v=4",
+            "bestPercent": 41.939500783523606,
+            "highestHps": 12596.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "MOTHER",
+            "encounterId": 2141,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2141-icon.jpg?v=4",
+            "bestPercent": 75.75677842930887,
+            "highestHps": 15412.3,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vectis",
+            "encounterId": 2134,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/2134-icon.jpg?v=4",
+            "bestPercent": 20.327412255073842,
+            "highestHps": 23405.7,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 19,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:37+00:00"
+      },
+      "wcl-zone-12": {
+        "name": "Trial of Valor",
+        "bossParses": [
+          {
+            "name": "Odyn",
+            "encounterId": 1958,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1958-icon.jpg?v=4",
+            "bestPercent": 42.89,
+            "highestHps": 287997.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Guarm",
+            "encounterId": 1962,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1962-icon.jpg?v=4",
+            "bestPercent": 25.9861,
+            "highestHps": 301404.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 12,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:37+00:00"
+      },
+      "wcl-zone-10": {
+        "name": "Emerald Nightmare",
+        "bossParses": [
+          {
+            "name": "Nythendra",
+            "encounterId": 1853,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1853-icon.jpg?v=4",
+            "bestPercent": 28.2509,
+            "highestHps": 198565.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Il'gynoth, The Heart of Corruption",
+            "encounterId": 1873,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1873-icon.jpg?v=4",
+            "bestPercent": 26.1267,
+            "highestHps": 249962.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Elerethe Renferal",
+            "encounterId": 1876,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1876-icon.jpg?v=4",
+            "bestPercent": 29.9042,
+            "highestHps": 194950.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Ursoc",
+            "encounterId": 1841,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1841-icon.jpg?v=4",
+            "bestPercent": 9.50284,
+            "highestHps": 298159.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Dragons of Nightmare",
+            "encounterId": 1854,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1854-icon.jpg?v=4",
+            "bestPercent": 6.62267,
+            "highestHps": 95599.5,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Cenarius",
+            "encounterId": 1877,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1877-icon.jpg?v=4",
+            "bestPercent": 9.07158,
+            "highestHps": 300027.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Xavius",
+            "encounterId": 1864,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1864-icon.jpg?v=4",
+            "bestPercent": 45.7674,
+            "highestHps": 385966.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 10,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:38+00:00"
+      },
+      "wcl-zone-8": {
+        "name": "Hellfire Citadel",
+        "bossParses": [
+          {
+            "name": "Kilrogg Deadeye",
+            "encounterId": 1786,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1786-icon.jpg?v=4",
+            "bestPercent": 28.1216,
+            "highestHps": 58406.1,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Shadow-Lord Iskar",
+            "encounterId": 1788,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1788-icon.jpg?v=4",
+            "bestPercent": 51.8465,
+            "highestHps": 63715.2,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Fel Lord Zakuun",
+            "encounterId": 1777,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1777-icon.jpg?v=4",
+            "bestPercent": 60.5771,
+            "highestHps": 112522.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Xhul'horac",
+            "encounterId": 1800,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1800-icon.jpg?v=4",
+            "bestPercent": 33.6478,
+            "highestHps": 60391.2,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Socrethar the Eternal",
+            "encounterId": 1794,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1794-icon.jpg?v=4",
+            "bestPercent": 7.47888,
+            "highestHps": 41386.8,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Tyrant Velhari",
+            "encounterId": 1784,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/1784-icon.jpg?v=4",
+            "bestPercent": 39.3277,
+            "highestHps": 141613.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "zoneId": 8,
+        "source": "Warcraft Logs",
+        "archivedAt": "2026-10-11T15:24:38+00:00"
       }
     }
   },
