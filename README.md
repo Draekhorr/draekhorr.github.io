@@ -39,3 +39,7 @@ No API secrets are embedded in the frontend. Existing GitHub Actions can continu
 ## Verification
 
 Syntax check: `node --check js/*.js` (check each file individually if your Node version does not accept globs). Test on desktop, ultrawide and mobile after deployment. A live browser regression test against production data has **not** been performed in this package.
+
+## V2.1 Mythic+ historical fixes
+
+`js/mythicplus.js` prefers verified current dungeon runs over stale current-season archive snapshots and updates the previous-season score relative to the selected season. `scripts/rio_backfill.py` accepts season metadata or an exact season path segment, logs returned/verified/unverified run counts, and retains prior archived runs. Missing historical runs remain missing when Raider.IO does not expose verifiable data; no runs are fabricated. The backfill workflow rebases before pushing to reduce concurrent-commit conflicts. Run the manual Raider.IO backfill and inspect `DIAG RIO runs` lines. API behavior has not been verified with live credentials.

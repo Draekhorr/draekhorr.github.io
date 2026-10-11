@@ -33,9 +33,11 @@ function setupMplusHistorySelector(rio){
   [currentId,rio.currentSeasonName||currentId,rio.currentSeasonScore??rio.mythicPlusScore,rio.bestRuns],
   [rio.previousSeason,rio.previousSeasonName||rio.previousSeason,rio.previousSeasonScore,[]]
  ]){
-  if(!id||entries.has(id))continue;
+  if(!id)continue;
   if(typeof score!=='number'&&!Array.isArray(runs))continue;
-  entries.set(String(id),{id:String(id),label,expansion:expansionFromSeason(label)||'Other',score:typeof score==='number'?score:null,runs:Array.isArray(runs)?runs:[]});
+  const old=entries.get(String(id));
+  const verifiedRuns=Array.isArray(runs)?runs:[];
+  entries.set(String(id),{id:String(id),label,expansion:expansionFromSeason(label)||old?.expansion||'Other',score:typeof score==='number'?score:old?.score??null,runs:verifiedRuns.length?verifiedRuns:old?.runs||[]});
  }
  const records=[...entries.values()].sort((a,b)=>{
   const x=EXPANSION_ORDER.indexOf(a.expansion),y=EXPANSION_ORDER.indexOf(b.expansion);
@@ -43,6 +45,12 @@ function setupMplusHistorySelector(rio){
   return b.id.localeCompare(a.id,undefined,{numeric:true});
  });
  const display=entry=>{
+  const match=entry.id.match(/^(season-.+)-(\d+)$/);
+  const previousId=match&&Number(match[2])>1?`${match[1]}-${Number(match[2])-1}`:null;
+  const previous=previousId?entries.get(previousId):null;
+  const prevNode=el('rio-previous');
+  if(prevNode){prevNode.textContent=typeof previous?.score==='number'?previous.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—';prevNode.classList.remove('rio-gold','rio-purple','rio-blue','rio-green','rio-unranked');prevNode.classList.add(rioScoreClass(previous?.score));}
+  const prevLabel=el('rio-previous-season');if(prevLabel)prevLabel.textContent=previous?.label||'No verified previous season';
   const scoreNode=el('rio-score');
   if(scoreNode){scoreNode.textContent=typeof entry.score==='number'?entry.score.toLocaleString('en-US',{maximumFractionDigits:1}):'—';scoreNode.classList.remove('rio-gold','rio-purple','rio-blue','rio-green','rio-unranked');scoreNode.classList.add(rioScoreClass(entry.score));}
   const labelNode=el('rio-current-season');if(labelNode)labelNode.textContent=entry.label;
