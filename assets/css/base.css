@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;600;800&display=swap');
+
+/* DRAEKHORR V1 - consolidated visual system. */
+:root {
+  color-scheme:dark;
+  --bg:#090d14;--surface:#101a26;--surface-strong:#152635;
+  --border:#3c5060;--border-gold:#987344;
+  --text:#f6eddb;--muted:#b4c3ce;--gold:#eac47e;--cyan:#70d7ef;
+  --font-display:'Cinzel',Georgia,serif;--font-body:'Inter',Arial,sans-serif;
+  --gutter:clamp(16px,3vw,32px);--section-gap:clamp(40px,5vw,72px);
+  --radius:5px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-width:0;color:var(--text);background:radial-gradient(ellipse at 75% 10%,#66471d40,transparent 35%),var(--bg);font-family:var(--font-body);overflow-wrap:break-word}
+header,main,footer{width:100%;max-width:1400px;margin-inline:auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px var(--gutter);border-bottom:1px solid #534b3c}
+main{padding-inline:var(--gutter)}
+footer{padding:24px var(--gutter) 32px;text-align:center}
+a{color:var(--cyan)}a:hover{color:var(--gold)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+h1,h2,h3,h4,h5{font-family:var(--font-display);overflow-wrap:break-word}
+h1{font-size:clamp(30px,4.4vw,66px);line-height:1.14;letter-spacing:-.02em;margin:16px 0 20px}
+h2{font-size:clamp(29px,3.3vw,46px);line-height:1.2;margin:0 0 14px}
+h3{font-size:clamp(19px,2vw,27px);line-height:1.3;margin:8px 0 22px}
+h4{font-size:clamp(15px,1.4vw,18px)}
+em{color:var(--gold);font-style:normal}
+p{line-height:1.65}
+.section-kicker,.eyebrow{color:var(--cyan);font:800 11px/1.5 var(--font-body);letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.section-kicker{color:var(--gold)}
+section:not(.hero){padding-block:var(--section-gap);border-top:1px solid #383b42}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:14px 22px;background:linear-gradient(120deg,#eac47e,#b68743);color:#16120d;font-size:11px;font-weight:800;letter-spacing:.08em;text-decoration:none;border-radius:var(--radius)}
+.btn:hover{color:#16120d;filter:brightness(1.1)}
+.inline-link{display:inline-block;color:var(--cyan);font-size:11px;letter-spacing:.08em;font-weight:800;text-decoration:none;margin-top:16px}
+.inline-link:hover{text-decoration:underline}
+.empty-state,.section-note{color:var(--muted);font-size:13px;line-height:1.75}
+.links{display:flex;gap:14px;flex-wrap:wrap}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Header and guild */
+.brand-stack{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.brand-group{display:flex;align-items:baseline;flex-wrap:wrap;gap:.6rem;min-width:0;font:700 clamp(13px,1.2vw,18px)/1.4 var(--font-display);letter-spacing:.06em}
+.brand{color:var(--gold);text-decoration:none;white-space:nowrap}
+.guild-header:not([hidden]){display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:.55rem;min-width:0}
+.guild-header[hidden]{display:none!important}
+.guild-separator{color:#947e60}
+.guild-header a{color:var(--cyan);text-decoration:none;overflow-wrap:anywhere}
+.guild-header a:hover{text-decoration:underline}
+.header-realm{margin:0;color:#b8a887;font:700 10px/1.4 var(--font-body);letter-spacing:.16em}
+nav{display:flex;align-items:center;justify-content:flex-end;gap:clamp(10px,2vw,28px);flex-wrap:wrap}
+nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;white-space:nowrap}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(18px,3vw,44px);align-items:center;padding-block:clamp(32px,5vw,72px);min-height:0}
+.hero-copy{min-width:0}
+.hero-copy>p{max-width:56ch;color:var(--muted);font-size:clamp(14px,1.1vw,17px);line-height:1.7;margin:0}
+.hero .btn{margin-top:24px}
+.avatar{display:block;width:100%;max-width:450px;max-height:460px;height:auto;object-fit:contain;justify-self:center;filter:drop-shadow(0 0 35px #13bde94a)}
+
+/* Character identity and lifetime stats */
+#character-profile.character-profile-section{padding:12px 0 0;border-top:0}
+.character-profile-banner{display:grid;grid-template-columns:104px minmax(180px,1.2fr) minmax(250px,1.3fr) minmax(90px,.4fr);align-items:center;gap:clamp(12px,1.8vw,24px);padding:18px 22px;background:linear-gradient(110deg,#12293b,#111e2c 55%,#0a1420);border:1px solid #786340;min-width:0}
+.character-portrait-frame{width:104px;aspect-ratio:1;overflow:hidden;border:1px solid #69839a;background:#091725;border-radius:8px}
+.character-portrait-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.character-profile-copy{min-width:0}
+.character-profile-copy .eyebrow{margin-bottom:5px}
+.character-profile-copy h2{font-size:clamp(25px,2.7vw,38px);margin:3px 0;color:var(--text)}
+.character-role{color:var(--cyan);font-weight:700;margin:5px 0}
+.character-realm{font-size:12px;letter-spacing:.08em;color:var(--muted);margin:4px 0}
+.character-lifetime{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;min-width:0}
+.lifetime-stat{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.lifetime-stat span,.character-ilvl span{color:#9db9c9;font:700 10px/1.45 var(--font-body);letter-spacing:.08em;overflow-wrap:anywhere}
+.lifetime-stat strong{color:var(--gold);font:600 clamp(18px,1.9vw,25px)/1.15 var(--font-body);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.character-ilvl{min-width:0;padding:8px 0 8px 16px;text-align:center;border-left:1px solid #355064}
+.character-ilvl strong{display:block;color:var(--gold);font:700 clamp(26px,3vw,40px)/1.2 var(--font-display);margin-top:8px}
+
+/* Raid progression and Warcraft Logs */
+#raids{padding-top:30px;border-top:0}
+#raids>h2{margin-bottom:10px}
+.mythic-tagline,.mythic-plus-subtitle{color:#a8c5d2;font-size:clamp(14px,1.1vw,17px);line-height:1.7;letter-spacing:normal;font-weight:400;margin:0 0 22px;max-width:65ch}
+.raid-logs-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,24px);align-items:stretch;margin-top:26px}
+.raid-logs-panel{min-width:0;padding:clamp(18px,2.2vw,30px);background:linear-gradient(155deg,#182a39,#0b131e);border:1px solid var(--border-gold);box-shadow:0 15px 45px #0004,inset 0 1px 0 #3d596055}
+.raid-logs-panel h3{color:var(--gold)}
+.raid-subheading{color:var(--gold);font:700 14px/1.5 var(--font-display);letter-spacing:.04em;margin:24px 0 14px}
+.raid-subheading span{color:var(--cyan);font:700 11px/1.5 var(--font-body)}
+.raid-items,.raid-history{display:grid;gap:12px;margin-bottom:22px}
+.data-card{min-width:0;padding:18px;background:#101b27;border:1px solid #384957}
+.data-card h4{color:var(--gold);font-size:16px;line-height:1.4;margin:0 0 10px}
+.data-card p{color:var(--muted);font-size:13px;line-height:1.6;margin:0 0 10px}
+.data-card a{font-size:11px;font-weight:700;text-decoration:none}
+.raid-history-title{font-size:17px;line-height:1.5;color:var(--gold);letter-spacing:.03em;margin:28px 0 14px}
+.raid-expansion-select{width:100%;min-height:46px;padding:12px 14px;margin:0 0 14px;background:#0b1723;border:1px solid #426174;color:var(--gold);font:700 14px var(--font-display);cursor:pointer}
+.raid-history [hidden]{display:none!important}
+.expansion-dropdown{min-width:0;border:1px solid #3b5869;background:#0b1723;padding:12px 16px}
+.expansion-dropdown h5{font:700 12px/1.5 var(--font-body);color:var(--cyan);letter-spacing:.06em;margin:8px 0 12px}
+.expansion-dropdown .data-card{padding:15px}
+.expansion-dropdown .data-card h4{font-size:14px}
+.raid-progress-line{display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.ce-badge{display:inline-block;border:1px solid #a98851;border-radius:3px;background:#302618;color:#f1cc83!important;font:700 11px/1.4 var(--font-body);letter-spacing:.04em;padding:2px 7px;text-decoration:none}
+.ce-badge:hover{background:#48361e}
+.raid-legacy-intro{padding:10px 0 20px;margin-top:8px}
+.raid-legacy-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}
+.raid-legacy-summary>div:first-child{min-width:0}
+.raid-legacy-summary h2{font-size:clamp(20px,2vw,26px);margin:4px 0 8px}
+.raid-legacy-summary p:not(.eyebrow){color:#9bbdcd;font-size:13px;margin:0}
+.ce-summary{display:flex;align-items:center;gap:10px;flex:0 0 auto;max-width:170px}
+.ce-summary strong{color:var(--gold);font:700 34px/1 var(--font-display)}
+.ce-summary span{font-size:9px;letter-spacing:.06em;line-height:1.5;color:#d4dfe4}
+.wcl-table-scroll{overflow-x:auto;max-width:100%;margin:12px 0 24px;border:1px solid #354a59;background:#080f18;-webkit-overflow-scrolling:touch}
+.wcl-table{border-collapse:collapse;width:100%;min-width:440px;font-size:14px}
+.wcl-table th{background:#162434;color:var(--gold);text-align:left;padding:14px 12px;font-size:12px}
+.wcl-table th:nth-child(n+2),.wcl-table td:nth-child(n+2){text-align:right;white-space:nowrap}
+.wcl-table td{padding:12px;border-top:1px solid #2a3e4c;color:#d8e4e9;line-height:1.45}
+.wcl-table tr:hover td{background:#172636}
+.wcl-table a{color:#92cafa;text-decoration:none;font-weight:700}
+.wcl-table a:hover{text-decoration:underline}
+.wcl-table .wcl-value{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.wcl-table .wcl-hps{color:#d4ed78}
+.wcl-table .parse-legendary{color:#ff8000}.wcl-table .parse-epic{color:#a335ee}.wcl-table .parse-rare{color:#0070dd}.wcl-table .parse-uncommon{color:#1eff00}.wcl-table .parse-common{color:#aaa}
+.boss-name-cell{min-width:210px}
+.boss-name-cell .boss-icon,.boss-icon-placeholder{display:inline-flex;vertical-align:middle;width:38px;height:38px;margin-right:10px;border:1px solid #a9844d;border-radius:5px;object-fit:cover}
+.boss-icon-placeholder{align-items:center;justify-content:center;background:#122333;color:#879baa;font-size:20px}
+
+/* Raider.IO */
+#raiderio .rio-score-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:26px 0 20px}
+#raiderio .rio-score-tile{min-width:0;padding:clamp(18px,2.5vw,30px);background:linear-gradient(140deg,#17202b,#0c1520);border:1px solid #425368}
+#raiderio .rio-score-tile strong{display:block;font:700 clamp(32px,4.6vw,62px)/1.2 var(--font-display);overflow-wrap:anywhere}
+#raiderio .rio-score-tile p{font-size:11px;letter-spacing:.09em;color:#c5d3de;margin:12px 0 6px}
+#raiderio .rio-season-label{font-size:12px;color:var(--cyan)}
+#raiderio .rio-run-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+#raiderio .rio-run-card{min-width:0;padding:18px;background:linear-gradient(150deg,#172230,#0e1722);border:1px solid #465263;transition:border-color .2s,transform .2s}
+#raiderio .rio-run-card:hover{border-color:#d2ac65;transform:translateY(-2px)}
+#raiderio .rio-run-heading{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+#raiderio .rio-run-heading h4{font:700 16px/1.45 var(--font-display);color:var(--gold);margin:0;overflow-wrap:anywhere}
+#raiderio .rio-run-icon,#raiderio .rio-run-icon-fallback{width:48px;height:48px;flex:0 0 48px;border:1px solid #967b54;border-radius:5px;object-fit:cover}
+#raiderio .rio-run-icon-fallback{display:grid;place-items:center;background:#122839;color:var(--cyan);font-size:23px}
+#raiderio .rio-run-meta{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px;color:#d2dce6;margin-bottom:14px}
+#raiderio .rio-run-card a{font-size:11px;color:var(--cyan);text-decoration:none;font-weight:700}
+#raiderio .rio-run-card a:hover{text-decoration:underline}
+#raiderio .rio-blue{color:#45a9ff!important}#raiderio .rio-purple{color:#bd79ff!important}#raiderio .rio-gold{color:#f0c268!important}#raiderio .rio-green{color:#6cd89a!important}#raiderio .rio-unranked{color:#a9b5c1!important}
+
+/* Outro */
+.outro{padding-block:clamp(52px,7vw,85px)!important;text-align:center}
+.outro .hearthstone-heading{font-size:clamp(13px,2.45vw,30px);white-space:nowrap;letter-spacing:.01em;line-height:1.3;margin:0}
+.footer-quip{color:#d4b67c;font-size:clamp(11px,1.1vw,13px);letter-spacing:.01em;margin:0 0 8px}
+.footer-legal{color:#9299a3;font-size:11px;letter-spacing:0;margin:0}
+.sync-status{display:block;font-size:10px;letter-spacing:0;color:#747f8b;margin-top:10px}
+
+/* Layout breakpoints */
+@media(min-width:1600px){.hero{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);padding-block:46px 56px}.hero h1{font-size:clamp(46px,3vw,56px)}.avatar{max-height:450px}}
+@media(max-width:1050px){.character-profile-banner{grid-template-columns:90px minmax(0,1fr) minmax(90px,auto)}.character-portrait-frame{width:90px}.character-lifetime{grid-column:2/4;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));padding-top:12px;border-top:1px solid #355064}.character-ilvl{grid-column:3;grid-row:1}#raiderio .rio-run-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:14px;padding-block:34px 48px}.hero .avatar{max-width:min(100%,420px);max-height:390px;order:-1}.raid-logs-columns{grid-template-columns:1fr}header{flex-wrap:wrap}nav{justify-content:flex-start}}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column;gap:14px}.brand-group{font-size:14px;gap:.35rem}nav{width:100%;gap:8px}nav a{font-size:11px;padding:10px 12px;border:1px solid #344654;border-radius:3px}.hero h1{font-size:clamp(29px,8vw,47px)}.hero .btn{margin-top:18px}.character-profile-banner{grid-template-columns:72px minmax(0,1fr);gap:12px;padding:14px}.character-portrait-frame{width:72px}.character-profile-copy{grid-column:2;grid-row:1}.character-profile-copy h2{font-size:clamp(23px,7vw,34px)}.character-lifetime{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding-top:14px}.character-ilvl{grid-column:1/-1;grid-row:3;text-align:left;border-left:0;border-top:1px solid #355064;padding:12px 0 0}#raiderio .rio-score-strip,#raiderio .rio-run-grid{grid-template-columns:1fr}.raid-legacy-summary{flex-direction:column;align-items:flex-start}.ce-summary{max-width:none}.raid-logs-panel{padding:16px}.wcl-table{min-width:420px}.outro .hearthstone-heading{font-size:clamp(12px,3.8vw,22px)}}
+@media(max-width:360px){.character-lifetime{gap:12px 8px}.lifetime-stat span{font-size:9px}.wcl-table{min-width:400px}.raid-logs-panel{padding:12px}.outro .hearthstone-heading{font-size:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}#raiderio .rio-run-card{transition:none}}
+
+/* Warcraft Logs historical season selector */
+.wcl-season-label{display:block;color:#8fb9ca;font-size:11px;font-weight:700;letter-spacing:.12em;margin:16px 0 9px}
+#wcl-season-select{font-family:Inter,Arial,sans-serif;font-size:13px;letter-spacing:.02em;max-width:100%}
+#wcl-season-select:disabled{opacity:.7;cursor:default}
+
+/* Mythic+ Warcraft Logs metrics: displayed only for verified dungeon-name matches. */
+
+/* Unified historical navigation */
+.history-filter{margin:20px 0 16px;max-width:100%}
+.history-filter label{display:block;margin-bottom:8px;color:#8fc8d8;font-size:11px;font-weight:800;letter-spacing:.12em}
+.raid-expansion-select optgroup{font-weight:800;color:#eac47e;background:#101a26}
+.raid-expansion-select option{color:#e0e9f0;background:#101a26;font-family:Inter,Arial,sans-serif}
+
+/* Mythic+ season picker: below scores, collapsed until explicitly opened. */
+#raiderio .rio-history-disclosure {
+  margin: 0 0 clamp(16px, 2vw, 24px);
+  border: 1px solid #425368;
+  background: linear-gradient(140deg, #121f2d, #0b1520);
+}
+#raiderio .rio-history-disclosure > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 15px 18px; cursor: pointer; list-style: none;
+  color: #77d7ef; font: 800 11px/1.5 Inter, Arial, sans-serif;
+  letter-spacing: .13em;
+}
+#raiderio .rio-history-disclosure > summary::-webkit-details-marker { display: none; }
+#raiderio .rio-history-disclosure > summary:hover { color: #eac47e; }
+#raiderio .rio-history-disclosure > summary:focus-visible { outline: 2px solid #77d7ef; outline-offset: 2px; }
+#raiderio .rio-disclosure-indicator {
+  width: 9px; height: 9px; flex: 0 0 9px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s ease;
+}
+#raiderio .rio-history-disclosure[open] .rio-disclosure-indicator { transform: rotate(225deg); }
+#raiderio .rio-history-disclosure .history-filter {
+  padding: 0 18px 18px; margin: 0;
+}
+#raiderio .rio-history-disclosure .history-filter label {
+  display: block; margin: 0 0 8px; color: #8fb9ca;
+  font: 700 10px/1.5 Inter, Arial, sans-serif; letter-spacing: .1em;
+}
+#raiderio .rio-history-disclosure .raid-expansion-select { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  #raiderio .rio-disclosure-indicator { transition: none; }
+}

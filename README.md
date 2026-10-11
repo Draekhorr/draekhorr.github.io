@@ -1,25 +1,41 @@
-# Draekhorr — V1.5.7
+# DRAEKHORR V2 — Modular Frontend
 
-World of Warcraft character showcase with Blizzard, Raider.IO and Warcraft Logs.
+Static World of Warcraft character portfolio deployed on GitHub Pages. V2 is a **structural refactor** of the V1.5.7 frontend, with the Raider.IO historical backfill script from V1.5.8 included. It intentionally preserves the existing appearance and behavior.
 
-## Data sources
+## Project layout
 
-- **Raider.IO:** Mythic+ scores, season navigation, dungeon runs and completion times.
-- **Warcraft Logs:** Raid healing parses and HPS only, including available raid history.
-- **Blizzard:** Character information, achievements and historical raid progression.
+- `index.html`: lightweight shell and component mount points.
+- `components/*.html`: independently editable header, hero, character, raids, Mythic+, outro and footer sections.
+- `js/main.js`: loads all HTML components, then fetches `data.json` and renders sections.
+- `js/{header,character,raids,warcraftlogs,mythicplus}.js`: ES modules for each feature.
+- `js/utils.js`: shared DOM helpers.
+- `assets/css/base.css`: unchanged V1 styles, moved from `style.css`.
+- `assets/css/components.css`: place new component-specific rules here; imported by `index.html`.
+- `scripts/`: existing API sync/backfill scripts (not refactored in this release).
+- `data.json`: **remains at repository root** and is maintained by the existing GitHub Actions workflows.
 
-Mythic+ dungeon cards do **not** display Warcraft Logs, healing parses, or HPS. Historical Mythic+ seasons show only verified Raider.IO data; seasons without saved runs show an empty-state message. Expansion-grouped season selection, collapsible navigation, raid logs, guild header and responsive styling are retained.
+## Deploy
 
-## Install
+1. Upload `index.html`, `components/`, `js/`, `assets/` and the included `scripts/` files **without deleting** existing root `data.json`, images, or workflows.
+2. Keep existing `avatar.png` at repository root (the HTML references it). If not already in your repository, restore it from your previous deployment.
+3. Keep existing `.github/workflows/sync.yml`, `wcl-backfill.yml`, guild sync and monitoring workflows. `rio-backfill.yml` is included for manual installation if not already present.
+4. Commit to your GitHub Pages publishing branch and verify deployment.
 
-Replace `index.html`, `script.js`, `style.css`, `scripts/sync_all.py` and `scripts/wcl_backfill.py` with the files in this package. Keep `data.json`, existing credentials and GitHub Actions workflows. No API sync is required for the visual change. The backend changes stop writing new dungeon-specific WCL archives; existing `dungeonArchive` in `data.json` is not automatically deleted and is ignored by the frontend.
+**Important:** Run through GitHub Pages or `python -m http.server 8000` from the project root. Opening `index.html` using `file://` will fail because ES modules and HTML components require HTTP.
 
-## V1.5.6 — Midnight Season 1 Warcraft Logs
+## Editing
 
-The Warcraft Logs selector retains its expansion groups. Under MIDNIGHT, the former Sporefall-only option is replaced with **Midnight Season 1**, containing the nine raid bosses and their healing statistics transcribed from the supplied Warcraft Logs zone 46 screenshot. Missing parse values remain unavailable (—). The current season and every other archived raid remain unchanged. This is a frontend snapshot, not an API backfill; update the snapshot if the source values change.
+- Header / guild → `components/header.html` and `js/header.js`.
+- Character profile → `components/character.html` and `js/character.js`.
+- Raid history → `components/raids.html` and `js/raids.js`.
+- Raid Warcraft Logs → `components/raids.html` and `js/warcraftlogs.js`.
+- Mythic+ → `components/mythicplus.html` and `js/mythicplus.js`.
+- Visual changes → `assets/css/components.css` first; shared V1 rules are in `assets/css/base.css`.
 
-## V1.5.7 — Midnight Season 1 metadata repair
+## Data & automation
 
-Run **Backfill Warcraft Logs** manually after deploying the updated `scripts/wcl_backfill.py`. The script explicitly requests verified WCL zone 46, refreshes its existing archive entry, saves API encounter IDs, validates image response content types for its boss icons, and publishes the result as `season-mn-1`. Existing percent/HPS values are retained if a fresh row omits them. The frontend prefers the new API-backed archive and falls back to the previously supplied screenshot snapshot until the backfill succeeds. Other expansions and Mythic+ remain unchanged.
+No API secrets are embedded in the frontend. Existing GitHub Actions can continue to update root `data.json` every six hours. Raid Warcraft Logs are kept separate from Raider.IO Mythic+; no M+ Warcraft Logs are shown. Historical M+ dungeon cards require verified season-specific Raider.IO data.
 
-The backfill requires the existing WCL secrets and a working GitHub Actions workflow. Check logs for `OK WCL Midnight S1 zone=46` and `DIAG WCL backfill`. Icon checks are best-effort: network errors may produce a placeholder until a later run.
+## Verification
+
+Syntax check: `node --check js/*.js` (check each file individually if your Node version does not accept globs). Test on desktop, ultrawide and mobile after deployment. A live browser regression test against production data has **not** been performed in this package.
