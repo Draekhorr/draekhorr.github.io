@@ -34,7 +34,7 @@ function setupMplusHistorySelector(rio){
   [rio.previousSeason,rio.previousSeasonName||rio.previousSeason,rio.previousSeasonScore,[]]
  ]){
   if(!id)continue;
-  if(typeof score!=='number'&&!Array.isArray(runs))continue;
+  if(typeof score!=='number'&&(!Array.isArray(runs)||!runs.length))continue;
   const old=entries.get(String(id));
   const verifiedRuns=Array.isArray(runs)?runs:[];
   entries.set(String(id),{id:String(id),label,expansion:expansionFromSeason(label)||old?.expansion||'Other',score:typeof score==='number'?score:old?.score??null,runs:verifiedRuns.length?verifiedRuns:old?.runs||[]});
@@ -45,7 +45,7 @@ function setupMplusHistorySelector(rio){
   return b.id.localeCompare(a.id,undefined,{numeric:true});
  });
  const display=entry=>{
-  const match=entry.id.match(/^(season-.+)-(\d+)$/);
+  const match=entry.id.match(/^(season-[a-z]+)-(\d+)$/);
   const previousId=match&&Number(match[2])>1?`${match[1]}-${Number(match[2])-1}`:null;
   const previous=previousId?entries.get(previousId):null;
   const prevNode=el('rio-previous');

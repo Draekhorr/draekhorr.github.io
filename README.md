@@ -1,45 +1,26 @@
-# DRAEKHORR V2 — Modular Frontend
+# DRAEKHORR V2.2 — Raider.IO Historical Seasons
 
-Static World of Warcraft character portfolio deployed on GitHub Pages. V2 is a **structural refactor** of the V1.5.7 frontend, with the Raider.IO historical backfill script from V1.5.8 included. It intentionally preserves the existing appearance and behavior.
+Focused update to the V2 modular project. Only replace `scripts/rio_backfill.py` and `js/mythicplus.js`.
 
-## Project layout
+## What changes
 
-- `index.html`: lightweight shell and component mount points.
-- `components/*.html`: independently editable header, hero, character, raids, Mythic+, outro and footer sections.
-- `js/main.js`: loads all HTML components, then fetches `data.json` and renders sections.
-- `js/{header,character,raids,warcraftlogs,mythicplus}.js`: ES modules for each feature.
-- `js/utils.js`: shared DOM helpers.
-- `assets/css/base.css`: unchanged V1 styles, moved from `style.css`.
-- `assets/css/components.css`: place new component-specific rules here; imported by `index.html`.
-- `scripts/`: existing API sync/backfill scripts (not refactored in this release).
-- `data.json`: **remains at repository root** and is maintained by the existing GitHub Actions workflows.
+- Raider.IO season discovery tries provider season-listing endpoints, preserving all provider-confirmed season identifiers, including special variants.
+- Existing archived seasons and current/previous season IDs remain eligible.
+- **Only seasons with verified personal scores or runs appear** in the existing expansion-grouped selector.
+- Each historical run must carry an explicit matching season ID in metadata or its URL. Missing season metadata is not proof that a run belongs to the requested season.
+- Current-season dungeon cards remain the priority for current-season display.
+- Raid Logs, Guild Header, HTML, CSS, and the existing 6-hour sync remain unchanged.
 
-## Deploy
+## Installation
 
-1. Upload `index.html`, `components/`, `js/`, `assets/` and the included `scripts/` files **without deleting** existing root `data.json`, images, or workflows.
-2. Keep existing `avatar.png` at repository root (the HTML references it). If not already in your repository, restore it from your previous deployment.
-3. Keep existing `.github/workflows/sync.yml`, `wcl-backfill.yml`, guild sync and monitoring workflows. `rio-backfill.yml` is included for manual installation if not already present.
-4. Commit to your GitHub Pages publishing branch and verify deployment.
+Upload these two files preserving their paths, commit, then run **Actions → Backfill Raider.IO Mythic Plus → Run workflow**. The existing workflow can be retained. Wait for GitHub Pages to deploy.
 
-**Important:** Run through GitHub Pages or `python -m http.server 8000` from the project root. Opening `index.html` using `file://` will fail because ES modules and HTML components require HTTP.
+## Diagnostics
 
-## Editing
+Check `DIAG RIO discovered season slugs`, `DIAG RIO runs season=... returned=... verified=... unverified=...` and `DIAG RIO historical backfill ...`.
 
-- Header / guild → `components/header.html` and `js/header.js`.
-- Character profile → `components/character.html` and `js/character.js`.
-- Raid history → `components/raids.html` and `js/raids.js`.
-- Raid Warcraft Logs → `components/raids.html` and `js/warcraftlogs.js`.
-- Mythic+ → `components/mythicplus.html` and `js/mythicplus.js`.
-- Visual changes → `assets/css/components.css` first; shared V1 rules are in `assets/css/base.css`.
+## Limitations
 
-## Data & automation
+This is **best-effort discovery**, not a guarantee that Raider.IO's public API exposes every season variant visible on its website. Some season-list endpoints may be unavailable or have different response schemas. Those failures are logged, and existing verified archives are preserved. Historical dungeon runs may remain empty when the API does not provide season-verifiable records. The script never fabricates runs or uses current-season runs for historical seasons.
 
-No API secrets are embedded in the frontend. Existing GitHub Actions can continue to update root `data.json` every six hours. Raid Warcraft Logs are kept separate from Raider.IO Mythic+; no M+ Warcraft Logs are shown. Historical M+ dungeon cards require verified season-specific Raider.IO data.
-
-## Verification
-
-Syntax check: `node --check js/*.js` (check each file individually if your Node version does not accept globs). Test on desktop, ultrawide and mobile after deployment. A live browser regression test against production data has **not** been performed in this package.
-
-## V2.1 Mythic+ historical fixes
-
-`js/mythicplus.js` prefers verified current dungeon runs over stale current-season archive snapshots and updates the previous-season score relative to the selected season. `scripts/rio_backfill.py` accepts season metadata or an exact season path segment, logs returned/verified/unverified run counts, and retains prior archived runs. Missing historical runs remain missing when Raider.IO does not expose verifiable data; no runs are fabricated. The backfill workflow rebases before pushing to reduce concurrent-commit conflicts. Run the manual Raider.IO backfill and inspect `DIAG RIO runs` lines. API behavior has not been verified with live credentials.
+Keep the existing `data.json` and all GitHub Actions workflows. No WCL integration is added to Mythic+.
