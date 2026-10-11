@@ -200,7 +200,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-11T12:11:18+00:00",
+  "updatedAt": "2026-10-11T15:16:04+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -296,7 +296,107 @@
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       }
     ],
-    "healingMetricConfirmed": true
+    "healingMetricConfirmed": true,
+    "currentSeasonId": "season-mn-2",
+    "currentSeasonName": "Midnight Season 2",
+    "seasonArchive": {
+      "season-mn-2": {
+        "name": "Midnight Season 2",
+        "bossParses": [
+          {
+            "name": "Nek'zali the Soulcoiler",
+            "encounterId": 3470,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3470-icon.jpg?v=4",
+            "bestPercent": 81.009,
+            "highestHps": 283522.06898012,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Entombed Sentinels",
+            "encounterId": 3445,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3445-icon.jpg?v=4",
+            "bestPercent": 73.1836,
+            "highestHps": 319729.64387421,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Vashnik the Malignant",
+            "encounterId": 3455,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3455-icon.jpg?v=4",
+            "bestPercent": 70.983,
+            "highestHps": 274699.30581682,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Lost Explorers",
+            "encounterId": 3497,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3497-icon.jpg?v=4",
+            "bestPercent": 90.7747,
+            "highestHps": 356319.49310837,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Sszorak",
+            "encounterId": 3420,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3420-icon.jpg?v=4",
+            "bestPercent": 13.0044,
+            "highestHps": 307441.77358334,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Twin Fangs",
+            "encounterId": 3421,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3421-icon.jpg?v=4",
+            "bestPercent": null,
+            "highestHps": 0.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "The Coiled Altar",
+            "encounterId": 3429,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3429-icon.jpg?v=4",
+            "bestPercent": null,
+            "highestHps": 0.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Ula'tek",
+            "encounterId": 3492,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3492-icon.jpg?v=4",
+            "bestPercent": null,
+            "highestHps": 0.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Nymrissa Wavecaller",
+            "encounterId": 3379,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3379-icon.jpg?v=4",
+            "bestPercent": 78.86449636917531,
+            "highestHps": 275053.30267129,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          },
+          {
+            "name": "Kith'ix",
+            "encounterId": 3513,
+            "journalId": null,
+            "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3513-icon.jpg?v=4",
+            "bestPercent": null,
+            "highestHps": 0.0,
+            "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
+          }
+        ],
+        "archivedAt": "2026-10-11T15:16:00+00:00"
+      }
+    }
   },
   "character": {
     "name": "Draekhorr",
