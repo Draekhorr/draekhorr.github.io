@@ -175,3 +175,36 @@ nav a{font:600 11px/1.4 var(--font-body);color:#c3ae8b;text-decoration:none;whit
 .history-filter label{display:block;margin-bottom:8px;color:#8fc8d8;font-size:11px;font-weight:800;letter-spacing:.12em}
 .raid-expansion-select optgroup{font-weight:800;color:#eac47e;background:#101a26}
 .raid-expansion-select option{color:#e0e9f0;background:#101a26;font-family:Inter,Arial,sans-serif}
+
+/* Mythic+ season picker: below scores, collapsed until explicitly opened. */
+#raiderio .rio-history-disclosure {
+  margin: 0 0 clamp(16px, 2vw, 24px);
+  border: 1px solid #425368;
+  background: linear-gradient(140deg, #121f2d, #0b1520);
+}
+#raiderio .rio-history-disclosure > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 15px 18px; cursor: pointer; list-style: none;
+  color: #77d7ef; font: 800 11px/1.5 Inter, Arial, sans-serif;
+  letter-spacing: .13em;
+}
+#raiderio .rio-history-disclosure > summary::-webkit-details-marker { display: none; }
+#raiderio .rio-history-disclosure > summary:hover { color: #eac47e; }
+#raiderio .rio-history-disclosure > summary:focus-visible { outline: 2px solid #77d7ef; outline-offset: 2px; }
+#raiderio .rio-disclosure-indicator {
+  width: 9px; height: 9px; flex: 0 0 9px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s ease;
+}
+#raiderio .rio-history-disclosure[open] .rio-disclosure-indicator { transform: rotate(225deg); }
+#raiderio .rio-history-disclosure .history-filter {
+  padding: 0 18px 18px; margin: 0;
+}
+#raiderio .rio-history-disclosure .history-filter label {
+  display: block; margin: 0 0 8px; color: #8fb9ca;
+  font: 700 10px/1.5 Inter, Arial, sans-serif; letter-spacing: .1em;
+}
+#raiderio .rio-history-disclosure .raid-expansion-select { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+  #raiderio .rio-disclosure-indicator { transition: none; }
+}

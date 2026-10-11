@@ -134,3 +134,13 @@ The Mythic+ section also includes an expansion-grouped season selector. **At pre
 **Known limitation:** Mythic+ Warcraft Logs metrics are not guaranteed to appear. The existing WCL archive contains raid data; a verified dungeon-healing backend collector is still required. This update does not fabricate HPS or parse values, and does not change API sync workflows.
 
 Deployment: replace `index.html`, `script.js`, `style.css`, and `README.md`.
+
+## V1.5.1 — Guild header regression fix
+
+Restores the dynamic guild name and Raider.IO guild link in the top-left header using `data.json.guild.name` and `data.json.guild.url`. The guild is hidden when data is missing or the URL is invalid. The existing expansion navigation, M+ cards, raid logs, and backend are unchanged. No API sync is needed if `data.json.guild` already exists.
+
+## V1.5.2 — Collapsible Mythic+ season navigation
+
+The Mythic+ expansion/season picker is now placed **after the two score tiles and before the dungeon cards**. It uses a native HTML `<details>` disclosure, so it is **closed on every initial page load** and opens directly below its `SELECT SEASON` heading when clicked. The user can close it again by clicking the heading. The season selection logic and available options are unchanged; historical seasons still require real stored data. Raid Logs and the dynamic guild header are unaffected.
+
+Deployment: replace `index.html`, `style.css`, and `README.md`. No API sync or workflow changes are needed.
