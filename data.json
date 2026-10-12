@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-11T18:09:51+00:00",
+  "updatedAt": "2026-10-12T00:14:41+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-11T18:09:46+00:00"
+        "archivedAt": "2026-10-12T00:14:35+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2832,7 +2832,7 @@
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39146,
+      "totalDeaths": 39179,
       "raidDeaths": 7753,
       "dungeonDeaths": 4382,
       "fallingDeaths": 464
@@ -4749,8 +4749,8 @@
                 },
                 {
                   "name": "Sszorak",
-                  "completedCount": 1,
-                  "lastKillTimestamp": 1791141380000
+                  "completedCount": 2,
+                  "lastKillTimestamp": 1791740391000
                 }
               ]
             }
@@ -6746,8 +6746,8 @@
           },
           {
             "name": "Sszorak",
-            "completedCount": 1,
-            "lastKillTimestamp": 1791141380000
+            "completedCount": 2,
+            "lastKillTimestamp": 1791740391000
           }
         ]
       }
@@ -6895,8 +6895,8 @@
           },
           {
             "name": "Sszorak",
-            "completedCount": 1,
-            "lastKillTimestamp": 1791141380000
+            "completedCount": 2,
+            "lastKillTimestamp": 1791740391000
           }
         ]
       }
