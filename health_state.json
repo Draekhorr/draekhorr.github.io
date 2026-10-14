@@ -2,23 +2,23 @@
   "services": {
     "raiderio": {
       "consecutiveFailures": 0,
-      "lastSuccess": "2026-10-14T06:23:55+00:00",
+      "lastSuccess": "2026-10-14T12:25:55+00:00",
       "status": "healthy",
-      "lastChecked": "2026-10-14T06:23:55+00:00"
+      "lastChecked": "2026-10-14T12:25:55+00:00"
     },
     "warcraftLogs": {
       "consecutiveFailures": 0,
-      "lastSuccess": "2026-10-14T06:23:55+00:00",
+      "lastSuccess": "2026-10-14T12:25:55+00:00",
       "status": "healthy",
-      "lastChecked": "2026-10-14T06:23:55+00:00"
+      "lastChecked": "2026-10-14T12:25:55+00:00"
     },
     "blizzard": {
       "consecutiveFailures": 0,
-      "lastSuccess": "2026-10-14T06:23:55+00:00",
+      "lastSuccess": "2026-10-14T12:25:55+00:00",
       "status": "healthy",
-      "lastChecked": "2026-10-14T06:23:55+00:00"
+      "lastChecked": "2026-10-14T12:25:55+00:00"
     }
   },
   "incidents": [],
-  "lastCheck": "2026-10-14T06:23:55+00:00"
+  "lastCheck": "2026-10-14T12:25:55+00:00"
 }
