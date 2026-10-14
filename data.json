@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-14T12:26:04+00:00",
+  "updatedAt": "2026-10-14T18:24:29+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-14T12:25:59+00:00"
+        "archivedAt": "2026-10-14T18:24:23+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -4926,7 +4926,7 @@
   "unclassifiedRaidProgression": [
     {
       "name": "The Unbinding Of Kithix",
-      "note": "",
+      "note": "1/1 H",
       "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
       "source": "Raider.IO",
       "sourceSlug": "the-unbinding-of-kithix"
