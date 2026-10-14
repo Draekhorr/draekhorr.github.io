@@ -1,40 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="theme-color" content="#071520" />
 
   <title>Draekhorr | Azeroth Legacy</title>
 
-  <!-- Stylesheets -->
-  <link href="assets/css/base.css?v=2.0" rel="stylesheet" />
-  <link href="assets/css/components.css?v=2.0" rel="stylesheet" />
+  <!-- Main Stylesheets -->
+  <link
+    href="assets/css/base.css?v=2.0"
+    rel="stylesheet"
+  />
+
+  <link
+    href="assets/css/components.css?v=2.0"
+    rel="stylesheet"
+  />
 </head>
 
 <body>
-  <!-- Modular Components -->
+
+  <!-- ==========================================
+       HEADER & GUILD
+       ========================================== -->
   <div data-component="header"></div>
 
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
   <main id="top">
+
+    <!-- Hero Section -->
     <div data-component="hero"></div>
+
+    <!-- Character Profile -->
     <div data-component="character"></div>
+
+    <!-- Mythic Raid Progression & Warcraft Logs -->
     <div data-component="raids"></div>
+
+    <!-- Mythic+ Raider.IO -->
     <div data-component="mythicplus"></div>
+
+    <!-- Outro -->
     <div data-component="outro"></div>
+
   </main>
 
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
   <div data-component="footer"></div>
 
-  <!-- Main Application -->
-  <script src="js/main.js?v=2.0" type="module"></script>
-
-  <!-- Cloudflare Web Analytics -->
+  <!-- ==========================================
+       MAIN APPLICATION
+       ========================================== -->
   <script
     type="module"
+    src="js/main.js?v=2.0">
+  </script>
+
+  <!-- ==========================================
+       CLOUDFLARE WEB ANALYTICS
+       ========================================== -->
+  <script
+    defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
     data-cf-beacon='{"token":"373e7f30bc27405b976c9050b819f1ca"}'>
   </script>
-  <!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
