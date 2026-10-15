@@ -1,6 +1,6 @@
 {
   "accountWideMountCount": null,
-  "achievementPoints": 36710,
+  "achievementPoints": 36740,
   "mounts": [],
   "achievements": [],
   "cuttingEdgeAchievements": [
@@ -120,7 +120,7 @@
     },
     {
       "name": "The Venomous Abyss",
-      "note": "5/8 M",
+      "note": "6/8 M",
       "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
       "source": "Raider.IO",
       "sourceSlug": "the-venomous-abyss"
@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-14T18:24:29+00:00",
+  "updatedAt": "2026-10-15T00:20:31+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -400,8 +400,8 @@
         "encounterId": 3421,
         "journalId": null,
         "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3421-icon.jpg?v=4",
-        "bestPercent": null,
-        "highestHps": 0.0,
+        "bestPercent": 78.57628718126183,
+        "highestHps": 368970.1366298,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -498,8 +498,8 @@
             "encounterId": 3421,
             "journalId": null,
             "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3421-icon.jpg?v=4",
-            "bestPercent": null,
-            "highestHps": 0.0,
+            "bestPercent": 78.57628718126183,
+            "highestHps": 368970.1366298,
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           },
           {
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-14T18:24:23+00:00"
+        "archivedAt": "2026-10-15T00:20:26+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2828,11 +2828,11 @@
     "level": 90,
     "class": "Shaman",
     "race": "Dwarf",
-    "itemLevel": 331,
+    "itemLevel": 332,
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39179,
+      "totalDeaths": 39207,
       "raidDeaths": 7753,
       "dungeonDeaths": 4382,
       "fallingDeaths": 464
@@ -2854,7 +2854,7 @@
         },
         {
           "name": "The Venomous Abyss",
-          "note": "5/8 M",
+          "note": "6/8 M",
           "url": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
           "source": "Raider.IO",
           "sourceSlug": "the-venomous-abyss"
@@ -4720,11 +4720,11 @@
             {
               "name": "The Venomous Abyss",
               "difficulty": "MYTHIC",
-              "mythicKills": 5,
+              "mythicKills": 6,
               "heroicKills": null,
-              "completedBosses": 5,
+              "completedBosses": 6,
               "totalBosses": 8,
-              "note": "5/8 M",
+              "note": "6/8 M",
               "source": "Blizzard",
               "bosses": [
                 {
@@ -4751,6 +4751,28 @@
                   "name": "Sszorak",
                   "completedCount": 2,
                   "lastKillTimestamp": 1791740391000
+                },
+                {
+                  "name": "The Twin Fangs",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1792004043000
+                }
+              ]
+            },
+            {
+              "name": "The Unbinding of Kith'ix",
+              "difficulty": "HEROIC",
+              "mythicKills": null,
+              "heroicKills": 1,
+              "completedBosses": 1,
+              "totalBosses": 1,
+              "note": "1/1 H",
+              "source": "Blizzard",
+              "bosses": [
+                {
+                  "name": "Kith'ix",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1791999497000
                 }
               ]
             }
@@ -6717,11 +6739,11 @@
       {
         "name": "The Venomous Abyss",
         "difficulty": "MYTHIC",
-        "mythicKills": 5,
+        "mythicKills": 6,
         "heroicKills": null,
-        "completedBosses": 5,
+        "completedBosses": 6,
         "totalBosses": 8,
-        "note": "5/8 M",
+        "note": "6/8 M",
         "source": "Blizzard",
         "bosses": [
           {
@@ -6748,6 +6770,28 @@
             "name": "Sszorak",
             "completedCount": 2,
             "lastKillTimestamp": 1791740391000
+          },
+          {
+            "name": "The Twin Fangs",
+            "completedCount": 1,
+            "lastKillTimestamp": 1792004043000
+          }
+        ]
+      },
+      {
+        "name": "The Unbinding of Kith'ix",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 1,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Kith'ix",
+            "completedCount": 1,
+            "lastKillTimestamp": 1791999497000
           }
         ]
       }
@@ -6866,11 +6910,11 @@
       {
         "name": "The Venomous Abyss",
         "difficulty": "MYTHIC",
-        "mythicKills": 5,
+        "mythicKills": 6,
         "heroicKills": null,
-        "completedBosses": 5,
+        "completedBosses": 6,
         "totalBosses": 8,
-        "note": "5/8 M",
+        "note": "6/8 M",
         "source": "Blizzard",
         "bosses": [
           {
@@ -6897,6 +6941,28 @@
             "name": "Sszorak",
             "completedCount": 2,
             "lastKillTimestamp": 1791740391000
+          },
+          {
+            "name": "The Twin Fangs",
+            "completedCount": 1,
+            "lastKillTimestamp": 1792004043000
+          }
+        ]
+      },
+      {
+        "name": "The Unbinding of Kith'ix",
+        "difficulty": "HEROIC",
+        "mythicKills": null,
+        "heroicKills": 1,
+        "completedBosses": 1,
+        "totalBosses": 1,
+        "note": "1/1 H",
+        "source": "Blizzard",
+        "bosses": [
+          {
+            "name": "Kith'ix",
+            "completedCount": 1,
+            "lastKillTimestamp": 1791999497000
           }
         ]
       }
