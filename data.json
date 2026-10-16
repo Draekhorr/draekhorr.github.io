@@ -1,6 +1,6 @@
 {
   "accountWideMountCount": null,
-  "achievementPoints": 36740,
+  "achievementPoints": 36755,
   "mounts": [],
   "achievements": [],
   "cuttingEdgeAchievements": [
@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-15T18:22:44+00:00",
+  "updatedAt": "2026-10-16T00:18:28+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -400,7 +400,7 @@
         "encounterId": 3421,
         "journalId": null,
         "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3421-icon.jpg?v=4",
-        "bestPercent": 74.81685102602874,
+        "bestPercent": 74.8168,
         "highestHps": 368970.1366298,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
@@ -498,7 +498,7 @@
             "encounterId": 3421,
             "journalId": null,
             "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3421-icon.jpg?v=4",
-            "bestPercent": 74.81685102602874,
+            "bestPercent": 74.8168,
             "highestHps": 368970.1366298,
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           },
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-15T18:22:37+00:00"
+        "archivedAt": "2026-10-16T00:18:23+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2832,13 +2832,13 @@
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39207,
+      "totalDeaths": 39208,
       "raidDeaths": 7753,
       "dungeonDeaths": 4382,
       "fallingDeaths": 464
     }
   },
-  "characterMountCount": 748,
+  "characterMountCount": 794,
   "raidProgressionByExpansion": {
     "currentSeason": {
       "expansion": "Midnight",
