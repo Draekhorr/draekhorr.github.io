@@ -5,46 +5,11 @@
   "achievements": [],
   "cuttingEdgeAchievements": [
     {
-      "name": "Cutting Edge: Gul'dan",
-      "tierId": "11192",
+      "name": "Cutting Edge: Midnight Falls",
+      "tierId": "61627",
       "verified": true,
-      "note": "1493837347000",
-      "url": "https://www.wowhead.com/achievement=11192"
-    },
-    {
-      "name": "Cutting Edge: Xavius",
-      "tierId": "11191",
-      "verified": true,
-      "note": "1482189628000",
-      "url": "https://www.wowhead.com/achievement=11191"
-    },
-    {
-      "name": "Cutting Edge: Helya",
-      "tierId": "11580",
-      "verified": true,
-      "note": "1494186836000",
-      "url": "https://www.wowhead.com/achievement=11580"
-    },
-    {
-      "name": "Cutting Edge: N'Zoth the Corruptor",
-      "tierId": "14069",
-      "verified": true,
-      "note": "1591899475000",
-      "url": "https://www.wowhead.com/achievement=14069"
-    },
-    {
-      "name": "Cutting Edge: Lady Jaina Proudmoore",
-      "tierId": "13323",
-      "verified": true,
-      "note": "1562531391000",
-      "url": "https://www.wowhead.com/achievement=13323"
-    },
-    {
-      "name": "Cutting Edge: Sylvanas Windrunner",
-      "tierId": "15135",
-      "verified": true,
-      "note": "1634668173000",
-      "url": "https://www.wowhead.com/achievement=15135"
+      "note": "1784751226000",
+      "url": "https://www.wowhead.com/achievement=61627"
     },
     {
       "name": "Cutting Edge: Sire Denathrius",
@@ -54,18 +19,32 @@
       "url": "https://www.wowhead.com/achievement=14461"
     },
     {
-      "name": "Cutting Edge: Scalecommander Sarkareth",
-      "tierId": "18254",
+      "name": "Cutting Edge: Gul'dan",
+      "tierId": "11192",
       "verified": true,
-      "note": "1699220171000",
-      "url": "https://www.wowhead.com/achievement=18254"
+      "note": "1493837347000",
+      "url": "https://www.wowhead.com/achievement=11192"
     },
     {
-      "name": "Cutting Edge: Fyrakk the Blazing",
-      "tierId": "19351",
+      "name": "Cutting Edge: N'Zoth the Corruptor",
+      "tierId": "14069",
       "verified": true,
-      "note": "1713473043000",
-      "url": "https://www.wowhead.com/achievement=19351"
+      "note": "1591899475000",
+      "url": "https://www.wowhead.com/achievement=14069"
+    },
+    {
+      "name": "Cutting Edge: Helya",
+      "tierId": "11580",
+      "verified": true,
+      "note": "1494186836000",
+      "url": "https://www.wowhead.com/achievement=11580"
+    },
+    {
+      "name": "Cutting Edge: Lady Jaina Proudmoore",
+      "tierId": "13323",
+      "verified": true,
+      "note": "1562531391000",
+      "url": "https://www.wowhead.com/achievement=13323"
     },
     {
       "name": "Cutting Edge: Dimensius, the All-Devouring",
@@ -73,6 +52,13 @@
       "verified": true,
       "note": "1767814442000",
       "url": "https://www.wowhead.com/achievement=41625"
+    },
+    {
+      "name": "Cutting Edge: Crown of the Cosmos",
+      "tierId": "61625",
+      "verified": true,
+      "note": "1779041743000",
+      "url": "https://www.wowhead.com/achievement=61625"
     },
     {
       "name": "Cutting Edge: Chrome King Gallywix",
@@ -96,18 +82,32 @@
       "url": "https://www.wowhead.com/achievement=61492"
     },
     {
-      "name": "Cutting Edge: Crown of the Cosmos",
-      "tierId": "61625",
+      "name": "Cutting Edge: Scalecommander Sarkareth",
+      "tierId": "18254",
       "verified": true,
-      "note": "1779041743000",
-      "url": "https://www.wowhead.com/achievement=61625"
+      "note": "1699220171000",
+      "url": "https://www.wowhead.com/achievement=18254"
     },
     {
-      "name": "Cutting Edge: Midnight Falls",
-      "tierId": "61627",
+      "name": "Cutting Edge: Xavius",
+      "tierId": "11191",
       "verified": true,
-      "note": "1784751226000",
-      "url": "https://www.wowhead.com/achievement=61627"
+      "note": "1482189628000",
+      "url": "https://www.wowhead.com/achievement=11191"
+    },
+    {
+      "name": "Cutting Edge: Sylvanas Windrunner",
+      "tierId": "15135",
+      "verified": true,
+      "note": "1634668173000",
+      "url": "https://www.wowhead.com/achievement=15135"
+    },
+    {
+      "name": "Cutting Edge: Fyrakk the Blazing",
+      "tierId": "19351",
+      "verified": true,
+      "note": "1713473043000",
+      "url": "https://www.wowhead.com/achievement=19351"
     }
   ],
   "raidProgression": [
@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-16T12:24:12+00:00",
+  "updatedAt": "2026-10-16T18:20:56+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-16T12:24:05+00:00"
+        "archivedAt": "2026-10-16T18:20:52+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
