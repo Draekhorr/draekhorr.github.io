@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-18T06:19:26+00:00",
+  "updatedAt": "2026-10-18T12:17:01+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-18T06:19:20+00:00"
+        "archivedAt": "2026-10-18T12:16:55+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2832,9 +2832,9 @@
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39208,
+      "totalDeaths": 39212,
       "raidDeaths": 7753,
-      "dungeonDeaths": 4382,
+      "dungeonDeaths": 4386,
       "fallingDeaths": 464
     }
   },
