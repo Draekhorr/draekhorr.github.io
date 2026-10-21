@@ -5,20 +5,6 @@
   "achievements": [],
   "cuttingEdgeAchievements": [
     {
-      "name": "Cutting Edge: Midnight Falls",
-      "tierId": "61627",
-      "verified": true,
-      "note": "1784751226000",
-      "url": "https://www.wowhead.com/achievement=61627"
-    },
-    {
-      "name": "Cutting Edge: Sire Denathrius",
-      "tierId": "14461",
-      "verified": true,
-      "note": "1622148642000",
-      "url": "https://www.wowhead.com/achievement=14461"
-    },
-    {
       "name": "Cutting Edge: Gul'dan",
       "tierId": "11192",
       "verified": true,
@@ -26,11 +12,11 @@
       "url": "https://www.wowhead.com/achievement=11192"
     },
     {
-      "name": "Cutting Edge: N'Zoth the Corruptor",
-      "tierId": "14069",
+      "name": "Cutting Edge: Xavius",
+      "tierId": "11191",
       "verified": true,
-      "note": "1591899475000",
-      "url": "https://www.wowhead.com/achievement=14069"
+      "note": "1482189628000",
+      "url": "https://www.wowhead.com/achievement=11191"
     },
     {
       "name": "Cutting Edge: Helya",
@@ -40,6 +26,13 @@
       "url": "https://www.wowhead.com/achievement=11580"
     },
     {
+      "name": "Cutting Edge: N'Zoth the Corruptor",
+      "tierId": "14069",
+      "verified": true,
+      "note": "1591899475000",
+      "url": "https://www.wowhead.com/achievement=14069"
+    },
+    {
       "name": "Cutting Edge: Lady Jaina Proudmoore",
       "tierId": "13323",
       "verified": true,
@@ -47,18 +40,39 @@
       "url": "https://www.wowhead.com/achievement=13323"
     },
     {
+      "name": "Cutting Edge: Sylvanas Windrunner",
+      "tierId": "15135",
+      "verified": true,
+      "note": "1634668173000",
+      "url": "https://www.wowhead.com/achievement=15135"
+    },
+    {
+      "name": "Cutting Edge: Sire Denathrius",
+      "tierId": "14461",
+      "verified": true,
+      "note": "1622148642000",
+      "url": "https://www.wowhead.com/achievement=14461"
+    },
+    {
+      "name": "Cutting Edge: Scalecommander Sarkareth",
+      "tierId": "18254",
+      "verified": true,
+      "note": "1699220171000",
+      "url": "https://www.wowhead.com/achievement=18254"
+    },
+    {
+      "name": "Cutting Edge: Fyrakk the Blazing",
+      "tierId": "19351",
+      "verified": true,
+      "note": "1713473043000",
+      "url": "https://www.wowhead.com/achievement=19351"
+    },
+    {
       "name": "Cutting Edge: Dimensius, the All-Devouring",
       "tierId": "41625",
       "verified": true,
       "note": "1767814442000",
       "url": "https://www.wowhead.com/achievement=41625"
-    },
-    {
-      "name": "Cutting Edge: Crown of the Cosmos",
-      "tierId": "61625",
-      "verified": true,
-      "note": "1779041743000",
-      "url": "https://www.wowhead.com/achievement=61625"
     },
     {
       "name": "Cutting Edge: Chrome King Gallywix",
@@ -82,32 +96,18 @@
       "url": "https://www.wowhead.com/achievement=61492"
     },
     {
-      "name": "Cutting Edge: Scalecommander Sarkareth",
-      "tierId": "18254",
+      "name": "Cutting Edge: Crown of the Cosmos",
+      "tierId": "61625",
       "verified": true,
-      "note": "1699220171000",
-      "url": "https://www.wowhead.com/achievement=18254"
+      "note": "1779041743000",
+      "url": "https://www.wowhead.com/achievement=61625"
     },
     {
-      "name": "Cutting Edge: Xavius",
-      "tierId": "11191",
+      "name": "Cutting Edge: Midnight Falls",
+      "tierId": "61627",
       "verified": true,
-      "note": "1482189628000",
-      "url": "https://www.wowhead.com/achievement=11191"
-    },
-    {
-      "name": "Cutting Edge: Sylvanas Windrunner",
-      "tierId": "15135",
-      "verified": true,
-      "note": "1634668173000",
-      "url": "https://www.wowhead.com/achievement=15135"
-    },
-    {
-      "name": "Cutting Edge: Fyrakk the Blazing",
-      "tierId": "19351",
-      "verified": true,
-      "note": "1713473043000",
-      "url": "https://www.wowhead.com/achievement=19351"
+      "note": "1784751226000",
+      "url": "https://www.wowhead.com/achievement=61627"
     }
   ],
   "raidProgression": [
@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-21T06:26:05+00:00",
+  "updatedAt": "2026-10-21T12:26:05+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-21T06:25:59+00:00"
+        "archivedAt": "2026-10-21T12:26:00+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
