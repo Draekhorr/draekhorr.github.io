@@ -2,23 +2,31 @@
   "services": {
     "raiderio": {
       "consecutiveFailures": 0,
-      "lastSuccess": "2026-10-22T00:21:22+00:00",
+      "lastSuccess": "2026-10-22T06:27:21+00:00",
       "status": "healthy",
-      "lastChecked": "2026-10-22T00:21:22+00:00"
+      "lastChecked": "2026-10-22T06:27:21+00:00"
     },
     "warcraftLogs": {
-      "consecutiveFailures": 2,
+      "consecutiveFailures": 3,
       "lastSuccess": "2026-10-21T12:25:55+00:00",
-      "status": "warning",
-      "lastChecked": "2026-10-22T00:21:22+00:00"
+      "status": "critical",
+      "lastChecked": "2026-10-22T06:27:21+00:00"
     },
     "blizzard": {
       "consecutiveFailures": 0,
-      "lastSuccess": "2026-10-22T00:21:22+00:00",
+      "lastSuccess": "2026-10-22T06:27:21+00:00",
       "status": "healthy",
-      "lastChecked": "2026-10-22T00:21:22+00:00"
+      "lastChecked": "2026-10-22T06:27:21+00:00"
     }
   },
-  "incidents": [],
-  "lastCheck": "2026-10-22T00:21:22+00:00"
+  "incidents": [
+    {
+      "service": "warcraftLogs",
+      "startedAt": "2026-10-22T06:27:21+00:00",
+      "lastSuccess": "2026-10-21T12:25:55+00:00",
+      "resolvedAt": null,
+      "reason": "No successful full sync for three consecutive scheduled runs"
+    }
+  ],
+  "lastCheck": "2026-10-22T06:27:21+00:00"
 }
