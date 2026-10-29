@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-10-28T18:32:35+00:00",
+  "updatedAt": "2026-10-29T00:31:34+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-10-28T18:32:30+00:00"
+        "archivedAt": "2026-10-29T00:31:28+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2832,7 +2832,7 @@
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39318,
+      "totalDeaths": 39342,
       "raidDeaths": 7753,
       "dungeonDeaths": 4386,
       "fallingDeaths": 464
@@ -4771,8 +4771,8 @@
               "bosses": [
                 {
                   "name": "Kith'ix",
-                  "completedCount": 2,
-                  "lastKillTimestamp": 1792604110000
+                  "completedCount": 3,
+                  "lastKillTimestamp": 1793212365000
                 }
               ]
             }
@@ -6790,8 +6790,8 @@
         "bosses": [
           {
             "name": "Kith'ix",
-            "completedCount": 2,
-            "lastKillTimestamp": 1792604110000
+            "completedCount": 3,
+            "lastKillTimestamp": 1793212365000
           }
         ]
       }
@@ -6961,8 +6961,8 @@
         "bosses": [
           {
             "name": "Kith'ix",
-            "completedCount": 2,
-            "lastKillTimestamp": 1792604110000
+            "completedCount": 3,
+            "lastKillTimestamp": 1793212365000
           }
         ]
       }
