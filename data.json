@@ -1,6 +1,6 @@
 {
   "accountWideMountCount": null,
-  "achievementPoints": 36965,
+  "achievementPoints": 36975,
   "mounts": [],
   "achievements": [],
   "cuttingEdgeAchievements": [
@@ -345,7 +345,7 @@
   "wowprogress": {
     "profileUrl": null
   },
-  "updatedAt": "2026-11-08T18:28:41+00:00",
+  "updatedAt": "2026-11-09T00:40:43+00:00",
   "raidSourceUrl": "https://raider.io/characters/eu/draenor/Draekhorr?season=season-mn-2",
   "warcraftLogs": {
     "profileUrl": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr",
@@ -409,8 +409,8 @@
         "encounterId": 3429,
         "journalId": null,
         "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3429-icon.jpg?v=4",
-        "bestPercent": null,
-        "highestHps": 0.0,
+        "bestPercent": 27.599876683317014,
+        "highestHps": 345673.75860387,
         "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
       },
       {
@@ -507,8 +507,8 @@
             "encounterId": 3429,
             "journalId": null,
             "iconUrl": "https://assets.rpglogs.com/img/warcraft/bosses/3429-icon.jpg?v=4",
-            "bestPercent": null,
-            "highestHps": 0.0,
+            "bestPercent": 27.599876683317014,
+            "highestHps": 345673.75860387,
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           },
           {
@@ -539,7 +539,7 @@
             "url": "https://www.warcraftlogs.com/character/eu/draenor/draekhorr"
           }
         ],
-        "archivedAt": "2026-11-08T18:28:36+00:00"
+        "archivedAt": "2026-11-09T00:40:35+00:00"
       },
       "wcl-zone-55": {
         "name": "Mythic+ Season 2",
@@ -2832,7 +2832,7 @@
     "specialization": "Restoration",
     "portraitUrl": "https://render.worldofwarcraft.com/eu/character/draenor/170/179339690-avatar.jpg",
     "lifetimeStatistics": {
-      "totalDeaths": 39391,
+      "totalDeaths": 39423,
       "raidDeaths": 7753,
       "dungeonDeaths": 4386,
       "fallingDeaths": 464
@@ -4720,11 +4720,11 @@
             {
               "name": "The Venomous Abyss",
               "difficulty": "MYTHIC",
-              "mythicKills": 6,
+              "mythicKills": 7,
               "heroicKills": null,
-              "completedBosses": 6,
+              "completedBosses": 7,
               "totalBosses": 8,
-              "note": "6/8 M",
+              "note": "7/8 M",
               "source": "Blizzard",
               "bosses": [
                 {
@@ -4756,6 +4756,11 @@
                   "name": "The Twin Fangs",
                   "completedCount": 1,
                   "lastKillTimestamp": 1792004043000
+                },
+                {
+                  "name": "The Coiled Altar",
+                  "completedCount": 1,
+                  "lastKillTimestamp": 1794164350000
                 }
               ]
             },
@@ -6739,11 +6744,11 @@
       {
         "name": "The Venomous Abyss",
         "difficulty": "MYTHIC",
-        "mythicKills": 6,
+        "mythicKills": 7,
         "heroicKills": null,
-        "completedBosses": 6,
+        "completedBosses": 7,
         "totalBosses": 8,
-        "note": "6/8 M",
+        "note": "7/8 M",
         "source": "Blizzard",
         "bosses": [
           {
@@ -6775,6 +6780,11 @@
             "name": "The Twin Fangs",
             "completedCount": 1,
             "lastKillTimestamp": 1792004043000
+          },
+          {
+            "name": "The Coiled Altar",
+            "completedCount": 1,
+            "lastKillTimestamp": 1794164350000
           }
         ]
       },
@@ -6910,11 +6920,11 @@
       {
         "name": "The Venomous Abyss",
         "difficulty": "MYTHIC",
-        "mythicKills": 6,
+        "mythicKills": 7,
         "heroicKills": null,
-        "completedBosses": 6,
+        "completedBosses": 7,
         "totalBosses": 8,
-        "note": "6/8 M",
+        "note": "7/8 M",
         "source": "Blizzard",
         "bosses": [
           {
@@ -6946,6 +6956,11 @@
             "name": "The Twin Fangs",
             "completedCount": 1,
             "lastKillTimestamp": 1792004043000
+          },
+          {
+            "name": "The Coiled Altar",
+            "completedCount": 1,
+            "lastKillTimestamp": 1794164350000
           }
         ]
       },
