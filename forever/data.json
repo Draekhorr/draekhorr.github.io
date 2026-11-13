@@ -7,6 +7,7 @@
   "honorableKills": 0,
   "makgoraKills": 0,
   "talents": null,
+  "professions": [],
   "itemLevel": 11,
   "role": null,
   "portraitUrl": "https://render.worldofwarcraft.com/forever-eu/character/110/11457902-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
@@ -14,5 +15,5 @@
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-13T19:28:03+00:00"
+  "updatedAt": "2026-11-13T19:35:40+00:00"
 }
