@@ -88,6 +88,12 @@ def run():
         'class': text_value(profile.get('class')),
         'race': text_value(profile.get('race')),
         'guild': guild,
+        'honorableKills': profile.get('honorable_kills') if isinstance(profile.get('honorable_kills'), int) and not isinstance(profile.get('honorable_kills'), bool) and profile.get('honorable_kills') >= 0 else None,
+        'makgoraKills': profile.get('makgora_kills') if isinstance(profile.get('makgora_kills'), int) and not isinstance(profile.get('makgora_kills'), bool) and profile.get('makgora_kills') >= 0 else None,
+        # The verified public profile response does not expose talents.
+        'talents': None,
+        # Item level is only used when the API explicitly supplies it.
+        'itemLevel': next((profile[k] for k in ('item_level', 'itemLevel', 'equipped_item_level') if isinstance(profile.get(k), (int, float)) and not isinstance(profile.get(k), bool) and profile[k] > 0), None),
         'role': text_value(profile.get('active_spec_name')),
         'portraitUrl': media,
         'profileUrl': PROFILE,
@@ -95,12 +101,12 @@ def run():
         'updatedAt': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
     }
     # Preserve existing verified values if a response temporarily omits fields.
-    for field in ('level', 'class', 'race', 'guild', 'role', 'portraitUrl'):
+    for field in ('level', 'class', 'race', 'guild', 'role', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel'):
         if record[field] is None and old.get('source') == record['source']:
             record[field] = old.get(field)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level','class','race','guild','role','portraitUrl') if record.get(k) is not None))
+    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level','class','race','guild','role','portraitUrl','honorableKills','makgoraKills','itemLevel') if record.get(k) is not None))
     return 0
 
 

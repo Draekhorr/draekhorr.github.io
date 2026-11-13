@@ -1,5 +1,5 @@
 // Forever profile is independent from the Retail data.json.
-const fields = {name:'char-name',role:'char-role',level:'char-level',class:'char-class',race:'char-race',guild:'char-guild'};
+const fields = {name:'char-name',level:'char-level',honorableKills:'char-honorable-kills',talents:'char-talents',makgoraKills:'char-makgora-kills',itemLevel:'char-item-level'};
 const note = document.getElementById('source-note');
 fetch('./data.json', {cache:'no-store'})
   .then(response => {if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json();})
@@ -10,6 +10,8 @@ fetch('./data.json', {cache:'no-store'})
       const node = document.getElementById(id);
       if (node) node.textContent = String(value);
     }
+    const role = document.getElementById('char-role');
+    if (role && data.class && data.race) role.textContent = `${data.class} · ${data.race}`;
     const portrait = document.getElementById('forever-portrait');
     if (portrait && typeof data.portraitUrl === 'string' && /^https:\/\//i.test(data.portraitUrl)) {
       portrait.onerror = () => {portrait.onerror = null; portrait.src = './assets/avatar.png';};
