@@ -116,29 +116,56 @@ def talent_distribution(spec):
 
 
 def profession_entries(payload):
-    """Accept only explicit primary-profession records with verified skill values."""
+    """Read verified primary professions, including nested skill tiers.
+
+    Do not invent values. Log only structure and profession names, not raw
+    character API responses.
+    """
     if not isinstance(payload, dict):
+        print('DIAG FOREVER professions payload=missing')
         return []
-    # Blizzard profiles commonly expose primaries as a list of profession objects.
-    candidates = payload.get('primaries')
-    if not isinstance(candidates, list):
-        candidates = payload.get('primary_professions')
-    if not isinstance(candidates, list):
-        print('DIAG FOREVER professions: no recognized primary profession list')
+    primaries = payload.get('primaries')
+    secondaries = payload.get('secondaries')
+    print(f'DIAG FOREVER professions counts primaries={len(primaries) if isinstance(primaries, list) else "not-list"} '
+          f'secondaries={len(secondaries) if isinstance(secondaries, list) else "not-list"}')
+    if not isinstance(primaries, list):
+        primaries = payload.get('primary_professions')
+    if not isinstance(primaries, list):
         return []
+
     found = []
-    for row in candidates:
+    for index, row in enumerate(primaries):
         if not isinstance(row, dict):
+            print(f'DIAG FOREVER profession[{index}] unexpected_type={type(row).__name__}')
             continue
         name = text_value(row.get('profession')) or text_value(row.get('name'))
-        # The profession skill is a direct field only if the API provides it.
+        tiers = row.get('tiers')
+        print(f'DIAG FOREVER profession[{index}] name={name!r} fields={sorted(row.keys())} '
+              f'tiers={len(tiers) if isinstance(tiers, list) else "not-list"}')
         skill = nonnegative_int(row.get('skill_points'))
         if skill is None:
             skill = nonnegative_int(row.get('skill'))
         maximum = nonnegative_int(row.get('max_skill_points'))
         if maximum is None:
             maximum = nonnegative_int(row.get('max_skill'))
+
+        # Some Blizzard API revisions put skill values in profession tiers.
+        # A single tier is unambiguous; multiple tiers must not be summed or
+        # presented as one aggregate without an explicit provider total.
+        if (skill is None or maximum is None) and isinstance(tiers, list):
+            for tier_index, tier in enumerate(tiers):
+                if not isinstance(tier, dict):
+                    continue
+                print(f'DIAG FOREVER profession[{index}].tier[{tier_index}] fields={sorted(tier.keys())}')
+            if len(tiers) == 1 and isinstance(tiers[0], dict):
+                tier = tiers[0]
+                if skill is None:
+                    skill = nonnegative_int(tier.get('skill_points'))
+                if maximum is None:
+                    maximum = nonnegative_int(tier.get('max_skill_points'))
         if not name or skill is None or maximum is None or maximum <= 0 or skill > maximum:
+            print(f'DIAG FOREVER profession[{index}] verified=False name_present={bool(name)} '
+                  f'skill_present={skill is not None} max_present={maximum is not None}')
             continue
         found.append({'name': name, 'skill': skill, 'maxSkill': maximum})
     return found[:2]
@@ -147,7 +174,7 @@ def profession_entries(payload):
 def run():
     old = read_existing()
     session = requests.Session()
-    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.8 (public character profile)', 'Accept': 'application/json'})
+    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.1 (public character profile)', 'Accept': 'application/json'})
     rio = fetch_rio(session)
     blizzard = fetch_blizzard(session)
     profile = blizzard.get('profile', {})
