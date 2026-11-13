@@ -1,21 +1,17 @@
-# DRAEKHORR V2.4 — Forever page (additive update)
+# DRAEKHORR V2.5 — Forever profile sync
 
-This is an **additive** package, not a full replacement of the existing V2 website.
+This is an **incremental update**, not a complete replacement of the website. Keep all Retail files and existing workflows unchanged.
 
-## Upload
+## Install
 
-- **Replace** `components/header.html` in the existing repository (adds `FOREVER ↗` to the existing navigation).
-- **Add** `assets/css/forever-nav.css`.
-- **Add** the entire `forever/` directory (`index.html`, `style.css`, `script.js`, `assets/avatar.png`).
-- In the existing root `index.html`, add `<link rel="stylesheet" href="assets/css/forever-nav.css?v=2.4">` inside `<head>`, after the existing CSS links. **Do not replace the root index.html**: this preserves the current Cloudflare Analytics beacon and other site settings.
+Copy `scripts/sync_forever.py`, `forever/script.js`, and `forever/index.html` to the same repository paths. Add `.github/workflows/sync-forever.yml` manually using GitHub's **Create new file** if the hidden `.github` directory is skipped by upload. Keep `forever/style.css` and `forever/assets/avatar.png` from V2.4.
 
-## Data and artwork
+Commit to `main`, then run **Actions → Sync WoW Forever → Run workflow**. After the workflow commits `forever/data.json`, refresh `/forever/`.
 
-- Forever profile: https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen
-- This starter page intentionally does **not** invent character level, race, guild, or statistics. An optional `forever/data.json` can supply verified `name`, `role`, `level`, `class`, `race`, `guild` fields later.
-- The hero artwork is the existing DRAEKHORR asset reused as a temporary visual. Replace `forever/assets/avatar.png` when Forever-specific artwork is available.
-- Retail APIs, data.json, GitHub Actions, and Cloudflare analytics are unchanged. No workflow run is required for this page.
+## Data contract
 
-## Verification
+`forever/data.json` is generated from the public `https://forever.raider.io/api/v1/characters/profile` endpoint. The script attempts `region=eu`, `realm=normal`, `name=Draekhorr Healstappen`, with a `ruleset=normal` fallback. It accepts only a profile matching the requested full name. It never scrapes HTML or copies Retail stats. Missing API fields stay blank; existing verified values are retained.
 
-After GitHub Pages deploy, visit `/forever/`, click `RETAIL`, and check the existing header's `FOREVER` link. Test at mobile width. The package was checked structurally; it was not browser-tested against the live repository.
+**Important:** The Forever Raider.IO API is published, but its exact query parameters and response fields for this character have not been tested from this environment. If both requests fail, the workflow fails without overwriting existing data. Check `DIAG FOREVER` output to identify the actual API response. `profileUrl` is the permanent public attribution link.
+
+The workflow runs every six hours at minute 25 to reduce collisions with the Retail sync, but concurrent Git pushes can still conflict. It uses rebase, never force push.
