@@ -101,18 +101,86 @@ def fetch_blizzard(session):
 
 
 def talent_distribution(spec):
-    """Only accept explicit 3-tree spent-point totals; never infer 9/7/0 from ranks."""
-    if not isinstance(spec, dict):
-        return None
-    for key in ('talent_trees', 'talentTrees'):
-        trees = spec.get(key)
-        if not isinstance(trees, list) or len(trees) != 3:
-            continue
-        counts = [t.get('spent_points') if isinstance(t, dict) else None for t in trees]
-        if all(nonnegative_int(v) is not None for v in counts):
-            return ' / '.join(map(str, counts))
-    return None
+    """Read Shaman talent allocation from verified Blizzard specialization groups.
 
+    Prefer explicit tree point totals. For classic-style talent trees, sum
+    individual purchased ranks only when every talent has an explicit rank.
+    Never treat an absent tree as zero or combine multiple loadouts.
+    """
+    if not isinstance(spec, dict):
+        print('DIAG FOREVER talents payload=missing')
+        return None
+
+    groups = spec.get('specialization_groups')
+    if not isinstance(groups, list):
+        groups = [spec]
+    print(f'DIAG FOREVER talents groups={len(groups)}')
+    if not groups:
+        return None
+
+    def tree_points(tree):
+        for key in ('spent_points', 'points_spent', 'talent_points_spent', 'pointsSpent'):
+            value = nonnegative_int(tree.get(key))
+            if value is not None:
+                return value
+        talents = tree.get('talents')
+        if not isinstance(talents, list) or not talents:
+            return None
+        ranks = []
+        for talent in talents:
+            if not isinstance(talent, dict):
+                return None
+            rank = next((nonnegative_int(talent.get(k)) for k in
+                         ('rank', 'selected_rank', 'points_spent', 'pointsSpent')
+                         if nonnegative_int(talent.get(k)) is not None), None)
+            if rank is None:
+                return None
+            ranks.append(rank)
+        return sum(ranks)
+
+    candidates = []
+    for index, group in enumerate(groups):
+        if not isinstance(group, dict):
+            continue
+        print(f'DIAG FOREVER talents group[{index}] fields={sorted(group.keys())}')
+        trees = next((group.get(k) for k in ('talent_trees', 'talentTrees', 'specializations')
+                      if isinstance(group.get(k), list)), None)
+        if trees is None:
+            continue
+        print(f'DIAG FOREVER talents group[{index}] trees={len(trees)}')
+        if len(trees) != 3 or not all(isinstance(t, dict) for t in trees):
+            continue
+        values = {}
+        for tree in trees:
+            label = text_value(tree.get('specialization')) or text_value(tree.get('name')) or text_value(tree.get('talent_tree'))
+            normalized = (label or '').casefold()
+            if 'elemental' in normalized:
+                key = 'elemental'
+            elif 'enhancement' in normalized:
+                key = 'enhancement'
+            elif 'restoration' in normalized:
+                key = 'restoration'
+            else:
+                key = None
+            value = tree_points(tree)
+            if key and value is not None and key not in values:
+                values[key] = value
+        if set(values) != {'elemental', 'enhancement', 'restoration'}:
+            continue
+        active = group.get('is_active') is True or group.get('active') is True
+        candidates.append((active, values))
+
+    active = [values for is_active, values in candidates if is_active]
+    if len(active) == 1:
+        chosen = active[0]
+    elif len(candidates) == 1:
+        chosen = candidates[0][1]
+    else:
+        print(f'DIAG FOREVER talents ambiguous_groups={len(candidates)} active={len(active)}')
+        return None
+    result = ' / '.join(str(chosen[k]) for k in ('elemental', 'enhancement', 'restoration'))
+    print(f'OK FOREVER verified talents={result}')
+    return result
 
 
 def profession_entries(payload):
@@ -174,7 +242,7 @@ def profession_entries(payload):
 def run():
     old = read_existing()
     session = requests.Session()
-    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.1 (public character profile)', 'Accept': 'application/json'})
+    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.2 (public character profile)', 'Accept': 'application/json'})
     rio = fetch_rio(session)
     blizzard = fetch_blizzard(session)
     profile = blizzard.get('profile', {})
