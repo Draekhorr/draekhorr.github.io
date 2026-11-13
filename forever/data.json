@@ -6,7 +6,7 @@
   "guild": "Glorified Paperweight",
   "honorableKills": 0,
   "makgoraKills": 0,
-  "talents": null,
+  "talents": "9 / 7 / 0",
   "professions": [
     {
       "name": "Mining",
@@ -26,5 +26,5 @@
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-13T19:52:08+00:00"
+  "updatedAt": "2026-11-13T19:58:13+00:00"
 }
