@@ -100,25 +100,21 @@ def fetch_blizzard(session):
     return result
 
 
-def talent_distribution(spec):
-    """Read Shaman talent allocation from verified Blizzard specialization groups.
+def talent_distribution(spec, character_level=None):
+    """Extract classic Shaman tree points from one unambiguous loadout.
 
-    Prefer explicit tree point totals. For classic-style talent trees, sum
-    individual purchased ranks only when every talent has an explicit rank.
-    Never treat an absent tree as zero or combine multiple loadouts.
+    A missing third tree is interpreted as zero only when the two known trees
+    account for every available classic talent point (level minus nine).
     """
     if not isinstance(spec, dict):
         print('DIAG FOREVER talents payload=missing')
         return None
-
     groups = spec.get('specialization_groups')
     if not isinstance(groups, list):
         groups = [spec]
     print(f'DIAG FOREVER talents groups={len(groups)}')
-    if not groups:
-        return None
 
-    def tree_points(tree):
+    def points(tree):
         for key in ('spent_points', 'points_spent', 'talent_points_spent', 'pointsSpent'):
             value = nonnegative_int(tree.get(key))
             if value is not None:
@@ -130,47 +126,58 @@ def talent_distribution(spec):
         for talent in talents:
             if not isinstance(talent, dict):
                 return None
-            rank = next((nonnegative_int(talent.get(k)) for k in
-                         ('rank', 'selected_rank', 'points_spent', 'pointsSpent')
-                         if nonnegative_int(talent.get(k)) is not None), None)
-            if rank is None:
+            value = next((nonnegative_int(talent.get(k)) for k in
+                          ('rank', 'selected_rank', 'points_spent', 'pointsSpent')
+                          if nonnegative_int(talent.get(k)) is not None), None)
+            if value is None:
                 return None
-            ranks.append(rank)
+            ranks.append(value)
         return sum(ranks)
 
     candidates = []
     for index, group in enumerate(groups):
         if not isinstance(group, dict):
             continue
-        print(f'DIAG FOREVER talents group[{index}] fields={sorted(group.keys())}')
         trees = next((group.get(k) for k in ('talent_trees', 'talentTrees', 'specializations')
                       if isinstance(group.get(k), list)), None)
-        if trees is None:
-            continue
-        print(f'DIAG FOREVER talents group[{index}] trees={len(trees)}')
-        if len(trees) != 3 or not all(isinstance(t, dict) for t in trees):
+        print(f'DIAG FOREVER talents group[{index}] fields={sorted(group)} '
+              f'trees={len(trees) if isinstance(trees, list) else "missing"} '
+              f'active={group.get("is_active")!r}')
+        if not isinstance(trees, list) or not 2 <= len(trees) <= 3:
             continue
         values = {}
-        for tree in trees:
-            label = text_value(tree.get('specialization')) or text_value(tree.get('name')) or text_value(tree.get('talent_tree'))
-            normalized = (label or '').casefold()
-            if 'elemental' in normalized:
-                key = 'elemental'
-            elif 'enhancement' in normalized:
-                key = 'enhancement'
-            elif 'restoration' in normalized:
-                key = 'restoration'
-            else:
-                key = None
-            value = tree_points(tree)
-            if key and value is not None and key not in values:
-                values[key] = value
-        if set(values) != {'elemental', 'enhancement', 'restoration'}:
+        valid = True
+        for j, tree in enumerate(trees):
+            if not isinstance(tree, dict):
+                valid = False
+                break
+            label = (text_value(tree.get('specialization')) or
+                     text_value(tree.get('name')) or text_value(tree.get('talent_tree')))
+            norm = (label or '').casefold()
+            key = next((k for k in ('elemental', 'enhancement', 'restoration') if k in norm), None)
+            value = points(tree)
+            print(f'DIAG FOREVER talents group[{index}].tree[{j}] '
+                  f'name={label!r} fields={sorted(tree)} points={value}')
+            if key is None or value is None or key in values:
+                valid = False
+                break
+            values[key] = value
+        if not valid:
             continue
-        active = group.get('is_active') is True or group.get('active') is True
-        candidates.append((active, values))
+        missing = {'elemental', 'enhancement', 'restoration'} - values.keys()
+        if len(missing) == 1:
+            expected = character_level - 9 if isinstance(character_level, int) and not isinstance(character_level, bool) and character_level >= 10 else None
+            if expected is not None and sum(values.values()) == expected:
+                values[missing.pop()] = 0
+                print('DIAG FOREVER talents inferred absent tree=0 from complete classic point allocation')
+            else:
+                print(f'DIAG FOREVER talents incomplete trees={sorted(missing)} '
+                      f'allocated={sum(values.values())} expected={expected}')
+                continue
+        if len(values) == 3:
+            candidates.append((group.get('is_active') is True, values))
 
-    active = [values for is_active, values in candidates if is_active]
+    active = [values for flag, values in candidates if flag]
     if len(active) == 1:
         chosen = active[0]
     elif len(candidates) == 1:
@@ -242,7 +249,7 @@ def profession_entries(payload):
 def run():
     old = read_existing()
     session = requests.Session()
-    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.2 (public character profile)', 'Accept': 'application/json'})
+    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.3 (public character profile)', 'Accept': 'application/json'})
     rio = fetch_rio(session)
     blizzard = fetch_blizzard(session)
     profile = blizzard.get('profile', {})
@@ -268,7 +275,7 @@ def run():
         level = blizz_level
     ilvl = positive_number(profile.get('equipped_item_level')) or positive_number(profile.get('average_item_level'))
     spec = blizzard.get('specializations')
-    talents = talent_distribution(spec)
+    talents = talent_distribution(spec, level)
     professions = profession_entries(blizzard.get('professions'))
     print(f'DIAG FOREVER verified primary professions={len(professions)}')
     guild = text_value(profile.get('guild')) or text_value(rio.get('guild'))
