@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Fetch public WoW Forever character data from the documented Raider.IO profile API.
+"""Sync WoW Forever from Raider.IO and Blizzard's currently undocumented Forever API.
 
-No HTML scraping, no invented values, and no Retail character data. If the API
-returns no usable profile, preserve an existing last-known-good snapshot.
+Blizzard endpoints are experimental (November 2026). Missing/failed responses
+never overwrite last-known-good verified fields. No HTML scraping.
 """
 import datetime as dt
 import json
@@ -14,9 +14,14 @@ import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'forever' / 'data.json'
-API = 'https://forever.raider.io/api/v1/characters/profile'
-PROFILE = 'https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen'
+RIO_API = 'https://forever.raider.io/api/v1/characters/profile'
+RIO_PROFILE = 'https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen'
+BLIZZARD_PROFILE = 'https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen'
+CHARACTER = 'draekhorr-healstappen'
 NAME = 'Draekhorr Healstappen'
+SOURCE = 'Forever Raider.IO public character API'
+BLIZZARD_API = f'https://eu.api.blizzard.com/profile/wow/character/{CHARACTER}'
+BLIZZARD_PARAMS = {'namespace': 'profile-forever-eu', 'locale': 'en_GB'}
 
 
 def text_value(value):
@@ -25,88 +30,144 @@ def text_value(value):
     return str(value).strip() if isinstance(value, (str, int, float)) and not isinstance(value, bool) else None
 
 
+def positive_number(value):
+    return value if isinstance(value, (int, float)) and not isinstance(value, bool) and value > 0 else None
+
+
+def nonnegative_int(value):
+    return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else None
+
+
 def read_existing():
     try:
-        return json.loads(OUT.read_text(encoding='utf-8'))
+        data = json.loads(OUT.read_text(encoding='utf-8'))
+        return data if isinstance(data, dict) else {}
     except (OSError, ValueError):
         return {}
 
 
-def fetch_profile():
-    # Different public API revisions may use a ruleset rather than a realm.
-    # Try only published character-profile endpoint parameters; do not scrape.
-    attempts = [
-        {'region': 'eu', 'realm': 'normal', 'name': NAME},
-        {'region': 'eu', 'ruleset': 'normal', 'name': NAME},
-    ]
-    session = requests.Session()
-    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.5 (GitHub Pages; public profile sync)', 'Accept': 'application/json'})
-    for params in attempts:
+def fetch_rio(session):
+    for key in ('realm', 'ruleset'):
         try:
-            response = session.get(API, params=params, timeout=20)
-            print(f'DIAG FOREVER API status={response.status_code} lookup={"realm" if "realm" in params else "ruleset"}')
+            response = session.get(RIO_API, params={'region': 'eu', key: 'normal', 'name': NAME}, timeout=20)
+            print(f'DIAG FOREVER RIO status={response.status_code} lookup={key}')
             if response.status_code == 429:
-                delay = min(30, max(1, int(response.headers.get('Retry-After', '5'))))
-                time.sleep(delay)
-                response = session.get(API, params=params, timeout=20)
-            if response.status_code != 200:
-                continue
-            data = response.json()
-            if not isinstance(data, dict) or data.get('error'):
-                continue
-            print('DIAG FOREVER profile fields=' + ','.join(sorted(data.keys())))
-            return data
+                time.sleep(min(30, max(1, int(response.headers.get('Retry-After', '5')))))
+                response = session.get(RIO_API, params={'region': 'eu', key: 'normal', 'name': NAME}, timeout=20)
+            if response.ok:
+                data = response.json()
+                if isinstance(data, dict) and not data.get('error'):
+                    name = text_value(data.get('name'))
+                    surname = text_value(data.get('surname'))
+                    if name and surname and surname.casefold() not in name.casefold():
+                        name += ' ' + surname
+                    if name and name.casefold() == NAME.casefold():
+                        return data
+                    print(f'WARN FOREVER unexpected RIO name={name!r}')
         except (requests.RequestException, ValueError) as exc:
-            print(f'WARN FOREVER API {type(exc).__name__}: {exc}', file=sys.stderr)
+            print(f'WARN FOREVER RIO {type(exc).__name__}: {exc}', file=sys.stderr)
+    return None
+
+
+def fetch_blizzard(session):
+    client_id = os.getenv('BLIZZARD_CLIENT_ID')
+    secret = os.getenv('BLIZZARD_CLIENT_SECRET')
+    if not client_id or not secret:
+        print('WARN FOREVER Blizzard credentials absent; skipping Blizzard profile')
+        return {}
+    try:
+        auth = session.post('https://oauth.battle.net/token',
+                            auth=(client_id, secret), data={'grant_type': 'client_credentials'}, timeout=20)
+        auth.raise_for_status()
+        token = auth.json()['access_token']
+    except (requests.RequestException, ValueError, KeyError) as exc:
+        print(f'WARN FOREVER Blizzard OAuth {type(exc).__name__}: {exc}', file=sys.stderr)
+        return {}
+    headers = {'Authorization': f'Bearer {token}'}
+    result = {}
+    for suffix, label in (('', 'profile'), ('/specializations', 'specializations')):
+        try:
+            response = session.get(BLIZZARD_API + suffix, params=BLIZZARD_PARAMS,
+                                   headers=headers, timeout=20)
+            print(f'DIAG FOREVER Blizzard {label} status={response.status_code}')
+            if response.ok:
+                body = response.json()
+                if isinstance(body, dict):
+                    result[label] = body
+                    print(f'DIAG FOREVER Blizzard {label} keys={",".join(sorted(body.keys()))}')
+        except (requests.RequestException, ValueError) as exc:
+            print(f'WARN FOREVER Blizzard {label} {type(exc).__name__}: {exc}', file=sys.stderr)
+    return result
+
+
+def talent_distribution(spec):
+    """Only accept explicit 3-tree spent-point totals; never infer 9/7/0 from ranks."""
+    if not isinstance(spec, dict):
+        return None
+    for key in ('talent_trees', 'talentTrees'):
+        trees = spec.get(key)
+        if not isinstance(trees, list) or len(trees) != 3:
+            continue
+        counts = [t.get('spent_points') if isinstance(t, dict) else None for t in trees]
+        if all(nonnegative_int(v) is not None for v in counts):
+            return ' / '.join(map(str, counts))
     return None
 
 
 def run():
     old = read_existing()
-    profile = fetch_profile()
-    if not profile:
-        print('WARN FOREVER no verified Raider.IO profile response; preserving existing snapshot')
+    session = requests.Session()
+    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.8 (public character profile)', 'Accept': 'application/json'})
+    rio = fetch_rio(session)
+    blizzard = fetch_blizzard(session)
+    profile = blizzard.get('profile', {})
+    if profile:
+        slug = text_value(profile.get('slug'))
+        first = text_value(profile.get('name'))
+        surname = text_value(profile.get('surname'))
+        if (slug and slug.casefold() != CHARACTER) or (first and surname and f'{first} {surname}'.casefold() != NAME.casefold()):
+            print('WARN FOREVER Blizzard character mismatch; discarding Blizzard data', file=sys.stderr)
+            profile = {}
+            blizzard.pop('specializations', None)
+    if not rio and not profile:
+        print('WARN FOREVER no verified API data; preserving existing snapshot', file=sys.stderr)
         return 1
-    full_name = text_value(profile.get('name'))
-    surname = text_value(profile.get('surname'))
-    if full_name and surname and surname.casefold() not in full_name.casefold():
-        full_name += ' ' + surname
-    # Avoid accidentally caching an unrelated character from a fallback lookup.
-    if not full_name or full_name.casefold() != NAME.casefold():
-        print(f'WARN FOREVER unexpected profile name={full_name!r}; preserving snapshot', file=sys.stderr)
-        return 1
-    guild = text_value(profile.get('guild'))
-    level = profile.get('level')
+    rio = rio or {}
+    media = next((rio.get(k) for k in ('thumbnail_url', 'avatar_url', 'portrait_url')
+                  if isinstance(rio.get(k), str) and rio[k].startswith('https://')), None)
+    level = rio.get('level')
     if not isinstance(level, int) or isinstance(level, bool) or not (1 <= level <= 100):
         level = None
-    media = profile.get('thumbnail_url') or profile.get('avatar_url') or profile.get('portrait_url')
-    if not isinstance(media, str) or not media.startswith('https://'):
-        media = None
+    blizz_level = profile.get('level')
+    if isinstance(blizz_level, int) and not isinstance(blizz_level, bool) and 1 <= blizz_level <= 100:
+        level = blizz_level
+    ilvl = positive_number(profile.get('equipped_item_level')) or positive_number(profile.get('average_item_level'))
+    spec = blizzard.get('specializations')
+    talents = talent_distribution(spec)
+    guild = text_value(profile.get('guild')) or text_value(rio.get('guild'))
     record = {
-        'name': full_name,
-        'level': level,
-        'class': text_value(profile.get('class')),
-        'race': text_value(profile.get('race')),
+        'name': NAME, 'level': level,
+        'class': text_value(profile.get('character_class')) or text_value(rio.get('class')),
+        'race': text_value(profile.get('race')) or text_value(rio.get('race')),
         'guild': guild,
-        'honorableKills': profile.get('honorable_kills') if isinstance(profile.get('honorable_kills'), int) and not isinstance(profile.get('honorable_kills'), bool) and profile.get('honorable_kills') >= 0 else None,
-        'makgoraKills': profile.get('makgora_kills') if isinstance(profile.get('makgora_kills'), int) and not isinstance(profile.get('makgora_kills'), bool) and profile.get('makgora_kills') >= 0 else None,
-        # The verified public profile response does not expose talents.
-        'talents': None,
-        # Item level is only used when the API explicitly supplies it.
-        'itemLevel': next((profile[k] for k in ('item_level', 'itemLevel', 'equipped_item_level') if isinstance(profile.get(k), (int, float)) and not isinstance(profile.get(k), bool) and profile[k] > 0), None),
-        'role': text_value(profile.get('active_spec_name')),
+        'honorableKills': nonnegative_int(rio.get('honorable_kills')),
+        'makgoraKills': nonnegative_int(rio.get('makgora_kills')),
+        'talents': talents,
+        'itemLevel': ilvl or next((positive_number(rio.get(k)) for k in ('item_level', 'itemLevel', 'equipped_item_level') if positive_number(rio.get(k)) is not None), None),
+        'role': text_value(rio.get('active_spec_name')),
         'portraitUrl': media,
-        'profileUrl': PROFILE,
-        'source': 'Forever Raider.IO public character API',
+        'profileUrl': RIO_PROFILE,
+        'armoryUrl': BLIZZARD_PROFILE,
+        'source': SOURCE,
+        'blizzardSource': 'Blizzard Forever profile API' if profile else None,
         'updatedAt': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
     }
-    # Preserve existing verified values if a response temporarily omits fields.
-    for field in ('level', 'class', 'race', 'guild', 'role', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel'):
-        if record[field] is None and old.get('source') == record['source']:
+    for field in ('level', 'class', 'race', 'guild', 'role', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel', 'talents'):
+        if record[field] is None and old.get('name') == NAME:
             record[field] = old.get(field)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level','class','race','guild','role','portraitUrl','honorableKills','makgoraKills','itemLevel') if record.get(k) is not None))
+    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level', 'class', 'race', 'guild', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel', 'talents') if record.get(k) is not None))
     return 0
 
 

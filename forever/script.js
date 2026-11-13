@@ -18,7 +18,7 @@ fetch('./data.json', {cache:'no-store'})
       portrait.src = data.portraitUrl;
     }
     if (note) note.textContent = data.updatedAt
-      ? `Forever profile data updated: ${data.updatedAt}. Source: Raider.IO.`
-      : 'Forever character profile data from Raider.IO.';
+      ? `Forever profile data updated: ${data.updatedAt}. Source: Raider.IO / Blizzard Forever API.`
+      : 'Forever character profile data from Raider.IO / Blizzard Forever API.';
   })
   .catch(() => {if (note) note.textContent = 'Forever API data unavailable. View the Raider.IO profile for current character information.';});
