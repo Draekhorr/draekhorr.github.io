@@ -8,38 +8,3 @@
 .profile{grid-template-columns:104px minmax(180px,1.5fr) minmax(240px,1.15fr) minmax(115px,.4fr) auto}
 @media(max-width:1150px){.profile{grid-template-columns:90px minmax(0,1fr) minmax(130px,auto)}.profile-stats{grid-column:2;grid-row:2}.profile-ilvl{grid-column:3;grid-row:1/3}.profile-cta{grid-column:1/-1;text-align:right}}
 @media(max-width:850px){.profile{grid-template-columns:80px minmax(0,1fr)}.profile-stats{grid-column:1/-1;grid-row:auto}.profile-ilvl{grid-column:1/-1;grid-row:auto;border-left:0;border-top:1px solid #355064;padding:15px 0 0;min-width:0}.profile-cta{grid-column:1/-1;text-align:left}}
-
-/* V2.9.6: navy ambience behind the artwork, fading into the page. */
-.hero-art-wrap {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  max-width: 450px;
-  justify-self: center;
-}
-.hero-art-wrap::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -26%;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 50% 50%,
-    rgba(22, 66, 100, .86) 0%,
-    rgba(16, 51, 79, .74) 35%,
-    rgba(11, 33, 52, .42) 58%,
-    rgba(9, 13, 20, 0) 82%);
-  filter: blur(32px);
-}
-.hero-art {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  -webkit-mask-image: radial-gradient(ellipse 90% 90% at center, #000 65%, transparent 100%);
-  mask-image: radial-gradient(ellipse 90% 90% at center, #000 65%, transparent 100%);
-  filter: none;
-}
-@media (max-width: 850px) {
-  .hero-art-wrap { max-width: min(100%, 390px); grid-row: 1; }
-  .hero-art-wrap::before { inset: -16%; filter: blur(24px); }
-}

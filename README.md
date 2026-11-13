@@ -1,6 +1,5 @@
-# DRAEKHORR Forever V2.9.6 — Ambient Blue Artwork
+# DRAEKHORR Forever V2.9.7
 
-Includes the V2.9.4 Full Throttle hero text and replaces the V2.9.5 image-only masking with a navy-blue radial glow behind the artwork, fading into the original dark page background. The original image is unchanged.
+Replaces only the hero artwork with the supplied Draekv4 image. Removes V2.9.6 ambient glow and image masking. Preserves V2.9.4 Full Throttle copy and V2.9.3+ profile IDs, talents, professions and item-level rendering.
 
-## Install
-Replace only `forever/index.html` and `forever/style.css`. Keep `forever/script.js`, `forever/data.json`, the existing artwork, and all API workflows unchanged. Commit to GitHub, wait for Pages deployment, then hard-refresh. No API sync is needed.
+Upload the files keeping the paths unchanged. Do not delete existing `forever/assets/avatar.png` or overwrite `forever/script.js`, `forever/data.json`, or API workflows. GitHub Pages deployment only; no API sync required.
