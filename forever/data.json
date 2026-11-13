@@ -3,14 +3,16 @@
   "level": 25,
   "class": "Shaman",
   "race": "Dwarf",
-  "guild": null,
+  "guild": "Glorified Paperweight",
   "honorableKills": 0,
   "makgoraKills": 0,
   "talents": null,
-  "itemLevel": null,
+  "itemLevel": 11,
   "role": null,
   "portraitUrl": "https://render.worldofwarcraft.com/forever-eu/character/110/11457902-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
   "profileUrl": "https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen",
+  "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
-  "updatedAt": "2026-11-13T19:11:31+00:00"
+  "blizzardSource": "Blizzard Forever profile API",
+  "updatedAt": "2026-11-13T19:28:03+00:00"
 }
