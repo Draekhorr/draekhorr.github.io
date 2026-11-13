@@ -1,5 +1,5 @@
 // Forever profile is independent from the Retail data.json.
-const fields = {name:'char-name',level:'char-level',honorableKills:'char-honorable-kills',talents:'char-talents',makgoraKills:'char-makgora-kills',itemLevel:'char-item-level'};
+const fields = {name:'char-name',level:'char-level',talents:'char-talents',itemLevel:'char-item-level'};
 const note = document.getElementById('source-note');
 fetch('./data.json', {cache:'no-store'})
   .then(response => {if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json();})
@@ -9,6 +9,16 @@ fetch('./data.json', {cache:'no-store'})
       if (value === null || value === undefined || value === '') continue;
       const node = document.getElementById(id);
       if (node) node.textContent = String(value);
+    }
+    const professions = Array.isArray(data.professions) ? data.professions : [];
+    for (let i = 0; i < 2; i++) {
+      const item = professions[i];
+      const nameNode = document.getElementById(`char-profession-${i+1}-name`);
+      const skillNode = document.getElementById(`char-profession-${i+1}-skill`);
+      if (!item || typeof item.name !== 'string' || !Number.isInteger(item.skill) ||
+          !Number.isInteger(item.maxSkill) || item.maxSkill <= 0 || item.skill > item.maxSkill) continue;
+      if (nameNode) nameNode.textContent = item.name;
+      if (skillNode) skillNode.textContent = `${item.skill} / ${item.maxSkill}`;
     }
     const role = document.getElementById('char-role');
     if (role && data.class && data.race) role.textContent = `${data.class} · ${data.race}`;

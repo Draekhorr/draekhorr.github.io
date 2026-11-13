@@ -85,7 +85,7 @@ def fetch_blizzard(session):
         return {}
     headers = {'Authorization': f'Bearer {token}'}
     result = {}
-    for suffix, label in (('', 'profile'), ('/specializations', 'specializations')):
+    for suffix, label in (('', 'profile'), ('/specializations', 'specializations'), ('/professions', 'professions')):
         try:
             response = session.get(BLIZZARD_API + suffix, params=BLIZZARD_PARAMS,
                                    headers=headers, timeout=20)
@@ -112,6 +112,36 @@ def talent_distribution(spec):
         if all(nonnegative_int(v) is not None for v in counts):
             return ' / '.join(map(str, counts))
     return None
+
+
+
+def profession_entries(payload):
+    """Accept only explicit primary-profession records with verified skill values."""
+    if not isinstance(payload, dict):
+        return []
+    # Blizzard profiles commonly expose primaries as a list of profession objects.
+    candidates = payload.get('primaries')
+    if not isinstance(candidates, list):
+        candidates = payload.get('primary_professions')
+    if not isinstance(candidates, list):
+        print('DIAG FOREVER professions: no recognized primary profession list')
+        return []
+    found = []
+    for row in candidates:
+        if not isinstance(row, dict):
+            continue
+        name = text_value(row.get('profession')) or text_value(row.get('name'))
+        # The profession skill is a direct field only if the API provides it.
+        skill = nonnegative_int(row.get('skill_points'))
+        if skill is None:
+            skill = nonnegative_int(row.get('skill'))
+        maximum = nonnegative_int(row.get('max_skill_points'))
+        if maximum is None:
+            maximum = nonnegative_int(row.get('max_skill'))
+        if not name or skill is None or maximum is None or maximum <= 0 or skill > maximum:
+            continue
+        found.append({'name': name, 'skill': skill, 'maxSkill': maximum})
+    return found[:2]
 
 
 def run():
@@ -144,6 +174,8 @@ def run():
     ilvl = positive_number(profile.get('equipped_item_level')) or positive_number(profile.get('average_item_level'))
     spec = blizzard.get('specializations')
     talents = talent_distribution(spec)
+    professions = profession_entries(blizzard.get('professions'))
+    print(f'DIAG FOREVER verified primary professions={len(professions)}')
     guild = text_value(profile.get('guild')) or text_value(rio.get('guild'))
     record = {
         'name': NAME, 'level': level,
@@ -153,6 +185,7 @@ def run():
         'honorableKills': nonnegative_int(rio.get('honorable_kills')),
         'makgoraKills': nonnegative_int(rio.get('makgora_kills')),
         'talents': talents,
+        'professions': professions,
         'itemLevel': ilvl or next((positive_number(rio.get(k)) for k in ('item_level', 'itemLevel', 'equipped_item_level') if positive_number(rio.get(k)) is not None), None),
         'role': text_value(rio.get('active_spec_name')),
         'portraitUrl': media,
@@ -165,9 +198,11 @@ def run():
     for field in ('level', 'class', 'race', 'guild', 'role', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel', 'talents'):
         if record[field] is None and old.get('name') == NAME:
             record[field] = old.get(field)
+    if not professions and old.get('name') == NAME and isinstance(old.get('professions'), list):
+        record['professions'] = old['professions']
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level', 'class', 'race', 'guild', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel', 'talents') if record.get(k) is not None))
+    print('OK FOREVER profile saved fields=' + ','.join(k for k in ('level', 'class', 'race', 'guild', 'portraitUrl', 'honorableKills', 'makgoraKills', 'itemLevel', 'talents', 'professions') if record.get(k) is not None))
     return 0
 
 
