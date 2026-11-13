@@ -1,26 +1,21 @@
-# DRAEKHORR V2.2 — Raider.IO Historical Seasons
+# DRAEKHORR V2.4 — Forever page (additive update)
 
-Focused update to the V2 modular project. Only replace `scripts/rio_backfill.py` and `js/mythicplus.js`.
+This is an **additive** package, not a full replacement of the existing V2 website.
 
-## What changes
+## Upload
 
-- Raider.IO season discovery tries provider season-listing endpoints, preserving all provider-confirmed season identifiers, including special variants.
-- Existing archived seasons and current/previous season IDs remain eligible.
-- **Only seasons with verified personal scores or runs appear** in the existing expansion-grouped selector.
-- Each historical run must carry an explicit matching season ID in metadata or its URL. Missing season metadata is not proof that a run belongs to the requested season.
-- Current-season dungeon cards remain the priority for current-season display.
-- Raid Logs, Guild Header, HTML, CSS, and the existing 6-hour sync remain unchanged.
+- **Replace** `components/header.html` in the existing repository (adds `FOREVER ↗` to the existing navigation).
+- **Add** `assets/css/forever-nav.css`.
+- **Add** the entire `forever/` directory (`index.html`, `style.css`, `script.js`, `assets/avatar.png`).
+- In the existing root `index.html`, add `<link rel="stylesheet" href="assets/css/forever-nav.css?v=2.4">` inside `<head>`, after the existing CSS links. **Do not replace the root index.html**: this preserves the current Cloudflare Analytics beacon and other site settings.
 
-## Installation
+## Data and artwork
 
-Upload these two files preserving their paths, commit, then run **Actions → Backfill Raider.IO Mythic Plus → Run workflow**. The existing workflow can be retained. Wait for GitHub Pages to deploy.
+- Forever profile: https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen
+- This starter page intentionally does **not** invent character level, race, guild, or statistics. An optional `forever/data.json` can supply verified `name`, `role`, `level`, `class`, `race`, `guild` fields later.
+- The hero artwork is the existing DRAEKHORR asset reused as a temporary visual. Replace `forever/assets/avatar.png` when Forever-specific artwork is available.
+- Retail APIs, data.json, GitHub Actions, and Cloudflare analytics are unchanged. No workflow run is required for this page.
 
-## Diagnostics
+## Verification
 
-Check `DIAG RIO discovered season slugs`, `DIAG RIO runs season=... returned=... verified=... unverified=...` and `DIAG RIO historical backfill ...`.
-
-## Limitations
-
-This is **best-effort discovery**, not a guarantee that Raider.IO's public API exposes every season variant visible on its website. Some season-list endpoints may be unavailable or have different response schemas. Those failures are logged, and existing verified archives are preserved. Historical dungeon runs may remain empty when the API does not provide season-verifiable records. The script never fabricates runs or uses current-season runs for historical seasons.
-
-Keep the existing `data.json` and all GitHub Actions workflows. No WCL integration is added to Mythic+.
+After GitHub Pages deploy, visit `/forever/`, click `RETAIL`, and check the existing header's `FOREVER` link. Test at mobile width. The package was checked structurally; it was not browser-tested against the live repository.
