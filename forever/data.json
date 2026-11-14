@@ -1,6 +1,6 @@
 {
   "name": "Draekhorr Healstappen",
-  "level": 25,
+  "level": 28,
   "class": "Shaman",
   "race": "Dwarf",
   "guild": "Glorified Paperweight",
@@ -10,21 +10,21 @@
   "professions": [
     {
       "name": "Mining",
-      "skill": 38,
+      "skill": 45,
       "maxSkill": 75
     },
     {
       "name": "Herbalism",
-      "skill": 70,
+      "skill": 73,
       "maxSkill": 150
     }
   ],
-  "itemLevel": 13,
+  "itemLevel": 14,
   "role": null,
   "portraitUrl": "https://render.worldofwarcraft.com/forever-eu/character/110/11457902-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
   "profileUrl": "https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen",
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-14T06:18:29+00:00"
+  "updatedAt": "2026-11-14T17:58:46+00:00"
 }
