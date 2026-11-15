@@ -21,7 +21,10 @@ fetch('./data.json', {cache:'no-store'})
       if (skillNode) skillNode.textContent = `${item.skill} / ${item.maxSkill}`;
     }
     const role = document.getElementById('char-role');
-    if (role && data.class && data.race) role.textContent = `${data.class} · ${data.race}`;
+    if (role && data.class && data.race) {
+      const spec = ['Elemental','Enhancement','Restoration','Hybrid'].includes(data.role) ? `${data.role} ` : '';
+      role.textContent = `${spec}${data.class} · ${data.race}`;
+    }
     const portrait = document.getElementById('forever-portrait');
     if (portrait && typeof data.portraitUrl === 'string' && /^https:\/\//i.test(data.portraitUrl)) {
       portrait.onerror = () => {portrait.onerror = null; portrait.src = './assets/avatar.png';};

@@ -103,8 +103,8 @@ def fetch_blizzard(session):
 def talent_distribution(spec, character_level=None):
     """Extract classic Shaman tree points from one unambiguous loadout.
 
-    A missing third tree is interpreted as zero only when the two known trees
-    account for every available classic talent point (level minus nine).
+    Missing trees are interpreted as zero only when the explicitly reported
+    trees account for every available classic talent point (level minus nine).
     """
     if not isinstance(spec, dict):
         print('DIAG FOREVER talents payload=missing')
@@ -143,7 +143,7 @@ def talent_distribution(spec, character_level=None):
         print(f'DIAG FOREVER talents group[{index}] fields={sorted(group)} '
               f'trees={len(trees) if isinstance(trees, list) else "missing"} '
               f'active={group.get("is_active")!r}')
-        if not isinstance(trees, list) or not 2 <= len(trees) <= 3:
+        if not isinstance(trees, list) or not 1 <= len(trees) <= 3:
             continue
         values = {}
         valid = True
@@ -165,17 +165,25 @@ def talent_distribution(spec, character_level=None):
         if not valid:
             continue
         missing = {'elemental', 'enhancement', 'restoration'} - values.keys()
-        if len(missing) == 1:
-            expected = character_level - 9 if isinstance(character_level, int) and not isinstance(character_level, bool) and character_level >= 10 else None
-            if expected is not None and sum(values.values()) == expected:
-                values[missing.pop()] = 0
-                print('DIAG FOREVER talents inferred absent tree=0 from complete classic point allocation')
-            else:
+        expected = (character_level - 9
+                    if isinstance(character_level, int) and not isinstance(character_level, bool)
+                    and character_level >= 10 else None)
+        allocated = sum(values.values())
+        # A missing tree alone does NOT prove zero points. Accept absent trees
+        # only if the named, explicit trees exhaust the level-based budget.
+        if missing:
+            if expected is None or allocated != expected:
                 print(f'DIAG FOREVER talents incomplete trees={sorted(missing)} '
-                      f'allocated={sum(values.values())} expected={expected}')
+                      f'allocated={allocated} expected={expected}')
                 continue
-        if len(values) == 3:
-            candidates.append((group.get('is_active') is True, values))
+            for key in missing:
+                values[key] = 0
+            print(f'DIAG FOREVER talents inferred absent trees={sorted(missing)}=0 '
+                  'from complete classic point allocation')
+        elif expected is not None and allocated > expected:
+            print(f'WARN FOREVER talents exceed budget allocated={allocated} expected={expected}')
+            continue
+        candidates.append((group.get('is_active') is True, values))
 
     active = [values for flag, values in candidates if flag]
     if len(active) == 1:
@@ -188,6 +196,23 @@ def talent_distribution(spec, character_level=None):
     result = ' / '.join(str(chosen[k]) for k in ('elemental', 'enhancement', 'restoration'))
     print(f'OK FOREVER verified talents={result}')
     return result
+
+
+
+def dominant_specialization(talents):
+    """Classify verified Elemental/Enhancement/Restoration point distribution."""
+    if not isinstance(talents, str):
+        return None
+    parts = [part.strip() for part in talents.split('/')]
+    if len(parts) != 3 or any(not part.isdecimal() for part in parts):
+        return None
+    points = [int(part) for part in parts]
+    if not any(points):
+        return None
+    maximum = max(points)
+    if points.count(maximum) != 1:
+        return 'Hybrid'
+    return ('Elemental', 'Enhancement', 'Restoration')[points.index(maximum)]
 
 
 def profession_entries(payload):
@@ -249,7 +274,7 @@ def profession_entries(payload):
 def run():
     old = read_existing()
     session = requests.Session()
-    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.3 (public character profile)', 'Accept': 'application/json'})
+    session.headers.update({'User-Agent': 'DraekhorrForeverShowcase/2.9.10 (public character profile)', 'Accept': 'application/json'})
     rio = fetch_rio(session)
     blizzard = fetch_blizzard(session)
     profile = blizzard.get('profile', {})
@@ -277,6 +302,7 @@ def run():
     spec = blizzard.get('specializations')
     talents = talent_distribution(spec, level)
     professions = profession_entries(blizzard.get('professions'))
+    print(f'DIAG FOREVER dominant specialization={dominant_specialization(talents) or "unavailable"}')
     print(f'DIAG FOREVER verified primary professions={len(professions)}')
     guild = text_value(profile.get('guild')) or text_value(rio.get('guild'))
     record = {
@@ -289,7 +315,7 @@ def run():
         'talents': talents,
         'professions': professions,
         'itemLevel': ilvl or next((positive_number(rio.get(k)) for k in ('item_level', 'itemLevel', 'equipped_item_level') if positive_number(rio.get(k)) is not None), None),
-        'role': text_value(rio.get('active_spec_name')),
+        'role': dominant_specialization(talents) if talents is not None else None,
         'portraitUrl': media,
         'profileUrl': RIO_PROFILE,
         'armoryUrl': BLIZZARD_PROFILE,
