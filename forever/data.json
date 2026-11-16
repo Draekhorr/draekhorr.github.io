@@ -15,8 +15,8 @@
     },
     {
       "name": "Skinning",
-      "skill": 27,
-      "maxSkill": 75
+      "skill": 75,
+      "maxSkill": 150
     }
   ],
   "itemLevel": 25,
@@ -26,5 +26,5 @@
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-16T06:24:13+00:00"
+  "updatedAt": "2026-11-16T21:59:04+00:00"
 }
