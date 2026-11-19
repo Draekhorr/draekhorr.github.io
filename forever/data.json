@@ -10,7 +10,7 @@
   "professions": [
     {
       "name": "Leatherworking",
-      "skill": 130,
+      "skill": 152,
       "maxSkill": 225
     },
     {
@@ -26,5 +26,5 @@
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-19T07:21:14+00:00"
+  "updatedAt": "2026-11-19T20:32:30+00:00"
 }
