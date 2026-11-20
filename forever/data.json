@@ -1,12 +1,12 @@
 {
   "name": "Draekhorr Healstappen",
-  "level": 34,
+  "level": 36,
   "class": "Shaman",
   "race": "Dwarf",
   "guild": "Glorified Paperweight",
   "honorableKills": 0,
   "makgoraKills": 0,
-  "talents": "0 / 25 / 0",
+  "talents": "0 / 25 / 2",
   "professions": [
     {
       "name": "Leatherworking",
@@ -15,16 +15,16 @@
     },
     {
       "name": "Skinning",
-      "skill": 221,
-      "maxSkill": 225
+      "skill": 231,
+      "maxSkill": 300
     }
   ],
-  "itemLevel": 28,
+  "itemLevel": 30,
   "role": "Enhancement",
   "portraitUrl": "https://render.worldofwarcraft.com/forever-eu/character/110/11457902-avatar.jpg?alt=/wow/static/images/2d/avatar/3-0.jpg",
   "profileUrl": "https://forever.raider.io/characters/eu/normal/Draekhorr%20Healstappen",
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-20T07:10:40+00:00"
+  "updatedAt": "2026-11-20T20:12:37+00:00"
 }
