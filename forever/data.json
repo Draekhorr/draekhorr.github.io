@@ -1,16 +1,16 @@
 {
   "name": "Draekhorr Healstappen",
-  "level": 37,
+  "level": 38,
   "class": "Shaman",
   "race": "Dwarf",
   "guild": "Glorified Paperweight",
   "honorableKills": 0,
   "makgoraKills": 0,
-  "talents": "0 / 25 / 3",
+  "talents": "0 / 25 / 4",
   "professions": [
     {
       "name": "Leatherworking",
-      "skill": 185,
+      "skill": 203,
       "maxSkill": 225
     },
     {
@@ -26,5 +26,5 @@
   "armoryUrl": "https://worldofwarcraft.blizzard.com/en-gb/forever/eu/armory/character/draekhorr-healstappen",
   "source": "Forever Raider.IO public character API",
   "blizzardSource": "Blizzard Forever profile API",
-  "updatedAt": "2026-11-21T07:02:12+00:00"
+  "updatedAt": "2026-11-21T19:12:59+00:00"
 }
